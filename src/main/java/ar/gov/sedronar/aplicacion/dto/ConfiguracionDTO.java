@@ -1,7 +1,5 @@
 package ar.gov.sedronar.aplicacion.dto;
 
-import org.keycloak.representations.idm.RoleRepresentation;
-import org.keycloak.representations.idm.RolesRepresentation;
 
 import java.util.List;
 

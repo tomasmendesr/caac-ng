@@ -1,9 +1,7 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 
 import ar.gov.sedronar.aplicacion.dto.ConfiguracionDTO;
-import ar.gov.sedronar.aplicacion.model.RolesConstants;
 
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -16,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 @Path("/configuracion")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-@RolesAllowed({RolesConstants.USUARIO})
 public interface ConfiguracionService {
     @GET
     @Path("/getParametrosIniciales")

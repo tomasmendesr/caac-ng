@@ -2,7 +2,6 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 
 import ar.gov.sedronar.aplicacion.dto.ConfiguracionDTO;
 import ar.gov.sedronar.aplicacion.services.interfaces.ConfiguracionService;
-import ar.gov.sedronar.aplicacion.services.interfaces.ParametroService;
 import ar.gov.sedronar.aplicacion.util.ConfigProperties;
 import ar.gov.sedronar.configuracion.Configuracion;
 import ar.gov.sedronar.configuracion.ConfiguracionException;
@@ -10,6 +9,7 @@ import ar.gov.sedronar.configuracion.ConfiguracionStandaloneXML;
 import ar.gov.sedronar.servicio.KeyCloakService;
 import org.keycloak.representations.idm.ClientRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
+
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -38,8 +38,6 @@ public class ConfiguracionServiceImpl implements ConfiguracionService {
     @Inject
     KeyCloakService keyCloakService;
 
-    @Inject @DefaultServiceImpl
-    ParametroService parametrosService;
 
     @Override
     public ConfiguracionDTO getParametrosIniciales() {
@@ -75,7 +73,6 @@ public class ConfiguracionServiceImpl implements ConfiguracionService {
         }
 
         configuracionDTO.setVersion(ConfigProperties.getInstance().getVersion());
-        configuracionDTO.setTokenLectura(parametrosService.getTokenLectura());
 
         return configuracionDTO;
     }

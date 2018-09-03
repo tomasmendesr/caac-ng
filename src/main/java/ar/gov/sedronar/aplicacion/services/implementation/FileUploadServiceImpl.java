@@ -27,7 +27,7 @@ import ar.gov.sedronar.util.app.AppResponse;
 @DefaultServiceImpl
 @Transactional
 public class FileUploadServiceImpl implements FileUploadService {
-    private final String UPLOADED_FILE_PATH = ConfigProperties.getInstance().getFilePath();
+    private final String UPLOADED_FILE_PATH = "";//ConfigProperties.getInstance().getFilePath();
 
     private String fileName;
 

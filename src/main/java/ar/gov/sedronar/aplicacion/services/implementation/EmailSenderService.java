@@ -12,7 +12,7 @@ import java.util.Properties;
 public class EmailSenderService {
 
     public void sendEmail(String to, String code) throws Exception{ //, Boolean olvidoContrasenia) {
-        String from = ConfigProperties.getInstance().getEmailFrom();
+        String from = "";//ConfigProperties.getInstance().getEmailFrom();
 
         Properties props = System.getProperties();
 
@@ -28,7 +28,7 @@ public class EmailSenderService {
         MimeMessage msg = new MimeMessage(session);
 
         msg.setFrom(new InternetAddress(from));
-        String url = ConfigProperties.getInstance().getUrlChangePassword() + code;
+        String url = "";//ConfigProperties.getInstance().getUrlChangePassword() + code;
         msg.setSubject("[Back Office] Restablecer contraseña");
         String messageBody = String.format("Para modificar su clave haga "
                 + "<a href=\"%s\"> click aquí.</a><br><br>"
@@ -41,8 +41,8 @@ public class EmailSenderService {
 
     private class SMTPAuthenticator extends javax.mail.Authenticator {
         public PasswordAuthentication getPasswordAuthentication() {
-            String from = ConfigProperties.getInstance().getEmailFrom();
-            String password = ConfigProperties.getInstance().getEmailPassword();
+            String from = "";//ConfigProperties.getInstance().getEmailFrom();
+            String password ="";// ConfigProperties.getInstance().getEmailPassword();
             return new PasswordAuthentication(from, password);
         }
     }
