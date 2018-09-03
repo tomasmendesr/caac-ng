@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
-
+  selectedItem: string;
   constructor(private router: Router) { }
 
   ngOnInit() {

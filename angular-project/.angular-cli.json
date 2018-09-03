@@ -29,7 +29,7 @@
         "assets/notify/css/animate.css"
       ],
       "scripts": [
-        "assets/jquery/jquery-1.12.4.js",
+        "assets/jquery/jquery-3.3.1.js",
         "assets/bundle/bundle.js",
         "assets/ui/js/vendor.js",
         "assets/ui/js/app.js",

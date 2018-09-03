@@ -5,7 +5,6 @@ export class APP_SETTINGS {
   static USERNAME: string;
   static VERSION: string;
   static IS_LOGUED_IN: boolean = false;
-  static URL_ESTADISTICAS: string;
   static ROLES_AVAILABLES: string[];
   static USER_ROLES: string[];
 }
