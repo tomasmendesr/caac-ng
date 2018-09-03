@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/sedronar-pics-angular-project'
+  apiUrl: 'http://localhost:8080/caac-ng',
+  picsUrl: 'http://localhost:8080/home'
 };
