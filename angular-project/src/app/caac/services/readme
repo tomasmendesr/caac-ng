@@ -1,0 +1,3 @@
+Sólo llamadas a los servicios de java. No incluir lógica de negocio.
+La lógica de negocio, en caso de ser necesaria porque el server tiene la pcpal,
+implementarla en los objetos component de angular.

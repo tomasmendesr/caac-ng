@@ -1,0 +1,84 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "frontend"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css",
+        "assets/fontawesome/fontawesome-all.min.css",
+        "assets/bundle/bundle.css",
+        "assets/ui/css/vendor.css",
+        "assets/ui/css/app-blue.css",
+        "assets/datatable/dataTables.bootstrap4.css",
+        "assets/datatable/responsive.bootstrap4.css",
+        "assets/notify/css/animate.css"
+      ],
+      "scripts": [
+        "assets/jquery/jquery-3.3.1.js",
+        "assets/bundle/bundle.js",
+        "assets/ui/js/vendor.js",
+        "assets/ui/js/app.js",
+        "assets/datatable/jquery.dataTables.min.js",
+        "assets/datatable/dataTables.bootstrap4.min.js",
+        "assets/datatable/dataTables.responsive.min.js",
+        "assets/datatable/responsive.bootstrap4.min.js",
+        "assets/datatable/dataTables.buttons.min.js",
+        "assets/datatable/dataTables.select.min.js",
+        "assets/notify/js/bootstrap-notify.min.js",
+        "assets/datatable/jszip.min.js",
+        "assets/datatable/pdfmake.min.js",
+        "assets/datatable/vfs_fonts.js",
+        "assets/datatable/buttons.html5.min.js",
+        "assets/datatable/buttons.print.min.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

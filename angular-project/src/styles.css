@@ -1,0 +1,14 @@
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: rgba(0, 0, 0, 0.54) !important;
+}
+
+.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+.formErrorMessages {
+  display:none;
+  cursor: pointer;
+  margin-bottom: 10px;
+}

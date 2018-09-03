@@ -1,0 +1,167 @@
+<div class="SidebarContainer">
+  <aside class="DashboardSidebar" >
+    <header class="SidebarHeader" style="display: contents !important;">
+      <h2 class="Title"><img class="" src="/assets/img/logo_SEDRONAR_2018.png" style="width: 130px; margin-left: 20%; margin-right: 20%;"></h2>
+    </header>
+    <div class="SidebarContent">
+      <nav class="SidebarNav" id="SidebarNav">
+        <a routerLink="/inicio" class="NavLink" [ngClass]="{'-active': selectedItem === 'inicio'}" (click)="selectedItem = 'inicio'">
+          <i class="fas fa-home NavIcon"></i>
+          <span> Inicio </span>
+        </a>
+        <a routerLink="/usuarios" class="NavLink" [ngClass]="{'-active': selectedItem === 'usuarios'}" (click)="selectedItem = 'usuarios'">
+          <i class="fas fa-home NavIcon"></i>
+          <span> ABM Usuarios </span>
+        </a>
+        <a href="/" class="NavLink ">
+          <i class="fas fa-pie-chart NavIcon"></i>
+          <span> Metrics </span>
+        </a>
+        <div class="NavGroup ">
+          <a href="/" class="NavLink">
+            <i class="fas fa-file-text-o NavIcon"></i>
+            <span> Other Pages </span>
+          </a>
+          <nav class="Nav">
+            <div class="CompactNavGroupHeader">
+              <h4 class="NavTitle"> Other Pages </h4>
+              <a href="" class="Button -dismiss DismissBtn">
+                <i class="fas fa-times Icon"></i>
+              </a>
+            </div>
+            <a href="/Pages/Profile.html" class="NavLink"> Profile </a>
+            <a href="/Pages/Settings.html" class="NavLink"> Settings </a>
+            <a href="/Pages/Search.html" class="NavLink "> Search Results </a>
+            <a href="/Pages/Error.html" class="NavLink "> Error Page </a>
+            <a href="/Auth/Login.html" class="NavLink"> Login </a>
+            <a href="/Auth/Signup.html" class="NavLink"> Signup </a>
+            <a href="/Auth/Recover.html" class="NavLink"> Password Recover </a>
+          </nav>
+        </div>
+        <div class="Divider"></div>
+        <div class="NavGroup ">
+          <a href="" class="NavLink">
+            <i class="fas fa-edit NavIcon"></i>
+            <span> Forms </span>
+          </a>
+          <nav class="Nav">
+            <div class="CompactNavGroupHeader">
+              <h4 class="NavTitle"> Forms </h4>
+              <a href="" class="Button -dismiss DismissBtn">
+                <i class="fas fa-times Icon"></i>
+              </a>
+            </div>
+            <a href="Forms.html" class="NavLink ">
+              <span> Basic Forms </span>
+            </a>
+          </nav>
+        </div>
+        <div class="NavGroup">
+          <a href="" class="NavLink">
+            <i class="fas fa-list-ul NavIcon"></i>
+            <span> Tables and Lists </span>
+          </a>
+          <nav class="Nav">
+            <div class="CompactNavGroupHeader">
+              <h4 class="NavTitle"> Tables and Lists </h4>
+              <a href="" class="Button -dismiss DismissBtn">
+                <i class="fas fa-times Icon"></i>
+              </a>
+            </div>
+            <a href="/TablesAndLists/BasicTables.html" class="NavLink">
+              <span> Basic Tables </span>
+            </a>
+            <a href="/TablesAndLists/ResponsiveTables.html" class="NavLink">
+              <span> Responsive Tables </span>
+            </a>
+            <a href="http://localhost:8080/TablesAndLists/ResponsiveLists.html" class="NavLink">
+              <span> Responsive Lists </span>
+            </a>
+          </nav>
+        </div>
+        <div class="NavGroup ">
+          <a href="" class="NavLink ">
+            <i class="fas fa-area-chart NavIcon"></i>
+            <span> Charts </span>
+          </a>
+          <nav class="Nav">
+            <div class="CompactNavGroupHeader">
+              <h4 class="NavTitle"> Charts </h4>
+              <a href="" class="Button -dismiss DismissBtn">
+                <i class="fas fa-times Icon"></i>
+              </a>
+            </div>
+            <a href="Charts/ChartJS.html" class="NavLink ">
+              <span> ChartJS </span>
+            </a>
+            <a href="Charts/Morris.html" class="NavLink ">
+              <span> Morris </span>
+            </a>
+          </nav>
+        </div>
+        <div class="NavGroup ">
+          <a href="/" class="NavLink">
+            <i class="fas fa-desktop NavIcon"></i>
+            <span> UI Components </span>
+          </a>
+          <nav class="Nav">
+            <div class="CompactNavGroupHeader">
+              <h4 class="NavTitle"> UI Components </h4>
+              <a href="" class="Button -dismiss DismissBtn">
+                <i class="fas fa-times Icon"></i>
+              </a>
+            </div>
+            <a href="" class="NavLink"> Color Palette </a>
+            <a href="/UIComponents/Typography.html" class="NavLink "> Typography </a>
+            <a href="/UIComponents/Grid.html" class="NavLink"> Grid </a>
+            <a href="" class="NavLink"> Dropdowns </a>
+            <a href="" class="NavLink"> Modals </a>
+            <a href="" class="NavLink"> Buttons </a>
+            <a href="" class="NavLink"> Cards </a>
+            <a href="/UIComponents/Utils.html" class="NavLink ">
+              <span> Utils </span>
+            </a>
+            <div class="NavGroup">
+              <a href="" class="NavLink">
+                <span> Multi Level Menu </span>
+              </a>
+              <nav class="Nav">
+                <h4 class="CompactNavGroupName"> Multi Level Menu
+                  <a href="" class="Button ButtonDismiss DismissBtn">
+                    <i class="fas fa-times Icon"></i>
+                  </a>
+                </h4>
+                <a href="" class="NavLink"> Level Two </a>
+                <div class="NavGroup">
+                  <a href="" class="NavLink"> Level Two </a>
+                  <nav class="Nav">
+                    <div class="NavGroup">
+                      <a href="" class="NavLink"> Level Three </a>
+                      <nav class="Nav">
+                        <a href="" class="NavLink"> Level Four </a>
+                        <a href="" class="NavLink"> Level Four </a>
+                      </nav>
+                    </div>
+                    <a href="" class="NavLink"> Level Three </a>
+                  </nav>
+                </div>
+              </nav>
+            </div>
+          </nav>
+        </div>
+        <div class="Divider"></div>
+        <a href="" class="NavLink">
+          <i class="fas fa-code NavIcon -color-light-blue-300"></i>
+          <span> Other Versions </span>
+        </a>
+      </nav>
+    </div>
+    <footer id="SidebarFooter" class="SidebarFooter">
+      <nav class="SidebarFooterNav">
+        <a href="" id="SidebarToggleCompactLink" class="NavLink LinkToggleCompact" data-placement="top" data-trigger="hover" title="Toggle sidebar">
+          <i class="pe-7s-angle-left Icon" aria-hidden="true"></i>
+        </a>
+      </nav>
+    </footer>
+  </aside>
+</div>

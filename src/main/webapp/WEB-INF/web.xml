@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.1"
+ xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+ <display-name>SERVICES</display-name>
+
+    <mime-mapping>
+        <extension>csv</extension>
+        <mime-type>text/csv</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>css</extension>
+        <mime-type>text/css</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>js</extension>
+        <mime-type>application/javascript</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>html</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+
+    <welcome-file-list>
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
+
+    <!--<security-constraint>-->
+        <!--<display-name>SecureApplicationConstraint</display-name>-->
+        <!--<web-resource-collection>-->
+            <!--<web-resource-name>MainUI</web-resource-name>-->
+            <!--<description>Only this UI is protected</description>-->
+            <!--<url-pattern>/*</url-pattern>-->
+        <!--</web-resource-collection>-->
+        <!--<auth-constraint>-->
+            <!--<description>Only valid users are allowed</description>-->
+            <!--<role-name>USUARIO</role-name>-->
+        <!--</auth-constraint>-->
+    <!--</security-constraint>-->
+    <!---->
+    <!--<security-role>-->
+        <!--<role-name>USUARIO</role-name>-->
+    <!--</security-role>-->
+
+    <!-- METODOS PUBLICOS PARA VISUALIZAR MAPAS-->
+    <!--<security-constraint>-->
+        <!--<web-resource-collection>-->
+            <!--<web-resource-name>METODOS PUBLICOS</web-resource-name>-->
+            <!--&lt;!&ndash; ESTOS METODOS NO PASAN POR LA ANOTATTIONS @RollesAllowed &ndash;&gt;-->
+            <!--<url-pattern>/services/mapa/usuarioPuedeVisualizarMapa</url-pattern>-->
+            <!--<url-pattern>/services/mapa/findMapaById</url-pattern>-->
+            <!--<url-pattern>/services/mapa/getConexionesExternasByMapaId</url-pattern>-->
+            <!--<url-pattern>/services/mapa/getCapasByMapaIdOrderByGeometria</url-pattern>-->
+            <!--<url-pattern>/services/mapa/getCapasExternasByMapaIdFromConexion</url-pattern>-->
+            <!--<url-pattern>/services/pics/findLocalidadById</url-pattern>-->
+            <!--<http-method>GET</http-method>-->
+            <!--<http-method>POST</http-method>-->
+        <!--</web-resource-collection>-->
+        <!--&lt;!&ndash; no auth-constraint tag here &ndash;&gt;-->
+    <!--</security-constraint>-->
+
+
+</web-app>

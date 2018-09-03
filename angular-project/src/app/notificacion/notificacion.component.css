@@ -1,0 +1,8 @@
+.modal .modal-content {
+    border-radius: 4px;
+}
+
+.modal-title i.fa {
+    margin-right: 20px;
+    font-size: 0.8em;
+}
