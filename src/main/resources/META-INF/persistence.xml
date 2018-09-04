@@ -27,6 +27,8 @@
         <class>ar.gov.sedronar.aplicacion.model.ActividadIntervencion</class>
         <class>ar.gov.sedronar.aplicacion.model.Alimentacion</class>
         <class>ar.gov.sedronar.aplicacion.model.AlternativaAsistencial</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaDatosIniciales</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualActividad</class>
 
         <properties>
              <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.sqlserver.SqlServer2008SpatialDialect"/>
