@@ -6,6 +6,7 @@
 	    <jta-data-source>java:jboss/datasources/PicsDS</jta-data-source>
         <class>ar.gov.sedronar.modulo.commonsModels.modelo.Genero</class>
         <class>ar.gov.sedronar.modulo.commonsModels.modelo.EstadoCivil</class>
+        <class>ar.gov.sedronar.modulo.commonsModels.modelo.Mes</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.PaisLight</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.ProvinciaLight</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.LocalidadLight</class>
@@ -17,6 +18,16 @@
         <class>ar.gov.sedronar.aplicacion.model.Pago</class>
         <class>ar.gov.sedronar.aplicacion.model.Requisito</class>
         <class>ar.gov.sedronar.aplicacion.model.Vencimiento</class>
+        <class>ar.gov.sedronar.aplicacion.model.Hoja</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualAcompaniamiento</class>
+        <class>ar.gov.sedronar.aplicacion.model.Gestion</class>
+        <class>ar.gov.sedronar.aplicacion.model.ClasificacionRegistro</class>
+        <class>ar.gov.sedronar.aplicacion.model.ClasificacionFrecuencia</class>
+        <class>ar.gov.sedronar.aplicacion.model.Acompaniamiento</class>
+        <class>ar.gov.sedronar.aplicacion.model.ActividadIntervencion</class>
+        <class>ar.gov.sedronar.aplicacion.model.Alimentacion</class>
+        <class>ar.gov.sedronar.aplicacion.model.AlternativaAsistencial</class>
+
         <properties>
              <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.sqlserver.SqlServer2008SpatialDialect"/>
 	         <property name="hibernate.default_catalog" value="PICS"/>
