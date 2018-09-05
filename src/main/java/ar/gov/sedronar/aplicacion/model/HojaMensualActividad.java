@@ -27,6 +27,7 @@ public class HojaMensualActividad {
     public HojaMensualActividad(){}
 
     @Id
+    @Column(name = "idhoja")
     public Integer getId() {
         return id;
     }

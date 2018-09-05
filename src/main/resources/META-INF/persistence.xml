@@ -29,6 +29,27 @@
         <class>ar.gov.sedronar.aplicacion.model.AlternativaAsistencial</class>
         <class>ar.gov.sedronar.aplicacion.model.HojaDatosIniciales</class>
         <class>ar.gov.sedronar.aplicacion.model.HojaMensualActividad</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualObservaciones</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualAsistidos</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualTramites</class>
+        <class>ar.gov.sedronar.aplicacion.model.Tramite</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualAlimentacion</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualRecursos</class>
+        <class>ar.gov.sedronar.aplicacion.model.Recurso</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaMensualPersonal</class>
+        <class>ar.gov.sedronar.aplicacion.model.Personal</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaAlternativasAsistenciales</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaPoblacionAsistidaConsumo</class>
+        <class>ar.gov.sedronar.aplicacion.model.Poblacion</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaPoblacionAsistidaActividades</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaRegistrosInstitucionales</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaReunionesEquipo</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaGestionesTramites</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaGestionAlimentacion</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaActividadIntervencion</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaAcompaniamiento</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaObservaciones</class>
+        <class>ar.gov.sedronar.aplicacion.model.HojaPersonal</class>
 
         <properties>
              <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.sqlserver.SqlServer2008SpatialDialect"/>

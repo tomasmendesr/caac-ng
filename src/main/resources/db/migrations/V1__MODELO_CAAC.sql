@@ -365,7 +365,7 @@ go
 CREATE TABLE caac.H_MENSUAL_OBSERVACIONES(
     idhoja                        bigint           NOT NULL,
     otros_tramites                varchar(500)     NULL,
-    [alimentacion_en _sede]       varchar(300)     NULL,
+    alimentacion_en_sede       varchar(300)     NULL,
     alimentacion_fuera_sede       varchar(300)     NULL,
     actividades_familiares        varchar(500)     NULL,
     interv_calle_observ           varchar(2000)    NULL,

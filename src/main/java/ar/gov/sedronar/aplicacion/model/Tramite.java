@@ -1,12 +1,20 @@
-package ar.gov.sedronar.aplicacion.dto;
+package ar.gov.sedronar.aplicacion.model;
+
+import javax.persistence.*;
 
 /**
- * Created by TMR on 04/09/2018.
+ * Created by TMR on 05/09/2018.
  */
-public class ClasificacionFrencuenciaDTO {
+@Entity
+@Table(name = "TRAMITES", schema = "caac")
+public class Tramite {
     private Integer id;
     private String descripcion;
 
+    public Tramite(){}
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -15,6 +23,7 @@ public class ClasificacionFrencuenciaDTO {
         this.id = id;
     }
 
+    @Column(name = "descripcion", length = 50)
     public String getDescripcion() {
         return descripcion;
     }
