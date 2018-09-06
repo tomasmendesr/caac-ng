@@ -18,7 +18,6 @@ public class PagoDAOImpl extends AbstractDAOImpl<Pago> implements PagoDAO {
 	}
 
 	public List<Pago> findAllUnique(int offset, int limit, Map<String, Boolean> sortOrders) {
-		//TODO arreglar esto
 		return entityManager.unwrap(Session.class).createSQLQuery("SELECT * FROM CAAC.pagos A WHERE A.id IN (select TOP 1 p.id from"
 				+ " caac.pagos p WHERE p.caac=A.caac GROUP BY p.id, p.caac ORDER BY MAX(p.fech_resep) DESC)").addEntity(Pago.class).list();
 	}
@@ -54,7 +53,7 @@ public class PagoDAOImpl extends AbstractDAOImpl<Pago> implements PagoDAO {
 	public Integer count(Integer id) {
 		Criteria criteria = getEntityManager().unwrap(Session.class).createCriteria(Pago.class);
 		criteria.add(Restrictions.eq("casa.id", id));
-		return Math.toIntExact((long) criteria.setProjection(Projections.rowCount()).uniqueResult());  
+		return Math.toIntExact((long) criteria.setProjection(Projections.rowCount()).uniqueResult());
 	}
 
 	@Override

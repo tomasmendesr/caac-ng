@@ -81,7 +81,6 @@ public class DateHelper {
             fechaDesde = sdf.parse(ingreso);
             fechaHasta = sdf.parse(egreso);
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
