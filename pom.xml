@@ -18,6 +18,8 @@
 		<sedronar-pics-account.version>2.1.6</sedronar-pics-account.version>
 
 		<!--
+		Para compilar solo el backend: mvn package -Pdesarrollo "-Dcomando=build"
+
 		Para compilar en modo dev local: mvn package "-Dcomando=build"
 		Para compilar en modo dev:	mvn package "-Dcomando=builddev"
 		Para compilar en modo test:	mvn package "-Dcomando=buildtest"
