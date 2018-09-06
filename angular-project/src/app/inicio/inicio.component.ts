@@ -1,21 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import MainConstants from './../constants/main-constants';
 import {UrlConstants} from "../tomi/services/UrlConstants";
+import {fromEvent} from "rxjs/observable/fromEvent";
+
+declare var $: any;
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
-
-export class InicioComponent implements OnInit {
+export class InicioComponent implements OnInit, AfterViewInit {
   selectedItem: string;
-
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    const btnCaac = document.getElementById('btnCaac');
+    const btnCaacClickEvent = fromEvent(btnCaac, 'click');
+
+    btnCaacClickEvent.subscribe((e: any) => $('.caac-item').show());
   }
 
   caacTitle() {
@@ -41,4 +49,6 @@ export class InicioComponent implements OnInit {
   getUrlSigese() {
     return '/' + UrlConstants.SIGESE_VIEW;
   }
+
+
 }
