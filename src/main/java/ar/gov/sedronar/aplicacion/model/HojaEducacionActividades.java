@@ -1,9 +1,6 @@
 package ar.gov.sedronar.aplicacion.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -14,6 +11,7 @@ import java.util.Date;
 @Table(name = "HOJA_EDUCACION_ACTIVIDADES", schema = "caac")
 public class HojaEducacionActividades {
     private BigInteger id;
+    private Hoja hoja;
     private String educacionAcompaniamientoEscuela;
     private String educacionPrevencion;
     private String educacionApoyoEscular;
@@ -195,5 +193,15 @@ public class HojaEducacionActividades {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idhoja", insertable = false, updatable = false)
+    public Hoja getHoja() {
+        return hoja;
+    }
+
+    public void setHoja(Hoja hoja) {
+        this.hoja = hoja;
     }
 }

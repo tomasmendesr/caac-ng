@@ -27,7 +27,7 @@ public class Personal {
 
     @Id
     @Column(name = "idempleado")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -91,7 +91,7 @@ public class Personal {
         this.titulo = titulo;
     }
 
-    @Column(name = "estado_actual", length = 1, columnDefinition = "char(1")
+    @Column(name = "es_rentado", length = 1, columnDefinition = "char(1")
     public String getEsRentado() {
         return esRentado;
     }

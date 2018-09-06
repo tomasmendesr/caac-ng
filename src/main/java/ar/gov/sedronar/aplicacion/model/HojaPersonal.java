@@ -27,7 +27,7 @@ public class HojaPersonal {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idhoja")
+    @JoinColumn(name = "idhoja", insertable = false, updatable = false)
     public Hoja getHoja() {
         return hoja;
     }
@@ -37,7 +37,7 @@ public class HojaPersonal {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idempleado")
+    @JoinColumn(name = "idempleado", insertable = false, updatable = false)
     public Personal getEmpleado() {
         return empleado;
     }

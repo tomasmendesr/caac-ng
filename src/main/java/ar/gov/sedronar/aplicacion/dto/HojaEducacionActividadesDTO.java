@@ -8,6 +8,7 @@ import java.util.Date;
  */
 public class HojaEducacionActividadesDTO {
     private BigInteger id;
+    private HojaDTO hoja;
     private String educacionAcompaniamientoEscuela;
     private String educacionPrevencion;
     private String educacionApoyoEscular;
@@ -168,5 +169,13 @@ public class HojaEducacionActividadesDTO {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    public HojaDTO getHoja() {
+        return hoja;
+    }
+
+    public void setHoja(HojaDTO hoja) {
+        this.hoja = hoja;
     }
 }

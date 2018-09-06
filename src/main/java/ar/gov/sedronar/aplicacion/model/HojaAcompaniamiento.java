@@ -30,7 +30,7 @@ public class HojaAcompaniamiento {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idhoja")
+    @JoinColumn(name = "idhoja", insertable = false, updatable = false)
     public Hoja getHoja() {
         return hoja;
     }
@@ -40,7 +40,7 @@ public class HojaAcompaniamiento {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idacompaniamiento")
+    @JoinColumn(name = "idacompaniamiento", insertable = false, updatable = false)
     public Acompaniamiento getAcompaniamiento() {
         return acompaniamiento;
     }

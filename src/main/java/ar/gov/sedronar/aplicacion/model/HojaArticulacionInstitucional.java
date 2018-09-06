@@ -32,7 +32,7 @@ public class HojaArticulacionInstitucional {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idhoja")
+    @JoinColumn(name = "idhoja", insertable = false, updatable = false)
     public Hoja getHoja() {
         return hoja;
     }
@@ -42,7 +42,7 @@ public class HojaArticulacionInstitucional {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_tipo_inst")
+    @JoinColumn(name = "id_tipo_inst", insertable = false, updatable = false)
     public TipoInstitucion getTipoInstitucion() {
         return tipoInstitucion;
     }

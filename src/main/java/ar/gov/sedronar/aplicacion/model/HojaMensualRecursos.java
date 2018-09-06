@@ -28,7 +28,7 @@ public class HojaMensualRecursos {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idrecursos")
+    @JoinColumn(name = "idrecursos", insertable = false, updatable = false)
     public Recurso getRecurso() {
         return recurso;
     }
@@ -38,7 +38,7 @@ public class HojaMensualRecursos {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idhoja")
+    @JoinColumn(name = "idhoja", insertable = false, updatable = false)
     public Hoja getHoja() {
         return hoja;
     }

@@ -29,7 +29,7 @@ public class HojaGestionesTramites {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idhoja")
+    @JoinColumn(name = "idhoja", insertable = false, updatable = false)
     public Hoja getHoja() {
         return hoja;
     }
@@ -39,7 +39,7 @@ public class HojaGestionesTramites {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idtramite")
+    @JoinColumn(name = "idtramite", insertable = false, updatable = false)
     public Tramite getTramite() {
         return tramite;
     }

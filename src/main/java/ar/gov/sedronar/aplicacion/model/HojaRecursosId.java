@@ -2,13 +2,14 @@ package ar.gov.sedronar.aplicacion.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 import java.math.BigInteger;
 
 /**
  * Created by TMR on 05/09/2018.
  */
 @Embeddable
-public class HojaRecursosId {
+public class HojaRecursosId implements Serializable {
     private BigInteger idHoja;
     private Integer idRecurso;
 
@@ -26,7 +27,7 @@ public class HojaRecursosId {
         this.idHoja = idHoja;
     }
 
-    @Column(name = "idrecurso")
+    @Column(name = "id")
     public Integer getIdRecurso() {
         return idRecurso;
     }
