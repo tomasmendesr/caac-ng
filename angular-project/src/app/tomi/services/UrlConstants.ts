@@ -14,4 +14,9 @@ export class UrlConstants {
   static readonly SAVE_USER = '/services/usuario/saveOrUpdate';
   static readonly DELETE_USER = '/services/usuario/delete';
   static readonly USER_IN_USE = '/services/usuario/isInUse';
+
+  //routing
+  static readonly CAAC_VIEW = 'caac-view';
+  static readonly SIGESE_VIEW = 'sigese-view';
+
 }

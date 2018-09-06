@@ -12,19 +12,21 @@ import { HashLocationStrategy } from '@angular/common';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import {EventBusService} from './services/event-bus.service';
 import {NotificacionComponent} from './notificacion/notificacion.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './tomi/components/sidebar/sidebar.component';
 import {AppHttpInterceptor} from './services/http.interceptor';
 import {SafePipe} from "./tomi/utils/safe-pipe";
 import {BlankComponent} from "./tomi/components/blank/blank.component";
 import {ErrorPageComponent} from "./tomi/components/error-page/error-page.component";
 import {AppLoadService} from "./services/app-load.service";
-import {InicioComponent} from "./tomi/components/inicio/inicio.component";
+import {InicioComponent} from "./inicio/inicio.component";
 import { AbmUsuariosComponent } from './tomi/components/abm-usuarios/abm-usuarios.component';
 import {UsuarioService} from "./tomi/services/usuario.service";
 import {LoadingComponent} from "./tomi/components/loading/loading.component";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CaacViewComponent } from './fede/components/caac-view/caac-view.component';
+import { SigeseViewComponent } from './tomi/components/sigese-view/sigese-view.component';
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -43,7 +45,9 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     SafePipe,
     InicioComponent,
     AbmUsuariosComponent,
-    LoadingComponent
+    LoadingComponent,
+    CaacViewComponent,
+    SigeseViewComponent
   ],
   imports: [
     BrowserModule,

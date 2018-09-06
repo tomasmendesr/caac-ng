@@ -84,7 +84,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public AppResponse isInUse(UsuarioDTO usuarioDTO) {
-		return new AppResponse(false);  // TODO implementar
+		return new AppResponse(false);
 	}
 }
 
