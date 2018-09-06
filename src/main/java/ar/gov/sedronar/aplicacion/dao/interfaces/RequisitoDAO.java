@@ -1,11 +1,8 @@
-package ar.gov.sedronar.dao.interfaces;
+package ar.gov.sedronar.aplicacion.dao.interfaces;
 
-import java.util.List;
 
-import ar.gov.sedronar.models.Requisito;
+import ar.gov.sedronar.aplicacion.model.Requisito;
 
 public interface RequisitoDAO extends AbstractDAO<Requisito>{
-
-	Requisito findByCasaId(Integer id);	
 
 }

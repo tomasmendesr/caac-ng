@@ -1,9 +1,8 @@
-package ar.gov.sedronar.dao.interfaces;
+package ar.gov.sedronar.aplicacion.dao.interfaces;
 
-import ar.gov.sedronar.models.Categoria;
+
+import ar.gov.sedronar.aplicacion.model.Categoria;
 
 public interface CategoriaDAO extends AbstractDAO<Categoria>{
-
-	Object findById(String id);	
 
 }

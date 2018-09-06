@@ -7,10 +7,13 @@
         <class>ar.gov.sedronar.modulo.commonsModels.modelo.Genero</class>
         <class>ar.gov.sedronar.modulo.commonsModels.modelo.EstadoCivil</class>
         <class>ar.gov.sedronar.modulo.commonsModels.modelo.Mes</class>
+        <class>ar.gov.sedronar.modulo.commonsModels.modelo.Profesion</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.PaisLight</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.ProvinciaLight</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.LocalidadLight</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.DepartamentoLight</class>
+        <class>ar.gov.sedronar.modulo.geo.modelo.Municipio</class>
+        <class>ar.gov.sedronar.modulo.geo.modelo.Region</class>
 
         <class>ar.gov.sedronar.aplicacion.model.Acompaniamiento</class>
         <class>ar.gov.sedronar.aplicacion.model.ActividadIntervencion</class>

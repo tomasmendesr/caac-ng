@@ -1,7 +1,10 @@
 package ar.gov.sedronar.aplicacion.model;
 
+import ar.gov.sedronar.modulo.geo.modelo.DepartamentoLight;
+import ar.gov.sedronar.modulo.geo.modelo.LocalidadLight;
+import ar.gov.sedronar.modulo.geo.modelo.ProvinciaLight;
 import org.hibernate.annotations.ColumnDefault;
-
+import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -39,7 +42,6 @@ public class Casa {
     @Column(name="mail")
     private String mail;
 
-    //@Column(name="obser",length=255, columnDefinition="TEXT")
     @Column(name="obser", columnDefinition="TEXT")
     private String obser;
 
@@ -69,7 +71,7 @@ public class Casa {
     @Column(name="req")
     private String req;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idprov")
     private ProvinciaLight provincia;
 
@@ -259,6 +261,4 @@ public class Casa {
         this.departamento = departamento;
     }
 
-    private class LocalidadLight {
-    }
 }

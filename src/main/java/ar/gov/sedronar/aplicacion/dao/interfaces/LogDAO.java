@@ -1,7 +1,8 @@
-package ar.gov.sedronar.dao.interfaces;
+package ar.gov.sedronar.aplicacion.dao.interfaces;
 
-import ar.gov.sedronar.models.Log;
 
-public interface LogDAO extends AbstractDAO<Log>{	
+import ar.gov.sedronar.aplicacion.model.Log;
+
+public interface LogDAO extends AbstractDAO<Log>{
 
 }

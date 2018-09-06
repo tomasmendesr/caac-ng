@@ -1,35 +1,15 @@
-package ar.gov.sedronar.dao.hibernate;
+package ar.gov.sedronar.aplicacion.dao.hibernate;
 
-import java.util.List;
-import java.util.Map;
+
+import ar.gov.sedronar.aplicacion.dao.interfaces.PagoDAO;
+import ar.gov.sedronar.aplicacion.model.Pago;
 
 import javax.ejb.Stateless;
-import javax.persistence.Query;
-
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.CriteriaQuery;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.criterion.Subqueries;
-import org.hibernate.engine.spi.TypedValue;
-
-import ar.gov.sedronar.dao.hibernate.AbstractDAOImpl;
-import ar.gov.sedronar.dao.hibernate.HibernateDAO;
-import ar.gov.sedronar.dao.interfaces.PagoDAO;
-import ar.gov.sedronar.models.Auditoria;
-import ar.gov.sedronar.models.Pago;
-import ar.gov.sedronar.utils.Limit;
 
 @Stateless
 @HibernateDAO
 public class PagoDAOImpl extends AbstractDAOImpl<Pago> implements PagoDAO {
-
+/*
 	public Pago findByCasaId(Integer id) {
 		Criteria c = entityManager.unwrap(Session.class).createCriteria(Pago.class);
 		c.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
@@ -103,6 +83,6 @@ public class PagoDAOImpl extends AbstractDAOImpl<Pago> implements PagoDAO {
 			return 0D;
 		return result.getMonto()!=null?result.getMonto():0;
 	}
-
+*/
 
 }
