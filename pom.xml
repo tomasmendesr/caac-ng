@@ -16,6 +16,18 @@
 	    <angular.project.location>angular-project</angular.project.location>
 	    <angular.project.nodeinstallation>node_installation</angular.project.nodeinstallation>
 		<sedronar-pics-account.version>2.1.6</sedronar-pics-account.version>
+
+		<!--
+		Para compilar en modo dev local: mvn package "-Dcomando=build"
+		Para compilar en modo dev:	mvn package "-Dcomando=builddev"
+		Para compilar en modo test:	mvn package "-Dcomando=buildtest"
+		Para compilar en modo prod:	mvn package "-Dcomando=buildprod"
+
+		estos comandos están definidos en el proy angular / package.json
+		-->
+		<!--<comando>ng build &#45;&#45;base-href . &#45;&#45;env=dev</comando>-->
+		<comando>${comando}</comando>
+
 		<!-- ENCODING (sin esto no funcionan la mayoria de las tildes) -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -192,129 +204,18 @@
 
 	</dependencies>
 
-	<!--<build>-->
-		<!--<sourceDirectory>src/main/java</sourceDirectory>-->
-		<!--<plugins>-->
-			<!--<plugin>-->
-				<!--<artifactId>maven-war-plugin</artifactId>-->
-				<!--<version>2.6</version>-->
-				<!--<configuration>-->
-					<!--<warSourceDirectory>WebContent</warSourceDirectory>-->
-					<!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
-				<!--</configuration>-->
-			<!--</plugin>-->
-			<!--<plugin>-->
-				<!--<artifactId>maven-compiler-plugin</artifactId>-->
-				<!--<version>3.3</version>-->
-				<!--<configuration>-->
-					<!--<source>1.8</source>-->
-					<!--<target>1.8</target>-->
-				<!--</configuration>-->
-			<!--</plugin>-->
-			<!---->
-			<!--<plugin>-->
-	            <!--<groupId>com.github.eirslett</groupId>-->
-	            <!--<artifactId>frontend-maven-plugin</artifactId>-->
-	            <!--<version>1.0</version>-->
-	            <!--<configuration>-->
-	                <!--<workingDirectory>${angular.project.location}</workingDirectory>-->
-	                <!--<installDirectory>${angular.project.nodeinstallation}</installDirectory>-->
-	            <!--</configuration>-->
-	            <!--<executions>-->
-	                <!--&lt;!&ndash; It will install nodejs and npm &ndash;&gt;-->
-	                <!--<execution>-->
-	                    <!--<id>install node and npm</id>-->
-	                    <!--<goals>-->
-	                        <!--<goal>install-node-and-npm</goal>-->
-	                    <!--</goals>-->
-	                    <!--<configuration>-->
-	                        <!--<nodeVersion>v6.10.0</nodeVersion>-->
-	                        <!--<npmVersion>3.10.10</npmVersion>-->
-	                    <!--</configuration>-->
-	                <!--</execution>-->
-	<!---->
-	                <!--&lt;!&ndash; It will execute command "npm install" inside "/e2e-angular2" directory &ndash;&gt;-->
-	                <!--<execution>-->
-	                    <!--<id>npm install</id>-->
-	                    <!--<goals>-->
-	                        <!--<goal>npm</goal>-->
-	                    <!--</goals>-->
-	                    <!--<configuration>-->
-	                        <!--<arguments>install</arguments>-->
-	                    <!--</configuration>-->
-	                <!--</execution>-->
-	                <!--&lt;!&ndash; It will execute command "npm build" inside "/e2e-angular2" directory -->
-	                    <!--to clean and create "/dist" directory &ndash;&gt;-->
-	                <!--<execution>-->
-	                    <!--<id>npm build</id>-->
-	                    <!--<goals>-->
-	                        <!--<goal>npm</goal>-->
-	                    <!--</goals>-->
-	                    <!--<configuration>-->
-	                        <!--<arguments>run build</arguments>-->
-	                    <!--</configuration>-->
-	                <!--</execution>-->
-	            <!--</executions>-->
-            <!--</plugin>-->
-
-        <!--&lt;!&ndash; Plugin to copy the content of /angular/dist/ directory to output -->
-            <!--directory (ie/ /target/transactionManager-1.0/) &ndash;&gt;-->
-	        <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-resources-plugin</artifactId>-->
-                <!--<version>2.4.2</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>war-copy-resources</id>-->
-                        <!--<phase>process-resources</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>copy-resources</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<overwrite>true</overwrite>-->
-                            <!--<outputDirectory>${project.build.directory}/${project.artifactId}</outputDirectory>-->
-                            <!--<resources>-->
-                                <!--<resource>-->
-                                    <!--<directory>${project.basedir}/${angular.project.location}/dist</directory>-->
-                                <!--</resource>-->
-                            <!--</resources>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>dev-copy-resources</id>-->
-                        <!--<phase>process-resources</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>copy-resources</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<overwrite>true</overwrite>-->
-                            <!--<outputDirectory>src/main/webapp</outputDirectory>-->
-                            <!--<resources>-->
-                                <!--<resource>-->
-                                    <!--<directory>${project.basedir}/${angular.project.location}/dist</directory>-->
-                                <!--</resource>-->
-                            <!--</resources>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-		<!--</plugins>-->
-		<!--<resources>-->
-			<!--<resource>-->
-				<!--<directory>src/main/resources</directory>-->
-				<!--<filtering>true</filtering>-->
-			<!--</resource>-->
-		<!--</resources>-->
-		<!--<finalName>${project.artifactId}</finalName>-->
-	<!--</build>-->
-
-	<!--<build>-->
-		<!--<sourceDirectory>src/main/java</sourceDirectory>-->
-	<!--</build>-->
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
 
 
 	<profiles>
-
 		<!-- perfil default con compilacion angular -->
 		<profile>
 			<id>default</id>
