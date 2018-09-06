@@ -5,6 +5,8 @@ import {ErrorPageComponent} from "../tomi/components/error-page/error-page.compo
 import {InicioComponent} from "../inicio/inicio.component";
 import {BlankComponent} from "../tomi/components/blank/blank.component";
 import {AbmUsuariosComponent} from "../tomi/components/abm-usuarios/abm-usuarios.component";
+import {CaacViewComponent} from "../fede/components/caac-view/caac-view.component";
+import {SigeseViewComponent} from "../tomi/components/sigese-view/sigese-view.component";
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
     path: UrlConstants.ABM_USUARIOS_VIEW,
     component: AbmUsuariosComponent
   },
+  {
+    path: UrlConstants.CAAC_VIEW,
+    component: CaacViewComponent
+  },
+  {
+    path: UrlConstants.SIGESE_VIEW,
+    component: SigeseViewComponent
+  }
 ];
 
 

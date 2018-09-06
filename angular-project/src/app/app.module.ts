@@ -25,6 +25,8 @@ import {LoadingComponent} from "./tomi/components/loading/loading.component";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CaacViewComponent } from './fede/components/caac-view/caac-view.component';
+import { SigeseViewComponent } from './tomi/components/sigese-view/sigese-view.component';
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -43,7 +45,9 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     SafePipe,
     InicioComponent,
     AbmUsuariosComponent,
-    LoadingComponent
+    LoadingComponent,
+    CaacViewComponent,
+    SigeseViewComponent
   ],
   imports: [
     BrowserModule,

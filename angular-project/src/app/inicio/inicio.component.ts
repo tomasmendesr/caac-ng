@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import MainConstants from './../constants/main-constants';
+import {UrlConstants} from "../tomi/services/UrlConstants";
 
 @Component({
   selector: 'app-inicio',
@@ -33,4 +34,11 @@ export class InicioComponent implements OnInit {
     return MainConstants.SIGESE_SIGLAS;
   }
 
+  getUrlCaac() {
+    return '/' + UrlConstants.CAAC_VIEW;
+  }
+
+  getUrlSigese() {
+    return '/' + UrlConstants.SIGESE_VIEW;
+  }
 }
