@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by TMR on 05/09/2018.
  */
 @Entity
-@Table
+@Table(name = "RECURSOS", schema = "caac")
 public class Recurso {
     private Integer id;
     private String detalle;

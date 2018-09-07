@@ -1,13 +1,16 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-
 import ar.gov.sedronar.aplicacion.dto.UsuarioDTO;
 import ar.gov.sedronar.aplicacion.filters.AbstractTableFilter;
 import ar.gov.sedronar.util.app.AppResponse;
 import ar.gov.sedronar.util.dataTable.DataTableObjectResponse;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 @Path("/usuario")
 @Consumes(MediaType.APPLICATION_JSON)

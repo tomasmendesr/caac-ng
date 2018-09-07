@@ -16,6 +16,7 @@ public class HojaArticulacionInstitucional {
     private String intercambioInfo;
     private String derivacionRecepcionDePersonas;
     private String accionesConjuntas;
+    private String proyectos_conjuntos;
     private String nombreInstitucion;
     private String uum;
     private java.util.Date fum;
@@ -87,7 +88,7 @@ public class HojaArticulacionInstitucional {
         this.accionesConjuntas = accionesConjuntas;
     }
 
-    @Column(name = "proyectos_conjuntos", length = 300)
+    @Column(name = "nombre_institucion", length = 300)
     public String getNombreInstitucion() {
         return nombreInstitucion;
     }
@@ -112,5 +113,14 @@ public class HojaArticulacionInstitucional {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    @Column(name = "proyectos_conjuntos", length =1, columnDefinition = "char(1)")
+    public String getProyectos_conjuntos() {
+        return proyectos_conjuntos;
+    }
+
+    public void setProyectos_conjuntos(String proyectos_conjuntos) {
+        this.proyectos_conjuntos = proyectos_conjuntos;
     }
 }

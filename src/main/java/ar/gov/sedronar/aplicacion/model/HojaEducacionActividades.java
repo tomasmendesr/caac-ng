@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "HOJA_EDUCACION_ACTIVIDADES", schema = "caac")
 public class HojaEducacionActividades {
-    private BigInteger id;
+    private Long id;
     private Hoja hoja;
     private String educacionAcompaniamientoEscuela;
     private String educacionPrevencion;
@@ -34,11 +34,11 @@ public class HojaEducacionActividades {
 
     @Id
     @Column(name = "idhoja")
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

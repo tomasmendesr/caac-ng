@@ -1,23 +1,10 @@
 package ar.gov.sedronar.aplicacion.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import org.eclipse.jetty.util.security.Credential.MD5;
 
 
-
-@Entity
-@Table(name = "usuarios") //, schema="name")
 public class Usuario {
 
 	private Integer id;
@@ -30,8 +17,6 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}
@@ -40,7 +25,6 @@ public class Usuario {
 		this.id = id;
 	}
 
-	@Column(name = "nombre", length = 50)
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -49,7 +33,6 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	@Column(name = "apellido", length = 50)
 	public String getApellido() {
 		return this.apellido;
 	}
@@ -58,7 +41,6 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	@Column(name = "email", length = 100)
 	public String getEmail() {
 		return this.email;
 	}
@@ -67,8 +49,6 @@ public class Usuario {
 		this.email = email;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "fechaNacimiento", length = 19)
 	public Date getFechaDeNacimiento() {
 		return this.fechaDeNacimiento;
 	}
@@ -77,7 +57,6 @@ public class Usuario {
 		this.fechaDeNacimiento = fecha;
 	}
 
-	@Column(name = "username", length = 50)
 	public String getUsername() {
 		return username;
 	}

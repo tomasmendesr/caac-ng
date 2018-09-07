@@ -11,22 +11,22 @@ import java.util.Objects;
 @Embeddable
 public class HojaMensualAcompaniamientoId implements Serializable {
 
-    private Integer idHoja;
+    private Long idHoja;
     private Integer idAcompaniamiento;
 
     public HojaMensualAcompaniamientoId(){}
 
-    public HojaMensualAcompaniamientoId(Integer idHoja, Integer idAcompaniamiento){
+    public HojaMensualAcompaniamientoId(Long idHoja, Integer idAcompaniamiento){
         this.idHoja = idHoja;
         this.idAcompaniamiento = idAcompaniamiento;
     }
 
     @Column(name = "idhoja")
-    public Integer getIdHoja() {
+    public Long getIdHoja() {
         return idHoja;
     }
 
-    public void setIdHoja(Integer idHoja) {
+    public void setIdHoja(Long idHoja) {
         this.idHoja = idHoja;
     }
 

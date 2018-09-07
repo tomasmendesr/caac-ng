@@ -17,7 +17,6 @@ public class HojaMensualRecursos {
 
     public HojaMensualRecursos(){}
 
-
     @EmbeddedId
     public HojaMensualRecursosId getId() {
         return id;

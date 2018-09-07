@@ -1,11 +1,11 @@
 package ar.gov.sedronar.aplicacion.dto;
-import java.math.BigInteger;
+
 import java.util.Date;
 /**
  * Created by TMR on 05/09/2018.
  */
 public class HojaReunionesEquipoDTO {
-    private BigInteger id;
+    private Long id;
     private HojaDTO hoja;
     private String si;
     private String no;
@@ -14,11 +14,11 @@ public class HojaReunionesEquipoDTO {
     private java.util.Date fum;
 
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

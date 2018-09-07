@@ -1,7 +1,5 @@
 package ar.gov.sedronar.aplicacion.model;
 
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 import java.util.Date;
 /**

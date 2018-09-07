@@ -1,9 +1,5 @@
 package ar.gov.sedronar.aplicacion.dto;
 
-import ar.gov.sedronar.aplicacion.model.Hoja;
-import ar.gov.sedronar.aplicacion.model.HojaArticulacionInstitucionalId;
-import ar.gov.sedronar.aplicacion.model.TipoInstitucion;
-
 import java.util.Date;
 
 /**
@@ -16,6 +12,7 @@ public class HojaArticulacionInstitucionalDTO {
     private String intercambioInfo;
     private String derivacionRecepcionDePersonas;
     private String accionesConjuntas;
+    private String proyectosConjuntos;
     private String nombreInstitucion;
     private String uum;
     private java.util.Date fum;
@@ -90,5 +87,13 @@ public class HojaArticulacionInstitucionalDTO {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    public String getProyectosConjuntos() {
+        return proyectosConjuntos;
+    }
+
+    public void setProyectosConjuntos(String proyectosConjuntos) {
+        this.proyectosConjuntos = proyectosConjuntos;
     }
 }

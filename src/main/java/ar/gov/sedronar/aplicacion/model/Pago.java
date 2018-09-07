@@ -1,7 +1,7 @@
 package ar.gov.sedronar.aplicacion.model;
-import java.util.Date;
 
 import javax.persistence.*;
+import java.util.Date;
 /**
  * Created by TMR on 04/09/2018.
  */

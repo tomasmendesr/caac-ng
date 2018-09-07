@@ -3,7 +3,6 @@ package ar.gov.sedronar.aplicacion.model;
 import ar.gov.sedronar.modulo.commonsModels.modelo.Mes;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -12,7 +11,7 @@ import java.util.Date;
 @Entity
 @Table(name = "HOJA_CAAC", schema = "caac")
 public class Hoja {
-    private BigInteger id;
+    private Long id;
     private Integer anio;
     private Mes mes;
     private Casa casa;
@@ -26,11 +25,11 @@ public class Hoja {
     @Id
     @Column(name="idhoja")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,7 +80,7 @@ public class Hoja {
         this.fechaCierre = fechaCierre;
     }
 
-    @Column(name = "uum", length = 50)
+    @Column(name = "hoja_uum", length = 50)
     public String getUum() {
         return uum;
     }
@@ -90,7 +89,7 @@ public class Hoja {
         this.uum = uum;
     }
 
-    @Column(name = "fum")
+    @Column(name = "hoja_fum")
     public Date getFum() {
         return fum;
     }

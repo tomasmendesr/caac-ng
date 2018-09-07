@@ -1,8 +1,8 @@
 package ar.gov.sedronar.aplicacion.dto;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.util.Date;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)

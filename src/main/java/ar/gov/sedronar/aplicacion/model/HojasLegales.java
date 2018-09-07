@@ -1,7 +1,6 @@
 package ar.gov.sedronar.aplicacion.model;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Date;
 @Entity
 @Table(name = "HOJA_LEGALES", schema = "caac")
 public class HojasLegales {
-    private BigInteger id;
+    private Long id;
     private Hoja hoja;
     private String acompComisarias;
     private String acompPenales;
@@ -28,11 +27,11 @@ public class HojasLegales {
 
     @Id
     @Column(name = "idhoja")
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

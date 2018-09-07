@@ -3,9 +3,6 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
-import ar.gov.sedronar.aplicacion.util.ConfigProperties;
-
 import java.util.Properties;
 
 

@@ -1,6 +1,6 @@
 package ar.gov.sedronar.aplicacion.model;
+
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.Date;
 /**
  * Created by TMR on 05/09/2018.
@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name = "H_MENSUAL_OBSERVACIONES", schema="caac")
 public class HojaMensualObservaciones {
-    private BigInteger id;
+    private Long id;
     private Hoja hoja;
     private String otrosTramites;
     private String alimentacionEnSede;
@@ -33,11 +33,11 @@ public class HojaMensualObservaciones {
 
     @Id
     @Column(name = "idhoja")
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

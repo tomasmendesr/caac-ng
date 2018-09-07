@@ -1,24 +1,20 @@
 package ar.gov.sedronar.aplicacion.services.implementation;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import ar.gov.sedronar.aplicacion.services.interfaces.FileUploadService;
+import ar.gov.sedronar.util.app.AppResponse;
+import com.github.junrar.exception.RarException;
+import org.apache.commons.io.FileUtils;
+import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-
-import org.apache.commons.io.FileUtils;
-import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
-
-import com.github.junrar.exception.RarException;
-
-import ar.gov.sedronar.aplicacion.services.interfaces.FileUploadService;
-import ar.gov.sedronar.aplicacion.util.ConfigProperties;
-import ar.gov.sedronar.util.app.AppResponse;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Created by TMR on 08/02/2018.

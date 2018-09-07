@@ -3,7 +3,6 @@ package ar.gov.sedronar.aplicacion.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Objects;
 
 /**
@@ -12,32 +11,32 @@ import java.util.Objects;
 @Embeddable
 public class HojaMensualAlimentacionId implements Serializable {
 
-    private BigInteger idHoja;
-    private Integer idTipoAlimetacion;
+    private Long idHoja;
+    private Integer idTipoAlimentacion;
 
     public HojaMensualAlimentacionId(){}
 
-    public HojaMensualAlimentacionId(BigInteger idHoja, Integer idTipoAlimetacion){
+    public HojaMensualAlimentacionId(Long idHoja, Integer idTipoAlimentacion){
         this.idHoja = idHoja;
-        this.idTipoAlimetacion = idTipoAlimetacion;
+        this.idTipoAlimentacion = idTipoAlimentacion;
     }
 
     @Column(name = "idhoja")
-    public BigInteger getIdHoja() {
+    public Long getIdHoja() {
         return idHoja;
     }
 
-    @Column(name = "id_tipo_alimentacion")
-    public void setIdHoja(BigInteger idHoja) {
+    public void setIdHoja(Long idHoja) {
         this.idHoja = idHoja;
     }
 
-    public Integer getIdTipoAlimetacion() {
-        return idTipoAlimetacion;
+    @Column(name = "id_tipo_alimentacion")
+    public Integer getIdTipoAlimentacion() {
+        return idTipoAlimentacion;
     }
 
-    public void setIdTipoAlimetacion(Integer idTipoAlimetacion) {
-        this.idTipoAlimetacion = idTipoAlimetacion;
+    public void setIdTipoAlimentacion(Integer idTipoAlimentacion) {
+        this.idTipoAlimentacion = idTipoAlimentacion;
     }
 
     @Override
@@ -46,11 +45,11 @@ public class HojaMensualAlimentacionId implements Serializable {
         if (!(o instanceof HojaMensualAlimentacionId)) return false;
         HojaMensualAlimentacionId that = (HojaMensualAlimentacionId) o;
         return Objects.equals(getIdHoja(), that.getIdHoja()) &&
-                Objects.equals(getIdTipoAlimetacion(), that.getIdTipoAlimetacion());
+                Objects.equals(getIdTipoAlimentacion(), that.getIdTipoAlimentacion());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdHoja(), getIdTipoAlimetacion());
+        return Objects.hash(getIdHoja(), getIdTipoAlimentacion());
     }
 }

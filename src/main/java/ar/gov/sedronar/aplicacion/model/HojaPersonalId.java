@@ -3,7 +3,6 @@ package ar.gov.sedronar.aplicacion.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Objects;
 
 /**
@@ -11,22 +10,22 @@ import java.util.Objects;
  */
 @Embeddable
 public class HojaPersonalId implements Serializable {
-    private BigInteger idhoja;
+    private Long idhoja;
     private Integer idEmpleado;
 
     public HojaPersonalId(){}
 
-    public HojaPersonalId(BigInteger idhoja, Integer idEmpleado){
+    public HojaPersonalId(Long idhoja, Integer idEmpleado){
         this.idhoja = idhoja;
         this.idEmpleado = idEmpleado;
     }
 
     @Column(name = "idhoja")
-    public BigInteger getIdhoja() {
+    public Long getIdhoja() {
         return idhoja;
     }
 
-    public void setIdhoja(BigInteger idhoja) {
+    public void setIdhoja(Long idhoja) {
         this.idhoja = idhoja;
     }
 

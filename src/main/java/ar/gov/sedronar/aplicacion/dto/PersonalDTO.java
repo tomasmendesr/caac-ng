@@ -1,7 +1,6 @@
 package ar.gov.sedronar.aplicacion.dto;
 
 import ar.gov.sedronar.modulo.commonsModels.dto.ProfesionDTO;
-import ar.gov.sedronar.modulo.commonsModels.modelo.Profesion;
 
 import java.util.Date;
 

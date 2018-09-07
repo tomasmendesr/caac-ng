@@ -2,14 +2,13 @@ package ar.gov.sedronar.aplicacion.dto;
 
 import ar.gov.sedronar.modulo.commonsModels.dto.MesDTO;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
  * Created by TMR on 04/09/2018.
  */
 public class HojaDTO {
-    private BigInteger id;
+    private Long id;
     private Integer anio;
     private MesDTO mes;
     private CasaDTO casa;
@@ -18,11 +17,11 @@ public class HojaDTO {
     private String uum;
     private Date fum;
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

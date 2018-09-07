@@ -321,7 +321,8 @@ CREATE TABLE caac.H_MENSUAL_ALIMENTACION(
     cantidad_personas        int            NULL,
     cantidad_prestaciones    int            NULL,
     h_mensual_alim_uum       varchar(50)    NULL,
-    h_mensual_alim_fum       datetime       NULL,
+    h_mensual_alim_fum       datetime       NULL,HOJA_ARTICULACION_INST
+
     CONSTRAINT PK40 PRIMARY KEY NONCLUSTERED (idHoja, id_tipo_alimentacion)
 )
 go

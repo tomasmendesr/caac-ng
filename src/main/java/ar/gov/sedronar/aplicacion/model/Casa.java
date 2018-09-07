@@ -4,8 +4,9 @@ import ar.gov.sedronar.modulo.geo.modelo.DepartamentoLight;
 import ar.gov.sedronar.modulo.geo.modelo.LocalidadLight;
 import ar.gov.sedronar.modulo.geo.modelo.ProvinciaLight;
 import org.hibernate.annotations.ColumnDefault;
-import java.util.Date;
+
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by TMR on 04/09/2018.

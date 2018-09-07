@@ -1,15 +1,12 @@
 package ar.gov.sedronar.aplicacion.dto;
 
-import ar.gov.sedronar.aplicacion.model.Hoja;
-
-import java.math.BigInteger;
 import java.util.Date;
 
 /**
  * Created by TMR on 05/09/2018.
  */
 public class HojaMensualAsistidosDTO {
-    private BigInteger id;
+    private Long id;
     private HojaDTO hoja;
     private Integer asistidosVarones;
     private Integer asistidosMujeres;
@@ -18,11 +15,11 @@ public class HojaMensualAsistidosDTO {
     private String uum;
     private Date fum;
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by TMR on 04/09/2018.
  */
 public class HojaDatosInicialesDTO {
-    private Integer id;
+    private Long id;
     private HojaDTO hoja;
     private String nombreCaac;
     private String organismoResponsable;
@@ -36,11 +36,11 @@ public class HojaDatosInicialesDTO {
     private String uum;
     private Date fum;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,12 +1,11 @@
 package ar.gov.sedronar.aplicacion.dao.hibernate;
 
+import ar.gov.sedronar.aplicacion.dao.interfaces.AbstractDAO;
 import org.hibernate.Criteria;
 import org.hibernate.NullPrecedence;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 import org.hibernate.sql.JoinType;
-
-import ar.gov.sedronar.aplicacion.dao.interfaces.AbstractDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

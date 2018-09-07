@@ -9,7 +9,7 @@ import java.util.Date;
 @Table(name = "H_MENSUAL_ACTIVIDAD", schema = "caac")
 public class HojaMensualActividad {
 
-    private Integer id;
+    private Long id;
     private Hoja hoja;
     private Integer cantidadVisitasDomiciliarias;
     private Integer cantidadOrientaciones;
@@ -28,11 +28,11 @@ public class HojaMensualActividad {
 
     @Id
     @Column(name = "idhoja")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,10 +1,5 @@
 package ar.gov.sedronar.aplicacion.dto;
 
-import ar.gov.sedronar.aplicacion.model.Espacio;
-import ar.gov.sedronar.aplicacion.model.Hoja;
-import ar.gov.sedronar.aplicacion.model.HojaEstructuraId;
-
-import javax.persistence.EmbeddedId;
 import java.util.Date;
 
 /**

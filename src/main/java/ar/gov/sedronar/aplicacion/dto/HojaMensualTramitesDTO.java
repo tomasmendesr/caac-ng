@@ -1,9 +1,5 @@
 package ar.gov.sedronar.aplicacion.dto;
 
-import ar.gov.sedronar.aplicacion.model.Hoja;
-import ar.gov.sedronar.aplicacion.model.HojaMensualTramitesId;
-import ar.gov.sedronar.aplicacion.model.Tramite;
-
 import java.util.Date;
 
 /**

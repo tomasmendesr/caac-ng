@@ -1,9 +1,10 @@
 package ar.gov.sedronar.aplicacion.dto;
 
-import java.util.Date;
 import ar.gov.sedronar.modulo.geo.dto.DepartamentoLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.ProvinciaLightDTO;
+
+import java.util.Date;
 
 
 public class CasaDTO {

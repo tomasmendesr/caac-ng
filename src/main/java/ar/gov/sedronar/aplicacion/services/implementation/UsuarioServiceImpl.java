@@ -1,14 +1,9 @@
 package ar.gov.sedronar.aplicacion.services.implementation;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
 import ar.gov.sedronar.aplicacion.dao.interfaces.UsuarioDAO;
 import ar.gov.sedronar.aplicacion.dao.mock.MockDAO;
-import ar.gov.sedronar.aplicacion.dao.mock.UsuarioDAOMock;
-import ar.gov.sedronar.aplicacion.filters.AbstractTableFilter;
 import ar.gov.sedronar.aplicacion.dto.UsuarioDTO;
+import ar.gov.sedronar.aplicacion.filters.AbstractTableFilter;
 import ar.gov.sedronar.aplicacion.model.Usuario;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.util.app.AppResponse;
@@ -18,6 +13,9 @@ import ar.gov.sedronar.util.dataTable.DataTableObjectResponse;
 import ar.gov.sedronar.util.dozer.DozerHelper;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 import java.util.*;
 
 

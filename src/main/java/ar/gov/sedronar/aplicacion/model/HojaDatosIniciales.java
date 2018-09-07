@@ -4,9 +4,9 @@ import ar.gov.sedronar.modulo.geo.modelo.DepartamentoLight;
 import ar.gov.sedronar.modulo.geo.modelo.LocalidadLight;
 import ar.gov.sedronar.modulo.geo.modelo.Municipio;
 import ar.gov.sedronar.modulo.geo.modelo.ProvinciaLight;
-import java.util.Date;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by TMR on 04/09/2018.
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "HOJA_DATOS_INICIALES", schema ="caac")
 public class HojaDatosIniciales {
-    private Integer id;
+    private Long id;
     private Hoja hoja;
     private String nombreCaac;
     private String organismoResponsable;
@@ -42,11 +42,11 @@ public class HojaDatosIniciales {
 
     @Id
     @Column(name = "idhoja")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
