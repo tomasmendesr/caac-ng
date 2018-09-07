@@ -29,7 +29,7 @@ public class FlywayConnectionProvider extends DatasourceConnectionProviderImpl {
             flyway.setDataSource(dataSource);
             flyway.setBaselineOnMigrate(true);
             flyway.setBaselineVersionAsString("0");
-            flyway.setSchemas("suit");
+            flyway.setSchemas("caac");
             try {
                 flyway.migrate();
             } catch (Exception e) {

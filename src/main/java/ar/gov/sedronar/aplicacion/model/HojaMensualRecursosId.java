@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Created by TMR on 05/09/2018.
@@ -13,6 +14,8 @@ import java.math.BigInteger;
 public class HojaMensualRecursosId implements Serializable {
     private Integer idRecursos;
     private BigInteger idHoja;
+
+    public HojaMensualRecursosId(){}
 
     public HojaMensualRecursosId(Integer idRecursos, BigInteger idhoja){
         this.idRecursos = idRecursos;
@@ -35,5 +38,19 @@ public class HojaMensualRecursosId implements Serializable {
 
     public void setIdHoja(BigInteger idHoja) {
         this.idHoja = idHoja;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HojaMensualRecursosId)) return false;
+        HojaMensualRecursosId that = (HojaMensualRecursosId) o;
+        return Objects.equals(getIdHoja(), that.getIdHoja()) &&
+                Objects.equals(getIdRecursos(), that.getIdRecursos());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdHoja(), getIdRecursos());
     }
 }

@@ -4,27 +4,30 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Created by TMR on 05/09/2018.
  */
 @Embeddable
 public class HojaActividadIntervencionId implements Serializable {
-    private BigInteger idhoja;
+    private BigInteger idHoja;
     private Integer idActividad;
 
-    public HojaActividadIntervencionId(BigInteger idhoja, Integer idActividad){
-        this.idhoja = idhoja;
+    public HojaActividadIntervencionId(){}
+
+    public HojaActividadIntervencionId(BigInteger idHoja, Integer idActividad){
+        this.idHoja = idHoja;
         this.idActividad = idActividad;
     }
 
-    @Column(name = "idhoja")
-    public BigInteger getIdhoja() {
-        return idhoja;
+    @Column(name = "idHoja")
+    public BigInteger getIdHoja() {
+        return idHoja;
     }
 
-    public void setIdhoja(BigInteger idhoja) {
-        this.idhoja = idhoja;
+    public void setIdHoja(BigInteger idHoja) {
+        this.idHoja = idHoja;
     }
 
     @Column(name = "idactividad")
@@ -34,5 +37,19 @@ public class HojaActividadIntervencionId implements Serializable {
 
     public void setIdActividad(Integer idActividad) {
         this.idActividad = idActividad;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HojaActividadIntervencionId)) return false;
+        HojaActividadIntervencionId that = (HojaActividadIntervencionId) o;
+        return Objects.equals(getIdHoja(), that.getIdHoja()) &&
+                Objects.equals(getIdActividad(), that.getIdActividad());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdHoja(), getIdActividad());
     }
 }

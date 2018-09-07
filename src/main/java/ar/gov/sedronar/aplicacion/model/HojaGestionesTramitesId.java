@@ -14,6 +14,8 @@ public class HojaGestionesTramitesId implements Serializable {
     private BigInteger idHoja;
     private Integer idTramite;
 
+    public HojaGestionesTramitesId(){}
+
     public HojaGestionesTramitesId(BigInteger idhoja, Integer idTramite){
         this.idHoja = idhoja;
         this.idTramite = idTramite;

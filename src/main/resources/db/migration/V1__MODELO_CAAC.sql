@@ -241,13 +241,13 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_ACOMPANIAMIENTO(
-    idhoja                bigint         NOT NULL,
+    idHoja                bigint         NOT NULL,
     idacompaniamiento     int            NOT NULL,
     cantidad_gestiones    int            NULL,
     cantidad_personas     int            NULL,
     h_mens_acomp_uum      varchar(50)    NULL,
     h_mens_acomp_fum      datetime       NULL,
-    CONSTRAINT PK42 PRIMARY KEY NONCLUSTERED (idhoja, idacompaniamiento)
+    CONSTRAINT PK42 PRIMARY KEY NONCLUSTERED (idHoja, idacompaniamiento)
 )
 go
 
@@ -264,7 +264,7 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_ACTIVIDAD(
-    idhoja                bigint         NOT NULL,
+    idHoja                bigint         NOT NULL,
     cant_visitas_dom      int            NULL,
     cant_orientaciones    int            NULL,
     cant_grupos           int            NULL,
@@ -277,7 +277,7 @@ CREATE TABLE caac.H_MENSUAL_ACTIVIDAD(
     cant_acomp_calle      int            NULL,
     h_mens_act_uum        varchar(50)    NULL,
     h_mens_act_fum        datetime       NULL,
-    CONSTRAINT PK41 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK41 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -294,12 +294,12 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_ACTIVIDADES(
-    idhoja                   bigint           NOT NULL,
+    idHoja                   bigint           NOT NULL,
     idactividad              int              NOT NULL,
     descripcion_actividad    varchar(4000)    NULL,
     h_mens_act_uum           varchar(50)      NULL,
     h_mens_act_fum           datetime         NULL,
-    CONSTRAINT PK46 PRIMARY KEY NONCLUSTERED (idhoja, idactividad)
+    CONSTRAINT PK46 PRIMARY KEY NONCLUSTERED (idHoja, idactividad)
 )
 go
 
@@ -316,13 +316,13 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_ALIMENTACION(
-    idhoja                   bigint         NOT NULL,
+    idHoja                   bigint         NOT NULL,
     id_tipo_alimentacion     int            NOT NULL,
     cantidad_personas        int            NULL,
     cantidad_prestaciones    int            NULL,
     h_mensual_alim_uum       varchar(50)    NULL,
     h_mensual_alim_fum       datetime       NULL,
-    CONSTRAINT PK40 PRIMARY KEY NONCLUSTERED (idhoja, id_tipo_alimentacion)
+    CONSTRAINT PK40 PRIMARY KEY NONCLUSTERED (idHoja, id_tipo_alimentacion)
 )
 go
 
@@ -339,14 +339,14 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_ASISTIDOS(
-    idhoja               bigint         NOT NULL,
+    idHoja               bigint         NOT NULL,
     asist_varones        int            NULL,
     asist_mujeres        int            NULL,
     asist_otro_genero    int            NULL,
     asist_cantidad       int            NULL,
     asist_uum            varchar(50)    NULL,
     asist_fum            datetime       NULL,
-    CONSTRAINT PK37 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK37 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -363,7 +363,7 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_OBSERVACIONES(
-    idhoja                        bigint           NOT NULL,
+    idHoja                        bigint           NOT NULL,
     otros_tramites                varchar(500)     NULL,
     alimentacion_en_sede       varchar(300)     NULL,
     alimentacion_fuera_sede       varchar(300)     NULL,
@@ -382,7 +382,7 @@ CREATE TABLE caac.H_MENSUAL_OBSERVACIONES(
     requerimientos_formacion      varchar(4000)    NULL,
     h_mens_obs_uum                varchar(50)      NULL,
     h_mens_obs_fum                datetime         NULL,
-    CONSTRAINT PK39 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK39 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -399,12 +399,12 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_PERSONAL(
-    idhoja                 bigint         NOT NULL,
+    idHoja                 bigint         NOT NULL,
     idempleado             int            NOT NULL,
     alta_baja              char(4)        NULL,
     h_mens_personal_uum    varchar(50)    NULL,
     h_mens_personal_fum    datetime       NULL,
-    CONSTRAINT PK47 PRIMARY KEY NONCLUSTERED (idhoja, idempleado)
+    CONSTRAINT PK47 PRIMARY KEY NONCLUSTERED (idHoja, idempleado)
 )
 go
 
@@ -422,11 +422,11 @@ go
 
 CREATE TABLE caac.H_MENSUAL_RECURSOS(
     idrecursos            int            NOT NULL,
-    idhoja                bigint         NOT NULL,
+    idHoja                bigint         NOT NULL,
     cant_personas         int            NULL,
     h_mens_recurso_uum    varchar(50)    NULL,
     h_mens_recurso_fum    datetime       NULL,
-    CONSTRAINT PK45 PRIMARY KEY NONCLUSTERED (idrecursos, idhoja)
+    CONSTRAINT PK45 PRIMARY KEY NONCLUSTERED (idrecursos, idHoja)
 )
 go
 
@@ -443,12 +443,12 @@ go
  */
 
 CREATE TABLE caac.H_MENSUAL_TRAMITES(
-    idhoja                bigint         NOT NULL,
+    idHoja                bigint         NOT NULL,
     idtramite             int            NOT NULL,
     cantidad              int            NULL,
     h_mens_tramite_uum    varchar(50)    NULL,
     h_mens_tramite_fum    datetime       NULL,
-    CONSTRAINT PK38 PRIMARY KEY NONCLUSTERED (idhoja, idtramite)
+    CONSTRAINT PK38 PRIMARY KEY NONCLUSTERED (idHoja, idtramite)
 )
 go
 
@@ -465,14 +465,14 @@ go
  */
 
 CREATE TABLE caac.HOJA_ACOMPANIAMIENTO(
-    idhoja               bigint          NOT NULL,
+    idHoja               bigint          NOT NULL,
     idacompaniamiento    int             NOT NULL,
     descripcion          varchar(300)    NULL,
     interno              char(1)         NULL,
     externo              char(1)         NULL,
     hoja_acom_uum        varchar(50)     NULL,
     hoja_acom_fum        datetime        NULL,
-    CONSTRAINT PK53 PRIMARY KEY NONCLUSTERED (idhoja, idacompaniamiento)
+    CONSTRAINT PK53 PRIMARY KEY NONCLUSTERED (idHoja, idacompaniamiento)
 )
 go
 
@@ -489,12 +489,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_ACT_INTERVENCION(
-    idhoja            bigint          NOT NULL,
+    idHoja            bigint          NOT NULL,
     idactividad       int             NOT NULL,
     descripcion       varchar(300)    NULL,
     act_interv_uum    varchar(50)     NULL,
     act_interv_fum    datetime        NULL,
-    CONSTRAINT PK27 PRIMARY KEY NONCLUSTERED (idhoja, idactividad)
+    CONSTRAINT PK27 PRIMARY KEY NONCLUSTERED (idHoja, idactividad)
 )
 go
 
@@ -511,12 +511,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_ALT_ASIST(
-    idhoja           bigint         NOT NULL,
+    idHoja           bigint         NOT NULL,
     idalter_asist    int            NOT NULL,
     descripcion      char(10)       NULL,
     alt_asist_uum    varchar(50)    NULL,
     alt_asist_fum    datetime       NULL,
-    CONSTRAINT PK15 PRIMARY KEY NONCLUSTERED (idhoja, idalter_asist)
+    CONSTRAINT PK15 PRIMARY KEY NONCLUSTERED (idHoja, idalter_asist)
 )
 go
 
@@ -533,7 +533,7 @@ go
  */
 
 CREATE TABLE caac.HOJA_ARTICULACION_INST(
-    idhoja                  bigint          NOT NULL,
+    idHoja                  bigint          NOT NULL,
     id_tipo_inst            int             NOT NULL,
     ningun_vinculo          char(1)         NULL,
     intercambio_info        char(1)         NULL,
@@ -543,7 +543,7 @@ CREATE TABLE caac.HOJA_ARTICULACION_INST(
     nombre_institucion      varchar(300)    NULL,
     artic_inst_uum          varchar(50)     NULL,
     artic_inst_fum          datetime        NULL,
-    CONSTRAINT PK33 PRIMARY KEY NONCLUSTERED (idhoja, id_tipo_inst)
+    CONSTRAINT PK33 PRIMARY KEY NONCLUSTERED (idHoja, id_tipo_inst)
 )
 go
 
@@ -560,7 +560,7 @@ go
  */
 
 CREATE TABLE caac.HOJA_CAAC(
-    idhoja               bigint         IDENTITY(1,1),
+    idHoja               bigint         IDENTITY(1,1),
     anio                 int            NULL,
     idmes                int            NULL,
     idcaac               int            NOT NULL,
@@ -568,7 +568,7 @@ CREATE TABLE caac.HOJA_CAAC(
     hoja_fecha_cierre    datetime       NULL,
     hoja_uum             varchar(50)    NULL,
     hoja_fum             datetime       NULL,
-    CONSTRAINT PK10 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK10 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -585,7 +585,7 @@ go
  */
 
 CREATE TABLE caac.HOJA_DATOS_INICIALES(
-    idhoja                    bigint           NOT NULL,
+    idHoja                    bigint           NOT NULL,
     nombre_caac               varchar(300)     NULL,
     org_responsable           varchar(300)     NULL,
     pers_responsable          varchar(300)     NULL,
@@ -607,7 +607,7 @@ CREATE TABLE caac.HOJA_DATOS_INICIALES(
     mail_caac                 varchar(100)     NULL,
     datos_iniciales_uum       varchar(50)      NULL,
     datos_iniciales_fum       datetime         NULL,
-    CONSTRAINT PK14 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK14 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -624,12 +624,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_DIAS_ATENCION(
-    idhoja              bigint         NOT NULL,
+    idHoja              bigint         NOT NULL,
     id                  int            NOT NULL,
     horario             varchar(50)    NULL,
     dia_atencion_uum    varchar(50)    NULL,
     dia_atencion_fum    datetime       NULL,
-    CONSTRAINT PK48 PRIMARY KEY NONCLUSTERED (idhoja, id)
+    CONSTRAINT PK48 PRIMARY KEY NONCLUSTERED (idHoja, id)
 )
 go
 
@@ -646,7 +646,7 @@ go
  */
 
 CREATE TABLE caac.HOJA_EDUCACION_ACTIVIDADES(
-    idhoja                      bigint          NOT NULL,
+    idHoja                      bigint          NOT NULL,
     edu_acomp_escuela           char(1)         NULL,
     edu_prevencion              char(1)         NULL,
     edu_apoyo_escolar           char(1)         NULL,
@@ -664,7 +664,7 @@ CREATE TABLE caac.HOJA_EDUCACION_ACTIVIDADES(
     act_otro_descripcion        varchar(100)    NULL,
     edu_act_uum                 varchar(50)     NULL,
     edu_act_fum                 datetime        NULL,
-    CONSTRAINT PK31 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK31 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -681,13 +681,13 @@ go
  */
 
 CREATE TABLE caac.HOJA_ESTRUCTURA(
-    idhoja            bigint          NOT NULL,
+    idHoja            bigint          NOT NULL,
     idespacio         int             NOT NULL,
     cantidad          int             NULL,
     descripcion       varchar(300)    NULL,
     estructura_uum    varchar(50)     NULL,
     estructura_fum    datetime        NULL,
-    CONSTRAINT PK36 PRIMARY KEY NONCLUSTERED (idhoja, idespacio)
+    CONSTRAINT PK36 PRIMARY KEY NONCLUSTERED (idHoja, idespacio)
 )
 go
 
@@ -704,12 +704,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_GESTION_ALIMENTACION(
-    idhoja                      bigint          NOT NULL,
+    idHoja                      bigint          NOT NULL,
     idalimentacion              int             NOT NULL,
     descripcion                 varchar(100)    NULL,
     gestion_alimentacion_uum    varchar(50)     NULL,
     gestion_alimentacion_fum    datetime        NULL,
-    CONSTRAINT PK24 PRIMARY KEY NONCLUSTERED (idhoja, idalimentacion)
+    CONSTRAINT PK24 PRIMARY KEY NONCLUSTERED (idHoja, idalimentacion)
 )
 go
 
@@ -726,12 +726,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_GESTION_TRAMITES(
-    idhoja              bigint          NOT NULL,
+    idHoja              bigint          NOT NULL,
     idtramite           int             NOT NULL,
     descripcion_otro    varchar(100)    NULL,
     tramite_uum         varchar(50)     NULL,
     tramite_fum         datetime        NULL,
-    CONSTRAINT PK23 PRIMARY KEY NONCLUSTERED (idhoja, idtramite)
+    CONSTRAINT PK23 PRIMARY KEY NONCLUSTERED (idHoja, idtramite)
 )
 go
 
@@ -748,7 +748,7 @@ go
  */
 
 CREATE TABLE caac.HOJA_LEGALES(
-    idhoja                    bigint          NOT NULL,
+    idHoja                    bigint          NOT NULL,
     acomp_comisarias          char(1)         NULL,
     acomp_penales             char(1)         NULL,
     acomp_otro                char(1)         NULL,
@@ -760,7 +760,7 @@ CREATE TABLE caac.HOJA_LEGALES(
     activ_otro_descripcion    varchar(100)    NULL,
     legales_uum               varchar(50)     NULL,
     legales_fum               datetime        NULL,
-    CONSTRAINT PK29 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK29 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -777,7 +777,7 @@ go
  */
 
 CREATE TABLE caac.HOJA_OBSERVACIONES(
-    idhoja                     bigint           NOT NULL,
+    idHoja                     bigint           NOT NULL,
     alimentacion_en_sede       varchar(4000)    NULL,
     alimentacion_fuera_sede    varchar(4000)    NULL,
     actividades_familiares     varchar(4000)    NULL,
@@ -792,7 +792,7 @@ CREATE TABLE caac.HOJA_OBSERVACIONES(
     maquinaria_trabajo         varchar(4000)    NULL,
     observaciones_uum          varchar(50)      NULL,
     observaciones_fum          datetime         NULL,
-    CONSTRAINT PK26 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK26 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -809,11 +809,11 @@ go
  */
 
 CREATE TABLE caac.HOJA_PERSONAL(
-    idhoja           bigint         NOT NULL,
+    idHoja           bigint         NOT NULL,
     idempleado       int            NOT NULL,
     hpersonal_uum    varchar(50)    NULL,
     hpersonal_fum    datetime       NULL,
-    CONSTRAINT PK35 PRIMARY KEY NONCLUSTERED (idhoja, idempleado)
+    CONSTRAINT PK35 PRIMARY KEY NONCLUSTERED (idHoja, idempleado)
 )
 go
 
@@ -830,7 +830,7 @@ go
  */
 
 CREATE TABLE caac.HOJA_PERSONAL_HORAS(
-    idhoja                 bigint         NOT NULL,
+    idHoja                 bigint         NOT NULL,
     idprofesion            int            NOT NULL,
     cant_rentado_hs        int            NULL,
     cant_rentado_pers      int            NULL,
@@ -838,7 +838,7 @@ CREATE TABLE caac.HOJA_PERSONAL_HORAS(
     cant_norentado_pers    int            NULL,
     personal_hs_uum        varchar(50)    NULL,
     personal_hs_fum        datetime       NULL,
-    CONSTRAINT PK60 PRIMARY KEY NONCLUSTERED (idhoja, idprofesion)
+    CONSTRAINT PK60 PRIMARY KEY NONCLUSTERED (idHoja, idprofesion)
 )
 go
 
@@ -855,12 +855,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_POBL_ASISTIDA_ACTIV(
-    idhoja                    bigint          NOT NULL,
+    idHoja                    bigint          NOT NULL,
     idpoblacion               int             NOT NULL,
     descripcion               varchar(300)    NULL,
     pob_asistida_activ_uum    varchar(50)     NULL,
     pob_asistida_activ_fum    datetime        NULL,
-    CONSTRAINT PK17 PRIMARY KEY NONCLUSTERED (idhoja, idpoblacion)
+    CONSTRAINT PK17 PRIMARY KEY NONCLUSTERED (idHoja, idpoblacion)
 )
 go
 
@@ -877,12 +877,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_POBL_ASISTIDA_CONSUMO(
-    idhoja                      bigint          NOT NULL,
+    idHoja                      bigint          NOT NULL,
     idpoblacion                 int             NOT NULL,
     descripcion                 varchar(300)    NULL,
     pob_asistida_consumo_uum    varchar(50)     NULL,
     pob_asistida_consumo_fum    datetime        NULL,
-    CONSTRAINT PK16 PRIMARY KEY NONCLUSTERED (idhoja, idpoblacion)
+    CONSTRAINT PK16 PRIMARY KEY NONCLUSTERED (idHoja, idpoblacion)
 )
 go
 
@@ -899,12 +899,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_RECURSOS(
-    idhoja         bigint          NOT NULL,
+    idHoja         bigint          NOT NULL,
     id             int             NOT NULL,
     descripcion    varchar(300)    NULL,
     recurso_uum    varchar(50)     NULL,
     recurso_fum    datetime        NULL,
-    CONSTRAINT PK56 PRIMARY KEY NONCLUSTERED (idhoja, id)
+    CONSTRAINT PK56 PRIMARY KEY NONCLUSTERED (idHoja, id)
 )
 go
 
@@ -921,13 +921,13 @@ go
  */
 
 CREATE TABLE caac.HOJA_REGISTROS_INSTITUCIONALES(
-    idhoja                bigint         NOT NULL,
+    idHoja                bigint         NOT NULL,
     idclasif_registros    int            NOT NULL,
     si_papel              char(1)        NULL,
     si_informatico        char(10)       NULL,
     reg_uum               varchar(50)    NULL,
     reg_fum               datetime       NULL,
-    CONSTRAINT PK18 PRIMARY KEY NONCLUSTERED (idhoja, idclasif_registros)
+    CONSTRAINT PK18 PRIMARY KEY NONCLUSTERED (idHoja, idclasif_registros)
 )
 go
 
@@ -944,12 +944,12 @@ go
  */
 
 CREATE TABLE caac.HOJA_SALUD(
-    idhoja         bigint          NOT NULL,
+    idHoja         bigint          NOT NULL,
     idgestion      int             NOT NULL,
     hsalud_uum     varchar(50)     NULL,
     descripcion    varchar(300)    NULL,
     hsalud_fum     datetime        NULL,
-    CONSTRAINT PK54 PRIMARY KEY NONCLUSTERED (idhoja, idgestion)
+    CONSTRAINT PK54 PRIMARY KEY NONCLUSTERED (idHoja, idgestion)
 )
 go
 
@@ -1233,13 +1233,13 @@ go
  */
 
 CREATE TABLE HOJA_REUNIONES_EQUIPO(
-    idhoja           bigint         NOT NULL,
+    idHoja           bigint         NOT NULL,
     si               char(1)        NULL,
     no               char(1)        NULL,
     idfrecuencia     int            NOT NULL,
     reuniones_uum    varchar(10)    NULL,
     reuniones_fum    datetime       NULL,
-    CONSTRAINT PK20 PRIMARY KEY NONCLUSTERED (idhoja)
+    CONSTRAINT PK20 PRIMARY KEY NONCLUSTERED (idHoja)
 )
 go
 
@@ -1305,8 +1305,8 @@ ALTER TABLE caac.H_MENSUAL_ACOMPANIAMIENTO ADD CONSTRAINT FK_ACOMP_HMACOMP
 go
 
 ALTER TABLE caac.H_MENSUAL_ACOMPANIAMIENTO ADD CONSTRAINT FK_CAAC_HMENSACOMP 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1315,8 +1315,8 @@ go
  */
 
 ALTER TABLE caac.H_MENSUAL_ACTIVIDAD ADD CONSTRAINT [FK_HCAAC_MENACTIV] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1330,8 +1330,8 @@ ALTER TABLE caac.H_MENSUAL_ACTIVIDADES ADD CONSTRAINT FK_ACTINT_HMACT
 go
 
 ALTER TABLE caac.H_MENSUAL_ACTIVIDADES ADD CONSTRAINT [FK_HCAAC_HMENACTIVS] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1345,8 +1345,8 @@ ALTER TABLE caac.H_MENSUAL_ALIMENTACION ADD CONSTRAINT FK_ALIM_HMALIM
 go
 
 ALTER TABLE caac.H_MENSUAL_ALIMENTACION ADD CONSTRAINT [FK_HCAAC_HMENALIM] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1355,8 +1355,8 @@ go
  */
 
 ALTER TABLE caac.H_MENSUAL_ASISTIDOS ADD CONSTRAINT [FK_HCAAC_HMENASIST] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1365,8 +1365,8 @@ go
  */
 
 ALTER TABLE caac.H_MENSUAL_OBSERVACIONES ADD CONSTRAINT [FK_HCAAC_HMENOBS] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1375,8 +1375,8 @@ go
  */
 
 ALTER TABLE caac.H_MENSUAL_PERSONAL ADD CONSTRAINT [FK_HCAAC_HMENPERS] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.H_MENSUAL_PERSONAL ADD CONSTRAINT FK_PERS_HMPERS 
@@ -1390,8 +1390,8 @@ go
  */
 
 ALTER TABLE caac.H_MENSUAL_RECURSOS ADD CONSTRAINT [FK_HCAAC_HMENREC] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.H_MENSUAL_RECURSOS ADD CONSTRAINT FK_RECU_HMECU 
@@ -1405,8 +1405,8 @@ go
  */
 
 ALTER TABLE caac.H_MENSUAL_TRAMITES ADD CONSTRAINT [FK_HCAAC_HMENTRAM] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.H_MENSUAL_TRAMITES ADD CONSTRAINT FK_TRAMITE_HMTRAM 
@@ -1425,8 +1425,8 @@ ALTER TABLE caac.HOJA_ACOMPANIAMIENTO ADD CONSTRAINT FK_ACOMP_HACOMP
 go
 
 ALTER TABLE caac.HOJA_ACOMPANIAMIENTO ADD CONSTRAINT [FK_HCAAC_HACOMP] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1440,8 +1440,8 @@ ALTER TABLE caac.HOJA_ACT_INTERVENCION ADD CONSTRAINT FK_ACTINT_HACTINT
 go
 
 ALTER TABLE caac.HOJA_ACT_INTERVENCION ADD CONSTRAINT [FK_HCAAC_HAINTER] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1455,8 +1455,8 @@ ALTER TABLE caac.HOJA_ALT_ASIST ADD CONSTRAINT FK_ALTERN_HALTASIST
 go
 
 ALTER TABLE caac.HOJA_ALT_ASIST ADD CONSTRAINT FK_HDATO_ALTASIST 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_DATOS_INICIALES(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_DATOS_INICIALES(idHoja)
 go
 
 
@@ -1465,8 +1465,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_ARTICULACION_INST ADD CONSTRAINT [FK_HCAAC_HARTINST] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.HOJA_ARTICULACION_INST ADD CONSTRAINT FK_TINST_HARTIC 
@@ -1490,8 +1490,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_DATOS_INICIALES ADD CONSTRAINT [FK_HCAAC_HDATOS] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1505,8 +1505,8 @@ ALTER TABLE caac.HOJA_DIAS_ATENCION ADD CONSTRAINT FK_DIA_HDATENCION
 go
 
 ALTER TABLE caac.HOJA_DIAS_ATENCION ADD CONSTRAINT [FK_HCAAC_HDIAS] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1515,8 +1515,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_EDUCACION_ACTIVIDADES ADD CONSTRAINT [FK_HCAAC_HEDUC] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1530,8 +1530,8 @@ ALTER TABLE caac.HOJA_ESTRUCTURA ADD CONSTRAINT FK_ESPACIOS_HESTRUCTURA
 go
 
 ALTER TABLE caac.HOJA_ESTRUCTURA ADD CONSTRAINT [FK_HCAAC_HESTRUCT] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1545,8 +1545,8 @@ ALTER TABLE caac.HOJA_GESTION_ALIMENTACION ADD CONSTRAINT FK_ALIM_HGALIM
 go
 
 ALTER TABLE caac.HOJA_GESTION_ALIMENTACION ADD CONSTRAINT [FK_HCAAC_HGALIM] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1555,8 +1555,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_GESTION_TRAMITES ADD CONSTRAINT [FK_HCAAC_HGTRAM] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.HOJA_GESTION_TRAMITES ADD CONSTRAINT FK_TRAMITE_HTRAM 
@@ -1570,8 +1570,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_LEGALES ADD CONSTRAINT [FK_HCAAC_HLEGAL] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1580,8 +1580,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_OBSERVACIONES ADD CONSTRAINT [FK_HCAAC_HOBS] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1590,8 +1590,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_PERSONAL ADD CONSTRAINT [FK_HCAAC_HPERSONAL] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.HOJA_PERSONAL ADD CONSTRAINT FK_PERS_HPERS 
@@ -1605,8 +1605,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_PERSONAL_HORAS ADD CONSTRAINT FK_HCAAC_PERHORAS 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1615,8 +1615,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_POBL_ASISTIDA_ACTIV ADD CONSTRAINT [FK_HCAAC_HPOACTIV] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.HOJA_POBL_ASISTIDA_ACTIV ADD CONSTRAINT FK_POBLA_ACTIV 
@@ -1630,8 +1630,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_POBL_ASISTIDA_CONSUMO ADD CONSTRAINT [FK_HCAAC_HPOCONS] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.HOJA_POBL_ASISTIDA_CONSUMO ADD CONSTRAINT FK_POBLA_CONSUMO 
@@ -1645,8 +1645,8 @@ go
  */
 
 ALTER TABLE caac.HOJA_RECURSOS ADD CONSTRAINT [FK_HCAAC_HRECURSO] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 ALTER TABLE caac.HOJA_RECURSOS ADD CONSTRAINT FK_RECURSO_HRECU 
@@ -1665,8 +1665,8 @@ ALTER TABLE caac.HOJA_REGISTROS_INSTITUCIONALES ADD CONSTRAINT FK_CLREG_HREGINST
 go
 
 ALTER TABLE caac.HOJA_REGISTROS_INSTITUCIONALES ADD CONSTRAINT [FK_HCAAC_HREGINST] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1680,8 +1680,8 @@ ALTER TABLE caac.HOJA_SALUD ADD CONSTRAINT FK_GESTION_HSALUD
 go
 
 ALTER TABLE caac.HOJA_SALUD ADD CONSTRAINT [FK_HCAAC_HSALUD] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 
@@ -1730,8 +1730,8 @@ ALTER TABLE HOJA_REUNIONES_EQUIPO ADD CONSTRAINT FK_CLFREC_HREQUIP
 go
 
 ALTER TABLE HOJA_REUNIONES_EQUIPO ADD CONSTRAINT [FK_HCAAC_HREUNION] 
-    FOREIGN KEY (idhoja)
-    REFERENCES caac.HOJA_CAAC(idhoja)
+    FOREIGN KEY (idHoja)
+    REFERENCES caac.HOJA_CAAC(idHoja)
 go
 
 

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Objects;
 
 /**
  * Created by TMR on 05/09/2018.
@@ -12,6 +13,8 @@ import java.math.BigInteger;
 public class HojaAlternativasAsistencialesId implements Serializable {
     private BigInteger idHoja;
     private Integer idAlternativaAsistencial;
+
+    public HojaAlternativasAsistencialesId(){}
 
     public HojaAlternativasAsistencialesId(BigInteger idhoja, Integer idAlternativaAsistencial){
         this.idHoja = idhoja;
@@ -34,6 +37,20 @@ public class HojaAlternativasAsistencialesId implements Serializable {
 
     public void setIdAlternativaAsistencial(Integer idAlternativaAsistencial) {
         this.idAlternativaAsistencial = idAlternativaAsistencial;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HojaAlternativasAsistencialesId)) return false;
+        HojaAlternativasAsistencialesId that = (HojaAlternativasAsistencialesId) o;
+        return Objects.equals(getIdHoja(), that.getIdHoja()) &&
+                Objects.equals(getIdAlternativaAsistencial(), that.getIdAlternativaAsistencial());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdHoja(), getIdAlternativaAsistencial());
     }
 
 }
