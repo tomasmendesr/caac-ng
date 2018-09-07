@@ -19,11 +19,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
-        "assets/fontawesome/fontawesome-all.min.css",
         "assets/bundle/bundle.css",
+        "styles.css",
         "assets/ui/css/vendor.css",
-        "assets/ui/css/app-blue.css",
+        "assets/fontawesome/fontawesome-all.min.css",
+        "assets/bundle/fontawesomeAll.css",
         "assets/datatable/dataTables.bootstrap4.css",
         "assets/datatable/responsive.bootstrap4.css",
         "assets/notify/css/animate.css"
@@ -32,7 +32,6 @@
         "assets/jquery/jquery-3.3.1.js",
         "assets/bundle/bundle.js",
         "assets/ui/js/vendor.js",
-        "assets/ui/js/app.js",
         "assets/datatable/jquery.dataTables.min.js",
         "assets/datatable/dataTables.bootstrap4.min.js",
         "assets/datatable/dataTables.responsive.min.js",

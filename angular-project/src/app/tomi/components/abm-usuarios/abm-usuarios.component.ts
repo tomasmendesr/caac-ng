@@ -124,8 +124,8 @@ export class AbmUsuariosComponent implements OnInit {
   }
 
   private buildTableButtons(): string {
-    var html = "<button class='btn btn-success'><span class='fas fa-edit'></span></button>";
-    html = html + "  <button class='btn btn-danger'><span class='fas fa-trash'></span></button>";
+    var html = "<button class='Button -sm -primary -raised -rounded'><span class='fas fa-edit'></span></button>";
+    html = html + "  <button class='Button -sm -danger -raised -rounded'><span class='fas fa-trash'></span></button>";
     return html;
   }
 

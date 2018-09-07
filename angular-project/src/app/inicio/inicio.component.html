@@ -1,26 +1,32 @@
-<div class="box box-primary card card-block" style="background-color: #f0f3f6; box-shadow: 0px 0px 0px rgba(126, 142, 159, 0.1);">
+<div class="box box-primary card card-block sinbordes" >
 
-  <div class="card-deck">
-		<div class="card" style="align-items: center; border-radius: 15px;">
-			<a id="btnCaac" style="padding-top: 15px;" class="NavLink" routerLink={{getUrlCaac()}}>
-				<i class="fas fa-circle NavIcon" style="font-size: 140px;"></i>
-			</a>
-			<div class="card-body" style="text-align:center;">
-			<h5 class="card-title">{{caacTitle()}}</h5>
-			<p class="card-text">{{caacSiglas()}}</p>
-			</div>
-		</div>
+  <div class="box box-primary card card-block sinbordes">
+      <div class="card-deck">
+        <div class="card text-center sinbordes" >
+          <div >
+            <a class="NavLink"  routerLink={{getUrlCaac()}}>
+              <i class="fas fa-circle NavIcon" style="font-size: 140px;"></i>
+            </a>
+            <div style="margin-top: 15px;">
+                <h5 class="card-title">{{caacTitle()}}</h5>
+                <p class="card-text">{{caacSiglas()}}</p>
+            </div>
+          </div>
 
-    <div class="card" style="align-items: center; border-radius: 15px;">
-    <a style="padding-top: 15px;" class="NavLink" routerLink={{getUrlSigese()}}>
-      <i class="fas fa-circle NavIcon" style="font-size: 140px;"></i>
-    </a>
-      <div class="card-body" style="text-align:center;">
-      <h5 class="card-title">{{sigeseTitle()}}</h5>
-      <p class="card-text">{{sigeseSiglas()}}</p>
+        </div>
+        <div class="card text-center sinbordes">
+          <div >
+              <a class="NavLink " routerLink={{getUrlSigese()}}>
+                <i class="fas fa-circle NavIcon" style="font-size: 140px;"></i>
+              </a>
+              <div style="margin-top: 15px;">
+                  <h5 class="card-title">{{sigeseTitle()}}</h5>
+                  <p class="card-text">{{sigeseSiglas()}}</p>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
 
-	</div>
 </div>
 
