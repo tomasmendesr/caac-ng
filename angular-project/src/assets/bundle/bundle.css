@@ -12288,10 +12288,10 @@ pre {
     display: -ms-flexbox;
     display: flex;
     position: relative;
-    padding-top: 60px;
-    padding-top: var(--DashboardHeaderHeight);
-    padding-bottom: 50px;
-    padding-bottom: var(--DashboardFooterHeight);
+    padding-top: 36px;
+    /*padding-top: var(--DashboardHeaderHeight);*/
+    padding-bottom: 24px;
+    /*padding-bottom: var(--DashboardFooterHeight);*/
     margin-left: 240px;
     margin-left: var(--DashboardSidebarWidth);
     min-height: 100vh;
