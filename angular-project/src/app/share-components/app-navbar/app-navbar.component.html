@@ -3,65 +3,26 @@
     <a id="nav-bar-title" class="navbar-brand" href="#">
       {{TITLE}}
     </a>
-    <nav class="ProfileNav navbar-expand-lg">
-        <button class="navbar-toggler Button -primary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-           <i class="fas fa-bars Icon" aria-hidden="true"></i>
-       </button>
-       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-       <div class="NavItem Profile">
-           <a routerLink="/inicio" class="NavLink ProfileLink">
-             <div class="Name"> General </div>
-           </a>
-       </div>
-       <div class="NavItem Profile">
-           <a routerLink="/mapa-principal" class="NavLink ProfileLink">
-             <div class="Name"> Administrativo </div>
-           </a>
-       </div>
-       <div class="NavItem Profile">
-           <a routerLink="/mi-organismo" class="NavLink ProfileLink">
-             <div class="Name"> Vencimientos </div>
-           </a>
-       </div>
-       <div class="NavItem Profile">
-           <a routerLink="/capas" class="NavLink ProfileLink">
-             <div class="Name"> Auditoria </div>
-           </a>
-       </div>
-       <div class="NavItem Profile">
-           <a routerLink="/galeria_mapas" class="NavLink ProfileLink">
-             <div class="Name"> Pagos </div>
-           </a>
-       </div>
-       <div class="NavItem Profile">
-           <a routerLink="/estadisticas" class="NavLink ProfileLink">
-             <div class="Name"> Reportes </div>
-           </a>
-       </div>
-
-       <div class="Dropdown NavItem Profile">
-         <a href="" class="DropdownToggle NavLink ProfileLink">
-           <div class="Name"><i class="fa fa-gear Icon"></i> Administración </div>
-         </a>
-         <div class="DropdownContent -end">
-           <nav class="Nav">
-             <a routerLink="/organismos">
-                Organismos </a>
-             <a routerLink="/sincronizacion_usuarios">
-                Sincronización Usuarios </a>
-             <a routerLink="/organismos_usuarios">
-               Asignación de usuarios a organismos </a>
-             <a routerLink="/capas_base">
-               Capas Base </a>
-             <a routerLink="/conexiones_wfs">
-               Conexiones WFS </a>
-             <a routerLink="/configuracion_avanzada">
-               Configuración avanzada </a>
-           </nav>
-         </div>
-       </div>
-     </div>
-     </nav>
+    <ul class="navbar-nav ProfileNav navbar-expand-lg mr-auto">
+      <li class="nav-item NavItem Profile caac-item">
+        <a class="nav-link" href="#">General<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item NavItem Profile caac-item">
+        <a class="nav-link" href="#">Administrativo<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item NavItem Profile caac-item">
+        <a class="nav-link" href="#">Vencimientos<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item NavItem Profile caac-item">
+        <a class="nav-link" href="#">Auditoria<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item NavItem Profile caac-item">
+        <a class="nav-link" href="#">Pagos<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item NavItem Profile caac-item">
+        <a class="nav-link" href="#">Reportes<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
 
     <div class="HeaderBlock">
       <nav class="ProfileNav">
