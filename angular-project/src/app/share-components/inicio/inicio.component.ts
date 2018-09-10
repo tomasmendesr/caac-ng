@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import MainConstants from './../constants/main-constants';
-import {UrlConstants} from "../tomi/services/UrlConstants";
+import MainConstants from '../../constants/main-constants';
+import {UrlConstants} from "../../tomi/services/UrlConstants";
 import {fromEvent} from "rxjs/observable/fromEvent";
 
 declare var $: any;

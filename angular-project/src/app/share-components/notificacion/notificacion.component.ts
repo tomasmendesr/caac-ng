@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {EventBusService} from '../services/event-bus.service';
+import {EventBusService} from '../../services/event-bus.service';
 import {Router} from '@angular/router';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 declare var $: any;
 
