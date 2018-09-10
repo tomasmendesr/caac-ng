@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {AppResponse} from "../model/app-response";
 import {UrlConstants} from "./UrlConstants";
-import {Usuario} from "../model/usuario";
+import {AppResponse} from "../../model/app-response";
+import {Usuario} from "../../model/usuario";
 
 @Injectable()
 export class UsuarioService {

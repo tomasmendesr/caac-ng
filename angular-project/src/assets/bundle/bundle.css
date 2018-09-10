@@ -11,7 +11,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 html {
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -30,7 +30,7 @@ body {
   /*color: #212529;*/
   color: #0053a7;
   text-align: left;
-  background-color: #fff; 
+  background-color: #fff;
   overflow-y: hidden;
 }
 [tabindex="-1"]:focus {
@@ -271,7 +271,7 @@ template {
   --DashboardFooterShadow: none;
   --DashboardSidebarColorBg: #285b8e;
   --DashboardSidebarColorText: rgba(255, 255, 255, 0.8);
-  --DashboardSidebarBgImage: url("/caac/assets/bundle/sidebar-bg-1.jpg");
+  /*--DashboardSidebarBgImage: url("/caac/assets/bundle/sidebar-bg-1.jpg");*/
   --DashboardSidebarBgImageOpacity: 1;
   --DashboardSidebarShadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
   --DashboardSidebarPaddingHorizontal: 20px;
@@ -12721,7 +12721,7 @@ pre {
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    background-image: url('/caac/assets/bundle/sidebar-bg-1.jpg');
+    /*background-image: url('/caac/assets/bundle/sidebar-bg-1.jpg');*/
     background-image: var(--DashboardSidebarBgImage);
     opacity: 1;
     opacity: var(--DashboardSidebarBgImageOpacity);
@@ -14791,7 +14791,7 @@ pre {
   .modal-open {
     overflow: hidden;
   }
-  
+
   .modal {
     position: fixed;
     top: 0;
@@ -14803,12 +14803,12 @@ pre {
     overflow: hidden;
     outline: 0;
   }
-  
+
   .modal-open .modal {
     overflow-x: hidden;
     overflow-y: auto;
   }
-  
+
   .modal-dialog {
     position: relative;
     width: auto;
@@ -14816,7 +14816,7 @@ pre {
     pointer-events: none;
     margin-top: 70px !important;
   }
-  
+
   .modal.fade .modal-dialog {
     transition: -webkit-transform 0.3s ease-out;
     transition: transform 0.3s ease-out;
@@ -14824,12 +14824,12 @@ pre {
     -webkit-transform: translate(0, -25%);
     transform: translate(0, -25%);
   }
-  
+
   .modal.show .modal-dialog {
     -webkit-transform: translate(0, 0);
     transform: translate(0, 0);
   }
-  
+
   .modal-dialog-centered {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -14839,7 +14839,7 @@ pre {
     align-items: center;
     min-height: calc(100% - (0.5rem * 2));
   }
-  
+
   .modal-content {
     position: relative;
     display: -webkit-box;
@@ -14858,7 +14858,7 @@ pre {
     border-radius: 0.3rem;
     outline: 0;
   }
-  
+
   .modal-backdrop {
     position: fixed;
     top: 0;
@@ -14868,15 +14868,15 @@ pre {
     /*z-index: 1040;*/
     background-color: #000;
   }
-  
+
   .modal-backdrop.fade {
     opacity: 0;
   }
-  
+
   .modal-backdrop.show {
     opacity: 0.5;
   }
-  
+
   .modal-header {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -14892,17 +14892,17 @@ pre {
     border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
   }
-  
+
   .modal-header .close {
     padding: 1rem;
     margin: -1rem -1rem -1rem auto;
   }
-  
+
   .modal-title {
     margin-bottom: 0;
     line-height: 1.5;
   }
-  
+
   .modal-body {
     position: relative;
     -webkit-box-flex: 1;
@@ -14910,7 +14910,7 @@ pre {
     flex: 1 1 auto;
     padding: 1rem;
   }
-  
+
   .modal-footer {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -14924,15 +14924,15 @@ pre {
     padding: 1rem;
     border-top: 1px solid #e9ecef;
   }
-  
+
   .modal-footer > :not(:first-child) {
     margin-left: .25rem;
   }
-  
+
   .modal-footer > :not(:last-child) {
     margin-right: .25rem;
   }
-  
+
   .modal-scrollbar-measure {
     position: absolute;
     top: -9999px;
@@ -14940,7 +14940,7 @@ pre {
     height: 50px;
     overflow: scroll;
   }
-  
+
   @media (min-width: 576px) {
     .modal-dialog {
       max-width: 500px;
@@ -14953,7 +14953,7 @@ pre {
       max-width: 300px;
     }
   }
-  
+
   @media (min-width: 992px) {
     .modal-lg {
       max-width: 800px;

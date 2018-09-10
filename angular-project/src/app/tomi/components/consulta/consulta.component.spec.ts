@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SigeseViewComponent } from './sigese-view.component';
+import { ConsultaComponent } from './consulta.component';
 
-describe('SigeseViewComponent', () => {
-  let component: SigeseViewComponent;
-  let fixture: ComponentFixture<SigeseViewComponent>;
+describe('ConsultaComponent', () => {
+  let component: ConsultaComponent;
+  let fixture: ComponentFixture<ConsultaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SigeseViewComponent ]
+      declarations: [ ConsultaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SigeseViewComponent);
+    fixture = TestBed.createComponent(ConsultaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,6 +17,15 @@ export class UrlConstants {
 
   //routing
   static readonly CAAC_VIEW = 'caac-view';
-  static readonly SIGESE_VIEW = 'sigese-view';
+  static readonly CONSULTAS = 'consultas';
+
+  //mes service
+  static readonly FIND_ALL_MESES = '/services/mes/findAll';
+
+  // casa service
+  static readonly FIND_ALL_CASAS = '/services/casa/findAll'
+
+  //hoja service
+  static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';
 
 }

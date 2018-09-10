@@ -26,7 +26,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CaacViewComponent } from './fede/components/caac-view/caac-view.component';
-import { SigeseViewComponent } from './tomi/components/sigese-view/sigese-view.component';
+import { ConsultaComponent } from './tomi/components/consulta/consulta.component';
+import {MesService} from "./tomi/services/mes.service";
+import {CasaService} from "./tomi/services/casa.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -47,7 +49,7 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     AbmUsuariosComponent,
     LoadingComponent,
     CaacViewComponent,
-    SigeseViewComponent
+    ConsultaComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,9 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     AppLoadService,
     { provide: APP_INITIALIZER, useFactory: get_parametros_iniciales, deps: [AppLoadService], multi: true},
     EventBusService,
-    UsuarioService
+    UsuarioService,
+    MesService,
+    CasaService
   ],
   bootstrap: [AppComponent]
 })

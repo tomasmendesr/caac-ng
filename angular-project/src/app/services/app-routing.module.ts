@@ -6,13 +6,14 @@ import {InicioComponent} from "../share-components/inicio/inicio.component";
 import {BlankComponent} from "../share-components/blank/blank.component";
 import {AbmUsuariosComponent} from "../share-components/abm-usuarios/abm-usuarios.component";
 import {CaacViewComponent} from "../fede/components/caac-view/caac-view.component";
-import {SigeseViewComponent} from "../tomi/components/sigese-view/sigese-view.component";
+import {ConsultaComponent} from "../tomi/components/consulta/consulta.component";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: UrlConstants.INICIO,
-    pathMatch: 'full'},
+    pathMatch: 'full'
+  },
   {
     path: UrlConstants.ERROR_PAGE,
     component: ErrorPageComponent
@@ -34,8 +35,8 @@ const routes: Routes = [
     component: CaacViewComponent
   },
   {
-    path: UrlConstants.SIGESE_VIEW,
-    component: SigeseViewComponent
+    path: UrlConstants.CONSULTAS,
+    component: ConsultaComponent
   }
 ];
 

@@ -47,7 +47,7 @@ export class InicioComponent implements OnInit, AfterViewInit {
   }
 
   getUrlSigese() {
-    return '/' + UrlConstants.SIGESE_VIEW;
+    return '/' + UrlConstants.CONSULTAS;
   }
 
 

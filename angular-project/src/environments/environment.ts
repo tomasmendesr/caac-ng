@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/caac-ng',
+  apiUrl: 'http://localhost:8080/caac',
   picsUrl: 'http://localhost:8080/home'
 };

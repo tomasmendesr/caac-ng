@@ -2,13 +2,13 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {UsuarioService} from "../../tomi/services/usuario.service";
 import {LoadingComponent} from "../loading/loading.component";
 import {EventBusService} from "../../services/event-bus.service";
-import {Usuario} from "../../tomi/model/usuario";
 import {Subject} from "rxjs/Subject";
 import {DefaultFilter} from "../../tomi/filters/default-filter";
 import {NotifUtil} from "../../tomi/utils/notif-util";
-import {AppResponse} from "../../tomi/model/app-response";
 import {environment} from "../../../environments/environment";
 import {UrlConstants} from "../../tomi/services/UrlConstants";
+import {Usuario} from "../../model/usuario";
+import {AppResponse} from "../../model/app-response";
 
 declare var $: any; // jquery
 
