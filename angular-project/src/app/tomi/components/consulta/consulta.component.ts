@@ -35,7 +35,7 @@ export class ConsultaComponent implements OnInit {
 
   private initLists(){
     this.mesService.findAll().subscribe(data => this.meses = data);
-    this.casaService.findAll().subscribe(data => {
+    this.casaService.findAllLight().subscribe(data => {
       this.casas = data;
       this.filteredCasas = this.casaCtrl.valueChanges
         .debounceTime(400)

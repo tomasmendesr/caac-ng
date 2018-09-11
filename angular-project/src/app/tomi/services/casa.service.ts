@@ -9,8 +9,8 @@ export class CasaService {
   constructor(private http: HttpClient) {
   }
 
-  findAll(): Observable<Casa[]> {
-    return this.http.post<Casa[]>(UrlConstants.FIND_ALL_CASAS, {});
+  findAllLight(): Observable<Casa[]> {
+    return this.http.post<Casa[]>(UrlConstants.FIND_ALL_CASAS_LIGTH, {});
   }
 }
 

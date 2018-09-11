@@ -1,9 +1,31 @@
 
 export class UrlConstants {
+
+  // routing
   static readonly INICIO = 'inicio';
   static readonly BLANK = 'blank';
   static readonly ERROR_PAGE = 'error';
-  static readonly ABM_USUARIOS_VIEW = 'usuarios';
+  static readonly CAAC_VIEW = 'caac-view';
+  static readonly CONSULTAS = 'consultas';
+  static readonly MENSUAL_SECCION_A = 'mensual_seccion_A'
+  static readonly MENSUAL_SECCION_B = 'mensual_seccion_B'
+  static readonly MENSUAL_SECCION_C1 = 'mensual_seccion_C1'
+  static readonly MENSUAL_SECCION_C2 = 'mensual_seccion_C2'
+  static readonly MENSUAL_SECCION_C3 = 'mensual_seccion_C3'
+  static readonly MENSUAL_SECCION_C4 = 'mensual_seccion_C4'
+  static readonly MENSUAL_SECCION_C5 = 'mensual_seccion_C5'
+  static readonly MENSUAL_SECCION_C6 = 'mensual_seccion_C6'
+  static readonly MENSUAL_SECCION_D = 'mensual_seccion_D'
+  static readonly CIERRE_PERIODO = 'cierre_periodo'
+  static readonly ESTRUCTURAL_SECCION_A = 'estructural_seccion_A'
+  static readonly ESTRUCTURAL_SECCION_B = 'estructural_seccion_B'
+  static readonly ESTRUCTURAL_SECCION_C_D = 'estructural_seccion_C_D'
+  static readonly ESTRUCTURAL_SECCION_E = 'estructural_seccion_E'
+  static readonly ESTRUCTURAL_SECCION_E2 = 'estructural_seccion_E2'
+  static readonly ESTRUCTURAL_SECCION_E3 = 'estructural_seccion_E3'
+  static readonly ESTRUCTURAL_SECCION_F = 'estructural_seccion_F'
+  static readonly ESTRUCTURAL_SECCION_G = 'estructural_seccion_G'
+  static readonly ESTRUCTURAL_SECCION_H = 'estructural_seccion_H'
 
   // config service
   static readonly GET_PARAMETROS_INICIALES = ''; // TODO
@@ -15,15 +37,11 @@ export class UrlConstants {
   static readonly DELETE_USER = '/services/usuario/delete';
   static readonly USER_IN_USE = '/services/usuario/isInUse';
 
-  //routing
-  static readonly CAAC_VIEW = 'caac-view';
-  static readonly CONSULTAS = 'consultas';
-
   //mes service
   static readonly FIND_ALL_MESES = '/services/mes/findAll';
 
   // casa service
-  static readonly FIND_ALL_CASAS = '/services/casa/findAll'
+  static readonly FIND_ALL_CASAS_LIGTH = '/services/casa/findAllLight'
 
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';

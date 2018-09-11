@@ -29,6 +29,26 @@ import { CaacViewComponent } from './fede/components/caac-view/caac-view.compone
 import { ConsultaComponent } from './tomi/components/consulta/consulta.component';
 import {MesService} from "./tomi/services/mes.service";
 import {CasaService} from "./tomi/services/casa.service";
+import { MensualSeccionAComponent } from './tomi/components/mensual/mensual-seccion-a/mensual-seccion-a.component';
+import { MensualSeccionBComponent } from './tomi/components/mensual/mensual-seccion-b/mensual-seccion-b.component';
+import { MensualSeccionC1Component } from './tomi/components/mensual/mensual-seccion-c1/mensual-seccion-c1.component';
+import { MensualSeccionC2Component } from './tomi/components/mensual/mensual-seccion-c2/mensual-seccion-c2.component';
+import { MensualSeccionC3Component } from './tomi/components/mensual/mensual-seccion-c3/mensual-seccion-c3.component';
+import { MensualSeccionC4Component } from './tomi/components/mensual/mensual-seccion-c4/mensual-seccion-c4.component';
+import { MensualSeccionC5Component } from './tomi/components/mensual/mensual-seccion-c5/mensual-seccion-c5.component';
+import { MensualSeccionC6Component } from './tomi/components/mensual/mensual-seccion-c6/mensual-seccion-c6.component';
+import { MensualSeccionDComponent } from './tomi/components/mensual/mensual-seccion-d/mensual-seccion-d.component';
+import { CierrePeriodoComponent } from './tomi/components/cierre-periodo/cierre-periodo.component';
+import { EstructuralSeccionAComponent } from './tomi/components/estructural/estructural-seccion-a/estructural-seccion-a.component';
+import { EstructuralSeccionBComponent } from './tomi/components/estructural/estructural-seccion-b/estructural-seccion-b.component';
+import { DComponent } from './tomi/components/estructural/estructural-seccion-c/d/d.component';
+import { EstructuralSeccionEComponent } from './tomi/components/estructural/estructural-seccion-e/estructural-seccion-e.component';
+import { EstructuralSeccionE2Component } from './tomi/components/estructural/estructural-seccion-e2/estructural-seccion-e2.component';
+import { EstructuralSeccionE3Component } from './tomi/components/estructural/estructural-seccion-e3/estructural-seccion-e3.component';
+import { EstructuralSeccionFComponent } from './tomi/components/estructural/estructural-seccion-f/estructural-seccion-f.component';
+import { EstructuralSeccionGComponent } from './tomi/components/estructural/estructural-seccion-g/estructural-seccion-g.component';
+import { EstructuralSeccionHComponent } from './tomi/components/estructural/estructural-seccion-h/estructural-seccion-h.component';
+import { EstructuralSeccionCdComponent } from './tomi/components/estructural/estructural-seccion-cd/estructural-seccion-cd.component';
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -49,7 +69,27 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     AbmUsuariosComponent,
     LoadingComponent,
     CaacViewComponent,
-    ConsultaComponent
+    ConsultaComponent,
+    MensualSeccionAComponent,
+    MensualSeccionBComponent,
+    MensualSeccionC1Component,
+    MensualSeccionC2Component,
+    MensualSeccionC3Component,
+    MensualSeccionC4Component,
+    MensualSeccionC5Component,
+    MensualSeccionC6Component,
+    MensualSeccionDComponent,
+    CierrePeriodoComponent,
+    EstructuralSeccionAComponent,
+    EstructuralSeccionBComponent,
+    DComponent,
+    EstructuralSeccionEComponent,
+    EstructuralSeccionE2Component,
+    EstructuralSeccionE3Component,
+    EstructuralSeccionFComponent,
+    EstructuralSeccionGComponent,
+    EstructuralSeccionHComponent,
+    EstructuralSeccionCdComponent
   ],
   imports: [
     BrowserModule,

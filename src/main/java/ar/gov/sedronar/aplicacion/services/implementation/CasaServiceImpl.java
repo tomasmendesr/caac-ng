@@ -3,6 +3,7 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.CasaDAO;
 import ar.gov.sedronar.aplicacion.dto.CasaDTO;
+import ar.gov.sedronar.aplicacion.dto.CasaLightDTO;
 import ar.gov.sedronar.aplicacion.model.Casa;
 import ar.gov.sedronar.aplicacion.services.interfaces.CasaService;
 import ar.gov.sedronar.util.dozer.DozerHelper;
@@ -25,7 +26,7 @@ public class CasaServiceImpl implements CasaService {
     private CasaDAO casaDAO;
 
     @Override
-    public List<CasaDTO> findAll() {
-        return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaDTO.class);
+    public List<CasaLightDTO> findAllLight() {
+        return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaLightDTO.class);
     }
 }

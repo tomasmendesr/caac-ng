@@ -1,6 +1,7 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 
 import ar.gov.sedronar.aplicacion.dto.CasaDTO;
+import ar.gov.sedronar.aplicacion.dto.CasaLightDTO;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -18,6 +19,6 @@ import java.util.List;
 public interface CasaService {
 
     @POST
-    @Path("/findAll")
-    List<CasaDTO> findAll();
+    @Path("/findAllLight")
+    List<CasaLightDTO> findAllLight();
 }
