@@ -24,20 +24,20 @@
                 <i class="fas fa-cog Icon"></i>
               </a>
             </div>
-            <a routerLink="{{getUrlMensualSeccionA()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionA'}" (click)="selectedItem = 'mensualSeccionA'"> Sección A </a>
-            <a routerLink="{{getUrlMensualSeccionB()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionB'}" (click)="selectedItem = 'mensualSeccionB'"> Sección B </a>
+            <a routerLink="{{getUrlMensualSeccionA()}}" class="NavLink LinkToggleCompact" [ngClass]="{'-active': selectedItem === 'mensualSeccionA'}" (click)="selectedItem = 'mensualSeccionA'" data-placement="top" title="Datos iniciales" data-toggle="tooltip"> Sección A - Datos iniciales</a>
+            <a routerLink="{{getUrlMensualSeccionB()}}" class="NavLink LinkToggleHelp" [ngClass]="{'-active': selectedItem === 'mensualSeccionB'}" (click)="selectedItem = 'mensualSeccionB'" data-placement="top" title="Población asistida" data-toggle="tooltip"> Sección B - Población asistida</a>
             <div class="NavGroup">
               <a href="#" class="NavLink" [ngClass]="{'-active': selectedItem === 'seccionC'}">
-                <span> Sección C </span>
+                <span> Sección C - Gestiones o Prácticas </span>
               </a>
               <nav class="Nav">
                 <h4 class="CompactNavGroupName">
-                  Sección C
+                  Sección C - Gestiones o Prácticas
                   <a href="" class="Button ButtonDismiss DismissBtn">
                     <i class="fas fa-times"></i>
                   </a>
                 </h4>
-                <a routerLink="{{getUrlMensualSeccionC1()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC1'}" (click)="selectedItem = 'mensualSeccionC1'"> Sección C1 </a>
+                <a routerLink="{{getUrlMensualSeccionC1()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC1'}" (click)="selectedItem = 'mensualSeccionC1'"> Sección C1 - Gestiones salud, asesoramiento </a>
                 <a routerLink="{{getUrlMensualSeccionC2()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC2'}" (click)="selectedItem = 'mensualSeccionC2'"> Sección C2 </a>
                 <a routerLink="{{getUrlMensualSeccionC3()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC3'}" (click)="selectedItem = 'mensualSeccionC3'"> Sección C3 </a>
                 <a routerLink="{{getUrlMensualSeccionC4()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC4'}" (click)="selectedItem = 'mensualSeccionC4'"> Sección C4 </a>
@@ -46,8 +46,6 @@
               </nav>
             </div>
             <a routerLink="{{getUrlMensualSeccionD()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionD'}" (click)="selectedItem = 'mensualSeccionD'"> Sección D </a>
-            <div class="Divider"></div>
-            <a routerLink="{{getUrlCierrePeriodo()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualCierrePeriodo'}" (click)="selectedItem = 'mensualCierrePeriodo'"> Cierre Período </a>
           </nav>
         </div>
 
@@ -90,6 +88,14 @@
             <a routerLink="{{getUrlEstructuralSeccionH()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionH'}" (click)="selectedItem = 'estructuralSeccionH'"> Sección H </a>
           </nav>
         </div>
+
+        <div class="Divider"></div>
+
+        <a routerLink="{{getUrlCierrePeriodo()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualCierrePeriodo'}" (click)="selectedItem = 'mensualCierrePeriodo'">
+          <i class="fas fa-calendar-alt NavIcon"></i>
+          <span> Cierre Período </span>
+        </a>
+
       </nav>
     </div>
     <footer id="SidebarFooter" class="SidebarFooter">
