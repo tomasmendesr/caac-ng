@@ -1,7 +1,6 @@
 package ar.gov.sedronar.aplicacion.model;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.Date;
 
 /**

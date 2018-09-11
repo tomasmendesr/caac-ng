@@ -1,6 +1,5 @@
 package ar.gov.sedronar.aplicacion.model;
 
-import javax.persistence.*;
 import java.util.Date;
 
 

@@ -9,12 +9,88 @@
           <i class="fas fa-home NavIcon"></i>
           <span> Consultas </span>
         </a>
+
         <div class="Divider"></div>
-        <a href="" class="NavLink">
-          <i class="fas fa-code NavIcon -color-light-blue-300"></i>
-          <span> Other Versions </span>
-        </a>
-     </nav>
+
+        <div class="NavGroup">
+          <a href="" class="NavLink" [ngClass]="{'-active': selectedItem === 'mensual'}">
+            <i class="fas fa-cog NavIcon"></i>
+            <span> Mensual </span>
+          </a>
+          <nav class="Nav">
+            <div class="CompactNavGroupHeader">
+              <h4 class="NavTitle">Mensual</h4>
+              <a href="" class="Button -dismiss DismissBtn">
+                <i class="fas fa-cog Icon"></i>
+              </a>
+            </div>
+            <a routerLink="/organismos" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionA'}" (click)="selectedItem = 'mensualSeccionA'"> Sección A </a>
+            <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionB'}" (click)="selectedItem = 'mensualSeccionB'"> Sección B </a>
+            <div class="NavGroup">
+              <a href="#" class="NavLink" [ngClass]="{'-active': selectedItem === 'seccionC'}">
+                <span> Sección C </span>
+              </a>
+              <nav class="Nav">
+                <h4 class="CompactNavGroupName">
+                  Sección C
+                  <a href="" class="Button ButtonDismiss DismissBtn">
+                    <i class="fas fa-times"></i>
+                  </a>
+                </h4>
+                <a routerLink="/organismos" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC1'}" (click)="selectedItem = 'mensualSeccionC1'"> Sección C1 </a>
+                <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC2'}" (click)="selectedItem = 'mensualSeccionC2'"> Sección C2 </a>
+                <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC3'}" (click)="selectedItem = 'mensualSeccionC3'"> Sección C3 </a>
+                <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC4'}" (click)="selectedItem = 'mensualSeccionC4'"> Sección C4 </a>
+                <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC5'}" (click)="selectedItem = 'mensualSeccionC5'"> Sección C5 </a>
+                <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC6'}" (click)="selectedItem = 'mensualSeccionC6'"> Sección C6 </a>
+              </nav>
+            </div>
+            <a routerLink="/organismos_usuarios" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionD'}" (click)="selectedItem = 'mensualSeccionD'"> Sección D </a>
+            <div class="Divider"></div>
+            <a routerLink="/capas_base" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualCierrePeriodo'}" (click)="selectedItem = 'mensualCierrePeriodo'"> Cierre Período </a>
+          </nav>
+        </div>
+
+        <div class="Divider"></div>
+
+        <div class="NavGroup">
+          <a href="#" class="NavLink" [ngClass]="{'-active': selectedItem === 'estructural'}">
+            <i class="fas fa-cog NavIcon"></i>
+            <span> Estructural </span>
+          </a>
+          <nav class="Nav">
+            <div class="CompactNavGroupHeader">
+              <h4 class="NavTitle"> Estructural </h4>
+              <a href="" class="Button -dismiss DismissBtn">
+                <i class="fas fa-cog Icon"></i>
+              </a>
+            </div>
+            <a routerLink="/organismos" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionA'}" (click)="selectedItem = 'estructuralSeccionA'"> Sección A </a>
+            <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionB'}" (click)="selectedItem = 'estructuralSeccionB'"> Sección B </a>
+            <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionCD'}" (click)="selectedItem = 'estructuralSeccionCD'"> Sección C/D </a>
+            <div class="NavGroup">
+              <a href="#" class="NavLink" [ngClass]="{'-active': selectedItem === 'estructuralSeccionE'}">
+                <i class="fas fa-cog NavIcon"></i>
+                <span> Sección E </span>
+              </a>
+              <nav class="Nav">
+                <div class="CompactNavGroupHeader">
+                  <h4 class="NavTitle"> Sección E </h4>
+                  <a href="" class="Button -dismiss DismissBtn">
+                    <i class="fas fa-cog Icon"></i>
+                  </a>
+                </div>
+                <a routerLink="/organismos" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE1'}" (click)="selectedItem = 'estructuralSeccionE1'"> Sección E1 </a>
+                <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE2'}" (click)="selectedItem = 'estructuralSeccionE2'"> Sección E2 </a>
+                <a routerLink="/sincronizacion_usuarios" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE3'}" (click)="selectedItem = 'estructuralSeccionE3'"> Sección E3 </a>
+              </nav>
+            </div>
+            <a routerLink="/organismos_usuarios" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionF'}" (click)="selectedItem = 'estructuralSeccionF'"> Sección F </a>
+            <a routerLink="/capas_base" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionG'}" (click)="selectedItem = 'estructuralSeccionG'"> Sección G </a>
+            <a routerLink="/capas_base" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionH'}" (click)="selectedItem = 'estructuralSeccionH'"> Sección H </a>
+          </nav>
+        </div>
+      </nav>
     </div>
     <footer id="SidebarFooter" class="SidebarFooter">
       <nav class="SidebarFooterNav">

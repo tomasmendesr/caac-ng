@@ -2,15 +2,14 @@ package ar.gov.sedronar.aplicacion.dao.hibernate;
 
 import ar.gov.sedronar.aplicacion.dao.interfaces.HojaDAO;
 import ar.gov.sedronar.aplicacion.definition.TipoHoja;
-import ar.gov.sedronar.aplicacion.filters.AbstractFilter;
 import ar.gov.sedronar.aplicacion.filters.ConsultaFilter;
 import ar.gov.sedronar.aplicacion.model.Hoja;
-import ar.gov.sedronar.aplicacion.model.Usuario;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.regexp.RE;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.*;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import javax.ejb.Stateless;
 import java.util.HashMap;
