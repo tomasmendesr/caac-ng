@@ -37,5 +37,12 @@ public interface UsuarioService {
 	@Path("/isInUse")
 	AppResponse isInUse(UsuarioDTO usuarioDTO);
 
+	/**
+	 *
+	 * @return Retorna el id de Keycloak
+	 */
+	String getCurrentUserId();
+
+
 
 }

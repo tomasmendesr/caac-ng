@@ -4,21 +4,13 @@ package ar.gov.sedronar.aplicacion.filters;
  * Created by TMR on 10/09/2018.
  */
 public class ConsultaFilter  {
-    private Integer casaId;
+    private String nombreCasa;
     private Integer anioInicio;
     private Integer anioFin;
     private Integer mesInicioId;
     private Integer mesFinId;
     private Boolean tipoInformacionEstructural;
     private Boolean tipoInformacionMensual;
-
-    public Integer getCasaId() {
-        return casaId;
-    }
-
-    public void setCasaId(Integer casaId) {
-        this.casaId = casaId;
-    }
 
     public Integer getAnioInicio() {
         return anioInicio;
@@ -66,5 +58,13 @@ public class ConsultaFilter  {
 
     public void setTipoInformacionMensual(Boolean tipoInformacionMensual) {
         this.tipoInformacionMensual = tipoInformacionMensual;
+    }
+
+    public String getNombreCasa() {
+        return nombreCasa;
+    }
+
+    public void setNombreCasa(String nombreCasa) {
+        this.nombreCasa = nombreCasa;
     }
 }

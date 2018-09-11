@@ -24,7 +24,7 @@ import java.util.*;
 @DefaultServiceImpl
 //@RolesAllowed({"ROL_NAME"})
 public class UsuarioServiceImpl implements UsuarioService {
-
+	private static final String TRIBEIRO_KEYLOAK_ID = "d4153ad8-de43-4102-a955-f92e7833f67d";
 	@Inject
 	@MockDAO
 	private UsuarioDAO usuarioDAO;
@@ -83,6 +83,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public AppResponse isInUse(UsuarioDTO usuarioDTO) {
 		return new AppResponse(false);
+	}
+
+	@Override
+	public String getCurrentUserId() {
+		return TRIBEIRO_KEYLOAK_ID;
 	}
 }
 

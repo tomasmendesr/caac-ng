@@ -1,9 +1,14 @@
 export class ConsultaFilter {
-  casaId: number;
+  nombreCasa: string;
   anioInicio: number;
   mesInicioId: number;
   anioFin: number;
   mesFinId: number;
   tipoInformacionEstructural: boolean ;
   tipoInformacionMensual: boolean ;
+
+  constructor(){
+    this.tipoInformacionEstructural = false;
+    this.tipoInformacionMensual = false;
+  }
 }

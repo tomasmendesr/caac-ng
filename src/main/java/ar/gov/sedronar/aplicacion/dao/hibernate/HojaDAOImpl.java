@@ -6,6 +6,7 @@ import ar.gov.sedronar.aplicacion.filters.AbstractFilter;
 import ar.gov.sedronar.aplicacion.filters.ConsultaFilter;
 import ar.gov.sedronar.aplicacion.model.Hoja;
 import ar.gov.sedronar.aplicacion.model.Usuario;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.regexp.RE;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -41,15 +42,15 @@ public class HojaDAOImpl extends AbstractDAOImpl<Hoja> implements HojaDAO {
     public Criteria applyFilters(ConsultaFilter filter, Map<String,String> aliases){
         Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Hoja.class);
 
-        if(filter.getCasaId() != null) criteria.add(Restrictions.eq("casa.id", filter.getCasaId()));
-        if(filter.getAnioInicio() != null && filter.getMesInicioId() != null){
-            criteria.add(Restrictions.ge("anio", filter.getAnioInicio()));
-            criteria.add(Restrictions.ge("mes.id", filter.getMesInicioId()));
+        if(filter.getNombreCasa() != null && StringUtils.isNotBlank(filter.getNombreCasa())){
+            criteria.createAlias("casa", "casaAlias");
+            if(aliases != null) aliases.put("casa","casaAlias");
+            criteria.add(Restrictions.eq("casaAlias.nomcaac", filter.getNombreCasa()));
         }
-        if(filter.getAnioFin() != null && filter.getMesFinId() != null){
-            criteria.add(Restrictions.le("anio", filter.getAnioFin()));
-            criteria.add(Restrictions.le("mes.id", filter.getMesFinId()));
-        }
+        if(filter.getAnioInicio() != null) criteria.add(Restrictions.ge("anio", filter.getAnioInicio()));
+        if(filter.getMesInicioId() != null) criteria.add(Restrictions.ge("mes.id", filter.getMesInicioId()));
+        if(filter.getAnioFin() != null) criteria.add(Restrictions.le("anio", filter.getAnioFin()));
+        if(filter.getMesFinId() != null) criteria.add(Restrictions.le("mes.id", filter.getMesFinId()));
         if(filter.getTipoInformacionEstructural() != null && filter.getTipoInformacionMensual() != null){
             if(filter.getTipoInformacionMensual() && !filter.getTipoInformacionEstructural()){
                 criteria.add(Restrictions.eq("tipoHoja", TipoHoja.MENSUAL.getValue()));
