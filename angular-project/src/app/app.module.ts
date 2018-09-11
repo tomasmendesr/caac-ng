@@ -41,7 +41,6 @@ import { MensualSeccionDComponent } from './tomi/components/mensual/mensual-secc
 import { CierrePeriodoComponent } from './tomi/components/cierre-periodo/cierre-periodo.component';
 import { EstructuralSeccionAComponent } from './tomi/components/estructural/estructural-seccion-a/estructural-seccion-a.component';
 import { EstructuralSeccionBComponent } from './tomi/components/estructural/estructural-seccion-b/estructural-seccion-b.component';
-import { DComponent } from './tomi/components/estructural/estructural-seccion-c/d/d.component';
 import { EstructuralSeccionEComponent } from './tomi/components/estructural/estructural-seccion-e/estructural-seccion-e.component';
 import { EstructuralSeccionE2Component } from './tomi/components/estructural/estructural-seccion-e2/estructural-seccion-e2.component';
 import { EstructuralSeccionE3Component } from './tomi/components/estructural/estructural-seccion-e3/estructural-seccion-e3.component';
@@ -82,7 +81,6 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     CierrePeriodoComponent,
     EstructuralSeccionAComponent,
     EstructuralSeccionBComponent,
-    DComponent,
     EstructuralSeccionEComponent,
     EstructuralSeccionE2Component,
     EstructuralSeccionE3Component,
