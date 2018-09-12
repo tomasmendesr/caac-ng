@@ -9,7 +9,7 @@ import {UrlConstants} from "../../../tomi/services/UrlConstants";
 import {NotifUtil} from "../../../tomi/utils/notif-util";
 import {environment} from "../../../../environments/environment";
 import {EventBusService} from "../../../services/event-bus.service";
-import {DefaultFilter} from "../../../tomi/filters/default-filter";
+import GeneralFilter from "../../model/filters/general-filter";
 
 declare var $: any;
 
@@ -22,9 +22,8 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   TITLE: string = 'Información General';
   TABLE_ID: string = 'tablaInformacionGeneral';
-  filter: DefaultFilter = new DefaultFilter;
-
-
+  filter: GeneralFilter = new GeneralFilter();
+  
   constructor(private generalService: GeneralService, private eventBusService: EventBusService) { }
 
   ngOnInit() {
@@ -49,27 +48,36 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
           { data: COLUMN_OBSERVACIONES, title: 'Observaciones' }
         ],
         ajax: {
-          url: environment.apiUrl + UrlConstants.FIND_ALL_CASAS, //todo ver que onda el environment
+          url: environment.apiUrl + UrlConstants.FIND_ALL_CASAS,
           type: 'POST',
           contentType: 'application/json',
-          /*data: (data) => {
+          data: (data) => {
             data.filter = self.filter;
 
             return JSON.stringify(data);
+          },
+          /*dataSrc: (data) => {
+            console.log('logeo data: ' + data);
+            return data
           },*/
-          /*error: (xhr, error, thrown) => {
+          error: (xhr, error, thrown) => {
             if(xhr.responseJSON && xhr.responseJSON.code == 403){
               NotifUtil.notifError(xhr.responseJSON.message)
             } else if (xhr.status === 401 || xhr.status === 0) {
               self.eventBusService.broadcast('http-error-auth', null);
             }
-          }*/
+          }
         },
         processing: true,
         serverSide: true,
         searching: false,
         scrollX: true,
-      } );
+        language: {
+          url: 'assets/datatable/spanish.json'
+        },
+        select: true,
+        dom: 'Blfrtip',
+    });
 
   }
 

@@ -2,6 +2,7 @@ package ar.gov.sedronar.aplicacion.services.interfaces;
 
 import ar.gov.sedronar.aplicacion.dto.CasaDTO;
 import ar.gov.sedronar.aplicacion.dto.CasaLightDTO;
+import ar.gov.sedronar.aplicacion.filters.GeneralTableFilter;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -23,6 +24,6 @@ public interface CasaService {
     List<CasaLightDTO> findAllLight();
 
     @POST
-    @Path("/findAll")
-    List<CasaDTO> findAll();
+    @Path("/findAllGeneral")
+    List<CasaDTO> findAllForGeneral(GeneralTableFilter generalTableFilter);
 }
