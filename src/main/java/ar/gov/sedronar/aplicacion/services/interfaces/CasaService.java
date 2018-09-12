@@ -21,4 +21,8 @@ public interface CasaService {
     @POST
     @Path("/findAllLight")
     List<CasaLightDTO> findAllLight();
+
+    @POST
+    @Path("/findAll")
+    List<CasaDTO> findAll();
 }

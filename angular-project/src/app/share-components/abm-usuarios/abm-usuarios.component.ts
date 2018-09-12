@@ -63,7 +63,7 @@ export class AbmUsuariosComponent implements OnInit {
         url: environment.apiUrl + UrlConstants.GET_USERS_FOR_TABLE,
         type: 'POST',
         contentType: 'application/json',
-        data: function (d) {
+        data: (d) => {
           d.filter = self.filter;
           return JSON.stringify(d);
         },

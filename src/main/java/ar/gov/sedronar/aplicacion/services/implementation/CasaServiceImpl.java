@@ -29,4 +29,9 @@ public class CasaServiceImpl implements CasaService {
     public List<CasaLightDTO> findAllLight() {
         return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaLightDTO.class);
     }
+
+    @Override
+    public List<CasaDTO> findAll() {
+        return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaDTO.class);
+    }
 }
