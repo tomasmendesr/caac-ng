@@ -15,5 +15,15 @@
   margin-bottom: 10px;
 }
 
+.margin-top {
+  margin-top: 10px;
+}
+
+.img-logo-sedronar {
+  width: 130px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
 /*.HeaderContainer{ left: 0 !important; }*/
 /*.ContentContainer{ margin-left: 0px !important; }*/

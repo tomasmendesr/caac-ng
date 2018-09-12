@@ -1,7 +1,7 @@
 <div class="SidebarContainer">
   <aside class="DashboardSidebar" >
     <header class="SidebarHeader" style="display: contents !important;">
-      <h2 class="Title"><img src="assets/img/logo_SEDRONAR_2018.png" style="width: 130px; margin-left: 20%; margin-right: 20%;"></h2>
+      <h2 class="Title"><img class="img-logo-sedronar" src="assets/img/logo_SEDRONAR_2018.png"></h2>
     </header>
     <div class="SidebarContent">
       <nav class="SidebarNav" id="SidebarNav">
@@ -15,13 +15,13 @@
         <div class="NavGroup">
           <a href="" class="NavLink" [ngClass]="{'-active': selectedItem === 'mensual'}">
             <i class="fas fa-cog NavIcon"></i>
-            <span> Mensual </span>
+            <span> Información Mensual </span>
           </a>
           <nav class="Nav">
             <div class="CompactNavGroupHeader">
-              <h4 class="NavTitle">Mensual</h4>
+              <h4 class="NavTitle">Información Mensual</h4>
               <a href="" class="Button -dismiss DismissBtn">
-                <i class="fas fa-cog Icon"></i>
+                <i class="fas fa-times"></i>
               </a>
             </div>
             <a routerLink="{{getUrlMensualSeccionA()}}" class="NavLink LinkToggleCompact" [ngClass]="{'-active': selectedItem === 'mensualSeccionA'}" (click)="selectedItem = 'mensualSeccionA'" data-placement="top" title="Datos iniciales" data-toggle="tooltip"> Sección A - Datos iniciales</a>
@@ -37,15 +37,15 @@
                     <i class="fas fa-times"></i>
                   </a>
                 </h4>
-                <a routerLink="{{getUrlMensualSeccionC1()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC1'}" (click)="selectedItem = 'mensualSeccionC1'"> Sección C1 - Gestiones salud, asesoramiento </a>
-                <a routerLink="{{getUrlMensualSeccionC2()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC2'}" (click)="selectedItem = 'mensualSeccionC2'"> Sección C2 </a>
-                <a routerLink="{{getUrlMensualSeccionC3()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC3'}" (click)="selectedItem = 'mensualSeccionC3'"> Sección C3 </a>
-                <a routerLink="{{getUrlMensualSeccionC4()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC4'}" (click)="selectedItem = 'mensualSeccionC4'"> Sección C4 </a>
-                <a routerLink="{{getUrlMensualSeccionC5()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC5'}" (click)="selectedItem = 'mensualSeccionC5'"> Sección C5 </a>
-                <a routerLink="{{getUrlMensualSeccionC6()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC6'}" (click)="selectedItem = 'mensualSeccionC6'"> Sección C6 </a>
+                <a routerLink="{{getUrlMensualSeccionC1()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC1'}" (click)="selectedItem = 'mensualSeccionC1'"> Sección C1 - Trámites, alimentación</a>
+                <a routerLink="{{getUrlMensualSeccionC2()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC2'}" (click)="selectedItem = 'mensualSeccionC2'"> Sección C2 - Actividades, intervenciones</a>
+                <a routerLink="{{getUrlMensualSeccionC3()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC3'}" (click)="selectedItem = 'mensualSeccionC3'"> Sección C3 - Gestiones salud, asesoramiento</a>
+                <a routerLink="{{getUrlMensualSeccionC4()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC4'}" (click)="selectedItem = 'mensualSeccionC4'"> Sección C4 - Acompañamiento y actividades en penales</a>
+                <a routerLink="{{getUrlMensualSeccionC5()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC5'}" (click)="selectedItem = 'mensualSeccionC5'"> Sección C5 - Orientación en salud, recursos entregados, trayectorias educativas</a>
+                <a routerLink="{{getUrlMensualSeccionC6()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionC6'}" (click)="selectedItem = 'mensualSeccionC6'"> Sección C6 - Otras actvidades</a>
               </nav>
             </div>
-            <a routerLink="{{getUrlMensualSeccionD()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionD'}" (click)="selectedItem = 'mensualSeccionD'"> Sección D </a>
+            <a routerLink="{{getUrlMensualSeccionD()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualSeccionD'}" (click)="selectedItem = 'mensualSeccionD'"> Sección D - Infraestructura, formación y personal</a>
           </nav>
         </div>
 
@@ -54,38 +54,37 @@
         <div class="NavGroup">
           <a href="#" class="NavLink" [ngClass]="{'-active': selectedItem === 'estructural'}">
             <i class="fas fa-cog NavIcon"></i>
-            <span> Estructural </span>
+            <span> Información Estructural </span>
           </a>
           <nav class="Nav">
             <div class="CompactNavGroupHeader">
-              <h4 class="NavTitle"> Estructural </h4>
+              <h4 class="NavTitle"> Información Estructural </h4>
               <a href="" class="Button -dismiss DismissBtn">
-                <i class="fas fa-cog Icon"></i>
+                <i class="fas fa-times"></i>
               </a>
             </div>
-            <a routerLink="{{getUrlEstructuralSeccionA()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionA'}" (click)="selectedItem = 'estructuralSeccionA'"> Sección A </a>
-            <a routerLink="{{getUrlEstructuralSeccionB()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionB'}" (click)="selectedItem = 'estructuralSeccionB'"> Sección B </a>
-            <a routerLink="{{getUrlEstructuralSeccionCD()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionCD'}" (click)="selectedItem = 'estructuralSeccionCD'"> Sección C/D </a>
+            <a routerLink="{{getUrlEstructuralSeccionA()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionA'}" (click)="selectedItem = 'estructuralSeccionA'"> Sección A - Datos iniciales</a>
+            <a routerLink="{{getUrlEstructuralSeccionB()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionB'}" (click)="selectedItem = 'estructuralSeccionB'"> Sección B - Población asistida</a>
+            <a routerLink="{{getUrlEstructuralSeccionCD()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionCD'}" (click)="selectedItem = 'estructuralSeccionCD'"> Sección C/D - Registros institucionales/Reuniones de equipo</a>
             <div class="NavGroup">
               <a href="#" class="NavLink" [ngClass]="{'-active': selectedItem === 'estructuralSeccionE'}">
-                <i class="fas fa-cog NavIcon"></i>
-                <span> Sección E </span>
+                <span> Sección E - Gestiones o prácticas</span>
               </a>
               <nav class="Nav">
-                <div class="CompactNavGroupHeader">
-                  <h4 class="NavTitle"> Sección E </h4>
+                <div class="CompactNavGroupName">
+                  <h4 class="NavTitle"> Sección E - Gestiones o prácticas </h4>
                   <a href="" class="Button -dismiss DismissBtn">
-                    <i class="fas fa-cog Icon"></i>
+                    <i class="fas fa-times"></i>
                   </a>
                 </div>
-                <a routerLink="{{getUrlEstructuralSeccionE()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE1'}" (click)="selectedItem = 'estructuralSeccionE1'"> Sección E1 </a>
-                <a routerLink="{{getUrlEstructuralSeccionE2()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE2'}" (click)="selectedItem = 'estructuralSeccionE2'"> Sección E2 </a>
-                <a routerLink="{{getUrlEstructuralSeccionE3()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE3'}" (click)="selectedItem = 'estructuralSeccionE3'"> Sección E3 </a>
+                <a routerLink="{{getUrlEstructuralSeccionE()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE1'}" (click)="selectedItem = 'estructuralSeccionE1'"> Sección E1 - Trámites y alimentación</a>
+                <a routerLink="{{getUrlEstructuralSeccionE2()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE2'}" (click)="selectedItem = 'estructuralSeccionE2'"> Sección E2 - Asesoramiento jurídico y patrocinio</a>
+                <a routerLink="{{getUrlEstructuralSeccionE3()}}" class="NavLink " class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionE3'}" (click)="selectedItem = 'estructuralSeccionE3'"> Sección E3 - Recursos, acompañamientos</a>
               </nav>
             </div>
-            <a routerLink="{{getUrlEstructuralSeccionF()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionF'}" (click)="selectedItem = 'estructuralSeccionF'"> Sección F </a>
-            <a routerLink="{{getUrlEstructuralSeccionG()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionG'}" (click)="selectedItem = 'estructuralSeccionG'"> Sección G </a>
-            <a routerLink="{{getUrlEstructuralSeccionH()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionH'}" (click)="selectedItem = 'estructuralSeccionH'"> Sección H </a>
+            <a routerLink="{{getUrlEstructuralSeccionF()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionF'}" (click)="selectedItem = 'estructuralSeccionF'"> Sección F - Articulación institucional</a>
+            <a routerLink="{{getUrlEstructuralSeccionG()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionG'}" (click)="selectedItem = 'estructuralSeccionG'"> Sección G - Infraestructura</a>
+            <a routerLink="{{getUrlEstructuralSeccionH()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'estructuralSeccionH'}" (click)="selectedItem = 'estructuralSeccionH'"> Sección H - Personal</a>
           </nav>
         </div>
 
@@ -93,7 +92,7 @@
 
         <a routerLink="{{getUrlCierrePeriodo()}}" class="NavLink " [ngClass]="{'-active': selectedItem === 'mensualCierrePeriodo'}" (click)="selectedItem = 'mensualCierrePeriodo'">
           <i class="fas fa-calendar-alt NavIcon"></i>
-          <span> Cierre Período </span>
+          <span> Cierre de Período </span>
         </a>
 
       </nav>
