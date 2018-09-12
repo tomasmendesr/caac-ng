@@ -240,7 +240,8 @@ template {
   --colorPrimary-light: #98ca5e;
   --colorPrimary-lighter: #9ecd68;
   --colorPrimary-lightest: #a5d072;
-  --colorSecondary: #536dfe;
+  --colorSecondary: #007bff;
+  --colorSecondary-dark: #316cbe;
   --colorText: #4f5f6f;
   --colorText-light: #7e8e9f;
   --colorText-lighter: #a5b4c3;
@@ -271,7 +272,7 @@ template {
   --DashboardFooterShadow: none;
   --DashboardSidebarColorBg: #285b8e;
   --DashboardSidebarColorText: rgba(255, 255, 255, 0.8);
-  /*--DashboardSidebarBgImage: url("/caac/assets/bundle/sidebar-bg-1.jpg");*/
+  /*--DashboardSidebarBgImage: url("assets/bundle/sidebar-bg-1.jpg");*/
   --DashboardSidebarBgImageOpacity: 1;
   --DashboardSidebarShadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
   --DashboardSidebarPaddingHorizontal: 20px;
@@ -6957,9 +6958,19 @@ html.-rounded,
       background-color: var(--colorSecondary);
       border-color: rgb(83, 109, 254);
       border-color: var(--colorSecondary); }
+  .Button.-secondary.-raised:hover {
+    background-color: hsl(87.80000000000001, 50.2%, 47.5%);
+    background-color: var(--colorSecondary-dark);
+    border-color: hsl(87.80000000000001, 50.2%, 47.5%);
+    border-color: var(--colorSecondary-dark); }
   .Button.-secondary.-outline {
       border-color: rgb(83, 109, 254);
       border-color: var(--colorSecondary); }
+  .Button.-secondary.-outline:hover {
+    color: hsl(87.80000000000001, 50.2%, 47.5%);
+    color: var(--colorSecondary-dark);
+    border-color: hsl(87.80000000000001, 50.2%, 47.5%);
+    border-color: var(--colorSecondary-dark); }
 
   .Button.-danger {
     color: rgb(238, 13, 13);
@@ -9167,8 +9178,8 @@ html {
  * -------------------------- */
 @font-face {
   font-family: 'FontAwesome';
-  src: url(/caac/assets/bundle/d1cb39775770d4972b63ecd2a137e4f3.eot);
-  src: url(/caac/assets/bundle/d1cb39775770d4972b63ecd2a137e4f3.eot?#iefix&v=4.7.0) format("embedded-opentype"), url(/caac/assets/bundle/af7ae505a9eed503f8b8e6982036873e.woff2) format("woff2"), url(/caac/assets/bundle/fee66e712a8a08eef5805a46892932ad.woff) format("woff"), url(/caac/assets/bundle/cba12ce667c1197736f1de977317d8cb.ttf) format("truetype"), url(/caac/assets/bundle/36d50c1381fda7c71d12b6643cbe1ee0.svg#fontawesomeregular) format("svg");
+  src: url(assets/bundle/d1cb39775770d4972b63ecd2a137e4f3.eot);
+  src: url(assets/bundle/d1cb39775770d4972b63ecd2a137e4f3.eot?#iefix&v=4.7.0) format("embedded-opentype"), url(assets/bundle/af7ae505a9eed503f8b8e6982036873e.woff2) format("woff2"), url(assets/bundle/fee66e712a8a08eef5805a46892932ad.woff) format("woff"), url(assets/bundle/cba12ce667c1197736f1de977317d8cb.ttf) format("truetype"), url(assets/bundle/36d50c1381fda7c71d12b6643cbe1ee0.svg#fontawesomeregular) format("svg");
   font-weight: normal;
   font-style: normal; }
 .fa {
@@ -10778,8 +10789,8 @@ html {
 */
 @font-face {
   font-family: 'Pe-icon-7-stroke';
-  src: url(/caac/assets/bundle/8cb66e38c13769997144aeb38c5efd3a.eot);
-  src: url(/caac/assets/bundle/8cb66e38c13769997144aeb38c5efd3a.eot?#iefixd7yf1v) format("embedded-opentype"), url(/caac/assets/bundle/b38ef310874bdd008ac14ef3db939032.woff) format("woff"), url(/caac/assets/bundle/b26a971a432e158cba81bf0fd5555f8f.ttf) format("truetype"), url(/caac/assets/bundle/4f548104dd266e53a883e0e9faab3807.svg#Pe-icon-7-stroke) format("svg");
+  src: url(assets/bundle/8cb66e38c13769997144aeb38c5efd3a.eot);
+  src: url(assets/bundle/8cb66e38c13769997144aeb38c5efd3a.eot?#iefixd7yf1v) format("embedded-opentype"), url(assets/bundle/b38ef310874bdd008ac14ef3db939032.woff) format("woff"), url(assets/bundle/b26a971a432e158cba81bf0fd5555f8f.ttf) format("truetype"), url(assets/bundle/4f548104dd266e53a883e0e9faab3807.svg#Pe-icon-7-stroke) format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="pe-7s-"], [class*=" pe-7s-"] {
@@ -12721,7 +12732,7 @@ pre {
     background-position: center;
     background-repeat: repeat;
     background-size: cover;
-    /*background-image: url('/caac/assets/bundle/sidebar-bg-1.jpg');*/
+    /*background-image: url('assets/bundle/sidebar-bg-1.jpg');*/
     background-image: var(--DashboardSidebarBgImage);
     opacity: 1;
     opacity: var(--DashboardSidebarBgImageOpacity);
@@ -12885,7 +12896,7 @@ pre {
     padding: 0 20px 0 51px;
     font-weight: normal;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     text-overflow: ellipsis; }
   .SidebarNav .NavLink.-active {
       color: rgb(255, 255, 255);
