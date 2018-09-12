@@ -55,6 +55,7 @@ import { AuditoriaViewComponent } from './fede/components/auditoria-view/auditor
 import { PagosViewComponent } from './fede/components/pagos-view/pagos-view.component';
 import { ReportesViewComponent } from './fede/components/reportes-view/reportes-view.component';
 import { HeaderCaacSelectionComponent } from './tomi/components/header-caac-selection/header-caac-selection.component';
+import {PicsService} from "./tomi/services/pics.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -126,7 +127,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     EventBusService,
     UsuarioService,
     MesService,
-    CasaService
+    CasaService,
+    PicsService
   ],
   bootstrap: [AppComponent]
 })

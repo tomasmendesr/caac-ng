@@ -44,4 +44,7 @@ export class UrlConstants {
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';
 
+  //Pics Geo Service
+  static readonly FIND_PROVINCIAS_COMBO = '/services/pics/findAllProvinciasCombo';
+
 }
