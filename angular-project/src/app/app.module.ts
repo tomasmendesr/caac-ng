@@ -54,6 +54,7 @@ import { VencimientoViewComponent } from './fede/components/vencimientos-view/ve
 import { AuditoriaViewComponent } from './fede/components/auditoria-view/auditoria-view.component';
 import { PagosViewComponent } from './fede/components/pagos-view/pagos-view.component';
 import { ReportesViewComponent } from './fede/components/reportes-view/reportes-view.component';
+import { HeaderCaacSelectionComponent } from './tomi/components/header-caac-selection/header-caac-selection.component';
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -99,7 +100,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     VencimientoViewComponent,
     AuditoriaViewComponent,
     PagosViewComponent,
-    ReportesViewComponent
+    ReportesViewComponent,
+    HeaderCaacSelectionComponent
   ],
   imports: [
     BrowserModule,

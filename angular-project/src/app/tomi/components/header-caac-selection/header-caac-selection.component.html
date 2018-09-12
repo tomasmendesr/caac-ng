@@ -1,0 +1,73 @@
+<div class="row" style="max-height: 100px; overflow-y: hidden">
+
+  <div class="col">
+    <div class="card">
+        <form class="form-inline">
+          <div class="form-group col-4">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Seleccione CAAC" [matAutocomplete]="autoCasa" name ="casaAutocomplete" [formControl]="casaCtrl" [(ngModel)]="nombreCasaSeleccionada">
+              <mat-autocomplete #autoCasa="matAutocomplete">
+                <mat-option *ngFor="let casa of filteredCasas | async" [value]="casa.nomcaac">
+                  {{ casa.nomcaac }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+
+          <div class="form-group has-feedback col-8">
+            <label class="mr-sm-2" for="periodoCarga"><b>Período de carga: </b></label>
+            <form class="form-inline" id="periodoCarga">
+              <div class="form-group">
+                <!--<label for="anioCarga"> Año</label>-->
+                <select class="custom-select" id="anioCarga" [(ngModel)]="anioCarga" name="anioCarga">
+                  <option [value]="undefined" selected>Año</option>
+                  <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+                </select>
+              </div>
+              <div class="form-group" style="padding-left: 5px">
+                <!--<label for="mesCarga"> Mes</label>-->
+                <select class="custom-select" id="mesCarga" [(ngModel)]="mesCarga" name="mesCarga">
+                  <option [value]="undefined" selected>Mes</option>
+                  <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </form>
+
+      <!--</div>-->
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card card-body" style="padding: 0.7rem !important">
+      <form class="form-inline">
+        <div class="form-group has-feedback col-9">
+          <label class="mr-sm-2" for="periodoRecupero"><b>Recuperar datos de:</b></label>
+          <form class="form-inline" id="periodoRecupero">
+            <div class="form-group">
+              <!--<label for="anioRecuperacionDatos">Año</label>-->
+              <select class="custom-select" id="anioRecuperacionDatos" [(ngModel)]="anioRecuperacionDatos" name="anioRecuperacionDatos">
+                <option [value]="undefined" selected>Año</option>
+                <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+              </select>
+            </div>
+            <div class="form-group" style="padding-left: 5px">
+              <!--<label for="mesRecuperacionDatos"> Mes </label>-->
+              <select class="custom-select" id="mesRecuperacionDatos" [(ngModel)]="mesRecuperacionDatos" name="mesRecuperacionDatos">
+                <option [value]="undefined" selected>Mes</option>
+                <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-2">
+          <button class="btn btn-primary">Cargar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+</div>

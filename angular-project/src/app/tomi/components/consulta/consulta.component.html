@@ -1,76 +1,80 @@
 <app-loading></app-loading>
-<div class="box box-primary card card-block">
-  <h3>Búsqueda por filtros</h3>
+<div class="container-fluid h-100">
+  <div class="box box-primary card card-block h-100">
+    <h3>Búsqueda por filtros</h3>
 
-  <div class="box-header">
-    <form class="form-inline">
-      <div class="form-group col-3">
-        <mat-form-field>
-          <input type="text" matInput placeholder="Seleccione CAAC" [matAutocomplete]="autoCasa" name ="casaAutocomplete" [formControl]="casaCtrl" [(ngModel)]="filterConsulta.nombreCasa">
-          <mat-autocomplete #autoCasa="matAutocomplete">
-            <mat-option *ngFor="let casa of filteredCasas | async" [value]="casa.nomcaac">
-              {{ casa.nomcaac }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
+    <div class="box-header">
+      <form class="form-inline">
+        <div class="form-group col-3">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Seleccione CAAC" [matAutocomplete]="autoCasa" name ="casaAutocomplete" [formControl]="casaCtrl" [(ngModel)]="filterConsulta.nombreCasa">
+            <mat-autocomplete #autoCasa="matAutocomplete">
+              <mat-option *ngFor="let casa of filteredCasas | async" [value]="casa.nomcaac">
+                {{ casa.nomcaac }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
 
-      <div class="form-group has-feedback col-4 padding-0">
-        <label class="mr-sm-2" for="periodoEntre"><b>Período comprendido entre</b></label>
-        <form class="form-inline" id="periodoEntre">
-          <div class="form-group">
-            <label for="anioInicio">Año</label>
-            <select  id="anioInicio" [(ngModel)]="filterConsulta.anioInicio" name="anioInicio" title="Año desde">
-              <option></option>
-              <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
-            </select>
-          </div>
-          <div class="form-group" style="padding-left: 2px">
-            <label for="mesInicio"> Mes</label>
-            <select id="mesInicio" [(ngModel)]="filterConsulta.mesInicioId" name="mesInicio" title="Mes desde">
-              <option></option>
-              <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
-            </select>
-          </div>
-          <label style="padding-left: 3px; padding-rigth: 3px"> y </label>
-          <div class="form-group padding-0">
-            <label for="anioFin"> Año</label>
-            <select id="anioFin" [(ngModel)]="filterConsulta.anioFin" name="anioFin" title="Año hasta">
-              <option></option>
-              <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
-            </select>
-          </div>
-          <div class="form-group" style="padding-left: 2px">
-            <label for="mesFin">Mes</label>
-            <select id="mesFin" [(ngModel)]="filterConsulta.mesFinId" [ngModelOptions]="{standalone: true}" title="Mes hasta">
-              <option></option>
-              <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="form-group col-4">
-        <form>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="cbInfoEstructural" name="estructural" [checked]="filterConsulta.tipoInformacionEstructural" (change)="filterConsulta.tipoInformacionEstructural = !filterConsulta.tipoInformacionEstructural">
-            <label class="form-check-label" for="cbInfoEstructural">Formularios información estructural</label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="cbInfoMensual" name="mensual" [checked]="filterConsulta.tipoInformacionMensual" (change)="filterConsulta.tipoInformacionMensual = !filterConsulta.tipoInformacionMensual">
-            <label class="form-check-label" for="cbInfoMensual">Formularios de información mensual</label>
-          </div>
-        </form>
-      </div>
-      <div class="col-0.5">
-        <button type="button" class="btn btn-default" (click)="cleanFilters()" title="Limpiar filtros"><span class="fas fa-eraser"></span></button>
-      </div>
-      <div class="col-0.5" style="padding-left: 3px">
-       <button type="button" class="btn btn-primary -lg -raised" (click)="updateTable()" title="Actualizar búsqueda"> <span class="fas fa-search"></span></button>
-      </div>
-    </form>
+        <div class="form-group has-feedback col-4 padding-0">
+          <label class="mr-sm-2" for="periodoEntre"><b>Período comprendido entre</b></label>
+          <form class="form-inline" id="periodoEntre">
+            <div class="form-group">
+              <label for="anioInicio">Año</label>
+              <select  id="anioInicio" [(ngModel)]="filterConsulta.anioInicio" name="anioInicio" title="Año desde">
+                <option></option>
+                <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+              </select>
+            </div>
+            <div class="form-group" style="padding-left: 2px">
+              <label for="mesInicio"> Mes</label>
+              <select id="mesInicio" [(ngModel)]="filterConsulta.mesInicioId" name="mesInicio" title="Mes desde">
+                <option></option>
+                <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
+              </select>
+            </div>
+            <label style="padding-left: 3px; padding-rigth: 3px"> y </label>
+            <div class="form-group padding-0">
+              <label for="anioFin"> Año</label>
+              <select id="anioFin" [(ngModel)]="filterConsulta.anioFin" name="anioFin" title="Año hasta">
+                <option></option>
+                <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+              </select>
+            </div>
+            <div class="form-group" style="padding-left: 2px">
+              <label for="mesFin">Mes</label>
+              <select id="mesFin" [(ngModel)]="filterConsulta.mesFinId" [ngModelOptions]="{standalone: true}" title="Mes hasta">
+                <option></option>
+                <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="form-group col-4">
+          <form>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cbInfoEstructural" name="estructural" [checked]="filterConsulta.tipoInformacionEstructural" (change)="filterConsulta.tipoInformacionEstructural = !filterConsulta.tipoInformacionEstructural">
+              <label class="form-check-label" for="cbInfoEstructural">Formularios información estructural</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="cbInfoMensual" name="mensual" [checked]="filterConsulta.tipoInformacionMensual" (change)="filterConsulta.tipoInformacionMensual = !filterConsulta.tipoInformacionMensual">
+              <label class="form-check-label" for="cbInfoMensual">Formularios de información mensual</label>
+            </div>
+          </form>
+        </div>
+        <div class="col-0.5">
+          <button type="button" class="btn btn-default" (click)="cleanFilters()" title="Limpiar filtros"><span class="fas fa-eraser"></span></button>
+        </div>
+        <div class="col-0.5" style="padding-left: 3px">
+         <button type="button" class="btn btn-primary -lg -raised" (click)="updateTable()" title="Actualizar búsqueda"> <span class="fas fa-search"></span></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="box-body">
+      <table id="table" class="table table-striped table-sm table-bordered table-hover" style="width:100%"></table>
+    </div>
   </div>
+  <!--</section>-->
 
-  <table id="table" class="table table-striped table-sm table-bordered table-hover" style="width:100%"></table>
 </div>
-<!--</section>-->
-

@@ -12943,7 +12943,7 @@ pre {
   .SidebarNav .NavGroup .NavGroup > .NavLink:after {
       right: 11px; }
   .SidebarNav .NavGroup .Nav {
-      overflow-x: visible;
+      overflow-x: hidden;
       overflow-y: hidden;
       display: none; }
   .SidebarNav .NavGroup .Nav .NavLink {
