@@ -110,9 +110,9 @@ export class ConsultaComponent implements OnInit {
   }
 
   private buildTableButtons(): string {
-    var html = "<button class='btn btn-default'>PDF</button>";
-    html = html + "  <button class='btn btn-default'>EXCEL</button>";
-    html = html + "  <button class='btn btn-default'>Ver Online</button>";
+    var html = "<button class='Button -sm -danger -raised -rounded'>PDF</button>";
+    html = html + "  <button class='Button -sm -primary -raised -rounded'>EXCEL</button>";
+    html = html + "  <button class='Button -sm -secondary -raised -rounded'>Ver Online</button>";
     return html;
   }
 

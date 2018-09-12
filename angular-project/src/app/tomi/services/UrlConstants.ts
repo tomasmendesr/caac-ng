@@ -39,7 +39,8 @@ export class UrlConstants {
   static readonly FIND_ALL_MESES = '/services/mes/findAll';
 
   // casa service
-  static readonly FIND_ALL_CASAS_LIGTH = '/services/casa/findAllLight'
+  static readonly FIND_ALL_CASAS_LIGTH = '/services/casa/findAllLight';
+  static readonly FIND_ALL_CASAS = '/services/casa/findAllGeneral';
 
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';

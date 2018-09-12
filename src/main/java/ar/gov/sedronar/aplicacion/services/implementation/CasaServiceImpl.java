@@ -4,8 +4,10 @@ import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.CasaDAO;
 import ar.gov.sedronar.aplicacion.dto.CasaDTO;
 import ar.gov.sedronar.aplicacion.dto.CasaLightDTO;
+import ar.gov.sedronar.aplicacion.filters.GeneralTableFilter;
 import ar.gov.sedronar.aplicacion.model.Casa;
 import ar.gov.sedronar.aplicacion.services.interfaces.CasaService;
+import ar.gov.sedronar.util.dataTable.DataTableObjectResponse;
 import ar.gov.sedronar.util.dozer.DozerHelper;
 
 import javax.ejb.Stateless;
@@ -28,5 +30,12 @@ public class CasaServiceImpl implements CasaService {
     @Override
     public List<CasaLightDTO> findAllLight() {
         return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaLightDTO.class);
+    }
+
+    @Override
+    public DataTableObjectResponse findAllForGeneral(GeneralTableFilter generalTableFilter) {
+        List<CasaDTO> casaDTOList = DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaDTO.class);
+
+        return new DataTableObjectResponse(casaDTOList, 10, 10 , 10);
     }
 }

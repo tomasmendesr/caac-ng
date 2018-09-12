@@ -28,7 +28,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CaacViewComponent } from './fede/components/caac-view/caac-view.component';
 import { ConsultaComponent } from './tomi/components/consulta/consulta.component';
 import {MesService} from "./tomi/services/mes.service";
-import {CasaService} from "./tomi/services/casa.service";
 import { MensualSeccionAComponent } from './tomi/components/mensual/mensual-seccion-a/mensual-seccion-a.component';
 import { MensualSeccionBComponent } from './tomi/components/mensual/mensual-seccion-b/mensual-seccion-b.component';
 import { MensualSeccionC1Component } from './tomi/components/mensual/mensual-seccion-c1/mensual-seccion-c1.component';
@@ -56,6 +55,8 @@ import { PagosViewComponent } from './fede/components/pagos-view/pagos-view.comp
 import { ReportesViewComponent } from './fede/components/reportes-view/reportes-view.component';
 import { HeaderCaacSelectionComponent } from './tomi/components/header-caac-selection/header-caac-selection.component';
 import {PicsService} from "./tomi/services/pics.service";
+import {GeneralService} from "./fede/services/general.service";
+import {CasaService} from "./tomi/services/casa.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -128,7 +129,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     UsuarioService,
     MesService,
     CasaService,
-    PicsService
+    PicsService,
+    GeneralService
   ],
   bootstrap: [AppComponent]
 })
