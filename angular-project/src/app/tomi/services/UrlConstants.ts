@@ -1,11 +1,9 @@
-
 export class UrlConstants {
 
   // routing
   static readonly INICIO = 'inicio';
   static readonly BLANK = 'blank';
   static readonly ERROR_PAGE = 'error';
-  static readonly CAAC_VIEW = 'caac-view';
   static readonly CONSULTAS = 'consultas';
   static readonly MENSUAL_SECCION_A = 'mensual_seccion_A'
   static readonly MENSUAL_SECCION_B = 'mensual_seccion_B'

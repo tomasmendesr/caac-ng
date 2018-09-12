@@ -48,6 +48,12 @@ import { EstructuralSeccionFComponent } from './tomi/components/estructural/estr
 import { EstructuralSeccionGComponent } from './tomi/components/estructural/estructural-seccion-g/estructural-seccion-g.component';
 import { EstructuralSeccionHComponent } from './tomi/components/estructural/estructural-seccion-h/estructural-seccion-h.component';
 import { EstructuralSeccionCdComponent } from './tomi/components/estructural/estructural-seccion-cd/estructural-seccion-cd.component';
+import { GeneralViewComponent } from './fede/components/general-view/general-view.component';
+import { AdministrativoViewComponent } from './fede/components/administrativo-view/administrativo-view.component';
+import { VencimientoViewComponent } from './fede/components/vencimientos-view/vencimiento-view.component';
+import { AuditoriaViewComponent } from './fede/components/auditoria-view/auditoria-view.component';
+import { PagosViewComponent } from './fede/components/pagos-view/pagos-view.component';
+import { ReportesViewComponent } from './fede/components/reportes-view/reportes-view.component';
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -87,7 +93,13 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     EstructuralSeccionFComponent,
     EstructuralSeccionGComponent,
     EstructuralSeccionHComponent,
-    EstructuralSeccionCdComponent
+    EstructuralSeccionCdComponent,
+    GeneralViewComponent,
+    AdministrativoViewComponent,
+    VencimientoViewComponent,
+    AuditoriaViewComponent,
+    PagosViewComponent,
+    ReportesViewComponent
   ],
   imports: [
     BrowserModule,

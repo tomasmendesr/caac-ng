@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import MainConstants from '../../constants/main-constants';
 import {UrlConstants} from "../../tomi/services/UrlConstants";
 import {fromEvent} from "rxjs/observable/fromEvent";
+import {UrlConstantsCaac} from "../../fede/constants/url-constants";
 
 declare var $: any;
 
@@ -42,8 +43,8 @@ export class InicioComponent implements OnInit, AfterViewInit {
     return MainConstants.SIGESE_SIGLAS;
   }
 
-  getUrlCaac() {
-    return '/' + UrlConstants.CAAC_VIEW;
+  getUrlCaacGeneral() {
+    return UrlConstantsCaac.GENERAL_URL;
   }
 
   getUrlSigese() {

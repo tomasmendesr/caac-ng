@@ -25,6 +25,14 @@ import {EstructuralSeccionE3Component} from "../tomi/components/estructural/estr
 import {EstructuralSeccionFComponent} from "../tomi/components/estructural/estructural-seccion-f/estructural-seccion-f.component";
 import {EstructuralSeccionGComponent} from "../tomi/components/estructural/estructural-seccion-g/estructural-seccion-g.component";
 import {EstructuralSeccionHComponent} from "../tomi/components/estructural/estructural-seccion-h/estructural-seccion-h.component";
+import {UrlConstantsCaac} from "../fede/constants/url-constants";
+import {GeneralViewComponent} from "../fede/components/general-view/general-view.component";
+import {parseTemplate} from "codelyzer/angular/templates/templateParser";
+import {AdministrativoViewComponent} from "../fede/components/administrativo-view/administrativo-view.component";
+import {VencimientoViewComponent} from "../fede/components/vencimientos-view/vencimiento-view.component";
+import {AuditoriaViewComponent} from "../fede/components/auditoria-view/auditoria-view.component";
+import {PagosViewComponent} from "../fede/components/pagos-view/pagos-view.component";
+import {ReportesViewComponent} from "../fede/components/reportes-view/reportes-view.component";
 
 const routes: Routes = [
   {
@@ -43,10 +51,6 @@ const routes: Routes = [
   {
     path: UrlConstants.BLANK,
     component: BlankComponent
-  },
-  {
-    path: UrlConstants.CAAC_VIEW,
-    component: CaacViewComponent
   },
   {
     path: UrlConstants.CONSULTAS,
@@ -127,8 +131,35 @@ const routes: Routes = [
   {
     path: UrlConstants.ESTRUCTURAL_SECCION_H,
     component: EstructuralSeccionHComponent
+  },
+  {
+    path: 'inicio/' + UrlConstantsCaac.GENERAL_URL, //TODO SACAR ESTE 'inicio/'
+    component: GeneralViewComponent
+  },
+  {
+    path: UrlConstantsCaac.GENERAL_URL,
+    component: GeneralViewComponent
+  },
+  {
+    path: UrlConstantsCaac.ADMINISTRATIVO_URL,
+    component: AdministrativoViewComponent
+  },
+  {
+    path: UrlConstantsCaac.VENCIMIENTOS_URL,
+    component: VencimientoViewComponent
+  },
+  {
+    path: UrlConstantsCaac.AUDITORIA_URL,
+    component: AuditoriaViewComponent
+  },
+  {
+    path: UrlConstantsCaac.PAGOS_URL,
+    component: PagosViewComponent
+  },
+  {
+    path: UrlConstantsCaac.REPORTES_URL,
+    component: ReportesViewComponent
   }
-
 ];
 
 
