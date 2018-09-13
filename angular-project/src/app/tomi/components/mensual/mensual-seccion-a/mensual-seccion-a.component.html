@@ -1,7 +1,15 @@
+<app-loading></app-loading>
 <div class="container-fluid h-100 margin-top">
   <app-header-caac-selection (headerChanged)="onChangeHeader($event)"></app-header-caac-selection>
   <div class="card card-body">
     <h3>Formulario de carga para información mensual</h3>
+    <div id="formAlert" (click)="hideFormAlert()" class="alert alert-danger formErrorMessages" role="alert">
+      <ul>
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
     <div class="form-group row">
         <label for="example-text-input" class="col-3 col-form-label" >Mes de referencia del informe</label>
         <div class="col-2">
@@ -24,8 +32,7 @@
       <div class="form-group row">
         <label for="example-url-input" class="col-2 col-form-label">Nombre de la CAAC</label>
         <div class="col-10">
-          <input class="form-control" type="text" *ngIf="hoja.casa != null" [(ngModel)]="hoja.casa.nomcaac" id="example-url-input">
-          <input class="form-control" type="text" *ngIf="hoja.casa == null" id="example-url-input" [readonly]="true">
+          <input class="form-control" type="text" [(ngModel)]="hojaDatosIniciales.nombreCaac" id="example-url-input">
         </div>
       </div>
       <div class="form-group row">
@@ -42,8 +49,35 @@
         </div>
       </div>
     <div class="text-right" style="width:100%">
-      <button class="btn btn-sm btn-primary"><i class="far fa-save"></i><span> Guardar</span></button>
+      <button class="btn btn-sm btn-primary" (click)="onClickGuardar()"><i class="far fa-save"></i><span> Guardar</span></button>
       <button class="btn btn-sm btn-default">Siguiente</button>
     </div>
   </div>
 </div>
+
+
+
+<!-- CONFIRM DIALOG -->
+<div id ="confirmDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel2">Confirmar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Seguro que desea realizar esta acción?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="Button -sm -default -outline -rounded" data-dismiss="modal">No</button>
+        <button class="Button -sm -primary -raised -rounded" id="submit2" (click)="onClickConfirmDialog()">Si</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -21,10 +21,16 @@ import java.util.List;
 public interface CasaService {
 
     @POST
+    @Path("/findAll")
+    List<CasaDTO> findAll();
+
+    @POST
     @Path("/findAllLight")
     List<CasaLightDTO> findAllLight();
 
     @POST
     @Path("/findAllGeneral")
     DataTableObjectResponse findAllForGeneral(GeneralTableFilter generalTableFilter);
+
+    void saveOrUpdate(CasaDTO casaDTO) throws Exception;
 }

@@ -1,6 +1,5 @@
 package ar.gov.sedronar.aplicacion.services.implementation;
 
-import ar.gov.sedronar.aplicacion.model.Usuario;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.servicio.KeyCloakService;
 
@@ -25,6 +24,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public String getCurrentUserId() {
 		return null; // TODO - acceder a keycloak
+	}
+
+	@Override
+	public String getCurrentUsername() {
+		return null; // TODO
 	}
 
 }

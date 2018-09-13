@@ -30,6 +30,11 @@ public class CasaServiceImpl implements CasaService {
     private CasaDAO casaDAO;
 
     @Override
+    public List<CasaDTO> findAll() {
+        return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaDTO.class);
+    }
+
+    @Override
     public List<CasaLightDTO> findAllLight() {
         return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaLightDTO.class);
     }
@@ -47,5 +52,12 @@ public class CasaServiceImpl implements CasaService {
         );
         Integer count = casaDAO.count(generalTableFilter.getFilter());
         return new DataTableObjectResponse(items, generalTableFilter.getDraw(), count , count);
+    }
+
+    @Override
+    public void saveOrUpdate(CasaDTO casaDTO) throws Exception {
+        if (casaDTO == null) throw new Exception("Error creando la consulta");
+        Casa casa = DozerHelper.map(casaDTO, Casa.class);
+        casaDAO.merge(casa);
     }
 }

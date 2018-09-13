@@ -36,7 +36,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
 
   private initLists(){
     this.mesService.findAll().subscribe(data => this.meses = data);
-    this.casaService.findAllLight().subscribe(data => {
+    this.casaService.findAllDTO().subscribe(data => {
       this.casas = data;
       this.filteredCasas = this.casaCtrl.valueChanges
         .debounceTime(400)
@@ -101,7 +101,11 @@ export class HeaderCaacSelectionComponent implements OnInit {
     return this.headerSigeseForms.casa && this.headerSigeseForms.mesCarga && this.headerSigeseForms.anioCarga != null;
   }
 
-  private onChangeHeader(headerEvent: HeaderEvent){
+  onChangeHeader(headerEvent: HeaderEvent){
     this.headerChanged.emit(headerEvent);
+  }
+
+  private saveOrUpdate(){
+
   }
 }

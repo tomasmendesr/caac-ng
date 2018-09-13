@@ -19,7 +19,7 @@ public abstract class AbstractDAOImpl<T> implements AbstractDAO<T>{
 	protected EntityManager entityManager;
 
 	@Override
-	public T findById(Class<T> typeParameterClass, Integer id){
+	public T findById(Class<T> typeParameterClass, Number id){
 		T instance = entityManager.find(typeParameterClass, id);
 		return instance;
 	}

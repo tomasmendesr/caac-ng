@@ -11,7 +11,5 @@ public interface UsuarioService {
 	 * @return Retorna el id de Keycloak
 	 */
 	String getCurrentUserId();
-
-
-
+    String getCurrentUsername();
 }

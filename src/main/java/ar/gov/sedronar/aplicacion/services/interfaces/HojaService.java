@@ -1,6 +1,8 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 
+import ar.gov.sedronar.aplicacion.dto.HojaDTO;
 import ar.gov.sedronar.aplicacion.filters.ConsultaTableFilter;
+import ar.gov.sedronar.util.app.AppResponse;
 import ar.gov.sedronar.util.dataTable.DataTableObjectResponse;
 
 import javax.ws.rs.Consumes;
@@ -20,4 +22,12 @@ public interface HojaService {
     @POST
     @Path("/getHojasForTable")
     DataTableObjectResponse getHojasForTable(ConsultaTableFilter filter);
+
+    @POST
+    @Path("/saveOrUpdate")
+    Long saveOrUpdate(HojaDTO hojaDTO) throws Exception;
+
+    AppResponse validateInputsDatosInicialesMensual(HojaDTO hojaDTO);
+
+    HojaDTO findById(Long idHoja);
 }
