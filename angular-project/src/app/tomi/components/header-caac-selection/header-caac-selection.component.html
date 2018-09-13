@@ -1,46 +1,48 @@
 <div class="row" style="max-height: 100px; overflow-y: hidden; padding-bottom: 10px">
 
-  <div class="col">
+  <div class="col-7">
     <div class="card">
-        <form class="form-inline">
-          <div class="form-group col-4">
+        <form class="form-inline ">
+          <div class="form-group col-3.5" style="padding-left:5px">
             <mat-form-field>
               <input type="text" matInput placeholder="Seleccione CAAC" [matAutocomplete]="autoCasa" name ="casaAutocomplete" [formControl]="casaCtrl">
-              <mat-autocomplete #autoCasa="matAutocomplete" >
-                <mat-option *ngFor="let casa of filteredCasas | async" [value]="casa.nomcaac" (onSelectionChange)="selectedCasa(casa)">
+              <mat-autocomplete #autoCasa="matAutocomplete">
+                <mat-option *ngFor="let casa of filteredCasas | async" [value]="casa.nomcaac" (onSelectionChange)="selectedCasa($event, casa)">
                   {{ casa.nomcaac }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
           </div>
 
-          <div class="form-group has-feedback col-8">
+          <div class="form-group has-feedback col-auto">
             <label class="mr-sm-2" for="periodoCarga"><b>Período de carga: </b></label>
             <form class="form-inline" id="periodoCarga">
               <div class="form-group">
-                <select class="custom-select" id="anioCarga" [(ngModel)]="headerSigeseForms.anioCarga" (change)="onChangeAnioCarga($event)" name="anioCarga">
-                  <option [value]="undefined" selected>Año</option>
+                <select class="custom-select" id="anioCarga" [(ngModel)]="headerSigeseForms.anioCarga" [disabled]="!modificarValoresCarga" (change)="onChangeAnioCarga($event)" name="anioCarga">
+                  <option [value]="-1" selected>Año</option>
                   <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
                 </select>
               </div>
               <div class="form-group" style="padding-left: 5px">
-                <select class="custom-select" id="mesCarga" [(ngModel)]="headerSigeseForms.mesCarga" (ngModelChange)="onChangeMesCarga($event)" name="mesCarga">
-                  <option [value]="undefined" selected>Mes</option>
+                <select class="custom-select" id="mesCarga" [(ngModel)]="headerSigeseForms.mesCarga" [disabled]="!modificarValoresCarga" (ngModelChange)="onChangeMesCarga($event)" name="mesCarga">
+                  <option [value]="-1" selected>Mes</option>
                   <option *ngFor="let mes of meses" [ngValue]="mes">{{ mes.id }}</option>
                 </select>
               </div>
             </form>
           </div>
-        </form>
 
-      <!--</div>-->
+          <div class="form-group col-1">
+            <button class="btn btn-primary btn-sm" [disabled]="modificarValoresCarga" (click)="habilitarEdicionCarga()" title="Habilitar edición">Modificar</button>
+          </div>
+        </form>
     </div>
   </div>
 
-  <div class="col">
+  <div class="col-5">
     <div class="card card-body" style="padding: 0.7rem !important">
       <form class="form-inline">
-        <div class="form-group has-feedback col-9">
+        <div class="form-group has-feedback col-auto" style="padding:0 !important">
           <label class="mr-sm-2" for="periodoRecupero"><b>Recuperar datos de:</b></label>
           <form class="form-inline" id="periodoRecupero">
             <div class="form-group">
@@ -60,7 +62,7 @@
           </form>
         </div>
 
-        <div class="col-2">
+        <div class="col-1">
           <button class="btn btn-primary">Cargar</button>
         </div>
 

@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
+import { Component,  OnInit} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {Provincia} from "../../../../model/provincia";
 import {FormControl} from "@angular/forms";
@@ -6,6 +6,7 @@ import {PicsService} from "../../../services/pics.service";
 import {map, startWith} from "rxjs/operators";
 import {Hoja} from "../../../../model/hoja";
 import {HeaderEvent} from "../../../../model/header-event";
+import {MatOptionSelectionChange} from "@angular/material";
 
 @Component({
   selector: 'app-mensual-seccion-a',
@@ -45,16 +46,16 @@ export class MensualSeccionAComponent implements OnInit {
     return this.provincias.filter(prov => prov.nombre.toLowerCase().includes(filterValue));
   }
 
-  selectedProvincia(provincia: Provincia){
-    this.hoja.casa.provincia = provincia;
+  private selectedProvincia(event: MatOptionSelectionChange , provincia: Provincia){
+    if(event.source.selected) this.hoja.casa.provincia = provincia;
   }
 
-  onChangeHeader(headerEvent: HeaderEvent){
-    console.log(headerEvent);
+  private onChangeHeader(headerEvent: HeaderEvent){
     this.readonlyControl = false;
     if(headerEvent.evento == HeaderEvent.CASA){
-      this.provinciaCtrl.enable();
       this.hoja.casa = headerEvent.value[headerEvent.evento];
+      if(this.hoja.casa) this.provinciaCtrl.enable();
+      else this.provinciaCtrl.disable();
     } else if(headerEvent.evento == HeaderEvent.MES_CARGA){
       this.hoja.mes = headerEvent.value[headerEvent.evento];
     } else if(headerEvent.evento == HeaderEvent.ANIO_CARGA){

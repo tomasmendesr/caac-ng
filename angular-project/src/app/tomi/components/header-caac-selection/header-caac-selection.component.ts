@@ -9,7 +9,7 @@ import {ConsultaComponent} from "../consulta/consulta.component";
 import {map, startWith} from 'rxjs/operators';
 import {HeaderSigeseForms} from "../../../model/header-sigese-forms";
 import {HeaderEvent} from "../../../model/header-event";
-import {MatAutocompleteSelectedEvent} from "@angular/material";
+import {MatOptionSelectionChange} from "@angular/material";
 
 @Component({
   selector: 'app-header-caac-selection',
@@ -17,13 +17,13 @@ import {MatAutocompleteSelectedEvent} from "@angular/material";
   styleUrls: ['./header-caac-selection.component.css']
 })
 export class HeaderCaacSelectionComponent implements OnInit {
-  headerSigeseForms: HeaderSigeseForms = new HeaderSigeseForms;
-
+  private headerSigeseForms: HeaderSigeseForms = new HeaderSigeseForms;
   private casaCtrl: FormControl = new FormControl();
   private casas: Casa[] = [];
   private filteredCasas: Observable<Casa[]>;
   private meses: Mes[] = [];
   private anios: number[] = [];
+  private modificarValoresCarga: boolean = true;
 
   @Output()
   headerChanged: EventEmitter<any> = new EventEmitter();
@@ -53,33 +53,52 @@ export class HeaderCaacSelectionComponent implements OnInit {
   }
 
   private searchCasa(value: string): Casa[] {
-    if(value == null || !value) return this.casas;
+    if(value == null || !value) {
+      this.selectedCasa(null,null);
+      return this.casas;
+    }
     const filterValue = value.toLowerCase();
     return this.casas.filter(casa => casa.nomcaac.toLowerCase().includes(filterValue));
   }
 
-  selectedCasa(casa: Casa){
-    this.headerSigeseForms.casa = casa;
-    this.emitChanges(HeaderEvent.CASA);
-  }
-
-  onChangeMesCarga(mes: any){
-    if(mes != null && mes != 'undefined') {
-      this.headerSigeseForms.mesCarga = mes;
-      this.emitChanges(HeaderEvent.MES_CARGA);
+  private selectedCasa(event: MatOptionSelectionChange, casa: Casa){
+    if(event != null && event.source.selected){
+      this.headerSigeseForms.casa = casa;
+      this.emitChanges(HeaderEvent.CASA);
+    }else if(casa == null){
+      this.headerSigeseForms.casa = null;
+      this.emitChanges(HeaderEvent.CASA);
     }
   }
 
-  onChangeAnioCarga($event: any){
+  private onChangeMesCarga(mes: any){
+    this.headerSigeseForms.mesCarga = mes == -1 ? null : mes;
+    this.emitChanges(HeaderEvent.MES_CARGA);
+  }
+
+  private onChangeAnioCarga($event: any){
     let anio = $event.target.value;
-    if(anio != null && anio != 'undefined') {
-      this.headerSigeseForms.anioCarga = anio;
-      this.emitChanges(HeaderEvent.ANIO_CARGA);
-    }
+    this.headerSigeseForms.anioCarga = anio == -1 ? null : anio;
+    this.emitChanges(HeaderEvent.ANIO_CARGA);
   }
 
-  emitChanges(atributoQueFueModificado: string){
+  private habilitarEdicionCarga(){
+    this.casaCtrl.enable();
+    this.modificarValoresCarga = true;
+  }
+
+  private deshabilitarEdicionCarga(){
+    this.modificarValoresCarga = false;
+    this.casaCtrl.disable();
+  }
+
+  private emitChanges(atributoQueFueModificado: string){
+    if(this.allInputsCargaSeted()) this.deshabilitarEdicionCarga();
     this.onChangeHeader(new HeaderEvent(atributoQueFueModificado, this.headerSigeseForms));
+  }
+
+  private allInputsCargaSeted(): boolean {
+    return this.headerSigeseForms.casa && this.headerSigeseForms.mesCarga && this.headerSigeseForms.anioCarga != null;
   }
 
   private onChangeHeader(headerEvent: HeaderEvent){

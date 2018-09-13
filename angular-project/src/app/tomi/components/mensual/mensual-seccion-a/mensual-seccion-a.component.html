@@ -5,7 +5,8 @@
     <div class="form-group row">
         <label for="example-text-input" class="col-3 col-form-label" >Mes de referencia del informe</label>
         <div class="col-2">
-          <input class="form-control" type="text" id="example-text-input" [ngModel]="hoja.mes.descripcion" [readonly]="readonlyControl">
+          <input class="form-control" *ngIf="hoja.mes" type="text" id="example-text-input" [ngModel]="hoja.mes.descripcion" [readonly]="readonlyControl">
+          <input class="form-control" *ngIf="hoja.mes == null" type="text" id="example-text-input" [readonly]="true">
         </div>
         <label for="example-search-input" class="col-3 col-form-label">Año de referencia del informe</label>
         <div class="col-2">
@@ -16,13 +17,15 @@
       <div class="form-group row">
         <label for="example-email-input" class="col-2 col-form-label">Código de la CAAC</label>
         <div class="col-10">
-          <input class="form-control" type="text" id="example-email-input" [readonly]="readonlyControl">
+          <input class="form-control" *ngIf="hoja.casa != null" [(ngModel)]="hoja.casa.id" type="number" id="example-email-input" [readonly]="readonlyControl">
+          <input class="form-control" *ngIf="hoja.casa == null" type="number" id="example-email-input" [readonly]="true">
         </div>
       </div>
       <div class="form-group row">
         <label for="example-url-input" class="col-2 col-form-label">Nombre de la CAAC</label>
         <div class="col-10">
-          <input class="form-control" type="text" [(ngModel)]="hoja.casa.nomcaac" id="example-url-input">
+          <input class="form-control" type="text" *ngIf="hoja.casa != null" [(ngModel)]="hoja.casa.nomcaac" id="example-url-input">
+          <input class="form-control" type="text" *ngIf="hoja.casa == null" id="example-url-input" [readonly]="true">
         </div>
       </div>
       <div class="form-group row">
