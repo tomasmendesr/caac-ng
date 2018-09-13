@@ -22,8 +22,11 @@ declare var $: any;
 export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   TITLE: string = 'Información General';
+  EDICION_CAAC: string = 'Edición CAAC';
   TABLE_ID: string = 'tablaInformacionGeneral';
   filter: GeneralFilter = new GeneralFilter();
+
+  caacParaPopup: any;
 
   constructor(private eventBusService: EventBusService, private dataTableService: DataTableService) { }
 
@@ -47,7 +50,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       { data: COLUMN_TELEFONO, title: 'Teléfono' },
       { data: COLUMN_MAIL, title: 'Mail' },
       { data: COLUMN_OBSERVACIONES, title: 'Observaciones' },
-      { defaultContent: "<button>Editar</button>" }
+      { defaultContent: "<button class='btnEditar'>Editar</button>" }
     ];
     const table = this.dataTableService.buildTable(
       this.TABLE_ID,
@@ -56,14 +59,13 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       UrlConstantsCaac.FIND_ALL_CASAS_GENERAL,
       this.filter,
       [],
-      true
+      false
     );
 
-    $('#' + this.TABLE_ID + ' tbody').on( 'click', 'button', () => {
-      alert(JSON.stringify(table));
-      var data = table.row($(self).parents('tr') ).data();
-      alert( 'Nombre caac : ' + data[0]);
-    } );
+    $('#tablaInformacionGeneral tbody').on('click', '.btnEditar', function () {
+      self.caacParaPopup = table.row($(this).parents('tr').first()).data();
+      self.openModal();
+    });
   }
 
   private adaptarACasaTabla(casa: Casa): any {
@@ -80,4 +82,20 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
     };
   }
 
+  openModal() {
+    $('#form').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
+  }
+
+  onClickGuardar() {
+
+  }
+
+  onAniadirClick() {
+    this.caacParaPopup = null;
+    this.openModal();
+  }
 }

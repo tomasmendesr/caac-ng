@@ -1,2 +1,105 @@
 <h3 class="text-center">{{TITLE}}</h3>
+<div id="btnRow" class="button-row text-right">
+  <button mat-raised-button (click)="onAniadirClick()">Añadir Nuevo</button>
+</div>
 <table id={{this.TABLE_ID}} class="table table-striped table-sm table-bordered table-hover" style="width:100%" width="100%"></table>
+
+
+<!-- POPUP -->
+<div class="modal fade bd-example-modal-lg" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">{{EDICION_CAAC}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form class="form-horizontal">
+
+          <div id="formAlert" (click)="hideFormAlert()" class="alert alert-danger formErrorMessages" role="alert">
+            <ul>
+              <li *ngFor="let message of formMessages">
+                {{message}}
+              </li>
+            </ul>
+          </div>
+
+          <div *ngIf="caacParaPopup">
+            <div class="form-group required row">
+              <label for="nomcaac" class="col-3 col-form-label control-label">Nombre CAAC</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.nomcaac" name="nomcaac" class="form-control" id="nomcaac" placeholder="Nombre CAAC">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="perjuridica" class="col-3 col-form-label control-label">Personería Juridica</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.perjuridica" name="perjuridica" class="form-control" id="perjuridica" placeholder="Personería Juridica">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="cuit" class="col-3 col-form-label control-label">CUIT</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.cuit" name="cuit" class="form-control" id="cuit" placeholder="CUIT">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="provincia" class="col-3 col-form-label control-label">Provincia</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.provincia.nombre" name="provincia" class="form-control" id="provincia" placeholder="Provincia">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="dir" class="col-3 col-form-label control-label">Dirección</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.dir" name="dir" class="form-control" id="dir" placeholder="Dirección">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="nomrepre" class="col-3 col-form-label control-label">Nombre Representante</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.nomrepre" name="nomrepre" class="form-control" id="nomrepre" placeholder="Nombre Representante">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="tel" class="col-3 col-form-label control-label">Teléfono</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.tel" name="tel" class="form-control" id="tel" placeholder="Teléfono">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="mail" class="col-3 col-form-label control-label">Mail</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.mail" name="mail" class="form-control" id="mail" placeholder="Mail">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="obser" class="col-3 col-form-label control-label">Observaciones</label>
+              <div class="col-9">
+                <input type="text" [(ngModel)]="caacParaPopup.obser" name="obser" class="form-control" id="obser" placeholder="Observaciones">
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div> <!-- /.modal-body -->
+
+      <div class="modal-footer">
+        <button class="Button -sm -default -outline -rounded" data-dismiss="modal">Cancelar</button>
+        <button (click)="onClickGuardar($event)" class="Button -sm -primary -raised -rounded">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>

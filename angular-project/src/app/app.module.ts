@@ -23,7 +23,10 @@ import { AbmUsuariosComponent } from './share-components/abm-usuarios/abm-usuari
 import {UsuarioService} from "./tomi/services/usuario.service";
 import {LoadingComponent} from "./share-components/loading/loading.component";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatSelectModule} from "@angular/material";
+import {
+  MatAutocompleteModule, MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule,
+  MatSelectModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { CaacViewComponent } from './fede/components/caac-view/caac-view.component';
 import { ConsultaComponent } from './tomi/components/consulta/consulta.component';
@@ -57,6 +60,7 @@ import { HeaderCaacSelectionComponent } from './tomi/components/header-caac-sele
 import {PicsService} from "./tomi/services/pics.service";
 import {CasaService} from "./tomi/services/casa.service";
 import {DataTableService} from "./services/data-table.service";
+
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -118,8 +122,10 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     MatInputModule,
     NgbModule.forRoot(),
     NgxPermissionsModule.forRoot(),
-    MatProgressSpinnerModule
-  ],
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule
+],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true},
@@ -129,7 +135,7 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     UsuarioService,
     MesService,
     CasaService,
-    DataTableService
+    DataTableService,
     PicsService,
   ],
   bootstrap: [AppComponent]
