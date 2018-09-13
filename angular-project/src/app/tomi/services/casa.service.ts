@@ -18,5 +18,9 @@ export class CasaService {
     return this.http.post<Casa[]>(UrlConstants.FIND_ALL_CASAS, {});
   }
 
+  findAllDTO(): Observable<Casa[]> {
+    return this.http.post<Casa[]>(UrlConstants.FIND_ALL_CASAS_DTO, {});
+  }
+
 }
 

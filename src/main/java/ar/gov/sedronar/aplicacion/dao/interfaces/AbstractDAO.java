@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public interface AbstractDAO<T> {
-	T findById(Class<T> typeParameterClass, Integer id);
+	T findById(Class<T> typeParameterClass, Number id);
 	
 	List<T> findAll(Class<T> typeParameterClass);
 	

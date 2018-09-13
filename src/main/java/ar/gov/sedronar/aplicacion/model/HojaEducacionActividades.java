@@ -196,6 +196,7 @@ public class HojaEducacionActividades {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idhoja", insertable = false, updatable = false)
+    @MapsId
     public Hoja getHoja() {
         return hoja;
     }

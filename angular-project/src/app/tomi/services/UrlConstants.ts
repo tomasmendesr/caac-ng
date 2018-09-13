@@ -41,9 +41,15 @@ export class UrlConstants {
   // casa service
   static readonly FIND_ALL_CASAS_LIGTH = '/services/casa/findAllLight';
   static readonly FIND_ALL_CASAS = '/services/casa/findAllGeneral';
+  static readonly FIND_ALL_CASAS_DTO = '/services/casa/findAll';
 
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';
+  static readonly VALIDATE_INPUTS_HOJA_MENSUAL_SECCION_A_MENSUAL = '/services/hoja/validateInputsDatosIniciales'
+  static readonly SAVE_OR_UPDATE_HOJA = '/services/hoja/saveOrUpdate'
+
+  //hoja datos iniciales service
+  static readonly SAVE_OR_UPDATE_DATOS_INICIALES_MENSUAL = '/services/hojaDatosIniciales/saveOrUpdateMensual'
 
   //Pics Geo Service
   static readonly FIND_PROVINCIAS_COMBO = '/services/pics/findAllProvinciasCombo';
