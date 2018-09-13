@@ -32,7 +32,7 @@ public class PagoDAOImpl extends AbstractDAOImpl<Pago> implements PagoDAO {
 	}
 
 	@Override
-	public List<Pago> findAll(int offset, int limit, Map<String, Boolean> sortOrders, Integer id) {
+	public List<Pago> findAllForGeneral(int offset, int limit, Map<String, Boolean> sortOrders, Integer id) {
 		Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Pago.class);
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		criteria.add(Restrictions.eq("casa.id", id));
