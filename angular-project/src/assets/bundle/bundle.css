@@ -12959,7 +12959,7 @@ pre {
       display: none; }
   .SidebarNav .NavGroup .Nav .NavLink {
         font-size: 0.9em;
-        height: 36px; }
+        height: auto; }
   .SidebarNav .NavGroup.-open > .NavLink:after {
       -webkit-transform: translate(0, -50%) rotate(90deg);
               transform: translate(0, -50%) rotate(90deg); }
