@@ -2,40 +2,36 @@
 <div class="box box-primary card card-block">
   <h3>Búsqueda por filtros</h3>
   <br>
-  <div class="form-group">
-      <mat-form-field class="col-9">
-        <input type="text" matInput placeholder="Seleccione CAAC" [matAutocomplete]="autoCasa" name ="casaAutocomplete" [formControl]="casaCtrl" [(ngModel)]="filterConsulta.nombreCasa">
-        <mat-autocomplete #autoCasa="matAutocomplete">
-          <mat-option *ngFor="let casa of filteredCasas | async" [value]="casa.nomcaac">
-            {{ casa.nomcaac }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
-
-  <div class="modal-body">
-    <form class="">
-      <div class="form-row">
-
+  <div >
+    <form class="form-inline">
+      <div class="form-group col-3">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Seleccione CAAC" [matAutocomplete]="autoCasa" name ="casaAutocomplete" [formControl]="casaCtrl" [(ngModel)]="filterConsulta.nombreCasa">
+          <mat-autocomplete #autoCasa="matAutocomplete">
+            <mat-option *ngFor="let casa of filteredCasas | async" [value]="casa.nomcaac">
+              {{ casa.nomcaac }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
       <div class="form-group has-feedback col-4 padding-0">
-        <label class="mr-sm-2" for="periodoEntre"><b>Período comprendido entre</b></label>
+        <label class="mr-sm-2" for="periodoEntre"><b>Período comprendido entre:</b></label>
         <form class="row" id="periodoEntre">
-
           <div class="form-group ">
-            <label class="col-md-9" for="anioInicio">Año</label>
-            <div class="form-group col-md-12">
-                <select  class="form-control" id="anioInicio" [(ngModel)]="filterConsulta.anioInicio" name="anioInicio" title="Año desde">
-                    <option></option>
+            <!--<label class="col-md-9" for="anioInicio">Año</label>-->
+            <div class="form-group">
+                <select class="custom-select"  id="anioInicio" [(ngModel)]="filterConsulta.anioInicio" name="anioInicio" title="Año desde">
+                    <option [value]="undefined" selected>Año</option>
                     <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
                   </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-md-9" for="mesInicio"> Mes</label>
-            <div class="form-group col-md-12">
-            <select  class="form-control" id="mesInicio" [(ngModel)]="filterConsulta.mesInicioId" name="mesInicio" title="Mes desde">
-              <option></option>
+            <!--<label class="col-md-9" for="mesInicio"> Mes</lab-->
+            <div class="form-group">
+            <select class="custom-select" id="mesInicio" [(ngModel)]="filterConsulta.mesInicioId" name="mesInicio" title="Mes desde">
+              <option [value]="undefined" selected>Mes</option>
               <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
             </select>
             </div>
@@ -46,20 +42,20 @@
           </div>
 
           <div class="form-group">
-            <label class="col-md-9" for="anioFin"> Año</label>
-            <div class="form-group col-md-12">
-            <select  class="form-control" id="anioFin" [(ngModel)]="filterConsulta.anioFin" name="anioFin" title="Año hasta">
-              <option></option>
-              <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
-            </select>
-          </div>
+            <!--<label class="col-md-9" for="anioFin"> Año</label>-->
+            <div class="form-group">
+              <select class="custom-select" id="anioFin" [(ngModel)]="filterConsulta.anioFin" name="anioFin" title="Año hasta">
+                <option [value]="undefined" selected>Año</option>
+                <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
+              </select>
+            </div>
           </div>
 
-          <div class="form-group" style="padding-left: 2px">
-            <label class="col-md-9" for="mesFin">Mes</label>
-            <div class="form-group col-md-12">
-            <select  class="form-control" id="mesFin" [(ngModel)]="filterConsulta.mesFinId" [ngModelOptions]="{standalone: true}" title="Mes hasta">
-              <option></option>
+          <div class="form-group">
+            <!--<label class="col-md-9" for="mesFin">Mes</label>-->
+            <div class="form-group">
+            <select  class="custom-select" id="mesFin" [(ngModel)]="filterConsulta.mesFinId" [ngModelOptions]="{standalone: true}" title="Mes hasta">
+              <option [value]="undefined" selected>Mes</option>
               <option *ngFor="let mes of meses" [value]="mes.id">{{ mes.id }}</option>
             </select>
             </div>
@@ -99,7 +95,6 @@
       <div class="col-0.5" style="padding-left: 3px">
        <button type="button" class="btn btn-primary -lg -raised" (click)="updateTable()" title="Actualizar búsqueda"> <span class="fas fa-search"></span></button>
       </div>
-    </div>
     </form>
   </div>
 
