@@ -1,4 +1,7 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
+import ar.gov.sedronar.modulo.geo.dto.DepartamentoDTO;
+import ar.gov.sedronar.modulo.geo.dto.DepartamentoLightDTO;
+import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.ProvinciaLightDTO;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -18,6 +21,15 @@ public interface PicsGeoService {
     @POST
     @Path("/findAllProvinciasCombo")
     List<ProvinciaLightDTO> findAllProvinciasCombo();
+
+    @POST
+    @Path("/findAllLocalidades")
+    List<LocalidadLightDTO> findAllLocalidades();
+
+    @POST
+    @Path("/findAllDepartamentos")
+    List<DepartamentoLightDTO> findAllDepartamentos();
+
 
 
 

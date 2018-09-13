@@ -53,7 +53,10 @@
             <div class="form-group required row">
               <label for="provincia" class="col-3 col-form-label control-label">Provincia</label>
               <div class="col-9">
-                <input type="text" [(ngModel)]="caacParaPopup.provincia.nombre" name="provincia" class="form-control" id="provincia" placeholder="Provincia">
+                <select id="provincia">
+                  <option *ngFor="let provincia of provincias"></option>
+                </select>
+                <!--<input type="text" [(ngModel)]="caacParaPopup.provincia.nombre" name="provincia" class="form-control" id="provincia" placeholder="Provincia">-->
               </div>
             </div>
 

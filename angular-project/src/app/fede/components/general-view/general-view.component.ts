@@ -8,6 +8,10 @@ import GeneralFilter from "../../model/filters/general-filter";
 import {DataTableService} from "../../../services/data-table.service";
 import {UrlConstantsCaac} from "../../constants/url-constants";
 import CaacLight from "../../model/caac-light";
+import {PicsService} from "../../../tomi/services/pics.service";
+import {Localidad} from "../../../model/localidad";
+import {Departamento} from "../../../model/departamento";
+import {Provincia} from "../../../model/provincia";
 
 declare var $: any;
 
@@ -25,13 +29,18 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   caacParaPopup: CaacLight;
 
-  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService) { }
+  provincias: Provincia[];
+  departamento: Departamento[];
+  localidad: Localidad[];
+
+  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService) { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
     this.loadDataTable();
+    this.loadProvinciasDeparamentosLocalidades();
   }
 
   private loadDataTable() {
@@ -60,6 +69,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
     $('#tablaInformacionGeneral tbody').on('click', '.btnEditar', function () {
       self.caacParaPopup = table.row($(this).parents('tr').first()).data();
+
       self.openModal();
     });
   }
@@ -79,5 +89,11 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   onAniadirClick() {
     this.caacParaPopup = new CaacLight();
     this.openModal();
+  }
+
+  loadProvinciasDeparamentosLocalidades() {
+    this.picsService.findAllProvinciasCombo().subscribe(data => this.provincias = data);
+    this.picsService.findAllLocalidades().subscribe(data => this.localidad = data);
+    this.picsService.findAllDepartamentos().subscribe(data => this.departamento = data);
   }
 }

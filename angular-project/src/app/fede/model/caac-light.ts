@@ -1,25 +1,25 @@
-import ProvinciaLight from "./provincia-light";
-import LocalidadLight from "./localidad-light";
-import DepartamentoLight from "./departamento-light";
+import {Provincia} from "../../model/provincia";
+import {Departamento} from "../../model/departamento";
+import {Localidad} from "../../model/localidad";
 
 export default class CaacLight {
 
   nomcaac;
   perjuridica;
   cuit;
-  provincia: ProvinciaLight;
+  provincia: Provincia;
   dir;
   nomrepre;
   tel;
   mail;
   obser;
-  localidad: LocalidadLight;
-  departamento: DepartamentoLight;
+  localidad: Localidad;
+  departamento: Departamento;
 
   constructor() {
-    this.provincia = new ProvinciaLight();
-    this.localidad = new LocalidadLight();
-    this.departamento = new DepartamentoLight();
+    this.provincia = new Provincia();
+    this.localidad = new Localidad();
+    this.departamento = new Departamento();
   }
 
 }

@@ -60,6 +60,7 @@ import { HeaderCaacSelectionComponent } from './tomi/components/header-caac-sele
 import {PicsService} from "./tomi/services/pics.service";
 import {CasaService} from "./tomi/services/casa.service";
 import {DataTableService} from "./services/data-table.service";
+import {GeneralViewService} from "./fede/services/general-view.service";
 
 
 // npm install --save @angular/material @angular/cdk @angular/animations
@@ -137,6 +138,7 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     CasaService,
     DataTableService,
     PicsService,
+    GeneralViewService
   ],
   bootstrap: [AppComponent]
 })
