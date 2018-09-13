@@ -18,6 +18,6 @@ import java.util.List;
 public interface MesService {
 
     @POST
-    @Path("/findAll")
+    @Path("/findAllForGeneral")
     List<MesDTO> findAll();
 }

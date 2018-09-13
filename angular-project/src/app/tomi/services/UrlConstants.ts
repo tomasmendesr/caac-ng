@@ -36,12 +36,15 @@ export class UrlConstants {
   static readonly USER_IN_USE = '/services/usuario/isInUse';
 
   //mes service
-  static readonly FIND_ALL_MESES = '/services/mes/findAll';
+  static readonly FIND_ALL_MESES = '/services/mes/findAllForGeneral';
 
   // casa service
   static readonly FIND_ALL_CASAS_LIGTH = '/services/casa/findAllLight';
+<<<<<<< HEAD
   static readonly FIND_ALL_CASAS = '/services/casa/findAllGeneral';
   static readonly FIND_ALL_CASAS_DTO = '/services/casa/findAll';
+=======
+>>>>>>> fa14e02091839090effde62266c5c1e76838fb80
 
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {Casa} from "../../model/casa";
 import {UrlConstants} from "./UrlConstants";
+import {UrlConstantsCaac} from "../../fede/constants/url-constants";
 
 @Injectable()
 export class CasaService {
@@ -15,7 +16,7 @@ export class CasaService {
   }
 
   findAll(): Observable<Casa[]> {
-    return this.http.post<Casa[]>(UrlConstants.FIND_ALL_CASAS, {});
+    return this.http.post<Casa[]>(UrlConstantsCaac.FIND_ALL_CASAS_GENERAL, {});
   }
 
   findAllDTO(): Observable<Casa[]> {
