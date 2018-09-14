@@ -3,13 +3,13 @@ declare var $: any;
 export class SidebarUtils {
   private static sidebarIsOpen: boolean = true;
 
-  static hideSidebar(){
+  private static hideSidebar(){
     this.sidebarIsOpen = false;
     $('#HeaderSidebarToggleButton').click();
     $("#HeaderSidebarToggleButton").hide();
   }
 
-  static showSidebar(){
+  private static showSidebar(){
     this.sidebarIsOpen = true;
     $("#HeaderSidebarToggleButton").show();
     $('#HeaderSidebarToggleButton').click();

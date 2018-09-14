@@ -1,8 +1,8 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {fromEvent} from "rxjs/observable/fromEvent";
-import {Observable} from "rxjs/Observable";
 import {UrlConstantsCaac} from "../../fede/constants/url-constants";
-
+import {UrlConstants} from "../../tomi/services/UrlConstants";
+import {SidebarUtils} from "../../sidebar-utils";
 declare var $: any;
 
 @Component({
@@ -20,13 +20,13 @@ export class AppNavbarComponent implements OnInit {
     this.hideAllNavBarItems();
   }
 
-  ngAfterViewInit(){
-    $('#HeaderSidebarToggleButton').click();
-  }
-
   hideAllNavBarItems() {
     $('.caac-item').hide();
     $('.sigese-item').hide();
+  }
+
+  handleSidebar(){
+    SidebarUtils.handleSidebar(UrlConstants.INICIO);
   }
 
 
