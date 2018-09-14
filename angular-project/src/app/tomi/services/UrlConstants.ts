@@ -53,5 +53,7 @@ export class UrlConstants {
 
   //Pics Geo Service
   static readonly FIND_PROVINCIAS_COMBO = '/services/pics/findAllProvinciasCombo';
+  static readonly FIND_LOCALIDADES = '/services/pics/findAllLocalidades';
+  static readonly FIND_DEPARTAMENTOS = '/services/pics/findAllDepartamentos';
 
 }

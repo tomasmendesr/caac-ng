@@ -41,14 +41,14 @@ public class CasaServiceImpl implements CasaService {
 
     @Override
     public DataTableObjectResponse findAllForGeneral(GeneralTableFilter generalTableFilter) {
-        Collection<CasaDTO> items = DozerHelper.mapList(
+        Collection<CasaLightDTO> items = DozerHelper.mapList(
                 casaDAO.findAllForGeneral(
                     generalTableFilter.getStart(),
                     generalTableFilter.getLength(),
                     QueryUtil.getColumnOrders(generalTableFilter),
                     generalTableFilter.getFilter()
                 ),
-                CasaDTO.class
+                CasaLightDTO.class
         );
         Integer count = casaDAO.count(generalTableFilter.getFilter());
         return new DataTableObjectResponse(items, generalTableFilter.getDraw(), count , count);

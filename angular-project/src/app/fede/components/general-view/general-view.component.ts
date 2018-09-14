@@ -3,14 +3,15 @@ import {
   COLUMN_CUIT, COLUMN_DIRECCION, COLUMN_MAIL, COLUMN_NOMBRE_CAAC, COLUMN_NOMBRE_REPRESENTANTE, COLUMN_OBSERVACIONES,
   COLUMN_PERSONERIA_JURIDICA, COLUMN_PROVINCIA, COLUMN_TELEFONO
 } from "./general-view-constants";
-import {Casa} from "../../../model/casa";
-import {UrlConstants} from "../../../tomi/services/UrlConstants";
-import {NotifUtil} from "../../../tomi/utils/notif-util";
-import {environment} from "../../../../environments/environment";
 import {EventBusService} from "../../../services/event-bus.service";
 import GeneralFilter from "../../model/filters/general-filter";
 import {DataTableService} from "../../../services/data-table.service";
 import {UrlConstantsCaac} from "../../constants/url-constants";
+import CaacLight from "../../model/caac-light";
+import {PicsService} from "../../../tomi/services/pics.service";
+import {Localidad} from "../../../model/localidad";
+import {Departamento} from "../../../model/departamento";
+import {Provincia} from "../../../model/provincia";
 
 declare var $: any;
 
@@ -26,16 +27,20 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   TABLE_ID: string = 'tablaInformacionGeneral';
   filter: GeneralFilter = new GeneralFilter();
 
-  caacParaPopup: any;
+  caacParaPopup: CaacLight;
 
-  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService) { }
+  provincias: Provincia[];
+  departamento: Departamento[];
+  localidad: Localidad[];
+
+  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService) { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
     this.loadDataTable();
-
+    this.loadProvinciasDeparamentosLocalidades();
   }
 
   private loadDataTable() {
@@ -64,22 +69,9 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
     $('#tablaInformacionGeneral tbody').on('click', '.btnEditar', function () {
       self.caacParaPopup = table.row($(this).parents('tr').first()).data();
+
       self.openModal();
     });
-  }
-
-  private adaptarACasaTabla(casa: Casa): any {
-    return {
-      nombreCaac: casa.nomcaac,
-      personeriaJuridica: casa.perjuridica,
-      cuit: casa.cuit,
-      provincia: casa.provincia,
-      direccion: casa.dir,
-      nombreRepresentante: casa.nomrepre,
-      telefono: casa.tel,
-      mail: casa.mail,
-      observaciones: casa.obser
-    };
   }
 
   openModal() {
@@ -91,11 +83,17 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   }
 
   onClickGuardar() {
-
+    alert(JSON.stringify(this.caacParaPopup));
   }
 
   onAniadirClick() {
-    this.caacParaPopup = null;
+    this.caacParaPopup = new CaacLight();
     this.openModal();
+  }
+
+  loadProvinciasDeparamentosLocalidades() {
+    this.picsService.findAllProvinciasCombo().subscribe(data => this.provincias = data);
+    this.picsService.findAllLocalidades().subscribe(data => this.localidad = data);
+    this.picsService.findAllDepartamentos().subscribe(data => this.departamento = data);
   }
 }

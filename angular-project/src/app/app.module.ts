@@ -62,6 +62,7 @@ import {CasaService} from "./tomi/services/casa.service";
 import {HojaDatosInicialesService} from "./tomi/services/hoja-datos-iniciales.service";
 import {HojaService} from "./tomi/services/hoja.service";
 import {DataTableService} from "./services/data-table.service";
+import {GeneralViewService} from "./fede/services/general-view.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
