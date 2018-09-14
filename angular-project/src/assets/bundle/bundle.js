@@ -48738,7 +48738,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
                 }
             }
             if (donutWidth) {
-                target.drawCircle(radius, radius, radius - donutWidth, options.get('donutColor'), 
+                target.drawCircle(radius, radius, radius - donutWidth, options.get('donutColor'),
                     options.get('donutColor'), 0).append();
             }
             target.render();
@@ -53482,7 +53482,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var DashboardHeader = {};
 
 DashboardHeader.init = function () {
-
   $('#HeaderSidebarToggleButton').on('click', _DashboardSidebar2.default.toggle);
 };
 
@@ -54714,7 +54713,7 @@ function create(input, value) {
         throw new ParchmentError("Unable to create " + input + " blot");
     }
     var BlotClass = match;
-    var node = 
+    var node =
     // @ts-ignore
     input instanceof Node || input['nodeType'] === Node.TEXT_NODE ? input : BlotClass.create(value);
     return new BlotClass(node, value);

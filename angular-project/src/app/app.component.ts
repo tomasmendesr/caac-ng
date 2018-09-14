@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {APP_SETTINGS} from "./services/APP_SETTINGS";
-import MainConstants from "./constants/main-constants";
+import {SidebarUtils} from "./sidebar-utils";
+import {Router} from "@angular/router";
 declare var $:any;
 @Component({
   selector: 'app-root',
@@ -10,11 +10,10 @@ declare var $:any;
 export class AppComponent {
   title = 'aplicacion';
 
-  ngOnInit(){
-  }
+  constructor(private router: Router){}
 
-  ngAfterViewInit(){
-    // this.removeSideBar();
+  ngOnInit(){
+    setTimeout(() => SidebarUtils.handleSidebar(this.router.url), 2000);
   }
 
   private removeSideBar() {

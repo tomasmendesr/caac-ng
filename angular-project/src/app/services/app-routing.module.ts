@@ -4,7 +4,6 @@ import {UrlConstants} from "../tomi/services/UrlConstants";
 import {ErrorPageComponent} from "../share-components/error-page/error-page.component";
 import {InicioComponent} from "../share-components/inicio/inicio.component";
 import {BlankComponent} from "../share-components/blank/blank.component";
-import {CaacViewComponent} from "../fede/components/caac-view/caac-view.component";
 import {ConsultaComponent} from "../tomi/components/consulta/consulta.component";
 import {MensualSeccionAComponent} from "../tomi/components/mensual/mensual-seccion-a/mensual-seccion-a.component";
 import {MensualSeccionBComponent} from "../tomi/components/mensual/mensual-seccion-b/mensual-seccion-b.component";
@@ -27,7 +26,6 @@ import {EstructuralSeccionGComponent} from "../tomi/components/estructural/estru
 import {EstructuralSeccionHComponent} from "../tomi/components/estructural/estructural-seccion-h/estructural-seccion-h.component";
 import {UrlConstantsCaac} from "../fede/constants/url-constants";
 import {GeneralViewComponent} from "../fede/components/general-view/general-view.component";
-import {parseTemplate} from "codelyzer/angular/templates/templateParser";
 import {AdministrativoViewComponent} from "../fede/components/administrativo-view/administrativo-view.component";
 import {VencimientoViewComponent} from "../fede/components/vencimientos-view/vencimiento-view.component";
 import {AuditoriaViewComponent} from "../fede/components/auditoria-view/auditoria-view.component";

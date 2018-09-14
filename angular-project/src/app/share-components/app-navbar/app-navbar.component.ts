@@ -11,7 +11,6 @@ declare var $: any;
   styleUrls: ['./app-navbar.component.css']
 })
 export class AppNavbarComponent implements OnInit {
-
   TITLE = "CAAC";
 
   constructor() { }
@@ -19,6 +18,10 @@ export class AppNavbarComponent implements OnInit {
   ngOnInit() {
     this.setupEvents();
     this.hideAllNavBarItems();
+  }
+
+  ngAfterViewInit(){
+    $('#HeaderSidebarToggleButton').click();
   }
 
   hideAllNavBarItems() {

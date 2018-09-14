@@ -1,29 +1,30 @@
+import MainConstants from "../../constants/main-constants";
 export class UrlConstants {
 
   // routing
   static readonly INICIO = 'inicio';
   static readonly BLANK = 'blank';
   static readonly ERROR_PAGE = 'error';
-  static readonly CONSULTAS = 'consultas';
-  static readonly MENSUAL_SECCION_A = 'mensual_seccion_A'
-  static readonly MENSUAL_SECCION_B = 'mensual_seccion_B'
-  static readonly MENSUAL_SECCION_C1 = 'mensual_seccion_C1'
-  static readonly MENSUAL_SECCION_C2 = 'mensual_seccion_C2'
-  static readonly MENSUAL_SECCION_C3 = 'mensual_seccion_C3'
-  static readonly MENSUAL_SECCION_C4 = 'mensual_seccion_C4'
-  static readonly MENSUAL_SECCION_C5 = 'mensual_seccion_C5'
-  static readonly MENSUAL_SECCION_C6 = 'mensual_seccion_C6'
-  static readonly MENSUAL_SECCION_D = 'mensual_seccion_D'
-  static readonly CIERRE_PERIODO = 'cierre_periodo'
-  static readonly ESTRUCTURAL_SECCION_A = 'estructural_seccion_A'
-  static readonly ESTRUCTURAL_SECCION_B = 'estructural_seccion_B'
-  static readonly ESTRUCTURAL_SECCION_C_D = 'estructural_seccion_C_D'
-  static readonly ESTRUCTURAL_SECCION_E = 'estructural_seccion_E'
-  static readonly ESTRUCTURAL_SECCION_E2 = 'estructural_seccion_E2'
-  static readonly ESTRUCTURAL_SECCION_E3 = 'estructural_seccion_E3'
-  static readonly ESTRUCTURAL_SECCION_F = 'estructural_seccion_F'
-  static readonly ESTRUCTURAL_SECCION_G = 'estructural_seccion_G'
-  static readonly ESTRUCTURAL_SECCION_H = 'estructural_seccion_H'
+  static readonly CONSULTAS = MainConstants.SIGESE + '/consultas';
+  static readonly MENSUAL_SECCION_A = MainConstants.SIGESE + '/mensual_seccion_A'
+  static readonly MENSUAL_SECCION_B = MainConstants.SIGESE + '/mensual_seccion_B'
+  static readonly MENSUAL_SECCION_C1 = MainConstants.SIGESE + '/mensual_seccion_C1'
+  static readonly MENSUAL_SECCION_C2 = MainConstants.SIGESE + '/mensual_seccion_C2'
+  static readonly MENSUAL_SECCION_C3 = MainConstants.SIGESE + '/mensual_seccion_C3'
+  static readonly MENSUAL_SECCION_C4 = MainConstants.SIGESE + '/mensual_seccion_C4'
+  static readonly MENSUAL_SECCION_C5 = MainConstants.SIGESE + '/mensual_seccion_C5'
+  static readonly MENSUAL_SECCION_C6 = MainConstants.SIGESE + '/mensual_seccion_C6'
+  static readonly MENSUAL_SECCION_D = MainConstants.SIGESE + '/mensual_seccion_D'
+  static readonly CIERRE_PERIODO = MainConstants.SIGESE + '/cierre_periodo'
+  static readonly ESTRUCTURAL_SECCION_A = MainConstants.SIGESE + '/estructural_seccion_A'
+  static readonly ESTRUCTURAL_SECCION_B = MainConstants.SIGESE + '/estructural_seccion_B'
+  static readonly ESTRUCTURAL_SECCION_C_D = MainConstants.SIGESE + '/estructural_seccion_C_D'
+  static readonly ESTRUCTURAL_SECCION_E = MainConstants.SIGESE + '/estructural_seccion_E'
+  static readonly ESTRUCTURAL_SECCION_E2 = MainConstants.SIGESE + '/estructural_seccion_E2'
+  static readonly ESTRUCTURAL_SECCION_E3 = MainConstants.SIGESE + '/estructural_seccion_E3'
+  static readonly ESTRUCTURAL_SECCION_F = MainConstants.SIGESE + '/estructural_seccion_F'
+  static readonly ESTRUCTURAL_SECCION_G = MainConstants.SIGESE + '/estructural_seccion_G'
+  static readonly ESTRUCTURAL_SECCION_H = MainConstants.SIGESE + '/estructural_seccion_H'
 
   // config service
   static readonly GET_PARAMETROS_INICIALES = ''; // TODO

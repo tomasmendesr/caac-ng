@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import MainConstants from '../../constants/main-constants';
 import {UrlConstants} from "../../tomi/services/UrlConstants";
 import {fromEvent} from "rxjs/observable/fromEvent";
 import {UrlConstantsCaac} from "../../fede/constants/url-constants";
+import {SidebarUtils} from "../../sidebar-utils";
 
 declare var $: any;
 
@@ -13,9 +13,8 @@ declare var $: any;
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit, AfterViewInit {
-  selectedItem: string;
-
-  constructor(private router: Router) { }
+  private navigateTo: string = '';
+  constructor() { }
 
   ngOnInit() {
   }
@@ -47,9 +46,12 @@ export class InicioComponent implements OnInit, AfterViewInit {
     return UrlConstantsCaac.GENERAL_URL;
   }
 
-  getUrlSigese() {
+  getUrlSigese(): string {
     return '/' + UrlConstants.CONSULTAS;
   }
 
+  handleSidebar(){
+    SidebarUtils.handleSidebar(this.navigateTo);
+  }
 
 }
