@@ -4,7 +4,7 @@
   <div class="card card-body">
     <h3>Formulario de carga para información mensual</h3>
     <div id="formAlert" (click)="hideFormAlert()" class="alert alert-danger formErrorMessages" role="alert">
-      <ul>
+      <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
           {{message}}
         </li>
@@ -41,7 +41,7 @@
           <mat-form-field>
             <input id="provincia" type="text" matInput placeholder="Seleccione una provincia" [matAutocomplete]="autoProvincia" name ="provinciaAutocomplete" [formControl]="provinciaCtrl">
             <mat-autocomplete #autoProvincia="matAutocomplete">
-              <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.nombre" (onSelectionChange)="selectedProvincia(provincia)">
+              <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.nombre" (onSelectionChange)="selectedProvincia(event,provincia)">
                 {{ provincia.nombre }}
               </mat-option>
             </mat-autocomplete>

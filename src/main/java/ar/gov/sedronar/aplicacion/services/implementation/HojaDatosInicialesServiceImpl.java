@@ -60,16 +60,17 @@ public class HojaDatosInicialesServiceImpl implements HojaDatosInicialesService 
 
         Long idHoja = hojaService.saveOrUpdate(hojaDTO); // guardo la hoja y la vinculo a hojaDatosIniciales
         hojaDatosInicialesDTO.setHoja(hojaService.findById(idHoja));
-        saveOrUpdate(hojaDatosInicialesDTO);
-        return new AppResponse(); // retorno ok si es que nada falló
+        hojaDatosInicialesDTO.setId(saveOrUpdate(hojaDatosInicialesDTO));
+        return new AppResponse(hojaDatosInicialesDTO); // retorno el objeto para guardar referencia en el front
     }
 
-    private void saveOrUpdate(HojaDatosInicialesDTO hojaDatosInicialesDTO) throws Exception {
+    private Long saveOrUpdate(HojaDatosInicialesDTO hojaDatosInicialesDTO) throws Exception {
         if (hojaDatosInicialesDTO == null) throw new Exception("Error creando la consulta");
         hojaDatosInicialesDTO.setFum(new Date());
         hojaDatosInicialesDTO.setUum(usuarioService.getCurrentUsername());
         HojaDatosIniciales hoja = DozerHelper.map(hojaDatosInicialesDTO, HojaDatosIniciales.class);
-        hojaDatosInicialesDAO.merge(hoja);
+        hoja = hojaDatosInicialesDAO.merge(hoja);
+        return hoja.getId();
     }
 
     @Override

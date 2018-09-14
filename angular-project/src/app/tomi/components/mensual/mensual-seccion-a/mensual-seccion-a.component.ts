@@ -120,6 +120,8 @@ export class MensualSeccionAComponent implements OnInit {
       if(appResponse.code == AppResponse.SUCCESS){
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
+        this.hojaDatosIniciales = <HojaDatosIniciales> appResponse.data;
+        this.hoja = this.hojaDatosIniciales.hoja;
       }else{
         this.showErrorMsgs(appResponse.data);
       }

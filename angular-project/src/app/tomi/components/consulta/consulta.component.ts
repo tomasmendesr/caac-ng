@@ -62,7 +62,7 @@ export class ConsultaComponent implements OnInit {
     const table = $('#table').DataTable({
       columns: [// el atributo data se toma en el server para sacar la columna por la que se ordena
         {data: 'anio', title: 'Año'},
-        {data: 'mes.id', title: 'Mes'},
+        {data: 'mes.descripcion', title: 'Mes'},
         {data: 'casa.nomcaac', title: 'Nomre CAAC'},
         {data: 'tipoHoja', title: 'Tipo Informe', render: function(data) {
           if(data != null) return data == "E" ? "Estructural" : "Mensual";
