@@ -43,7 +43,9 @@ public class HojaDatosInicialesServiceImpl implements HojaDatosInicialesService 
     @Override
     public AppResponse saveOrUpdateMensual(MensualSeccionARequestDTO mensualSeccionARequestDTO) throws Exception {
         HojaDTO hojaDTO = mensualSeccionARequestDTO.getHojaDTO();
+        hojaDTO.setTipoHoja("M");
         HojaDatosInicialesDTO hojaDatosInicialesDTO = mensualSeccionARequestDTO.getHojaDatosInicialesDTO();
+        if(hojaDTO.getId() != null) hojaDatosInicialesDTO.setId(hojaDTO.getId());
 
         AppResponse validateHoja = hojaService.validateInputsDatosInicialesMensual(hojaDTO);
         if(validateHoja.getCode() == AppResponse.ERROR) return validateHoja; // si falla retorno los errores
@@ -66,9 +68,11 @@ public class HojaDatosInicialesServiceImpl implements HojaDatosInicialesService 
 
     private Long saveOrUpdate(HojaDatosInicialesDTO hojaDatosInicialesDTO) throws Exception {
         if (hojaDatosInicialesDTO == null) throw new Exception("Error creando la consulta");
+        HojaDatosIniciales hoja;
+        if(hojaDatosInicialesDTO.getId() != null) hoja = hojaDatosInicialesDAO.findById(HojaDatosIniciales.class, hojaDatosInicialesDTO.getId());
         hojaDatosInicialesDTO.setFum(new Date());
         hojaDatosInicialesDTO.setUum(usuarioService.getCurrentUsername());
-        HojaDatosIniciales hoja = DozerHelper.map(hojaDatosInicialesDTO, HojaDatosIniciales.class);
+        hoja = DozerHelper.map(hojaDatosInicialesDTO, HojaDatosIniciales.class);
         hoja = hojaDatosInicialesDAO.merge(hoja);
         return hoja.getId();
     }

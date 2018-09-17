@@ -10,6 +10,8 @@ import {map, startWith} from 'rxjs/operators';
 import {HeaderSigeseForms} from "../../../model/header-sigese-forms";
 import {HeaderEvent} from "../../../model/header-event";
 import {MatOptionSelectionChange} from "@angular/material";
+import MainConstants from "../../../constants/main-constants";
+import {HojaService} from "../../services/hoja.service";
 
 @Component({
   selector: 'app-header-caac-selection',
@@ -28,7 +30,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
   @Output()
   headerChanged: EventEmitter<any> = new EventEmitter();
 
-  constructor(private casaService: CasaService, private mesService: MesService) { }
+  constructor(private casaService: CasaService, private mesService: MesService, private hojaService: HojaService) { }
 
   ngOnInit() {
     this.initLists();
@@ -45,6 +47,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
           startWith(''),
           map(value => this.searchCasa(value))
         );
+      setTimeout(() => this.loadLocalStorage(), 1000);
     });
     let now = new Date;
     for(let i = ConsultaComponent.FROM_YEAR_FILTER; i <= now.getFullYear(); i++){
@@ -52,8 +55,21 @@ export class HeaderCaacSelectionComponent implements OnInit {
     }
   }
 
+  private loadLocalStorage(){
+    let headerInStorageString: string = localStorage.getItem(MainConstants.LOCAL_STORAGE_HEADER_SIGESE_FORMS);
+    if(headerInStorageString) {
+      this.headerSigeseForms = JSON.parse(headerInStorageString);
+      this.casaCtrl.setValue(this.headerSigeseForms.casa.nomcaac);
+      this.deshabilitarEdicionCarga();
+      this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID,this.headerSigeseForms));
+      this.onChangeHeader(new HeaderEvent(HeaderEvent.MES_CARGA,this.headerSigeseForms));
+      this.onChangeHeader(new HeaderEvent(HeaderEvent.ANIO_CARGA,this.headerSigeseForms));
+      this.onChangeHeader(new HeaderEvent(HeaderEvent.CASA,this.headerSigeseForms));
+    }
+  }
+
   private searchCasa(value: string): Casa[] {
-    if(value == null || !value) {
+    if(value == null ||value == '') {
       this.selectedCasa(null,null);
       return this.casas;
     }
@@ -62,11 +78,8 @@ export class HeaderCaacSelectionComponent implements OnInit {
   }
 
   private selectedCasa(event: MatOptionSelectionChange, casa: Casa){
-    if(event != null && event.source.selected){
+    if((event != null && event.source.selected) || event == null){
       this.headerSigeseForms.casa = casa;
-      this.emitChanges(HeaderEvent.CASA);
-    }else if(casa == null){
-      this.headerSigeseForms.casa = null;
       this.emitChanges(HeaderEvent.CASA);
     }
   }
@@ -93,7 +106,18 @@ export class HeaderCaacSelectionComponent implements OnInit {
   }
 
   private emitChanges(atributoQueFueModificado: string){
-    if(this.allInputsCargaSeted()) this.deshabilitarEdicionCarga();
+    if(this.allInputsCargaSeted()) {
+      this.deshabilitarEdicionCarga();
+      this.hojaService.findByPeriodoAndCasa(this.headerSigeseForms).subscribe(data =>{
+        if(data){
+          this.headerSigeseForms.hojaId = data;
+          this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
+        }
+      });
+    }else{
+      this.headerSigeseForms.hojaId = null;
+      this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
+    }
     this.onChangeHeader(new HeaderEvent(atributoQueFueModificado, this.headerSigeseForms));
   }
 
@@ -105,7 +129,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
     this.headerChanged.emit(headerEvent);
   }
 
-  private saveOrUpdate(){
-
+  compareFunct(o1: any, o2: any): boolean {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
   }
 }

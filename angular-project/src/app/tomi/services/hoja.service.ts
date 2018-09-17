@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Observable";
 import {UrlConstants} from "./UrlConstants";
 import {AppResponse} from "../../model/app-response";
 import {Hoja} from "../../model/hoja";
+import {HeaderSigeseForms} from "../../model/header-sigese-forms";
 
 @Injectable()
 export class HojaService {
@@ -19,4 +20,7 @@ export class HojaService {
   }
 
 
+  findByPeriodoAndCasa(headerSigeseForms: HeaderSigeseForms): Observable<any> {
+    return this.http.post(UrlConstants.FIND_HOJA_BY_CASA_AND_PERIODO, headerSigeseForms);
+  }
 }

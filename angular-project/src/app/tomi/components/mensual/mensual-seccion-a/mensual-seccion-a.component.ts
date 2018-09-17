@@ -13,8 +13,11 @@ import {HojaDatosIniciales} from "../../../../model/hoja-datos-iniciales";
 import {Casa} from "../../../../model/casa";
 import {AppResponse} from "../../../../model/app-response";
 import {NotifUtil} from "../../../utils/notif-util";
-import {HojaService} from "../../../services/hoja.service";
 import {TipoHoja} from "../../../../fede/constants/tipo-hoja";
+import {HeaderSigeseForms} from "../../../../model/header-sigese-forms";
+import MainConstants from "../../../../constants/main-constants";
+import {UrlConstants} from "../../../services/UrlConstants";
+import {Router} from "@angular/router";
 declare var $: any;
 @Component({
   selector: 'app-mensual-seccion-a',
@@ -31,12 +34,15 @@ export class MensualSeccionAComponent implements OnInit {
   private readonlyControl: boolean = true;
   private formMessages: string[] = [];
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
+  private seDetectaronCambios = false;
+  private headerSigeseForms: HeaderSigeseForms;
+  private codigoDeLaCasa;
 
-  constructor(private picsService: PicsService, private hojaService: HojaService, private hojaDatosInicialesService: HojaDatosInicialesService) { }
+  constructor(private picsService: PicsService,private hojaDatosInicialesService: HojaDatosInicialesService, private router: Router) { }
 
   ngOnInit() {
     this.initLists();
-    this.provinciaCtrl.disable();
+    // this.provinciaCtrl.disable();
     this.hoja.tipoHoja = TipoHoja.MENSUAL;
   }
 
@@ -60,35 +66,46 @@ export class MensualSeccionAComponent implements OnInit {
   }
 
   private selectedProvincia(event: MatOptionSelectionChange , provincia: Provincia){
-    if(event.source.selected) this.hojaDatosIniciales.provinciaLight = provincia;
+    if(event.source.selected) {
+      this.seDetectaronCambios = true;
+      this.hojaDatosIniciales.provinciaLight = provincia;
+    }
   }
 
   private onChangeHeader(headerEvent: HeaderEvent){
+    this.seDetectaronCambios = true;
     this.readonlyControl = false;
     if(headerEvent.evento == HeaderEvent.CASA){
-      this.casaRecibidaDelHeader = headerEvent.value[headerEvent.evento];
-      this.hoja.casa = this.casaRecibidaDelHeader;
-      if(this.hoja.casa) {
-        this.hojaDatosIniciales.nombreCaac = this.hoja.casa.nomcaac;
-        if(this.hoja.casa.provincia) {
-          this.provinciaCtrl.setValue(this.hoja.casa.provincia.nombre);
-          this.hojaDatosIniciales.provinciaLight = this.hoja.casa.provincia;
-        }
-        this.provinciaCtrl.enable();
-      }
-      else this.provinciaCtrl.disable();
+      this.bindCasa(headerEvent.value[headerEvent.evento]);
     } else if(headerEvent.evento == HeaderEvent.MES_CARGA){
       this.hoja.mes = headerEvent.value[headerEvent.evento];
     } else if(headerEvent.evento == HeaderEvent.ANIO_CARGA){
       this.hoja.anio = headerEvent.value[headerEvent.evento];
+    } else if(headerEvent.evento == HeaderEvent.HOJA_ID){
+      this.hoja.id = headerEvent.value.hojaId;
     }
+    this.headerSigeseForms = headerEvent.value;
     this.readonlyControl = true;
+  }
+
+  private bindCasa(casa: Casa){
+    this.casaRecibidaDelHeader = casa;
+    this.hoja.casa = this.casaRecibidaDelHeader;
+    if(this.hoja.casa != null) {
+      this.codigoDeLaCasa = this.hoja.casa.id;
+      this.hojaDatosIniciales.nombreCaac = this.hoja.casa.nomcaac;
+      this.provinciaCtrl.enable();
+      if(this.hoja.casa.provincia) {
+        this.provinciaCtrl.setValue(this.hoja.casa.provincia.nombre);
+        this.hojaDatosIniciales.provinciaLight = this.hoja.casa.provincia;
+      }
+    }
   }
 
   private onClickGuardar() {
     if(this.validationOk()) {
       if (this.seDetectaronCambiosEnLaCaac()) {
-        this.showConfirmDialog();
+        this.showConfirmDialog('confirmDialogGuardar');
       } else {
         this.saveOrUpdateMensual();
       }
@@ -109,8 +126,8 @@ export class MensualSeccionAComponent implements OnInit {
       (this.hojaDatosIniciales.nombreCaac != this.casaRecibidaDelHeader.nomcaac);
   }
 
-  private onClickConfirmDialog(){
-    this.hideConfirmDialog();
+  private onClickConfirmarGuardado(){
+    this.hideConfirmDialog('confirmDialogGuardar');
     this.saveOrUpdateMensual();
   }
 
@@ -122,10 +139,40 @@ export class MensualSeccionAComponent implements OnInit {
         this.loadingComponent.hideLoading();
         this.hojaDatosIniciales = <HojaDatosIniciales> appResponse.data;
         this.hoja = this.hojaDatosIniciales.hoja;
+        this.seDetectaronCambios = false;
       }else{
         this.showErrorMsgs(appResponse.data);
       }
     }, (error) => this.notifError(error));
+  }
+
+  private onClickSiguiente(){
+    if(this.validationOk()) {
+      if (this.seDetectaronCambios || this.seDetectaronCambiosEnLaCaac()) {
+        this.showConfirmDialog('confirmDialogSiguiente');
+      } else {
+        this.siguiente();
+      }
+    }
+  }
+
+  private onClickConfirmDialogSiguiente(){
+    this.loadingComponent.showLoading();
+    this.hojaDatosInicialesService.saveOrUpdateMensual(this.hoja, this.hojaDatosIniciales).subscribe(appResponse => {
+      if(appResponse.code == AppResponse.SUCCESS){
+        this.loadingComponent.hideLoading();
+        this.siguiente();
+      }else{
+        this.showErrorMsgs(appResponse.data);
+      }
+    }, (error) => this.notifError(error));
+  }
+
+  private siguiente(){
+    try {
+      if(this.headerSigeseForms != null) localStorage.setItem(MainConstants.LOCAL_STORAGE_HEADER_SIGESE_FORMS, JSON.stringify(this.headerSigeseForms));
+    }catch(e){}
+    this.router.navigateByUrl(UrlConstants.MENSUAL_SECCION_B);
   }
 
   private hideFormAlert() {
@@ -144,15 +191,15 @@ export class MensualSeccionAComponent implements OnInit {
     $('#formAlert').show();
   }
 
-  private showConfirmDialog(){
-    $("#confirmDialog").modal({
+  private showConfirmDialog(id: string){
+    $("#"+id).modal({
       backdrop: 'static',
       keyboard: false,
       show: true
     });
   }
 
-  private hideConfirmDialog(){
-    $("#confirmDialog").modal('hide');
+  private hideConfirmDialog(id: string){
+    $("#"+id).modal('hide');
   }
 }

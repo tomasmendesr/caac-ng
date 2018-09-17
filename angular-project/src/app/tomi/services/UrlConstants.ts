@@ -48,6 +48,7 @@ export class UrlConstants {
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';
   static readonly VALIDATE_INPUTS_HOJA_MENSUAL_SECCION_A_MENSUAL = '/services/hoja/validateInputsDatosIniciales'
   static readonly SAVE_OR_UPDATE_HOJA = '/services/hoja/saveOrUpdate'
+  static readonly FIND_HOJA_BY_CASA_AND_PERIODO = '/services/hoja/findByPeriodoAndCasa'
 
   //hoja datos iniciales service
   static readonly SAVE_OR_UPDATE_DATOS_INICIALES_MENSUAL = '/services/hojaDatosIniciales/saveOrUpdateMensual'
@@ -56,5 +57,10 @@ export class UrlConstants {
   static readonly FIND_PROVINCIAS_COMBO = '/services/pics/findAllProvinciasCombo';
   static readonly FIND_LOCALIDADES = '/services/pics/findAllLocalidades';
   static readonly FIND_DEPARTAMENTOS = '/services/pics/findAllDepartamentos';
+
+  // hoja mensual asistidos service
+  static readonly SAVE_OR_UPDATE_HOJA_MENSUAL_ASISTIDOS = '/services/hojaMensualAsistidos/saveOrUpdate'
+  static readonly FIND_HOJA_MENSUAL_ASISTIDOS_BY_ID = '/services/hojaMensualAsistidos/findById'
+
 
 }

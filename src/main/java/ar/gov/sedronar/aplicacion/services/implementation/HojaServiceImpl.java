@@ -2,6 +2,7 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 
 import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.HojaDAO;
+import ar.gov.sedronar.aplicacion.dto.HeaderSigeseForms;
 import ar.gov.sedronar.aplicacion.dto.HojaDTO;
 import ar.gov.sedronar.aplicacion.filters.ConsultaTableFilter;
 import ar.gov.sedronar.aplicacion.model.Hoja;
@@ -74,5 +75,11 @@ public class HojaServiceImpl implements HojaService {
     @Override
     public HojaDTO findById(Long idHoja) {
         return DozerHelper.map(hojaDAO.findById(Hoja.class, idHoja), HojaDTO.class);
+    }
+
+    @Override
+    public Long findByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms) {
+        Hoja hoja = hojaDAO.findByPeriodoAndCasa(headerSigeseForms);
+        return hoja != null ? hoja.getId() : null;
     }
 }

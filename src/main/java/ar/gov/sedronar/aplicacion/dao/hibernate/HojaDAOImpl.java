@@ -2,6 +2,7 @@ package ar.gov.sedronar.aplicacion.dao.hibernate;
 
 import ar.gov.sedronar.aplicacion.dao.interfaces.HojaDAO;
 import ar.gov.sedronar.aplicacion.definition.TipoHoja;
+import ar.gov.sedronar.aplicacion.dto.HeaderSigeseForms;
 import ar.gov.sedronar.aplicacion.filters.ConsultaFilter;
 import ar.gov.sedronar.aplicacion.model.Hoja;
 import org.apache.commons.lang3.StringUtils;
@@ -36,6 +37,15 @@ public class HojaDAOImpl extends AbstractDAOImpl<Hoja> implements HojaDAO {
         Criteria criteria = applyFilters(filter, aliases);
         if(sortOrder == null || sortOrder.isEmpty()) criteria.addOrder(Order.desc("id"));
         return super.executeCriteria(criteria, start, length, sortOrder, aliases);
+    }
+
+    @Override
+    public Hoja findByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms) {
+        Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Hoja.class);
+        criteria.add(Restrictions.eq("anio", headerSigeseForms.getAnioCarga()));
+        criteria.add(Restrictions.eq("mes.id", headerSigeseForms.getMesCarga().getId()));
+        criteria.add(Restrictions.eq("casa.id", headerSigeseForms.getCasa().getId()));
+        return (Hoja) criteria.uniqueResult();
     }
 
     public Criteria applyFilters(ConsultaFilter filter, Map<String,String> aliases){

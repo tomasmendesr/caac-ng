@@ -8,12 +8,13 @@ declare var $:any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'aplicacion';
+  title = 'caac';
 
   constructor(private router: Router){}
 
   ngOnInit(){
-    setTimeout(() => SidebarUtils.handleSidebar(this.router.url), 2000);
+    // localStorage.removeItem(MainConstants.LOCAL_STORAGE_HEADER_SIGESE_FORMS);
+    setTimeout(() => SidebarUtils.handleSidebar(this.router.url), 2500);
   }
 
   private removeSideBar() {

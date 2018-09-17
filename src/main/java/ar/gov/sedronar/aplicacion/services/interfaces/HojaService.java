@@ -1,5 +1,6 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 
+import ar.gov.sedronar.aplicacion.dto.HeaderSigeseForms;
 import ar.gov.sedronar.aplicacion.dto.HojaDTO;
 import ar.gov.sedronar.aplicacion.filters.ConsultaTableFilter;
 import ar.gov.sedronar.util.app.AppResponse;
@@ -30,4 +31,8 @@ public interface HojaService {
     AppResponse validateInputsDatosInicialesMensual(HojaDTO hojaDTO);
 
     HojaDTO findById(Long idHoja);
+
+    @POST
+    @Path("/findByPeriodoAndCasa")
+    Long findByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms);
 }
