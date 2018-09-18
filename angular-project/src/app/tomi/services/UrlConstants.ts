@@ -39,6 +39,9 @@ export class UrlConstants {
   //mes service
   static readonly FIND_ALL_MESES = '/services/mes/findAllForGeneral';
 
+  //tramite service
+  static readonly FIND_ALL_TRAMITES = '/services/tramite/findAll';
+
   // casa service
   static readonly FIND_ALL_CASAS_LIGTH = '/services/casa/findAllLight';
   static readonly FIND_ALL_CASAS = '/services/casa/findAllGeneral';
@@ -61,6 +64,14 @@ export class UrlConstants {
   // hoja mensual asistidos service
   static readonly SAVE_OR_UPDATE_HOJA_MENSUAL_ASISTIDOS = '/services/hojaMensualAsistidos/saveOrUpdate'
   static readonly FIND_HOJA_MENSUAL_ASISTIDOS_BY_ID = '/services/hojaMensualAsistidos/findById'
+
+  //alimentacion service
+  static readonly FIND_ALL_ALIMENTACION = '/services/alimentacion/findAll';
+
+  // mensual seccion c service
+  static readonly SAVE_DATA_MENSUAL_SECCION_C1 = '/services/mensualSeccionC/saveOrUpdateSeccionC1';
+  static readonly GET_DATA_FOR_SECCION_C1_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC1ByHojaId';
+
 
 
 }

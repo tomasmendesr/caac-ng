@@ -8,7 +8,7 @@ public class HojaMensualAlimentacionDTO {
     private HojaDTO hoja;
     private AlimentacionDTO tipoAlimentacion;
     private Integer cantidadPersonas;
-    private Integer cantidadPrestanciones;
+    private Integer cantidadPrestaciones;
     private String uum;
     private Date fum;
 
@@ -36,12 +36,12 @@ public class HojaMensualAlimentacionDTO {
         this.cantidadPersonas = cantidadPersonas;
     }
 
-    public Integer getCantidadPrestanciones() {
-        return cantidadPrestanciones;
+    public Integer getCantidadPrestaciones() {
+        return cantidadPrestaciones;
     }
 
-    public void setCantidadPrestanciones(Integer cantidadPrestanciones) {
-        this.cantidadPrestanciones = cantidadPrestanciones;
+    public void setCantidadPrestaciones(Integer cantidadPrestaciones) {
+        this.cantidadPrestaciones = cantidadPrestaciones;
     }
 
     public String getUum() {

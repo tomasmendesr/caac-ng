@@ -157,16 +157,16 @@ export class MensualSeccionAComponent implements OnInit {
   }
 
   private onClickConfirmDialogSiguiente(){
-    this.loadingComponent.showLoading();
-    this.hojaDatosInicialesService.saveOrUpdateMensual(this.hoja, this.hojaDatosIniciales).subscribe(appResponse => {
-      if(appResponse.code == AppResponse.SUCCESS){
-        this.loadingComponent.hideLoading();
-        this.siguiente();
-      }else{
-        this.showErrorMsgs(appResponse.data);
-      }
-    }, (error) => this.notifError(error));
-  }
+  this.loadingComponent.showLoading();
+  this.hojaDatosInicialesService.saveOrUpdateMensual(this.hoja, this.hojaDatosIniciales).subscribe(appResponse => {
+    if(appResponse.code == AppResponse.SUCCESS){
+      this.loadingComponent.hideLoading();
+      this.siguiente();
+    }else{
+      this.showErrorMsgs(appResponse.data);
+    }
+  }, (error) => this.notifError(error));
+}
 
   private siguiente(){
     try {

@@ -14,7 +14,7 @@ public class HojaMensualAlimentacion {
     private Hoja hoja;
     private Alimentacion tipoAlimentacion;
     private Integer cantidadPersonas;
-    private Integer cantidadPrestanciones;
+    private Integer cantidadPrestaciones;
     private String uum;
     private Date fum;
 
@@ -59,12 +59,12 @@ public class HojaMensualAlimentacion {
     }
 
     @Column(name = "cantidad_prestaciones")
-    public Integer getCantidadPrestanciones() {
-        return cantidadPrestanciones;
+    public Integer getCantidadPrestaciones() {
+        return cantidadPrestaciones;
     }
 
-    public void setCantidadPrestanciones(Integer cantidadPrestanciones) {
-        this.cantidadPrestanciones = cantidadPrestanciones;
+    public void setCantidadPrestaciones(Integer cantidadPrestaciones) {
+        this.cantidadPrestaciones = cantidadPrestaciones;
     }
 
     @Column(name = "h_mensual_alim_uum", length = 50)

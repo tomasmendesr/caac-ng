@@ -64,6 +64,9 @@ import {HojaService} from "./tomi/services/hoja.service";
 import {DataTableService} from "./services/data-table.service";
 import {GeneralViewService} from "./fede/services/general-view.service";
 import {HojaMensualAsistidosService} from "./tomi/services/hoja-mensual-asistidos.service";
+import {TramiteService} from "./tomi/services/tramite.service";
+import {AlimentacionService} from "./tomi/services/alimentacion.service";
+import {MensualSeccionCService} from "./tomi/services/mensual-seccion-c.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -142,7 +145,10 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     PicsService,
     HojaDatosInicialesService,
     HojaService,
-    HojaMensualAsistidosService
+    HojaMensualAsistidosService,
+    TramiteService,
+    AlimentacionService,
+    MensualSeccionCService
 
   ],
   bootstrap: [AppComponent]

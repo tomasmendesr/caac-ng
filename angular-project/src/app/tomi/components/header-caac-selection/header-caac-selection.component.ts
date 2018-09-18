@@ -107,12 +107,10 @@ export class HeaderCaacSelectionComponent implements OnInit {
 
   private emitChanges(atributoQueFueModificado: string){
     if(this.allInputsCargaSeted()) {
-      this.deshabilitarEdicionCarga();
       this.hojaService.findByPeriodoAndCasa(this.headerSigeseForms).subscribe(data =>{
-        if(data){
-          this.headerSigeseForms.hojaId = data;
-          this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
-        }
+        this.headerSigeseForms.hojaId = data;
+        this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
+        if(data) this.deshabilitarEdicionCarga(); // si econtró una hoja deshabilita la edicion
       });
     }else{
       this.headerSigeseForms.hojaId = null;

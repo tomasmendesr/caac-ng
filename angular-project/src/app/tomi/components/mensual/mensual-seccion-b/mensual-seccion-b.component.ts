@@ -50,9 +50,9 @@ export class MensualSeccionBComponent implements OnInit {
           else this.hojaMensualAsistidos = new HojaMensualAsistidos;
           this.hojaMensualAsistidos.hoja.id = headerEvent.value.hojaId;
         });
-      } else if(headerEvent.value.casa && headerEvent.value.mesCarga && headerEvent.value.anioCarga){ // Si seleccionó los tres y no encontroó ninguna hoja
+      } else { // Si seleccionó los tres y no encontroó ninguna hoja
         this.readonlyControl = true;
-        NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
+        if(headerEvent.value.casa && headerEvent.value.mesCarga && headerEvent.value.anioCarga) NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
       }
     }
   }

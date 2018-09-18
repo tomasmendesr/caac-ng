@@ -3,7 +3,7 @@ export class HojaMensualAsistidos {
 
   constructor(){
     this.hoja = new Hoja;
-    this.asistidosOtroGenero = parseFloat('0');
+    this.asistidosOtroGenero = 0;
     this.asistidosMujeres = 0;
     this.asistidosVarones = 0;
     this.asistidosCantidad = 0;

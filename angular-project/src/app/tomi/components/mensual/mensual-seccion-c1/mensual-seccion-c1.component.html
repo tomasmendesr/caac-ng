@@ -1,3 +1,250 @@
-<p>
-  mensual-seccion-c1 works!
-</p>
+<app-loading></app-loading>
+<div class="container-fluid h-100 margin-top">
+  <app-header-caac-selection (headerChanged)="onChangeHeader($event)"></app-header-caac-selection>
+  <div class="card card-body">
+
+    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 1" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h4>¿Cuántas personas fueron alcanzadas por las siguientes GESTIONES DE TRÁMITES realizadas en la CAAC en el mes?</h4>
+      <div class="form-group row">
+        <label for="dni-input" class="col-3 col-form-label text-right">DNI</label>
+        <div class="col-2">
+          <input class="form-control" type="number" [(ngModel)]="hojaMensualTramiteDNI.cantidad" id="dni-input" [readonly]="readonlyControl">
+        </div>
+
+        <label for="insercion-input" class="col-4 col-form-label text-right">Inserción laboral</label>
+        <div class="col-3">
+          <input class="form-control" type="number" id="insercion-input" [(ngModel)]="hojaMensualTramiteInsercionLaboral.cantidad" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="subsidios-input" class="col-3 col-form-label text-right">Subsidios</label>
+        <div class="col-2">
+          <input class="form-control" type="number" [(ngModel)]="hojaMensualTramiteSubsidios.cantidad" id="subsidios-input" [readonly]="readonlyControl">
+        </div>
+
+        <label for="provisionales-input" class="col-4 col-form-label text-right">Servicios previsionales (ANSES/CUIL)</label>
+        <div class="col-3">
+          <input class="form-control" type="number" [(ngModel)]="hojaMensualTramiteServiciosPrevisionales.cantidad" id="provisionales-input" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="becas-input" class="col-3 col-form-label text-right">Becas</label>
+        <div class="col-2">
+          <input class="form-control" type="number"  id="becas-input" [(ngModel)]="hojaMensualTramiteBecas.cantidad" [readonly]="readonlyControl">
+        </div>
+
+        <label for="gestiones-input" class="col-4 col-form-label text-right">Gestiones para la inclusión educativa</label>
+        <div class="col-3">
+          <input class="form-control" type="number" id="gestiones-input" [(ngModel)]="hojaMensualTramiteGestiones.cantidad" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="certificado-input" class="col-3 col-form-label text-right">Certificado de discapacidad</label>
+        <div class="col-2">
+          <input class="form-control" type="number"  id="certificado-input" [(ngModel)]="hojaMensualTramiteCertificadoDiscapacidad.cantidad" [readonly]="readonlyControl">
+        </div>
+
+        <label for="otros-input" class="col-4 col-form-label text-right">Otros trámites</label>
+        <div class="col-3">
+          <input class="form-control" type="number" id="otros-input" [(ngModel)]="hojaMensualTramiteOtro.cantidad" [readonly]="readonlyControl">
+        </div>
+      </div>
+    </div>
+
+    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 2" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h4>¿Cuáles son los otros trámites?</h4>
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="hojaMensualObservaciones.otrosTramites" id="exampleFormControlTextarea1" rows="3" [readonly]="readonlyControl"></textarea>
+      </div>
+    </div>
+
+
+    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 3" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h4>¿Cuántas prestaciones de ALIMENTACIÓN EN SEDE se realizaron en la CAAC en el mes y a cúantas personas alcanzó?</h4>
+      <div class="from-group row margin-top">
+        <label class="col-6 text-center"><b>Cantidad de prestaciones semanales</b></label>
+        <label class="col-6 text-center"><b>Cantidad de personas que recibieron la prestación al mes</b></label>
+      </div>
+      <div class="form-group row">
+        <label for="desayuno-input" class="col-3 col-form-label text-right">Desayuno</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="desayuno-input" [readonly]="readonlyControl">
+        </div>
+
+        <label for="desayuno2-input" class="col-3 col-form-label text-right">Desayuno</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="desayuno2-input" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="almuerzo-input" class="col-3 col-form-label text-right">Almuerzo</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="almuerzo-input" [readonly]="readonlyControl">
+        </div>
+
+        <label for="almuerzo2-input" class="col-3 col-form-label text-right">Almuerzo</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="almuerzo2-input" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="merienda-input" class="col-3 col-form-label text-right">Merienda</label>
+        <div class="col-2">
+          <input class="form-control" type="number"  id="merienda-input" [readonly]="readonlyControl">
+        </div>
+
+        <label for="merienda-input" class="col-3 col-form-label text-right">Merienda</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="merienda-input" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="cena-input" class="col-3 col-form-label text-right">Cena</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="cena-input" [readonly]="readonlyControl">
+        </div>
+
+        <label for="cena2-input" class="col-3 col-form-label text-right">Cena</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="cena2-input" [readonly]="readonlyControl">
+        </div>
+      </div>
+    </div>
+
+    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 4" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h4>Observaciones sobre ALIMENTACIÓN EN SEDE</h4>
+      <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea2" [(ngModel)]="hojaMensualObservaciones.alimentacionEnSede" rows="2" [readonly]="readonlyControl"></textarea>
+      </div>
+    </div>
+
+    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 5" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h4>Especificar cantidades mensuales entregadas según tipo de ALIMENTACIÓN FUERA DE SEDE</h4>
+      <div class="form-group row">
+        <label for="viandas-input" class="col-6 col-form-label text-right">Viandas (Ollas populares, acompañamiento en calle, etc.)</label>
+        <div class="col-4">
+          <input class="form-control" type="number" id="viandas-input" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="bolsones-input" class="col-6 col-form-label text-right">Bolsones</label>
+        <div class="col-4">
+          <input class="form-control" type="number" id="bolsones-input" [readonly]="readonlyControl">
+        </div>
+      </div>
+    </div>
+
+    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 6" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h4>Observaciones sobre ALIMENTACIÓN FUERA DE SEDE</h4>
+      <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea3" rows="2"  [(ngModel)]="hojaMensualObservaciones.alimentacionFueraDeSede" [readonly]="readonlyControl"></textarea>
+      </div>
+    </div>
+
+    <div class="text-right" style="width:100%">
+      <button class="btn btn-sm btn-primary" (click)="onClickGuardar()" [disabled]="readonlyControl"><i class="far fa-save"></i><span> Guardar</span></button>
+      <button class="btn btn-sm btn-default" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+
+<!--&lt;!&ndash; CONFIRM DIALOG GUARDAR &ndash;&gt;-->
+<!--<div id ="confirmDialogGuardar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+
+<!--<div class="modal-header">-->
+<!--<h4 class="modal-title" id="exampleModalLabel2">Confirmar</h4>-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+
+<!--<div class="modal-body">-->
+<!--<p>¿Seguro que desea realizar esta acción?</p>-->
+<!--</div>-->
+
+<!--<div class="modal-footer">-->
+<!--<button class="Button -sm -default -outline -rounded" data-dismiss="modal">No</button>-->
+<!--<button class="Button -sm -primary -raised -rounded" id="submit2" (click)="onClickConfirmDialogGuardar()">Si</button>-->
+<!--</div>-->
+
+<!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+
+
+<!-- CONFIRM DIALOG -->
+<div id ="confirmDialogSiguiente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel2">Confirmar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Desea guardar los cambios antes de avanzar?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="Button -sm -default -outline -rounded" click="siguiente()" data-dismiss="modal">No</button>
+        <button class="Button -sm -primary -raised -rounded" id="submit" (click)="onClickConfirmDialogSiguiente()">Si</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
