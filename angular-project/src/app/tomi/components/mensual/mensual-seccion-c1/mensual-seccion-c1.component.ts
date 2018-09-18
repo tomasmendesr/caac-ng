@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HeaderEvent} from "../../../../model/header-event";
 import {NotifUtil} from "../../../utils/notif-util";
 import {HojaMensualAlimentacion} from "../../../../model/hoja-mensual-alimentacion";
@@ -9,7 +9,10 @@ import {Tramite} from "../../../../model/tramite";
 import {MensualSeccionC1Data} from "../../../../model/mensual-seccion-c1-data";
 import {AlimentacionService} from "../../../services/alimentacion.service";
 import {MensualSeccionCService} from "../../../services/mensual-seccion-c.service";
-
+import {AppResponse} from "../../../../model/app-response";
+import {LoadingComponent} from "../../../../share-components/loading/loading.component";
+import {Alimentacion} from "../../../../model/alimentacion";
+declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-c1',
   templateUrl: './mensual-seccion-c1.component.html',
@@ -21,6 +24,9 @@ export class MensualSeccionC1Component implements OnInit {
   private errorSection: number = -1;
   private mensualSeccionC1Data: MensualSeccionC1Data = new MensualSeccionC1Data;
   private hojaId: number;
+  @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
+  private tramites: Tramite[] = [];
+  private alimentaciones: Alimentacion[] = [];
 
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
 
@@ -45,6 +51,8 @@ export class MensualSeccionC1Component implements OnInit {
   }
 
   ngOnInit() {
+    this.tramiteService.findAll().subscribe(data => this.tramites = data);
+    this.alimentacionService.findAll().subscribe(data => this.alimentaciones = data);
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
@@ -63,6 +71,15 @@ export class MensualSeccionC1Component implements OnInit {
 
   private onClickGuardar() {
     this.bindDataToDTO();
+    this.mensualSeccionCService.saveDataSeccionC1(this.mensualSeccionC1Data).subscribe(appResponse => {
+      if(appResponse.code == AppResponse.SUCCESS){
+        NotifUtil.notifSuccess("Guardado exitosamente");
+        this.loadingComponent.hideLoading();
+        // this.hojaMensualAsistidos.id = <number> appResponse.data;
+      }else{
+        this.showErrorMsgs(appResponse.data);
+      }
+    }, (error) => this.notifError(error));
   }
 
   private initEmptyData() {
@@ -114,14 +131,14 @@ export class MensualSeccionC1Component implements OnInit {
     this.hojaMensualTramiteGestiones = new HojaMensualTramites;
     this.hojaMensualTramiteOtro = new HojaMensualTramites;
 
-    this.hojaMensualTramiteDNI.tramite = this.tramiteService.getTramiteById(TramiteService.ID_DNI);
-    this.hojaMensualTramiteSubsidios.tramite = this.tramiteService.getTramiteById(TramiteService.ID_SUBSIDIOS);
-    this.hojaMensualTramiteInsercionLaboral.tramite = this.tramiteService.getTramiteById(TramiteService.ID_INSERCION_LABORAL);
-    this.hojaMensualTramiteServiciosPrevisionales.tramite = this.tramiteService.getTramiteById(TramiteService.ID_SERVICIOS_PREVISIONALES);
-    this.hojaMensualTramiteBecas.tramite = this.tramiteService.getTramiteById(TramiteService.ID_BECAS);
-    this.hojaMensualTramiteGestiones.tramite = this.tramiteService.getTramiteById(TramiteService.ID_GESTIONES);
-    this.hojaMensualTramiteCertificadoDiscapacidad.tramite = this.tramiteService.getTramiteById(TramiteService.ID_CERTIFICADO_DISCAPACIDAD);
-    this.hojaMensualTramiteOtro.tramite = this.tramiteService.getTramiteById(TramiteService.ID_OTROS);
+    this.hojaMensualTramiteDNI.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_DNI);
+    this.hojaMensualTramiteSubsidios.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_SUBSIDIOS);
+    this.hojaMensualTramiteInsercionLaboral.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_INSERCION_LABORAL);
+    this.hojaMensualTramiteServiciosPrevisionales.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_SERVICIOS_PREVISIONALES);
+    this.hojaMensualTramiteBecas.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_BECAS);
+    this.hojaMensualTramiteGestiones.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_GESTIONES);
+    this.hojaMensualTramiteCertificadoDiscapacidad.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_CERTIFICADO_DISCAPACIDAD);
+    this.hojaMensualTramiteOtro.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_OTROS);
   }
 
   private initHojaMensualAlimentacion() {
@@ -132,12 +149,12 @@ export class MensualSeccionC1Component implements OnInit {
     this.hojaMensualAlimentacionVianda = new HojaMensualAlimentacion;
     this.hojaMensualAlimentacionBolsones = new HojaMensualAlimentacion;
 
-    this.hojaMensualAlimentacionAlmuerzo.tipoAlimentacion = this.alimentacionService.getAlimentacionById(AlimentacionService.ID_ALMUERZO);
-    this.hojaMensualAlimentacionDesayuno.tipoAlimentacion = this.alimentacionService.getAlimentacionById(AlimentacionService.ID_DESAYUNO);
-    this.hojaMensualAlimentacionMerienda.tipoAlimentacion = this.alimentacionService.getAlimentacionById(AlimentacionService.ID_MERIENDA);
-    this.hojaMensualAlimentacionCena.tipoAlimentacion = this.alimentacionService.getAlimentacionById(AlimentacionService.ID_CENA);
-    this.hojaMensualAlimentacionVianda.tipoAlimentacion = this.alimentacionService.getAlimentacionById(AlimentacionService.ID_VIANDAS);
-    this.hojaMensualAlimentacionAlmuerzo.tipoAlimentacion = this.alimentacionService.getAlimentacionById(AlimentacionService.ID_BOLSONES);
+    this.hojaMensualAlimentacionAlmuerzo.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_ALMUERZO);
+    this.hojaMensualAlimentacionDesayuno.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_DESAYUNO);
+    this.hojaMensualAlimentacionMerienda.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_MERIENDA);
+    this.hojaMensualAlimentacionCena.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_CENA);
+    this.hojaMensualAlimentacionVianda.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_VIANDAS);
+    this.hojaMensualAlimentacionAlmuerzo.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_BOLSONES);
   }
 
   private parseSeccionC1Data(data: MensualSeccionC1Data) {
@@ -172,6 +189,18 @@ export class MensualSeccionC1Component implements OnInit {
     } else {
       this.initHojaMensualAlimentacion();
     }
-}
+  }
+
+  private notifError(error){
+    NotifUtil.notifError(error.error.message);
+    this.loadingComponent.hideLoading();
+  }
+
+  private showErrorMsgs(appResponse: AppResponse){
+    this.errorSection = appResponse.code;
+    this.loadingComponent.hideLoading();
+    this.formMessages = appResponse.data;
+    $('#formAlert').show();
+  }
 
 }

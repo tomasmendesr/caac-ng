@@ -22,17 +22,7 @@ export class AlimentacionService {
     return this.http.post<Alimentacion[]>(UrlConstants.FIND_ALL_ALIMENTACION, {});
   }
 
-  getAlimentaciones(): Alimentacion[] {
-    if(this.alimentacion) return this.alimentacion;
-    else {
-      this.findAll().subscribe(data => {
-        this.alimentacion = data;
-        return this.alimentacion;
-      })
-    }
-  }
-
-  getAlimentacionById(id: number): Alimentacion {
-    return this.getAlimentaciones().find(t => t.id == id);
+  getAlimentacionById(alimentaciones: Alimentacion[], id: number): Alimentacion {
+    return alimentaciones.find(t => t.id == id);
   }
 }

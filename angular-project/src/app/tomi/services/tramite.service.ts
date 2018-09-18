@@ -23,17 +23,7 @@ export class TramiteService {
     return this.http.post<Tramite[]>(UrlConstants.FIND_ALL_TRAMITES, {});
   }
 
-  getTramites(): Tramite[] {
-    if(this.tramites) return this.tramites;
-    else {
-      this.findAll().subscribe(data => {
-        this.tramites = data;
-        return this.tramites;
-      })
-    }
-  }
-
-  getTramiteById(id: number): Tramite {
-    return this.getTramites().find(t => t.id == id);
+  getTramiteById(tramites: Tramite[], id: number): Tramite {
+    return tramites.find(t => t.id == id);
   }
 }

@@ -1,7 +1,6 @@
 package ar.gov.sedronar.aplicacion.services.implementation;
 
 import ar.gov.sedronar.aplicacion.dto.MensualSeccionC1Data;
-import ar.gov.sedronar.aplicacion.model.HojaMensualObservaciones;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualAlimentacionService;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualObservacionesService;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualTramitesService;
@@ -19,6 +18,12 @@ import javax.transaction.Transactional;
 @Transactional
 @DefaultServiceImpl
 public class MensualSeccionCServiceImpl implements MensualSeccionCService {
+    public static final Integer SECCION_1_C1 = 1;
+    public static final Integer SECCION_2_C1 = 2;
+    public static final Integer SECCION_3_C1 = 3;
+    public static final Integer SECCION_4_C1 = 4;
+    public static final Integer SECCION_5_C1 = 5;
+    public static final Integer SECCION_6_C1 = 6;
 
     @Inject
     @DefaultServiceImpl

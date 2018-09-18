@@ -10,8 +10,8 @@ export class MensualSeccionCService {
 
   constructor(private http: HttpClient) { }
 
-  saveDataSeccionC1(): Observable<AppResponse>{
-    return this.http.post<AppResponse>(UrlConstants.SAVE_DATA_MENSUAL_SECCION_C1, {});
+  saveDataSeccionC1(data: MensualSeccionC1Data): Observable<AppResponse>{
+    return this.http.post<AppResponse>(UrlConstants.SAVE_DATA_MENSUAL_SECCION_C1, data);
   }
 
   findDataByHojaId(idHoja: number): Observable<MensualSeccionC1Data>{
