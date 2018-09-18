@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class HojaMensualAsistidosServiceImpl implements HojaMensualAsistidosServ
 
     @Override
     public AppResponse saveOrUpdate(HojaMensualAsistidosDTO hojaMensualAsistidosDTO) throws Exception {
+        if(hojaMensualAsistidosDTO.getHoja() == null || hojaMensualAsistidosDTO.getHoja().getId() == null) return new AppResponse(AppResponse.ERROR, Arrays.asList("Debe seleccionar una hoja"));
+        hojaMensualAsistidosDTO.setId(hojaMensualAsistidosDTO.getHoja().getId());
         AppResponse appResponseValidation = validateInputs(hojaMensualAsistidosDTO);
         if(appResponseValidation.getCode() == AppResponse.ERROR) return appResponseValidation;
 

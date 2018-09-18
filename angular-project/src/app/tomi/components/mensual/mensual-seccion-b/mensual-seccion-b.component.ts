@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HeaderEvent} from "../../../../model/header-event";
-import {Hoja} from "../../../../model/hoja";
 import {HojaMensualAsistidos} from "../../../../model/hoja-mensual-asistidos";
 import {LoadingComponent} from "../../../../share-components/loading/loading.component";
 import {NotifUtil} from "../../../utils/notif-util";
@@ -8,6 +7,7 @@ import {AppResponse} from "../../../../model/app-response";
 import {HojaMensualAsistidosService} from "../../../services/hoja-mensual-asistidos.service";
 import {UrlConstants} from "../../../services/UrlConstants";
 import {Router} from "@angular/router";
+
 declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-b',
@@ -15,7 +15,7 @@ declare var $:any;
   styleUrls: ['./mensual-seccion-b.component.css']
 })
 export class MensualSeccionBComponent implements OnInit {
-  private hojaMensualAsistidos: HojaMensualAsistidos;
+  hojaMensualAsistidos: HojaMensualAsistidos = new HojaMensualAsistidos;
   private formMessages: string[] = [];
   private readonlyControl: boolean = true;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
@@ -23,11 +23,6 @@ export class MensualSeccionBComponent implements OnInit {
   constructor(private hojaMensualAsistidosService: HojaMensualAsistidosService, private router: Router) { }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit(){
-   this.hojaMensualAsistidos = new HojaMensualAsistidos;
-   this.hojaMensualAsistidos.hoja = new Hoja;
   }
 
   private onClickGuardar(){
@@ -52,7 +47,7 @@ export class MensualSeccionBComponent implements OnInit {
         this.readonlyControl = false;
         this.hojaMensualAsistidosService.findById(headerEvent.value.hojaId).subscribe(data => {
           if (data != null) this.hojaMensualAsistidos = data;
-          else this.initHojaMensualAsistidosVacio();
+          else this.hojaMensualAsistidos = new HojaMensualAsistidos;
           this.hojaMensualAsistidos.hoja.id = headerEvent.value.hojaId;
         });
       } else if(headerEvent.value.casa && headerEvent.value.mesCarga && headerEvent.value.anioCarga){ // Si seleccionó los tres y no encontroó ninguna hoja
@@ -60,13 +55,6 @@ export class MensualSeccionBComponent implements OnInit {
         NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
       }
     }
-  }
-
-  private initHojaMensualAsistidosVacio(){
-    this.hojaMensualAsistidos.asistidosOtroGenero = 0;
-    this.hojaMensualAsistidos.asistidosMujeres = 0;
-    this.hojaMensualAsistidos.asistidosVarones = 0;
-    this.hojaMensualAsistidos.asistidosCantidad = 0;
   }
 
   private saveOrUpdateMensual(){
@@ -114,6 +102,18 @@ export class MensualSeccionBComponent implements OnInit {
 
   private siguiente(){
     this.router.navigateByUrl(UrlConstants.MENSUAL_SECCION_C1);
+  }
+
+  private onClickConfirmDialogSiguiente(){
+    this.loadingComponent.showLoading();
+    this.hojaMensualAsistidosService.saveOrUpdate(this.hojaMensualAsistidos).subscribe(appResponse => {
+      if(appResponse.code == AppResponse.SUCCESS){
+        this.loadingComponent.hideLoading();
+        this.siguiente();
+      }else{
+        this.showErrorMsgs(appResponse.data);
+      }
+    }, (error) => this.notifError(error));
   }
 
 }
