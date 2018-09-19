@@ -10,7 +10,7 @@
       </ul>
     </div>
     <div class="card card-body marginBottom">
-      <h4>¿Cuántas personas fueron alcanzadas por las siguientes GESTIONES DE TRÁMITES realizadas en la CAAC en el mes?</h4>
+      <h5>¿Cuántas personas fueron alcanzadas por las siguientes GESTIONES DE TRÁMITES realizadas en la CAAC en el mes?</h5>
       <div class="form-group row">
         <label for="dni-input" class="col-3 col-form-label text-right">DNI</label>
         <div class="col-2">
@@ -68,7 +68,7 @@
       </ul>
     </div>
     <div class="card card-body marginBottom">
-      <h4>¿Cuáles son los otros trámites?</h4>
+      <h5>¿Cuáles son los otros trámites?</h5>
       <div class="form-group">
         <textarea class="form-control" [(ngModel)]="hojaMensualObservaciones.otrosTramites" id="exampleFormControlTextarea1" rows="3" [readonly]="readonlyControl"></textarea>
       </div>
@@ -83,7 +83,7 @@
       </ul>
     </div>
     <div class="card card-body marginBottom">
-      <h4>¿Cuántas prestaciones de ALIMENTACIÓN EN SEDE se realizaron en la CAAC en el mes y a cúantas personas alcanzó?</h4>
+      <h5>¿Cuántas prestaciones de ALIMENTACIÓN EN SEDE se realizaron en la CAAC en el mes y a cúantas personas alcanzó?</h5>
       <div class="from-group row margin-top">
         <label class="col-6 text-center"><b>Cantidad de prestaciones semanales</b></label>
         <label class="col-6 text-center"><b>Cantidad de personas que recibieron la prestación al mes</b></label>
@@ -145,7 +145,7 @@
       </ul>
     </div>
     <div class="card card-body marginBottom">
-      <h4>Observaciones sobre ALIMENTACIÓN EN SEDE</h4>
+      <h5>Observaciones sobre ALIMENTACIÓN EN SEDE</h5>
       <div class="form-group">
         <textarea class="form-control" id="exampleFormControlTextarea2" [(ngModel)]="hojaMensualObservaciones.alimentacionEnSede" rows="2" [readonly]="readonlyControl"></textarea>
       </div>
@@ -159,7 +159,7 @@
       </ul>
     </div>
     <div class="card card-body marginBottom">
-      <h4>Especificar cantidades mensuales entregadas según tipo de ALIMENTACIÓN FUERA DE SEDE</h4>
+      <h5>Especificar cantidades mensuales entregadas según tipo de ALIMENTACIÓN FUERA DE SEDE</h5>
       <div class="form-group row">
         <label for="viandas-input" class="col-6 col-form-label text-right">Viandas (Ollas populares, acompañamiento en calle, etc.)</label>
         <div class="col-4">
@@ -183,7 +183,7 @@
       </ul>
     </div>
     <div class="card card-body marginBottom">
-      <h4>Observaciones sobre ALIMENTACIÓN FUERA DE SEDE</h4>
+      <h5>Observaciones sobre ALIMENTACIÓN FUERA DE SEDE</h5>
       <div class="form-group">
         <textarea class="form-control" id="exampleFormControlTextarea3" rows="2"  [(ngModel)]="hojaMensualObservaciones.alimentacionFueraDeSede" [readonly]="readonlyControl"></textarea>
       </div>
@@ -196,40 +196,13 @@
   </div>
 </div>
 
-
-<!--&lt;!&ndash; CONFIRM DIALOG GUARDAR &ndash;&gt;-->
-<!--<div id ="confirmDialogGuardar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">-->
-<!--<div class="modal-dialog" role="document">-->
-<!--<div class="modal-content">-->
-
-<!--<div class="modal-header">-->
-<!--<h4 class="modal-title" id="exampleModalLabel2">Confirmar</h4>-->
-<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--<span aria-hidden="true">&times;</span>-->
-<!--</button>-->
-<!--</div>-->
-
-<!--<div class="modal-body">-->
-<!--<p>¿Seguro que desea realizar esta acción?</p>-->
-<!--</div>-->
-
-<!--<div class="modal-footer">-->
-<!--<button class="Button -sm -default -outline -rounded" data-dismiss="modal">No</button>-->
-<!--<button class="Button -sm -primary -raised -rounded" id="submit2" (click)="onClickConfirmDialogGuardar()">Si</button>-->
-<!--</div>-->
-
-<!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-<!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
-<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
-
-
 <!-- CONFIRM DIALOG -->
 <div id ="confirmDialogSiguiente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel2">Confirmar</h4>
+        <h5 class="modal-title" id="exampleModalLabel2">Confirmar</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

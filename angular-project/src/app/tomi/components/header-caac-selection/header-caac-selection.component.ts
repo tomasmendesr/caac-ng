@@ -12,6 +12,7 @@ import {HeaderEvent} from "../../../model/header-event";
 import {MatOptionSelectionChange} from "@angular/material";
 import MainConstants from "../../../constants/main-constants";
 import {HojaService} from "../../services/hoja.service";
+import {NotifUtil} from "../../utils/notif-util";
 
 @Component({
   selector: 'app-header-caac-selection',
@@ -111,6 +112,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
         this.headerSigeseForms.hojaId = data;
         this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
         if(data) this.deshabilitarEdicionCarga(); // si econtró una hoja deshabilita la edicion
+        else NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
       });
     }else{
       this.headerSigeseForms.hojaId = null;

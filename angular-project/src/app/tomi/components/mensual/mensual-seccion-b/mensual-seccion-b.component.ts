@@ -43,16 +43,13 @@ export class MensualSeccionBComponent implements OnInit {
 
   private onChangeHeader(headerEvent: HeaderEvent) {
     if(headerEvent.evento == HeaderEvent.HOJA_ID){
+      this.readonlyControl = headerEvent.value.hojaId == null;
       if(headerEvent.value.hojaId) {
-        this.readonlyControl = false;
         this.hojaMensualAsistidosService.findById(headerEvent.value.hojaId).subscribe(data => {
           if (data != null) this.hojaMensualAsistidos = data;
           else this.hojaMensualAsistidos = new HojaMensualAsistidos;
           this.hojaMensualAsistidos.hoja.id = headerEvent.value.hojaId;
         });
-      } else { // Si seleccionó los tres y no encontroó ninguna hoja
-        this.readonlyControl = true;
-        if(headerEvent.value.casa && headerEvent.value.mesCarga && headerEvent.value.anioCarga) NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
       }
     }
   }

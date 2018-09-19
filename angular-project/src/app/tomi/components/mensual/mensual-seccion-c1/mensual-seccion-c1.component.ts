@@ -12,6 +12,8 @@ import {MensualSeccionCService} from "../../../services/mensual-seccion-c.servic
 import {AppResponse} from "../../../../model/app-response";
 import {LoadingComponent} from "../../../../share-components/loading/loading.component";
 import {Alimentacion} from "../../../../model/alimentacion";
+import {UrlConstants} from "../../../services/UrlConstants";
+import {Router} from "@angular/router";
 declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-c1',
@@ -47,7 +49,7 @@ export class MensualSeccionC1Component implements OnInit {
   private hojaMensualAlimentacionBolsones: HojaMensualAlimentacion = new HojaMensualAlimentacion;
 
   constructor(private tramiteService: TramiteService, private alimentacionService: AlimentacionService,
-              private mensualSeccionCService: MensualSeccionCService) {
+              private mensualSeccionCService: MensualSeccionCService, private router: Router) {
   }
 
   ngOnInit() {
@@ -57,14 +59,12 @@ export class MensualSeccionC1Component implements OnInit {
 
   private onChangeHeader(headerEvent: HeaderEvent) {
     if (headerEvent.evento == HeaderEvent.HOJA_ID) {
+      this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       if (headerEvent.value.hojaId) {
-        this.readonlyControl = false;
         this.mensualSeccionCService.findDataByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC1Data(data));
       } else {
         this.initEmptyData();
-        this.readonlyControl = true;
-        if (headerEvent.value.casa && headerEvent.value.mesCarga && headerEvent.value.anioCarga) NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
       }
     }
   }
@@ -78,6 +78,38 @@ export class MensualSeccionC1Component implements OnInit {
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
         this.cleanData();
+      }else{
+        this.showErrorMsgs(appResponse.data);
+      }
+    }, (error) => this.notifError(error));
+  }
+
+  private onClickSiguiente(){
+    this.showConfirmDialog('confirmDialogSiguiente');
+  }
+
+  private showConfirmDialog(id: string){
+    $("#"+id).modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
+  }
+
+  private hideConfirmDialog(id: string){
+    $("#"+id).modal('hide');
+  }
+
+  private siguiente(){
+    this.router.navigateByUrl(UrlConstants.MENSUAL_SECCION_C2);
+  }
+
+  private onClickConfirmDialogSiguiente(){
+    this.loadingComponent.showLoading();
+    this.mensualSeccionCService.saveDataSeccionC1(this.mensualSeccionC1Data).subscribe(appResponse => {
+      if(appResponse.code == AppResponse.SUCCESS){
+        this.loadingComponent.hideLoading();
+        this.siguiente();
       }else{
         this.showErrorMsgs(appResponse.data);
       }
