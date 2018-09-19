@@ -20,12 +20,13 @@ import javax.transaction.Transactional;
 @Transactional
 @DefaultServiceImpl
 public class MensualSeccionCServiceImpl implements MensualSeccionCService {
-    public static final Integer SECCION_1_C1 = 1;
-    public static final Integer SECCION_2_C1 = 2;
-    public static final Integer SECCION_3_C1 = 3;
-    public static final Integer SECCION_4_C1 = 4;
-    public static final Integer SECCION_5_C1 = 5;
-    public static final Integer SECCION_6_C1 = 6;
+    // la única funcionalidad de estas constantes es la declaratividad para que se entiendan qué son
+    public static final Integer SECCION_1_FORMULARIO = 1;
+    public static final Integer SECCION_2_FORMULARIO = 2;
+    public static final Integer SECCION_3_FORMULARIO = 3;
+    public static final Integer SECCION_4_FORMULARIO = 4;
+    public static final Integer SECCION_5_FORMULARIO = 5;
+    public static final Integer SECCION_6_FORMULARIO = 6;
 
     @Inject
     @DefaultServiceImpl
@@ -39,20 +40,22 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
     @DefaultServiceImpl
     private HojaMensualTramitesService hojaMensualTramitesService;
 
-    @Override
-    /* Si falló una validación retorna un app response con error code y en el atributo data
+    /***
+     * Si falló una validación retorna un app response con error code y en el atributo data
     * contiene otro app response con el code que identifica a la sección del formulario que falló y la lista de errores de validación
-    *
+    * Si no hay errores de validación se realiza el update en la base. En caso de que ocurra un error lanza una excepción
+     * que es capturada en el front y mostrada en una notificación.
      */
+    @Override
     public AppResponse saveOrUpdateSeccionC1(MensualSeccionC1Data data) throws Exception {
         AppResponse validationTramites = hojaMensualTramitesService.validateInputs(data.getHojaMensualTramitesList());
-        if(validationTramites.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_C1, validationTramites.getData()));
+        if(validationTramites.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validationTramites.getData()));
 
         AppResponse validationAlimentacioEnSede = hojaMensualAlimentacionService.validateInputsEnSede(data.getHojaMensualAlimentacionList());
-        if(validationAlimentacioEnSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_C1, validationAlimentacioEnSede.getData()));
+        if(validationAlimentacioEnSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validationAlimentacioEnSede.getData()));
 
         AppResponse validationAlimentacioFueraDeSede = hojaMensualAlimentacionService.validateInputsFueraDeSede(data.getHojaMensualAlimentacionList());
-        if(validationAlimentacioFueraDeSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_C1, validationAlimentacioFueraDeSede.getData()));
+        if(validationAlimentacioFueraDeSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, validationAlimentacioFueraDeSede.getData()));
 
         for (HojaMensualTramitesDTO hojaMensualTramitesDTO : data.getHojaMensualTramitesList()) hojaMensualTramitesService.saveOrUpdate(hojaMensualTramitesDTO);
         for (HojaMensualAlimentacionDTO hojaMensualAlimentacionDTO : data.getHojaMensualAlimentacionList()) hojaMensualAlimentacionService.saveOrUpdate(hojaMensualAlimentacionDTO);
