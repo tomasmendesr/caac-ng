@@ -7,4 +7,6 @@ import ar.gov.sedronar.aplicacion.dto.HojaMensualObservacionesDTO;
  */
 public interface HojaMensualObservacionesService {
     void saveOrUpdate(HojaMensualObservacionesDTO hojaMensualObservaciones) throws Exception;
+
+    HojaMensualObservacionesDTO findByHojaId(Long idHoja);
 }

@@ -14,7 +14,6 @@ export class AlimentacionService {
   static readonly ID_VIANDAS = 6;
   static readonly ID_BOLSONES = 7;
   static readonly ID_OTRO_FUERA_DE_SEDE = 8;
-  private alimentacion: Alimentacion[];
 
   constructor(private http: HttpClient) { }
 

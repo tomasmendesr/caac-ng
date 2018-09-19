@@ -43,7 +43,7 @@ export class MensualSeccionC1Component implements OnInit {
   private hojaMensualAlimentacionAlmuerzo: HojaMensualAlimentacion = new HojaMensualAlimentacion;
   private hojaMensualAlimentacionMerienda: HojaMensualAlimentacion = new HojaMensualAlimentacion;
   private hojaMensualAlimentacionCena: HojaMensualAlimentacion = new HojaMensualAlimentacion;
-  private hojaMensualAlimentacionVianda: HojaMensualAlimentacion = new HojaMensualAlimentacion;
+  private hojaMensualAlimentacionViandas: HojaMensualAlimentacion = new HojaMensualAlimentacion;
   private hojaMensualAlimentacionBolsones: HojaMensualAlimentacion = new HojaMensualAlimentacion;
 
   constructor(private tramiteService: TramiteService, private alimentacionService: AlimentacionService,
@@ -70,12 +70,14 @@ export class MensualSeccionC1Component implements OnInit {
   }
 
   private onClickGuardar() {
+    this.cleanData();
     this.bindDataToDTO();
+    this.loadingComponent.showLoading();
     this.mensualSeccionCService.saveDataSeccionC1(this.mensualSeccionC1Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
-        // this.hojaMensualAsistidos.id = <number> appResponse.data;
+        this.cleanData();
       }else{
         this.showErrorMsgs(appResponse.data);
       }
@@ -100,7 +102,7 @@ export class MensualSeccionC1Component implements OnInit {
     this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionCena);
     this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionAlmuerzo);
     this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionMerienda);
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionVianda);
+    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionViandas);
     this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionBolsones);
   }
 
@@ -146,15 +148,15 @@ export class MensualSeccionC1Component implements OnInit {
     this.hojaMensualAlimentacionAlmuerzo = new HojaMensualAlimentacion;
     this.hojaMensualAlimentacionMerienda = new HojaMensualAlimentacion;
     this.hojaMensualAlimentacionCena = new HojaMensualAlimentacion;
-    this.hojaMensualAlimentacionVianda = new HojaMensualAlimentacion;
+    this.hojaMensualAlimentacionViandas = new HojaMensualAlimentacion;
     this.hojaMensualAlimentacionBolsones = new HojaMensualAlimentacion;
 
     this.hojaMensualAlimentacionAlmuerzo.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_ALMUERZO);
     this.hojaMensualAlimentacionDesayuno.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_DESAYUNO);
     this.hojaMensualAlimentacionMerienda.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_MERIENDA);
     this.hojaMensualAlimentacionCena.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_CENA);
-    this.hojaMensualAlimentacionVianda.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_VIANDAS);
-    this.hojaMensualAlimentacionAlmuerzo.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_BOLSONES);
+    this.hojaMensualAlimentacionViandas.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_VIANDAS);
+    this.hojaMensualAlimentacionBolsones.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_BOLSONES);
   }
 
   private parseSeccionC1Data(data: MensualSeccionC1Data) {
@@ -165,27 +167,45 @@ export class MensualSeccionC1Component implements OnInit {
 
   private buildHojaMensualTramites(data: MensualSeccionC1Data) {
     if (data.hojaMensualTramitesList) {
-      this.hojaMensualTramiteDNI = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_DNI);
-      this.hojaMensualTramiteSubsidios = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_SUBSIDIOS);
-      this.hojaMensualTramiteCertificadoDiscapacidad = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_CERTIFICADO_DISCAPACIDAD);
-      this.hojaMensualTramiteServiciosPrevisionales = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_SERVICIOS_PREVISIONALES);
-      this.hojaMensualTramiteInsercionLaboral = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_INSERCION_LABORAL);
-      this.hojaMensualTramiteGestiones = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_GESTIONES);
-      this.hojaMensualTramiteBecas = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_BECAS);
-      this.hojaMensualTramiteOtro = data.hojaMensualTramitesList.find(t => t.tramite.id == TramiteService.ID_OTROS);
+      this.hojaMensualTramiteDNI = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_DNI);
+        this.hojaMensualTramiteSubsidios = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_SUBSIDIOS);
+      this.hojaMensualTramiteCertificadoDiscapacidad = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_CERTIFICADO_DISCAPACIDAD);
+      this.hojaMensualTramiteServiciosPrevisionales = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_SERVICIOS_PREVISIONALES);
+      this.hojaMensualTramiteInsercionLaboral = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_INSERCION_LABORAL);
+      this.hojaMensualTramiteGestiones = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_GESTIONES);
+      this.hojaMensualTramiteBecas = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_BECAS);
+      this.hojaMensualTramiteOtro = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_OTROS);
     } else {
       this.initHojaMensualTramites();
     }
   }
 
+  private getHojaMensualTramiteFromListByIdTramite(list: HojaMensualTramites[], idTramite: number): HojaMensualTramites {
+    let hojaMensualTramite = list.find(t => t.tramite.id == idTramite);
+    if(hojaMensualTramite == null){
+      hojaMensualTramite = new HojaMensualTramites;
+      hojaMensualTramite.tramite = this.tramiteService.getTramiteById(this.tramites, idTramite);
+    }
+    return hojaMensualTramite;
+  }
+
+  private getHojaMensualAlimentacionFromListByIdAlimentacion(list: HojaMensualAlimentacion[], idAlimentacion: number): HojaMensualAlimentacion {
+    let hojMensualAlimentacion = list.find(a => a.tipoAlimentacion.id == idAlimentacion);
+    if(hojMensualAlimentacion == null){
+      hojMensualAlimentacion = new HojaMensualAlimentacion;
+      hojMensualAlimentacion.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, idAlimentacion);
+    }
+    return hojMensualAlimentacion;
+  }
+
   private buildHojaMensualAlimentacion(data: MensualSeccionC1Data) {
     if (data.hojaMensualAlimentacionList) {
-      this.hojaMensualAlimentacionAlmuerzo = data.hojaMensualAlimentacionList.find(a => a.tipoAlimentacion.id == AlimentacionService.ID_ALMUERZO);
-      this.hojaMensualAlimentacionDesayuno = data.hojaMensualAlimentacionList.find(a => a.tipoAlimentacion.id == AlimentacionService.ID_DESAYUNO);
-      this.hojaMensualAlimentacionMerienda = data.hojaMensualAlimentacionList.find(a => a.tipoAlimentacion.id == AlimentacionService.ID_MERIENDA);
-      this.hojaMensualAlimentacionCena = data.hojaMensualAlimentacionList.find(a => a.tipoAlimentacion.id == AlimentacionService.ID_CENA);
-      this.hojaMensualAlimentacionVianda = data.hojaMensualAlimentacionList.find(a => a.tipoAlimentacion.id == AlimentacionService.ID_VIANDAS);
-      this.hojaMensualAlimentacionAlmuerzo = data.hojaMensualAlimentacionList.find(a => a.tipoAlimentacion.id == AlimentacionService.ID_BOLSONES);
+      this.hojaMensualAlimentacionAlmuerzo = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_ALMUERZO);
+      this.hojaMensualAlimentacionDesayuno = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_DESAYUNO);
+      this.hojaMensualAlimentacionMerienda = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_MERIENDA);
+      this.hojaMensualAlimentacionCena = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_CENA);
+      this.hojaMensualAlimentacionViandas = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_VIANDAS);
+      this.hojaMensualAlimentacionBolsones = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_BOLSONES);
     } else {
       this.initHojaMensualAlimentacion();
     }
@@ -197,10 +217,22 @@ export class MensualSeccionC1Component implements OnInit {
   }
 
   private showErrorMsgs(appResponse: AppResponse){
-    this.errorSection = appResponse.code;
     this.loadingComponent.hideLoading();
+    NotifUtil.notifError("Ocurrieron errores de validación. Verifique los formularios");
+    this.errorSection = appResponse.code;
+    let formAlertId = "#formAlert" + this.errorSection;
     this.formMessages = appResponse.data;
-    $('#formAlert').show();
+    $(formAlertId).show();
+  }
+
+  private hideFormAlert() {
+    let formAlertId = "#formAlert" + this.errorSection;
+    $(formAlertId).hide();
+    this.errorSection = -1;
+  }
+
+  private cleanData(){
+    this.mensualSeccionC1Data = new MensualSeccionC1Data;
   }
 
 }

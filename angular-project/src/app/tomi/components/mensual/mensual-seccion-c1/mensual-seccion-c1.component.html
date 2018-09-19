@@ -2,8 +2,7 @@
 <div class="container-fluid h-100 margin-top">
   <app-header-caac-selection (headerChanged)="onChangeHeader($event)"></app-header-caac-selection>
   <div class="card card-body">
-
-    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 1" class="alert alert-danger formErrorMessages" role="alert">
+    <div (click)="hideFormAlert()" id="formAlert1" class="alert alert-danger formErrorMessages" role="alert">
       <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
           {{message}}
@@ -61,7 +60,7 @@
       </div>
     </div>
 
-    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 2" class="alert alert-danger formErrorMessages" role="alert">
+    <div (click)="hideFormAlert()" id="formAlert2" class="alert alert-danger formErrorMessages" role="alert">
       <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
           {{message}}
@@ -76,7 +75,7 @@
     </div>
 
 
-    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 3" class="alert alert-danger formErrorMessages" role="alert">
+    <div (click)="hideFormAlert()" id="formAlert3"  class="alert alert-danger formErrorMessages" role="alert">
       <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
           {{message}}
@@ -109,7 +108,7 @@
 
         <label for="almuerzo2-input" class="col-3 col-form-label text-right">Almuerzo</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="almuerzo2-input" [(ngModel)]="hojaMensualAlimentacionDesayuno.cantidadPersonas" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="almuerzo2-input" [(ngModel)]="hojaMensualAlimentacionAlmuerzo.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
 
@@ -121,7 +120,7 @@
 
         <label for="merienda-input" class="col-3 col-form-label text-right">Merienda</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="merienda2-input" [(ngModel)]="hojaMensualAlimentacionDesayuno.cantidadPersonas" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="merienda2-input" [(ngModel)]="hojaMensualAlimentacionMerienda.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
 
@@ -138,7 +137,7 @@
       </div>
     </div>
 
-    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 4" class="alert alert-danger formErrorMessages" role="alert">
+    <div (click)="hideFormAlert()" id="formAlert4"  class="alert alert-danger formErrorMessages" role="alert">
       <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
           {{message}}
@@ -152,7 +151,7 @@
       </div>
     </div>
 
-    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 5" class="alert alert-danger formErrorMessages" role="alert">
+    <div (click)="hideFormAlert()" id="formAlert5" class="alert alert-danger formErrorMessages" role="alert">
       <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
           {{message}}
@@ -176,7 +175,7 @@
       </div>
     </div>
 
-    <div id="formAlert" (click)="hideFormAlert()" *ngIf="errorSection == 6" class="alert alert-danger formErrorMessages" role="alert">
+    <div (click)="hideFormAlert()" id="formAlert6" class="alert alert-danger formErrorMessages" role="alert">
       <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
           {{message}}

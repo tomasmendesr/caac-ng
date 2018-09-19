@@ -13,4 +13,6 @@ public interface HojaMensualTramitesService {
     AppResponse validateInputs(List<HojaMensualTramitesDTO> hojaMensualTramitesList);
 
     void saveOrUpdate(HojaMensualTramitesDTO h) throws Exception;
+
+    List<HojaMensualTramitesDTO> findListByHojaId(Long idHoja);
 }

@@ -116,4 +116,8 @@ export class MensualSeccionBComponent implements OnInit {
     }, (error) => this.notifError(error));
   }
 
+  private hideFormAlert() {
+    $('#formAlert').hide();
+  }
+
 }

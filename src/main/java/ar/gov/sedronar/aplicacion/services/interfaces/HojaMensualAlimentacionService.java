@@ -15,4 +15,6 @@ public interface HojaMensualAlimentacionService {
     AppResponse validateInputsFueraDeSede(List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionList);
 
     void saveOrUpdate(HojaMensualAlimentacionDTO h) throws Exception;
+
+    List<HojaMensualAlimentacionDTO> findListByHojaId(Long idHoja);
 }

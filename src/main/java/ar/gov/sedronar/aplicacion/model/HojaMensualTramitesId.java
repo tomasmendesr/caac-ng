@@ -1,7 +1,6 @@
 package ar.gov.sedronar.aplicacion.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,6 +13,7 @@ public class HojaMensualTramitesId implements Serializable {
     private Integer idTramite;
 
     public HojaMensualTramitesId(){}
+
 
     public HojaMensualTramitesId(Long idHoja, Integer idTramite){
         this.idHoja = idHoja;
@@ -43,8 +43,8 @@ public class HojaMensualTramitesId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof HojaMensualTramitesId)) return false;
         HojaMensualTramitesId that = (HojaMensualTramitesId) o;
-        return Objects.equals(getIdHoja(), that.getIdHoja()) &&
-                Objects.equals(getIdTramite(), that.getIdTramite());
+        return Objects.equals(getIdHoja(), that.getIdTramite()) &&
+                Objects.equals(getIdHoja(), that.getIdHoja());
     }
 
     @Override

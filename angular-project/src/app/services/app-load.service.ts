@@ -1,5 +1,6 @@
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
+import MainConstants from "../constants/main-constants";
 
 @Injectable()
 export class AppLoadService {
@@ -9,6 +10,7 @@ export class AppLoadService {
   // This is the method you want to call at bootstrap
   // Important: It should return a Promise
   get_parametros_iniciales(): Promise<any> {
+    localStorage.removeItem(MainConstants.LOCAL_STORAGE_HEADER_SIGESE_FORMS);
     // let self = this;
     // const promise = this.http.get(UrlConstants.GET_PARAMETROS_INICIALES)
     //   .toPromise()

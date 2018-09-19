@@ -34,10 +34,16 @@ public class HojaMensualObservacionesServiceImpl implements HojaMensualObservaci
     public void saveOrUpdate(HojaMensualObservacionesDTO dto) throws Exception {
         if (dto == null) throw new Exception("Error creando la consulta");
         HojaMensualObservaciones model;
-//        if(dto.getId() != null) model = hojaMensualObservacionesDAO.findById(dto.getId(), HojaMensualObservaciones.class);
+        if(dto.getId() != null) model = hojaMensualObservacionesDAO.findById(HojaMensualObservaciones.class, dto.getId());
         dto.setFum(new Date());
         dto.setUum(usuarioService.getCurrentUsername());
         model = DozerHelper.map(dto, HojaMensualObservaciones.class);
         hojaMensualObservacionesDAO.merge(model);
+    }
+
+    @Override
+    public HojaMensualObservacionesDTO findByHojaId(Long idHoja) {
+        HojaMensualObservaciones hojaMensualObservaciones = hojaMensualObservacionesDAO.findById(HojaMensualObservaciones.class, idHoja);
+        return hojaMensualObservaciones != null ? DozerHelper.map(hojaMensualObservaciones, HojaMensualObservacionesDTO.class) : null;
     }
 }

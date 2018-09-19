@@ -2,9 +2,12 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 
 import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.HojaMensualTramitesDAO;
+import ar.gov.sedronar.aplicacion.dto.HojaMensualAlimentacionDTO;
 import ar.gov.sedronar.aplicacion.dto.HojaMensualTramitesDTO;
 import ar.gov.sedronar.aplicacion.model.HojaDatosIniciales;
+import ar.gov.sedronar.aplicacion.model.HojaMensualAlimentacion;
 import ar.gov.sedronar.aplicacion.model.HojaMensualTramites;
+import ar.gov.sedronar.aplicacion.model.HojaMensualTramitesId;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualTramitesService;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.util.app.AppResponse;
@@ -24,6 +27,14 @@ import java.util.List;
 @Transactional
 @DefaultServiceImpl
 public class HojaMensualTramitesServiceImpl implements HojaMensualTramitesService {
+    public static final Integer ID_DNI = 1;
+    public static final Integer ID_SUBSIDIOS = 2;
+    public static final Integer ID_BECAS = 3;
+    public static final Integer ID_CERTIFICADO_DISCAPACIDAD = 4;
+    public static final Integer ID_INSERCION_LABORAL = 5;
+    public static final Integer ID_SERVICIOS_PREVISIONALES = 6;
+    public static final Integer ID_GESTIONES = 7;
+    public static final Integer ID_OTROS = 8;
 
     @Inject
     @UserServiceProvider
@@ -52,6 +63,26 @@ public class HojaMensualTramitesServiceImpl implements HojaMensualTramitesServic
         dto.setFum(new Date());
         dto.setUum(usuarioService.getCurrentUsername());
         model = DozerHelper.map(dto, HojaMensualTramites.class);
+        model.setId(new HojaMensualTramitesId(dto.getHoja().getId(), dto.getTramite().getId()));
         hojaMensualTramitesDAO.merge(model);
+    }
+
+    @Override
+    public List<HojaMensualTramitesDTO> findListByHojaId(Long idHoja) {
+        List<HojaMensualTramitesDTO> list = new ArrayList<>();
+        findAndAddIfExists(idHoja, list, ID_DNI);
+        findAndAddIfExists(idHoja, list, ID_SERVICIOS_PREVISIONALES);
+        findAndAddIfExists(idHoja, list, ID_SUBSIDIOS);
+        findAndAddIfExists(idHoja, list, ID_CERTIFICADO_DISCAPACIDAD);
+        findAndAddIfExists(idHoja, list, ID_BECAS);
+        findAndAddIfExists(idHoja, list, ID_INSERCION_LABORAL);
+        findAndAddIfExists(idHoja, list, ID_GESTIONES);
+        findAndAddIfExists(idHoja, list, ID_OTROS);
+        return list;
+    }
+
+    private void findAndAddIfExists(Long idHoja, List<HojaMensualTramitesDTO> list, Integer idTramite) {
+        HojaMensualTramites hojaMensualTramites = hojaMensualTramitesDAO.findById(idHoja, idTramite);
+        if(hojaMensualTramites != null) list.add(DozerHelper.map(hojaMensualTramites, HojaMensualTramitesDTO.class));
     }
 }

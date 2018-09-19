@@ -3,8 +3,7 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.HojaMensualAlimentacionDAO;
 import ar.gov.sedronar.aplicacion.dto.HojaMensualAlimentacionDTO;
-import ar.gov.sedronar.aplicacion.model.HojaMensualAlimentacion;
-import ar.gov.sedronar.aplicacion.model.HojaMensualTramites;
+import ar.gov.sedronar.aplicacion.model.*;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualAlimentacionService;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.util.app.AppResponse;
@@ -26,7 +25,16 @@ import java.util.stream.Collectors;
 @DefaultServiceImpl
 public class HojaMensualAlimentacionServiceImpl implements HojaMensualAlimentacionService {
     private static final String EN_SEDE = "En Sede";
-    private static final String FUERA_DE_SEDE = "Fera de Sede";
+    private static final String FUERA_DE_SEDE = "Fuera de Sede";
+
+    private static final Integer ID_DESAYUNO = 1;
+    private static final Integer ID_ALMUERZO = 2;
+    private static final Integer ID_MERIENDA = 3;
+    private static final Integer ID_CENA = 4;
+    private static final Integer ID_OTRO_EN_SEDE = 5;
+    private static final Integer ID_VIANDAS = 6;
+    private static final Integer ID_BOLSONES = 7;
+    private static final Integer ID_OTRO_FUERA_DE_SEDE = 8;
 
     @Inject
     @HibernateDAO
@@ -71,11 +79,28 @@ public class HojaMensualAlimentacionServiceImpl implements HojaMensualAlimentaci
         dto.setFum(new Date());
         dto.setUum(usuarioService.getCurrentUsername());
         model = DozerHelper.map(dto, HojaMensualAlimentacion.class);
+        model.setId(new HojaMensualAlimentacionId(dto.getHoja().getId(), dto.getTipoAlimentacion().getId()));
         hojaMensualAlimentacionDAO.merge(model);
     }
 
-    private List<HojaMensualAlimentacionDTO> filterListByClasificacion(List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionList, String enSedeOFueraDeSede) {
-        return hojaMensualAlimentacionList.stream().filter(h -> h.getTipoAlimentacion().getClasificacion().equals(enSedeOFueraDeSede)).collect(Collectors.toList());
+    @Override
+    public List<HojaMensualAlimentacionDTO> findListByHojaId(Long idHoja) {
+        List<HojaMensualAlimentacionDTO> list = new ArrayList<>();
+        findAndAddIfExists(idHoja, list, ID_ALMUERZO);
+        findAndAddIfExists(idHoja, list, ID_CENA);
+        findAndAddIfExists(idHoja, list, ID_DESAYUNO);
+        findAndAddIfExists(idHoja, list, ID_MERIENDA);
+        findAndAddIfExists(idHoja, list, ID_VIANDAS);
+        findAndAddIfExists(idHoja, list, ID_BOLSONES);
+        return list;
+    }
 
+    private void findAndAddIfExists(Long idHoja, List<HojaMensualAlimentacionDTO> list, Integer idAlimentacion) {
+        HojaMensualAlimentacion hojaMensualAlimentacion = hojaMensualAlimentacionDAO.findById(idHoja, idAlimentacion);
+        if(hojaMensualAlimentacion != null) list.add(DozerHelper.map(hojaMensualAlimentacion, HojaMensualAlimentacionDTO.class));
+    }
+
+    private List<HojaMensualAlimentacionDTO> filterListByClasificacion(List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionList, String enSedeOFueraDeSede) {
+        return hojaMensualAlimentacionList.stream().filter(h -> enSedeOFueraDeSede.equals(h.getTipoAlimentacion().getClasificacion())).collect(Collectors.toList());
     }
 }

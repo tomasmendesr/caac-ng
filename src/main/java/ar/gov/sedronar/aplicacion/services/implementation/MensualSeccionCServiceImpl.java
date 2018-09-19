@@ -63,7 +63,9 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
     @Override
     public MensualSeccionC1Data getDataForSeccionC1ByHojaId(Long idHoja) {
         MensualSeccionC1Data data = new MensualSeccionC1Data();
-
+        data.setHojaMensualObservaciones(hojaMensualObservacionesService.findByHojaId(idHoja));
+        data.setHojaMensualAlimentacionList(hojaMensualAlimentacionService.findListByHojaId(idHoja));
+        data.setHojaMensualTramitesList(hojaMensualTramitesService.findListByHojaId(idHoja));
         return data;
     }
 }
