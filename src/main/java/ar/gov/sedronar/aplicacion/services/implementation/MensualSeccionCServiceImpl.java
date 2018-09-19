@@ -1,5 +1,7 @@
 package ar.gov.sedronar.aplicacion.services.implementation;
 
+import ar.gov.sedronar.aplicacion.dto.HojaMensualAlimentacionDTO;
+import ar.gov.sedronar.aplicacion.dto.HojaMensualTramitesDTO;
 import ar.gov.sedronar.aplicacion.dto.MensualSeccionC1Data;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualAlimentacionService;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualObservacionesService;
@@ -27,7 +29,7 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
     @Inject
     @DefaultServiceImpl
-    private HojaMensualObservacionesService observacionesService;
+    private HojaMensualObservacionesService hojaMensualObservacionesService;
 
     @Inject
     @DefaultServiceImpl
@@ -38,7 +40,23 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
     private HojaMensualTramitesService hojaMensualTramitesService;
 
     @Override
-    public AppResponse saveOrUpdateSeccionC1(MensualSeccionC1Data data) {
+    /* Si falló una validación retorna un app response con error code y en el atributo data
+    * contiene otro app response con el code que identifica a la sección del formulario que falló y la lista de errores de validación
+    *
+     */
+    public AppResponse saveOrUpdateSeccionC1(MensualSeccionC1Data data) throws Exception {
+        AppResponse validationTramites = hojaMensualTramitesService.validateInputs(data.getHojaMensualTramitesList());
+        if(validationTramites.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_C1, validationTramites.getData()));
+
+        AppResponse validationAlimentacioEnSede = hojaMensualAlimentacionService.validateInputsEnSede(data.getHojaMensualAlimentacionList());
+        if(validationAlimentacioEnSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_C1, validationAlimentacioEnSede.getData()));
+
+        AppResponse validationAlimentacioFueraDeSede = hojaMensualAlimentacionService.validateInputsFueraDeSede(data.getHojaMensualAlimentacionList());
+        if(validationAlimentacioFueraDeSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_C1, validationAlimentacioFueraDeSede.getData()));
+
+        for (HojaMensualTramitesDTO hojaMensualTramitesDTO : data.getHojaMensualTramitesList()) hojaMensualTramitesService.saveOrUpdate(hojaMensualTramitesDTO);
+        for (HojaMensualAlimentacionDTO hojaMensualAlimentacionDTO : data.getHojaMensualAlimentacionList()) hojaMensualAlimentacionService.saveOrUpdate(hojaMensualAlimentacionDTO);
+        hojaMensualObservacionesService.saveOrUpdate(data.getHojaMensualObservaciones());
         return new AppResponse();
     }
 

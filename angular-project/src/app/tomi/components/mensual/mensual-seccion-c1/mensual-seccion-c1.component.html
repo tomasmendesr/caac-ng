@@ -92,48 +92,48 @@
       <div class="form-group row">
         <label for="desayuno-input" class="col-3 col-form-label text-right">Desayuno</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="desayuno-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="desayuno-input" [(ngModel)]="hojaMensualAlimentacionDesayuno.cantidadPrestaciones" [readonly]="readonlyControl">
         </div>
 
         <label for="desayuno2-input" class="col-3 col-form-label text-right">Desayuno</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="desayuno2-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="desayuno2-input" [(ngModel)]="hojaMensualAlimentacionDesayuno.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="almuerzo-input" class="col-3 col-form-label text-right">Almuerzo</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="almuerzo-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="almuerzo-input" [(ngModel)]="hojaMensualAlimentacionAlmuerzo.cantidadPrestaciones" [readonly]="readonlyControl">
         </div>
 
         <label for="almuerzo2-input" class="col-3 col-form-label text-right">Almuerzo</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="almuerzo2-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="almuerzo2-input" [(ngModel)]="hojaMensualAlimentacionDesayuno.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="merienda-input" class="col-3 col-form-label text-right">Merienda</label>
         <div class="col-2">
-          <input class="form-control" type="number"  id="merienda-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number"  id="merienda-input" [(ngModel)]="hojaMensualAlimentacionMerienda.cantidadPrestaciones" [readonly]="readonlyControl">
         </div>
 
         <label for="merienda-input" class="col-3 col-form-label text-right">Merienda</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="merienda-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="merienda2-input" [(ngModel)]="hojaMensualAlimentacionDesayuno.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="cena-input" class="col-3 col-form-label text-right">Cena</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="cena-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="cena-input" [(ngModel)]="hojaMensualAlimentacionCena.cantidadPrestaciones" [readonly]="readonlyControl">
         </div>
 
         <label for="cena2-input" class="col-3 col-form-label text-right">Cena</label>
         <div class="col-2">
-          <input class="form-control" type="number" id="cena2-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="cena2-input" [(ngModel)]="hojaMensualAlimentacionCena.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
     </div>
@@ -164,14 +164,14 @@
       <div class="form-group row">
         <label for="viandas-input" class="col-6 col-form-label text-right">Viandas (Ollas populares, acompañamiento en calle, etc.)</label>
         <div class="col-4">
-          <input class="form-control" type="number" id="viandas-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number"[(ngModel)]="hojaMensualAlimentacionViandas.cantidadPrestaciones"  id="viandas-input" [readonly]="readonlyControl">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="bolsones-input" class="col-6 col-form-label text-right">Bolsones</label>
         <div class="col-4">
-          <input class="form-control" type="number" id="bolsones-input" [readonly]="readonlyControl">
+          <input class="form-control" type="number" id="bolsones-input" [(ngModel)]="hojaMensualAlimentacionBolsones.cantidadPrestaciones" [readonly]="readonlyControl">
         </div>
       </div>
     </div>

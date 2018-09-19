@@ -37,6 +37,7 @@ export class MensualSeccionAComponent implements OnInit {
   private seDetectaronCambios = false;
   private headerSigeseForms: HeaderSigeseForms;
   private codigoDeLaCasa;
+  private enableButtons = false;
 
   constructor(private picsService: PicsService,private hojaDatosInicialesService: HojaDatosInicialesService, private router: Router) { }
 
@@ -84,6 +85,7 @@ export class MensualSeccionAComponent implements OnInit {
     } else if(headerEvent.evento == HeaderEvent.HOJA_ID){
       this.hoja.id = headerEvent.value.hojaId;
     }
+    this.enableButtons = headerEvent.value.anioCarga && headerEvent.value.mesCarga != null && headerEvent.value.casa != null;
     this.headerSigeseForms = headerEvent.value;
     this.readonlyControl = true;
   }

@@ -21,7 +21,7 @@ public interface MensualSeccionCService {
 
     @POST
     @Path("/saveOrUpdateSeccionC1")
-    AppResponse saveOrUpdateSeccionC1(MensualSeccionC1Data data);
+    AppResponse saveOrUpdateSeccionC1(MensualSeccionC1Data data) throws Exception;
 
     @POST
     @Path("/getDataForSeccionC1ByHojaId")

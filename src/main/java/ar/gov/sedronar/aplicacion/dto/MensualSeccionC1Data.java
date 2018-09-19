@@ -9,23 +9,23 @@ import java.util.List;
  * Created by TMR on 18/09/2018.
  */
 public class MensualSeccionC1Data {
-    private List<HojaMensualTramites> hojaMensualTramitesList;
-    private List<HojaMensualAlimentacion> hojaMensualAlimentacionList;
+    private List<HojaMensualTramitesDTO> hojaMensualTramitesList;
+    private List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionList;
     private HojaMensualObservacionesDTO hojaMensualObservaciones;
 
-    public List<HojaMensualTramites> getHojaMensualTramitesList() {
+    public List<HojaMensualTramitesDTO> getHojaMensualTramitesList() {
         return hojaMensualTramitesList;
     }
 
-    public void setHojaMensualTramitesList(List<HojaMensualTramites> hojaMensualTramitesList) {
+    public void setHojaMensualTramitesList(List<HojaMensualTramitesDTO> hojaMensualTramitesList) {
         this.hojaMensualTramitesList = hojaMensualTramitesList;
     }
 
-    public List<HojaMensualAlimentacion> getHojaMensualAlimentacionList() {
+    public List<HojaMensualAlimentacionDTO> getHojaMensualAlimentacionList() {
         return hojaMensualAlimentacionList;
     }
 
-    public void setHojaMensualAlimentacionList(List<HojaMensualAlimentacion> hojaMensualAlimentacionList) {
+    public void setHojaMensualAlimentacionList(List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionList) {
         this.hojaMensualAlimentacionList = hojaMensualAlimentacionList;
     }
 
