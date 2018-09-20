@@ -6939,15 +6939,22 @@ html.-rounded,
         border-color: hsl(87.80000000000001, 50.2%, 47.5%);
         border-color: var(--colorPrimary-dark); }
   .Button.-primary.-outline {
-      color: rgb(139, 195, 74);
+      color: rgb(210, 234, 182);
       color: var(--colorPrimary);
-      border-color: rgb(139, 195, 74);
-      border-color: var(--colorPrimary); }
+      border-color: rgb(203, 218, 186);
+      border-color: var(--colorPrimary);
+       }
   .Button.-primary.-outline:hover {
         color: hsl(87.80000000000001, 50.2%, 47.5%);
         color: var(--colorPrimary-dark);
         border-color: hsl(87.80000000000001, 50.2%, 47.5%);
         border-color: var(--colorPrimary-dark); }
+  
+  .Button.disabled, .Button:disabled {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
   .Button.-secondary {
     color: rgb(83, 109, 254);
     color: var(--colorSecondary); }
@@ -12157,7 +12164,7 @@ pre {
     margin-bottom: 20px; }
   .Auth .form-control {
     border: none;
-    border-radius: 0;
+   /* border-radius: 0; */
     padding-left: 0;
     font-style: italic;
     font-weight: 200;
@@ -13057,7 +13064,7 @@ pre {
         padding: 0 20px;
         color: rgb(139, 195, 74);
         color: var(--colorPrimary);
-        height: 40px; }
+        height: auto; }
         .-sidebar-compact-tablet .SidebarNav > .NavGroup > .Nav .NavLink:hover {
           background-color: rgba(0, 0, 0, 0.03); }
     .-sidebar-compact-tablet .SidebarNav > .NavGroup.-open:before {
@@ -13666,8 +13673,9 @@ pre {
 .form-control {
   border: 1 px solid black;
   -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-  border-radius: 0; }
+  box-shadow: none !important;
+  /*border-radius: 0; */
+ }
 
 .FormGroup {
   margin-bottom: 15px; }

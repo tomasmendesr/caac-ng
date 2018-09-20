@@ -2,7 +2,7 @@
 <div class="container-fluid h-100 margin-top">
   <app-header-caac-selection (headerChanged)="onChangeHeader($event)"></app-header-caac-selection>
   <div class="card card-body">
-    <h3>Formulario de carga para información mensual</h3>
+    <h3>Formulario de carga para información mensual</h3><br>
     <div id="formAlert" (click)="hideFormAlert()" class="alert alert-danger formErrorMessages" role="alert">
       <ul style="margin-bottom: 0">
         <li *ngFor="let message of formMessages">
@@ -21,8 +21,8 @@
           <input class="form-control" type="number" id="example-search-input" [ngModel]="hoja.anio" [readonly]="readonlyControl">
         </div>
         <div class="col-auto"></div>
-    </div>
-    <div class="form-group row">
+      </div>
+      <div class="form-group row">
         <label for="example-email-input" class="col-2 col-form-label">Código de la CAAC</label>
         <div class="col-10">
           <input class="form-control" type="number" id="example-email-input" [ngModel]="codigoDeLaCasa"  [readonly]="readonlyControl">
@@ -46,14 +46,13 @@
             </mat-autocomplete>
           </mat-form-field>
         </div>
-    </div>
+      </div>
     <div class="text-right" style="width:100%">
-      <button class="btn btn-sm btn-primary" (click)="onClickGuardar()" [disabled]="!enableButtons"><i class="far fa-save"></i><span> Guardar</span></button>
-      <button class="btn btn-sm btn-default" (click)="onClickSiguiente()" [disabled]="!enableButtons">Siguiente</button>
-    </div>
+      <button class="Button -sm -raised -primary -rounded" (click)="onClickGuardar()" [disabled]="!enableButtons"><i class="far fa-save"></i><span> Guardar</span></button>
+      <button class="Button -sm -default -outline -rounded" (click)="onClickSiguiente()" [disabled]="!enableButtons">Siguiente</button>
+      </div>
   </div>
 </div>
-
 
 <!-- CONFIRM DIALOG GUARDAR -->
 <div id ="confirmDialogGuardar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -87,7 +86,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel2">Confirmar</h5>
+        <h4 class="modal-title" id="exampleModalLabel2">Confirmar</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -105,3 +104,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
