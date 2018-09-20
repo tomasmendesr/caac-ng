@@ -12,4 +12,5 @@ public interface CasaDAO extends AbstractDAO<Casa>{
 
     List<Casa> findAllForGeneral(Integer start, Integer length, Map<String, Boolean> sortOrder, GeneralFilter filter);
     Integer count(GeneralFilter filter);
+    List<Casa> findAllForAdministrativo(Integer start, Integer length, Map<String, Boolean> columnOrders, GeneralFilter filter);
 }

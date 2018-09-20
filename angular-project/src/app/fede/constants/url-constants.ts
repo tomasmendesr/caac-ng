@@ -9,6 +9,7 @@ export class UrlConstantsCaac {
   public static readonly REPORTES_URL = UrlConstantsCaac.CAAC + '/reportes';
 
   public static readonly FIND_ALL_CASAS_GENERAL = '/services/casa/findAllGeneral';
+  public static readonly FIND_ALL_CASAS_ADMINISTRATIVO = '/services/casa/findAllAdministrativo';
 
 
 }

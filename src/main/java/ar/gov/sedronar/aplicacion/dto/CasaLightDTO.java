@@ -1,7 +1,10 @@
 package ar.gov.sedronar.aplicacion.dto;
 
+import ar.gov.sedronar.aplicacion.model.Categoria;
 import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.ProvinciaLightDTO;
+
+import java.util.Date;
 
 /**
  * Created by TMR on 11/09/2018.
@@ -11,6 +14,8 @@ public class CasaLightDTO {
     private String nomcaac, perjuridica, cuit, dir, nomrepre, tel, mail, obser;
     private ProvinciaLightDTO provincia;
     private LocalidadLightDTO localidad;
+    private Categoria cat, ncat;
+    private Date fechaini, fechacon;
 
     public Integer getId() {
         return id;
@@ -98,5 +103,37 @@ public class CasaLightDTO {
 
     public void setLocalidad(LocalidadLightDTO localidad) {
         this.localidad = localidad;
+    }
+
+    public Categoria getCat() {
+        return cat;
+    }
+
+    public void setCat(Categoria cat) {
+        this.cat = cat;
+    }
+
+    public Categoria getNcat() {
+        return ncat;
+    }
+
+    public void setNcat(Categoria ncat) {
+        this.ncat = ncat;
+    }
+
+    public Date getFechacon() {
+        return fechacon;
+    }
+
+    public void setFechacon(Date fechacon) {
+        this.fechacon = fechacon;
+    }
+
+    public Date getFechaini() {
+        return fechaini;
+    }
+
+    public void setFechaini(Date fechaini) {
+        this.fechaini = fechaini;
     }
 }

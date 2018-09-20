@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {
   COLUMN_CUIT, COLUMN_DIRECCION, COLUMN_MAIL, COLUMN_NOMBRE_CAAC, COLUMN_NOMBRE_REPRESENTANTE, COLUMN_OBSERVACIONES,
   COLUMN_PERSONERIA_JURIDICA, COLUMN_PROVINCIA, COLUMN_TELEFONO
-} from "./general-view-constants";
+} from "../../constants/commons-constants";
 import {EventBusService} from "../../../services/event-bus.service";
 import GeneralFilter from "../../model/filters/general-filter";
 import {DataTableService} from "../../../services/data-table.service";
@@ -12,6 +12,7 @@ import {PicsService} from "../../../tomi/services/pics.service";
 import {Localidad} from "../../../model/localidad";
 import {Departamento} from "../../../model/departamento";
 import {Provincia} from "../../../model/provincia";
+import {GeneralViewService} from "../../services/general-view.service";
 
 declare var $: any;
 
@@ -33,7 +34,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   departamento: Departamento[];
   localidad: Localidad[];
 
-  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService) { }
+  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService, private generalService: GeneralViewService) { }
 
   ngOnInit() {
   }
@@ -84,6 +85,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   onClickGuardar() {
     alert(JSON.stringify(this.caacParaPopup));
+    this.generalService.saveOrUpdate(this.caacParaPopup).subscribe(success => { if(!success) console.log('error') }); //todo ver como se implementa esta excepcion
   }
 
   onAniadirClick() {

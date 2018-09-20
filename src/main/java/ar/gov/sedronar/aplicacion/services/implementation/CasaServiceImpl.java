@@ -4,6 +4,7 @@ import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.CasaDAO;
 import ar.gov.sedronar.aplicacion.dto.CasaDTO;
 import ar.gov.sedronar.aplicacion.dto.CasaLightDTO;
+import ar.gov.sedronar.aplicacion.filters.AdministrativoTableFilter;
 import ar.gov.sedronar.aplicacion.filters.GeneralTableFilter;
 import ar.gov.sedronar.aplicacion.model.Casa;
 import ar.gov.sedronar.aplicacion.services.interfaces.CasaService;
@@ -59,5 +60,20 @@ public class CasaServiceImpl implements CasaService {
         if (casaDTO == null) throw new Exception("Error creando la consulta");
         Casa casa = DozerHelper.map(casaDTO, Casa.class);
         casaDAO.merge(casa);
+    }
+
+    @Override
+    public DataTableObjectResponse findAllForAdministrativo(AdministrativoTableFilter administrativoTableFilter) {
+        Collection<CasaLightDTO> items = DozerHelper.mapList(
+                casaDAO.findAllForAdministrativo(
+                        administrativoTableFilter.getStart(),
+                        administrativoTableFilter.getLength(),
+                        QueryUtil.getColumnOrders(administrativoTableFilter),
+                        administrativoTableFilter.getFilter()
+                ),
+                CasaLightDTO.class
+        );
+        Integer count = casaDAO.count(administrativoTableFilter.getFilter());
+        return new DataTableObjectResponse(items, administrativoTableFilter.getDraw(), count , count);
     }
 }

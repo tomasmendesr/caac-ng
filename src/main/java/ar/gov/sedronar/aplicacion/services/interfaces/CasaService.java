@@ -2,6 +2,7 @@ package ar.gov.sedronar.aplicacion.services.interfaces;
 
 import ar.gov.sedronar.aplicacion.dto.CasaDTO;
 import ar.gov.sedronar.aplicacion.dto.CasaLightDTO;
+import ar.gov.sedronar.aplicacion.filters.AdministrativoTableFilter;
 import ar.gov.sedronar.aplicacion.filters.GeneralTableFilter;
 import ar.gov.sedronar.util.dataTable.DataTableObjectResponse;
 
@@ -33,4 +34,8 @@ public interface CasaService {
     DataTableObjectResponse findAllForGeneral(GeneralTableFilter generalTableFilter);
 
     void saveOrUpdate(CasaDTO casaDTO) throws Exception;
+
+    @POST
+    @Path("/findAllAdministrativo")
+    DataTableObjectResponse findAllForAdministrativo(AdministrativoTableFilter administrativoTableFilter);
 }

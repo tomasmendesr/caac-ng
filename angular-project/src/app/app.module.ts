@@ -148,8 +148,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     HojaMensualAsistidosService,
     TramiteService,
     AlimentacionService,
-    MensualSeccionCService
-
+    MensualSeccionCService,
+    GeneralViewService
   ],
   bootstrap: [AppComponent]
 })
