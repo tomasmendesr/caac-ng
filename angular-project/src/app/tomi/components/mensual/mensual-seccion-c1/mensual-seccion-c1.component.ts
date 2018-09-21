@@ -6,7 +6,7 @@ import {HojaMensualTramites} from "../../../../model/hoja-mensual-tramites";
 import {HojaMensualObservaciones} from "../../../../model/hoja-mensual-observaciones";
 import {TramiteService} from "../../../services/tramite.service";
 import {Tramite} from "../../../../model/tramite";
-import {MensualSeccionC1Data} from "../../../../model/mensual-seccion-c1-data";
+import {MensualSeccionC1Data} from "../../../model/mensual-seccion-c1-data";
 import {AlimentacionService} from "../../../services/alimentacion.service";
 import {MensualSeccionCService} from "../../../services/mensual-seccion-c.service";
 import {AppResponse} from "../../../../model/app-response";

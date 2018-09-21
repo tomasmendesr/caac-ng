@@ -5,6 +5,10 @@ import {HeaderEvent} from "../../../../model/header-event";
 import {AppResponse} from "../../../../model/app-response";
 import {UrlConstants} from "../../../services/UrlConstants";
 import {Router} from "@angular/router";
+import {MensualSeccionC2Data} from "../../../model/mensual-seccion-c2-data";
+import {HojaMensualActividad} from "../../../../model/hoja-mensual-actividad";
+import {HojaMensualAcompaniamiento} from "../../../../model/hoja-mensual-acompaniamiento";
+import {HojaMensualObservaciones} from "../../../../model/hoja-mensual-observaciones";
 declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-c2',
@@ -17,6 +21,16 @@ export class MensualSeccionC2Component implements OnInit {
   private errorSection: number = -1;
   private hojaId: number;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
+
+  private mensualSeccionC2Data: MensualSeccionC2Data = new MensualSeccionC2Data;
+  private hojaMensualActividad: HojaMensualActividad = new HojaMensualActividad;
+  private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
+
+  private hojaMensualAcompaniamientoInternacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+  private hojaMensualAcompaniamientoConsultorios: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+  private hojaMensualAcompaniamientoEmergencias: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+  private hojaMensualAcompaniamientoDesintoxicacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+
 
   constructor(private router: Router) { }
 

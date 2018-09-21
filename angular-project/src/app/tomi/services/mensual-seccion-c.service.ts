@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {UrlConstants} from "./UrlConstants";
 import {AppResponse} from "../../model/app-response";
-import {MensualSeccionC1Data} from "../../model/mensual-seccion-c1-data";
+import {MensualSeccionC1Data} from "../model/mensual-seccion-c1-data";
 
 @Injectable()
 export class MensualSeccionCService {
