@@ -111,7 +111,10 @@ export class HeaderCaacSelectionComponent implements OnInit {
       this.hojaService.findByPeriodoAndCasa(this.headerSigeseForms).subscribe(data =>{
         this.headerSigeseForms.hojaId = data;
         this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
-        if(data) this.deshabilitarEdicionCarga(); // si econtró una hoja deshabilita la edicion
+        if(data){
+          this.deshabilitarEdicionCarga(); // si econtró una hoja deshabilita la edicion
+          localStorage.setItem(MainConstants.LOCAL_STORAGE_HEADER_SIGESE_FORMS, JSON.stringify(this.headerSigeseForms));
+        }
         else NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
       });
     }else{

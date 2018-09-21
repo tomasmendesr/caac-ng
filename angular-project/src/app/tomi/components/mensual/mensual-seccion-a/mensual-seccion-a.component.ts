@@ -171,9 +171,6 @@ export class MensualSeccionAComponent implements OnInit {
 }
 
   private siguiente(){
-    try {
-      if(this.headerSigeseForms != null) localStorage.setItem(MainConstants.LOCAL_STORAGE_HEADER_SIGESE_FORMS, JSON.stringify(this.headerSigeseForms));
-    }catch(e){}
     this.router.navigateByUrl(UrlConstants.MENSUAL_SECCION_B);
   }
 

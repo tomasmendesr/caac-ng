@@ -1,3 +1,228 @@
-<p>
-  mensual-seccion-c3 works!
-</p>
+<app-loading></app-loading>
+<div class="container-fluid h-100 margin-top">
+  <app-header-caac-selection (headerChanged)="onChangeHeader($event)"></app-header-caac-selection>
+  <div class="card card-body">
+    <div (click)="hideFormAlert()" id="formAlert1" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h5>¿Cuántas GESTIONES EN ESTABLECIMIENTOS DE SALUD se realizaron en el mes y a cuántas personas se alcanzó?</h5>
+      <div class="form-group row margin-top">
+        <label class="col-6 text-center"><b>Cantidad de gestiones en el mes</b></label>
+        <label class="col-6 text-center"><b>Personas asistidas</b></label>
+      </div>
+      <div class="form-group row">
+        <label for="gestionTurnos-input" class="col-3 col-form-label text-right">Visitas domiciliarias</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="gestionTurnos-input" [(ngModel)]="hojaMensualActividad.cantidadVisitasDomiciliarias" [readonly]="readonlyControl">
+        </div>
+
+        <label for="gestionTurnos2-input" class="col-3 col-form-label text-right">Visitas domiciliarias</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="gestionTurnos2-input" [(ngModel)]="hojaMensualActividad.personasVisitasDomiciliarias" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="orientacion-input" class="col-3 col-form-label text-right">Orientación a familiares</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="orientacion-input" [(ngModel)]="hojaMensualActividad.cantidadOrientaciones" [readonly]="readonlyControl">
+        </div>
+
+        <label for="orientacion-input" class="col-3 col-form-label text-right">Orientación a familiares</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="orientacion2-input" [(ngModel)]="hojaMensualActividad.personasOrientaciones" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="gruposFam-input" class="col-3 col-form-label text-right">Grupos de familiares</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="gruposFam-input" [(ngModel)]="hojaMensualActividad.cantidadGrupos" [readonly]="readonlyControl">
+        </div>
+
+        <label for="gruposFam-input" class="col-3 col-form-label text-right">Grupos de familiares</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="gruposFam2-input" [(ngModel)]="hojaMensualActividad.personasGrupos" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="entrevistas-input" class="col-3 col-form-label text-right">Entrevistas a vinculares</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="entrevistas-input" [(ngModel)]="hojaMensualActividad.cantidadEntrevistas" [readonly]="readonlyControl">
+        </div>
+
+        <label for="entrevistas2-input" class="col-3 col-form-label text-right">Entrevistas a vinculares</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="entrevistas2-input" [(ngModel)]="hojaMensualActividad.personasEntrevistas" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+    </div>
+
+    <div (click)="hideFormAlert()" id="formAlert2" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h5>Observaciones sobre ACTIVIDADES CON FAMILIARES</h5>
+      <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" [(ngModel)]="hojaMensualObservaciones.actividadesFamiliares" [readonly]="readonlyControl"></textarea>
+      </div>
+    </div>
+
+
+    <div (click)="hideFormAlert()" id="formAlert3"  class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h5>Especifique cantidad de personas alcanzadas por INTERVENCIONES EN CALLE en el mes</h5>
+      <div class="from-group row margin-top">
+        <label class="col-12 text-center"><b>Personas alcanzadas en el mes (cantidad aproximada)</b></label>
+      </div>
+      <div class="form-group row">
+        <label for="orie-input" class="col-3 col-form-label text-right">Orientación en calle</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="orie-input" [(ngModel)]="hojaMensualActividad.cantidadOrientacionesCalle" [readonly]="readonlyControl">
+        </div>
+
+        <label for="acomp-input" class="col-3 col-form-label text-right">Acompañamiento en calle</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="acomp-input" [(ngModel)]="hojaMensualActividad.cantidadAcompaniamientoCalle" [readonly]="readonlyControl">
+        </div>
+      </div>
+    </div>
+
+    <div (click)="hideFormAlert()" id="formAlert4"  class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h5>INTERVENCIÓN EN CALLE. Especificar días, actividades, articulaciones con otras instituciones y zonas o barrios en que se trabajó</h5>
+      <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea2" rows="2" [(ngModel)]="hojaMensualObservaciones.intervencionCalleObservacion" [readonly]="readonlyControl"></textarea>
+      </div>
+    </div>
+
+    <div (click)="hideFormAlert()" id="formAlert5" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h5>¿Cuántos ACOMPAÑAMIENTOS Y VISITAS A ESTABLECIMIENTOS DE SALUD se realizaron en el mes y a cuántas personas alcanzó?</h5>
+      <div class="from-group row margin-top">
+        <label class="col-6 text-center"><b>Acompañamientos mensuales</b></label>
+        <label class="col-6 text-center"><b>Personas (cantidad aproximada)</b></label>
+      </div>
+      <div class="form-group row">
+        <label for="enInternacion-input" class="col-3 col-form-label text-right">En internación</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="enInternacion-input" [(ngModel)]="hojaMensualAcompaniamientoInternacion.cantidadGestiones" [readonly]="readonlyControl">
+        </div>
+
+        <label for="enInternacion2-input" class="col-3 col-form-label text-right">En internación</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="enInternacion2-input" [(ngModel)]="hojaMensualAcompaniamientoInternacion.cantidadPersonas" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="consultorios-input" class="col-3 col-form-label text-right">En consultorios externos</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="consultorios-input" [(ngModel)]="hojaMensualAcompaniamientoConsultorios.cantidadGestiones" [readonly]="readonlyControl">
+        </div>
+
+        <label for="consultorios2-input" class="col-3 col-form-label text-right">En consultorios externos</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="consultorios2-input" [(ngModel)]="hojaMensualAcompaniamientoConsultorios.cantidadPersonas" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="emergencias-input" class="col-3 col-form-label text-right">En emergencias</label>
+        <div class="col-2">
+          <input class="form-control" type="number"  id="emergencias-input" [(ngModel)]="hojaMensualAcompaniamientoEmergencias.cantidadGestiones" [readonly]="readonlyControl">
+        </div>
+
+        <label for="emergencias2-input" class="col-3 col-form-label text-right">En emergencias</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="emergencias2-input" [(ngModel)]="hojaMensualAcompaniamientoEmergencias.cantidadPersonas" [readonly]="readonlyControl">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="desint-input" class="col-3 col-form-label text-right">Desintoxicación e internación por consumo de sustancias</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="desint-input" [(ngModel)]="hojaMensualAcompaniamientoDesintoxicacion.cantidadGestiones" [readonly]="readonlyControl">
+        </div>
+
+        <label for="desint2-input" class="col-3 col-form-label text-right">Desintoxicación e internación por consumo de sustancias</label>
+        <div class="col-2">
+          <input class="form-control" type="number" id="desint2-input" [(ngModel)]="hojaMensualAcompaniamientoDesintoxicacion.cantidadPersonas" [readonly]="readonlyControl">
+        </div>
+      </div>
+    </div>
+
+    <div (click)="hideFormAlert()" id="formAlert6" class="alert alert-danger formErrorMessages" role="alert">
+      <ul style="margin-bottom: 0">
+        <li *ngFor="let message of formMessages">
+          {{message}}
+        </li>
+      </ul>
+    </div>
+    <div class="card card-body marginBottom">
+      <h5>ACOMPAÑAMIENTO Y VISITAS A ESTABLECIMIENTOS DE SALUD. Especifique nombre de las instituciones donde se realizaron los acompañamientos o visitas</h5>
+      <div class="form-group">
+        <textarea class="form-control" id="exampleFormControlTextarea3" rows="2" [(ngModel)]="hojaMensualObservaciones.acompaniamientoVisitasEstablecimientoSalud" [readonly]="readonlyControl"></textarea>
+      </div>
+    </div>
+
+    <div class="text-right" style="width:100%">
+      <button class="btn btn-sm btn-primary" (click)="onClickGuardar()" [disabled]="readonlyControl"><i class="far fa-save"></i><span> Guardar</span></button>
+      <button class="btn btn-sm btn-default" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DIALOG -->
+<div id ="confirmDialogSiguiente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Confirmar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Desea guardar los cambios antes de avanzar?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="Button -sm -default -outline -rounded" click="siguiente()" data-dismiss="modal">No</button>
+        <button class="Button -sm -primary -raised -rounded" id="submit" (click)="onClickConfirmDialogSiguiente()">Si</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
