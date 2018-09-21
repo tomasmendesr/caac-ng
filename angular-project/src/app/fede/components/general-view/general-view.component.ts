@@ -13,6 +13,9 @@ import {Localidad} from "../../../model/localidad";
 import {Departamento} from "../../../model/departamento";
 import {Provincia} from "../../../model/provincia";
 import {GeneralViewService} from "../../services/general-view.service";
+import {CasaService} from "../../../tomi/services/casa.service";
+import {Casa} from "../../../model/casa";
+import {NotifUtil} from "../../../tomi/utils/notif-util";
 
 declare var $: any;
 
@@ -34,7 +37,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   departamento: Departamento[];
   localidad: Localidad[];
 
-  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService, private generalService: GeneralViewService) { }
+  constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService, private casaService: CasaService) { }
 
   ngOnInit() {
   }
@@ -83,9 +86,23 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
     });
   }
 
+  closeModal() {
+    $('#form').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: false
+    });
+  }
+
   onClickGuardar() {
-    alert(JSON.stringify(this.caacParaPopup));
-    this.generalService.saveOrUpdate(this.caacParaPopup).subscribe(success => { if(!success) console.log('error') }); //todo ver como se implementa esta excepcion
+    this.casaService.saveOrUpdate(<Casa> this.caacParaPopup).subscribe(success => {
+      this.caacParaPopup = null;
+      this.closeModal();
+      NotifUtil.notifSuccess('Guardado exitosamente');
+    }, (error) => {
+      console.error(error)
+      NotifUtil.notifError('Error al guardar, ingrese los datos correctamente');
+    });
   }
 
   onAniadirClick() {

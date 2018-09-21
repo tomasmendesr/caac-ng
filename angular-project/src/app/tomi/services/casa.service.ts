@@ -23,5 +23,9 @@ export class CasaService {
     return this.http.post<Casa[]>(UrlConstants.FIND_ALL_CASAS_DTO, {});
   }
 
+  saveOrUpdate(casa: Casa): Observable<any> {
+    return this.http.post<any>(UrlConstants.SAVE_OR_UPDATE_CASA, casa)
+  }
+
 }
 

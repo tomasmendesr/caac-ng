@@ -56,10 +56,12 @@ public class CasaServiceImpl implements CasaService {
     }
 
     @Override
-    public void saveOrUpdate(CasaDTO casaDTO) throws Exception {
+    public Boolean saveOrUpdate(CasaDTO casaDTO) throws Exception {
         if (casaDTO == null) throw new Exception("Error creando la consulta");
         Casa casa = DozerHelper.map(casaDTO, Casa.class);
         casaDAO.merge(casa);
+
+        return true;
     }
 
     @Override
