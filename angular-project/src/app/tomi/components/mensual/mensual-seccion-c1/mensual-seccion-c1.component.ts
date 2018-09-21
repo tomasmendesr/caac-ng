@@ -62,6 +62,7 @@ export class MensualSeccionC1Component implements OnInit {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       if (headerEvent.value.hojaId) {
+        this.loadingComponent.showLoading();
         this.mensualSeccionCService.findDataSeccionC1ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC1Data(data));
       } else {
         this.initEmptyData();
@@ -210,6 +211,7 @@ export class MensualSeccionC1Component implements OnInit {
     } else {
       this.initHojaMensualTramites();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private getHojaMensualTramiteFromListByIdTramite(list: HojaMensualTramites[], idTramite: number): HojaMensualTramites {

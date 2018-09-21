@@ -46,6 +46,7 @@ export class MensualSeccionC3Component implements OnInit {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       if (headerEvent.value.hojaId) {
+        this.loadingComponent.showLoading();
         this.mensualSeccionCService.findDataSeccionC3ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC3Data(data));
       } else {
         this.initEmptyData();
@@ -86,6 +87,8 @@ export class MensualSeccionC3Component implements OnInit {
 
   private onClickConfirmDialogSiguiente(){
     this.loadingComponent.showLoading();
+    this.cleanData();
+    this.bindDataToDTO();
     this.mensualSeccionCService.saveDataSeccionC3(this.mensualSeccionC3Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();
@@ -116,6 +119,10 @@ export class MensualSeccionC3Component implements OnInit {
     this.errorSection = -1;
   }
 
+  private onClickSiguiente(){
+    this.showConfirmDialog('confirmDialogSiguiente');
+  }
+
   private parseSeccionC3Data(data: MensualSeccionC3Data) {
     this.hojaMensualObservaciones = data.hojaMensualObservaciones ? data.hojaMensualObservaciones : new HojaMensualObservaciones;
     this.buildHojaMensualAcompaniamientoList(data);
@@ -134,6 +141,7 @@ export class MensualSeccionC3Component implements OnInit {
     } else {
       this.initHojaMensualAcompaniamientos();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(list: HojaMensualAcompaniamiento[], idAcompaniamiento: number): HojaMensualAcompaniamiento {
