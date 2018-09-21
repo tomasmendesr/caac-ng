@@ -20,6 +20,11 @@ import java.util.List;
 public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     private static final String ESTABLECIMIENTO_DE_SALUD = "Establecimiento de Salud";
 
+    public static final Integer ID_EST_SALUD_INTERVENCION = 1;
+    public static final Integer ID_ESTB_SALUD_CONSULTORIOS = 2;
+    public static final Integer ID_ESTB_SALUD_EMERGENCIAS = 3;
+    public static final Integer ID_ESTB_SALUD_DESINTOXICACION = 4;
+
     @Inject
     @HibernateDAO
     private AcompaniamientoDAO acompaniamientoDAO;
