@@ -27,7 +27,7 @@ export class MensualSeccionC3Component implements OnInit {
   private hojaMensualAcompaniamientoGestionTurnos: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoGestionTramitesMedicacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoGestionServicios: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoCentroTratamiento: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+  private hojaMensualAcompaniamientoCentroTratamientoEspecializado: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoEnSede: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
@@ -126,7 +126,7 @@ export class MensualSeccionC3Component implements OnInit {
       this.hojaMensualAcompaniamientoGestionTurnos = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TURNOS);
       this.hojaMensualAcompaniamientoGestionTramitesMedicacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TRAMITES);
       this.hojaMensualAcompaniamientoGestionServicios = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_SERVICIOS);
-      this.hojaMensualAcompaniamientoCentroTratamiento = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACOMP_CENTRO_ESPECIALIZADO);
+      this.hojaMensualAcompaniamientoCentroTratamientoEspecializado = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACOMP_CENTRO_ESPECIALIZADO);
       this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GESTION_SIN_SUBSIDIO);
       this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GESTION_CON_SUBSIDIO);
       this.hojaMensualAcompaniamientoEnSede = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GESTION_EN_SEDE);
@@ -154,7 +154,7 @@ export class MensualSeccionC3Component implements OnInit {
     this.hojaMensualAcompaniamientoGestionTurnos = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoGestionTramitesMedicacion = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoGestionServicios = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoCentroTratamiento = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoCentroTratamientoEspecializado = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoEnSede = new HojaMensualAcompaniamiento;
@@ -163,7 +163,7 @@ export class MensualSeccionC3Component implements OnInit {
     this.hojaMensualAcompaniamientoGestionTurnos.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TURNOS);
     this.hojaMensualAcompaniamientoGestionTramitesMedicacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TRAMITES);
     this.hojaMensualAcompaniamientoGestionServicios.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_SERVICIOS);
-    this.hojaMensualAcompaniamientoCentroTratamiento.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACOMP_CENTRO_ESPECIALIZADO);
+    this.hojaMensualAcompaniamientoCentroTratamientoEspecializado.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACOMP_CENTRO_ESPECIALIZADO);
     this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GESTION_SIN_SUBSIDIO);
     this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GESTION_CON_SUBSIDIO);
     this.hojaMensualAcompaniamientoEnSede.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GESTION_EN_SEDE);
@@ -185,6 +185,7 @@ export class MensualSeccionC3Component implements OnInit {
     this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoGestionTurnos);
     this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoGestionTramitesMedicacion);
     this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoGestionServicios);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoCentroTratamientoEspecializado);
     this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar);
     this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar);
     this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoEnSede);
