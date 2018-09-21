@@ -73,12 +73,12 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
     $('#tablaInformacionGeneral tbody').on('click', '.btnEditar', function () {
       self.caacParaPopup = table.row($(this).parents('tr').first()).data();
-      self.openModalAndLoadGeo(this.caacParaPopup);
+      self.openModalAndLoadGeo(self.caacParaPopup);
     });
   }
 
   openModalAndLoadGeo(caacParaPopup) {
-    alert(this.caacParaPopup)
+    alert(this.caacParaPopup);
     this.openModal();
     this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
     this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);

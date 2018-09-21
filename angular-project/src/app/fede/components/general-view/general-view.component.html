@@ -59,23 +59,23 @@
               </div>
             </div>
 
-            <!--<div class="form-group required row">-->
-              <!--<label for="localidad" class="col-3 col-form-label control-label">Localidad</label>-->
-              <!--<div class="col-9">-->
-                <!--<select id="localidad" [compareWith]="compareFunct" [ngModel]="caacParaPopup.localidad" name="localidad" (ngModelChange)="onLocalidadChange($event)" >-->
-                  <!--<option *ngFor="let localidad of localidades" [ngValue]="localidad">{{ localidad.nombre }}</option>-->
-                <!--</select>-->
-              <!--</div>-->
-            <!--</div>-->
+            <div class="form-group required row">
+              <label for="localidad" class="col-3 col-form-label control-label">Localidad</label>
+              <div class="col-9">
+                <select id="localidad" [compareWith]="compareFunct" [ngModel]="caacParaPopup.localidad" name="localidad" (ngModelChange)="onLocalidadChange($event)" >
+                  <option *ngFor="let localidad of localidades" [ngValue]="localidad">{{ localidad.nombre }}</option>
+                </select>
+              </div>
+            </div>
 
-            <!--<div class="form-group required row">-->
-              <!--<label for="departamento" class="col-3 col-form-label control-label">Departamento</label>-->
-              <!--<div class="col-9">-->
-                <!--<select id="departamento" [compareWith]="compareFunct" [ngModel]="caacParaPopup.departamento" name="departamento" (ngModelChange)="onDepartamentoChange($event)" >-->
-                  <!--<option *ngFor="let departamento of departamentos" [ngValue]="departamento">{{ departamento.nombre }}</option>-->
-                <!--</select>-->
-              <!--</div>-->
-            <!--</div>-->
+            <div class="form-group required row">
+              <label for="departamento" class="col-3 col-form-label control-label">Departamento</label>
+              <div class="col-9">
+                <select id="departamento" [compareWith]="compareFunct" [ngModel]="caacParaPopup.departamento" name="departamento" (ngModelChange)="onDepartamentoChange($event)" >
+                  <option *ngFor="let departamento of departamentos" [ngValue]="departamento">{{ departamento.nombre }}</option>
+                </select>
+              </div>
+            </div>
 
             <div class="form-group required row">
               <label for="dir" class="col-3 col-form-label control-label">Dirección</label>

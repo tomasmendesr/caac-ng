@@ -38,7 +38,4 @@ public interface PicsGeoService {
     @Path("/findAllLocalidadesByDepartamento")
     List<LocalidadLightDTO> findAllLocalidadesByDepartamento(DepartamentoLightDTO departamentoLightDTO);
 
-
-
-
 }
