@@ -54,11 +54,11 @@ export class MensualSeccionC2Component implements OnInit {
     }
   }
 
-  private onClickGuardar() {/*
+  private onClickGuardar() {
     this.cleanData();
     this.bindDataToDTO();
     this.loadingComponent.showLoading();
-    this.mensualSeccionCService.saveDataSeccionC1(this.mensualSeccionC1Data).subscribe(appResponse => {
+    this.mensualSeccionCService.saveDataSeccionC2(this.mensualSeccionC2Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
@@ -67,7 +67,7 @@ export class MensualSeccionC2Component implements OnInit {
         this.showErrorMsgs(appResponse.data);
       }
     }, (error) => this.notifError(error));
-  */}
+  }
 
   private showConfirmDialog(id: string){
     $("#"+id).modal({
@@ -86,15 +86,15 @@ export class MensualSeccionC2Component implements OnInit {
   }
 
   private onClickConfirmDialogSiguiente(){
-    //this.loadingComponent.showLoading();
-    /*this.mensualSeccionCService.saveDataSeccionC1(this.mensualSeccionC1Data).subscribe(appResponse => {
+    this.loadingComponent.showLoading();
+    this.mensualSeccionCService.saveDataSeccionC2(this.mensualSeccionC2Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();
         this.siguiente();
       }else{
         this.showErrorMsgs(appResponse.data);
       }
-    }, (error) => this.notifError(error));*/
+    }, (error) => this.notifError(error));
   }
 
   private notifError(error){
@@ -130,7 +130,7 @@ export class MensualSeccionC2Component implements OnInit {
       this.hojaMensualAcompaniamientoEmergencias = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_EMERGENCIAS);
       this.hojaMensualAcompaniamientoDesintoxicacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_DESINTOXICACION);
     } else {
-      this.initHojaMensualAcompaniamientoList();
+      this.initHojaMensualAcompaniamientos();
     }
   }
 
@@ -141,6 +141,49 @@ export class MensualSeccionC2Component implements OnInit {
       hojaMensualAcompaniamiento.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, idAcompaniamiento);
     }
     return hojaMensualAcompaniamiento;
+  }
+
+  private initEmptyData() {
+    this.hojaMensualObservaciones = new HojaMensualObservaciones;
+    this.hojaMensualActividad = new HojaMensualActividad;
+    this.initHojaMensualAcompaniamientos();
+  }
+
+  private initHojaMensualAcompaniamientos() {
+    this.hojaMensualAcompaniamientoInternacion = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoEmergencias = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoConsultorios = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoDesintoxicacion = new HojaMensualAcompaniamiento;
+
+    this.hojaMensualAcompaniamientoInternacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_INTERNACION);
+    this.hojaMensualAcompaniamientoConsultorios.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_CONSULTORIOS);
+    this.hojaMensualAcompaniamientoEmergencias.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_EMERGENCIAS);
+    this.hojaMensualAcompaniamientoDesintoxicacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_DESINTOXICACION);
+  }
+
+  private cleanData(){
+    this.mensualSeccionC2Data = new MensualSeccionC2Data;
+  }
+
+  private bindDataToDTO() {
+    this.addAcompaniamientosToDTOList();
+    this.mensualSeccionC2Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
+    this.mensualSeccionC2Data.hojaMensualActividad = this.hojaMensualActividad;
+    this.setHojaIdToItems();
+  }
+
+  private addAcompaniamientosToDTOList() {
+    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoInternacion);
+    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoConsultorios);
+    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoEmergencias);
+    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoDesintoxicacion);
+  }
+
+
+  private setHojaIdToItems() {
+    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC2Data.hojaMensualActividad.hoja.id = this.hojaId;
+    this.mensualSeccionC2Data.hojaMensualObservaciones.hoja.id = this.hojaId;
   }
 
 }

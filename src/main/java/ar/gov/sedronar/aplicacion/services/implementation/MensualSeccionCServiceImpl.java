@@ -3,6 +3,7 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import ar.gov.sedronar.aplicacion.dto.HojaMensualAlimentacionDTO;
 import ar.gov.sedronar.aplicacion.dto.HojaMensualTramitesDTO;
 import ar.gov.sedronar.aplicacion.dto.MensualSeccionC1Data;
+import ar.gov.sedronar.aplicacion.dto.MensualSeccionC2Data;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualAlimentacionService;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualObservacionesService;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualTramitesService;
@@ -70,5 +71,27 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
         data.setHojaMensualAlimentacionList(hojaMensualAlimentacionService.findListByHojaId(idHoja));
         data.setHojaMensualTramitesList(hojaMensualTramitesService.findListByHojaId(idHoja));
         return data;
+    }
+
+    @Override
+    public AppResponse saveOrUpdateSeccionC2(MensualSeccionC2Data data) throws Exception {
+     /*   AppResponse validationActividad = hojaMensualTramitesService.validateInputs(data.getHojaMensualTramitesList());
+        if(validationTramites.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validationTramites.getData()));
+
+        AppResponse validationAlimentacioEnSede = hojaMensualAlimentacionService.validateInputsEnSede(data.getHojaMensualAlimentacionList());
+        if(validationAlimentacioEnSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validationAlimentacioEnSede.getData()));
+
+        AppResponse validationAlimentacioFueraDeSede = hojaMensualAlimentacionService.validateInputsFueraDeSede(data.getHojaMensualAlimentacionList());
+        if(validationAlimentacioFueraDeSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, validationAlimentacioFueraDeSede.getData()));
+
+        for (HojaMensualTramitesDTO hojaMensualTramitesDTO : data.getHojaMensualTramitesList()) hojaMensualTramitesService.saveOrUpdate(hojaMensualTramitesDTO);
+        for (HojaMensualAlimentacionDTO hojaMensualAlimentacionDTO : data.getHojaMensualAlimentacionList()) hojaMensualAlimentacionService.saveOrUpdate(hojaMensualAlimentacionDTO);
+        hojaMensualObservacionesService.saveOrUpdate(data.getHojaMensualObservaciones());
+        return new AppResponse();   */
+    }
+
+    @Override
+    public MensualSeccionC2Data getDataForSeccionC2ByHojaId(Long idHoja) {
+        return null;
     }
 }

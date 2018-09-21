@@ -152,7 +152,7 @@ export class MensualSeccionC1Component implements OnInit {
   private setHojaIdToItems() {
     this.mensualSeccionC1Data.hojaMensualTramitesList.forEach(h => h.hoja.id = this.hojaId);
     this.mensualSeccionC1Data.hojaMensualAlimentacionList.forEach(h => h.hoja.id = this.hojaId);
-    this.hojaMensualObservaciones.hoja.id = this.hojaId;
+    this.mensualSeccionC1Data.hojaMensualObservaciones.hoja.id = this.hojaId;
   }
 
   private initHojaMensualTramites() {
