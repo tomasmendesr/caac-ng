@@ -34,8 +34,8 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   caacParaPopup: CaacLight;
 
   provincias: Provincia[];
-  departamento: Departamento[];
-  localidad: Localidad[];
+  departamentos: Departamento[];
+  localidades: Localidad[];
 
   constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService, private casaService: CasaService) { }
 
@@ -44,7 +44,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.loadDataTable();
-    this.loadProvinciasDeparamentosLocalidades();
+    this.loadProvincias();
   }
 
   private loadDataTable() {
@@ -73,9 +73,15 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
     $('#tablaInformacionGeneral tbody').on('click', '.btnEditar', function () {
       self.caacParaPopup = table.row($(this).parents('tr').first()).data();
-
-      self.openModal();
+      self.openModalAndLoadGeo(self.caacParaPopup);
     });
+  }
+
+  openModalAndLoadGeo(caacParaPopup) {
+    alert(this.caacParaPopup);
+    this.openModal();
+    this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
+    this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);
   }
 
   openModal() {
@@ -95,6 +101,8 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   }
 
   onClickGuardar() {
+    alert(JSON.stringify(this.caacParaPopup));
+
     this.casaService.saveOrUpdate(<Casa> this.caacParaPopup).subscribe(success => {
       this.caacParaPopup = null;
       this.closeModal();
@@ -107,12 +115,28 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   onAniadirClick() {
     this.caacParaPopup = new CaacLight();
-    this.openModal();
+    this.openModalAndLoadGeo(this.caacParaPopup);
   }
 
-  loadProvinciasDeparamentosLocalidades() {
+  loadProvincias() {
     this.picsService.findAllProvinciasCombo().subscribe(data => this.provincias = data);
-    this.picsService.findAllLocalidades().subscribe(data => this.localidad = data);
-    this.picsService.findAllDepartamentos().subscribe(data => this.departamento = data);
+  }
+
+  compareFunct(o1: any, o2: any): boolean {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  }
+
+  onProvinciaChange(provincia) { //para bindear
+    this.caacParaPopup.provincia = provincia;
+    this.picsService.findAllDepartamentosByProvincia(provincia);
+  }
+
+  onDepartamentoChange(departamento) {
+    this.caacParaPopup.departamento = departamento;
+    this.picsService.findAllLocalidadesByDepartamento(departamento);
+  }
+
+  onLocalidadChange(localidad) {
+    this.caacParaPopup.localidad = localidad;
   }
 }

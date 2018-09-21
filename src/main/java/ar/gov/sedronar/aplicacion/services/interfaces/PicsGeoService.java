@@ -30,7 +30,12 @@ public interface PicsGeoService {
     @Path("/findAllDepartamentos")
     List<DepartamentoLightDTO> findAllDepartamentos();
 
+    @POST
+    @Path("/findAllDepartamentosByProvincia")
+    List<DepartamentoLightDTO> findAllDepartamentosByProvincia(ProvinciaLightDTO provinciaLightDTO);
 
-
+    @POST
+    @Path("/findAllLocalidadesByDepartamento")
+    List<LocalidadLightDTO> findAllLocalidadesByDepartamento(DepartamentoLightDTO departamentoLightDTO);
 
 }

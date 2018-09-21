@@ -61,6 +61,8 @@ export class UrlConstants {
   static readonly FIND_PROVINCIAS_COMBO = '/services/pics/findAllProvinciasCombo';
   static readonly FIND_LOCALIDADES = '/services/pics/findAllLocalidades';
   static readonly FIND_DEPARTAMENTOS = '/services/pics/findAllDepartamentos';
+  static readonly FIND_DEPARTAMENTOS_BY_PROVINCIA = '/services/pics/findAllDepartamentosByProvincia';
+  static readonly FIND_LOCALIDADES_BY_DEPARTAMENTO = '/services/pics/findAllLocalidadesByDepartamento';
 
   // hoja mensual asistidos service
   static readonly SAVE_OR_UPDATE_HOJA_MENSUAL_ASISTIDOS = '/services/hojaMensualAsistidos/saveOrUpdate'
@@ -80,6 +82,8 @@ export class UrlConstants {
   //acompaniamiento service
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientosDeSalud';
   static readonly FIND_ALL = '/services/acompaniamiento/findAll';
+
+
 
 
 

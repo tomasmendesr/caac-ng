@@ -4,9 +4,11 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import ar.gov.sedronar.modulo.commonsModels.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.services.interfaces.PicsGeoService;
 import ar.gov.sedronar.modulo.geo.dao.interfaces.ProvinciaLightDAO;
+import ar.gov.sedronar.modulo.geo.dto.DepartamentoDTO;
 import ar.gov.sedronar.modulo.geo.dto.DepartamentoLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.ProvinciaLightDTO;
+import ar.gov.sedronar.modulo.geo.modelo.Departamento;
 import ar.gov.sedronar.modulo.geo.modelo.ProvinciaLight;
 import ar.gov.sedronar.modulo.geo.servicios.DefaultService;
 import ar.gov.sedronar.modulo.geo.servicios.GeoServicio;
@@ -54,6 +56,16 @@ public class PicsGeoServiceImpl  implements PicsGeoService {
     @Override
     public List<DepartamentoLightDTO> findAllDepartamentos() {
         return DozerHelper.mapList(geoServicio.findAllDepartamentoLigh(), DepartamentoLightDTO.class);
+    }
+
+    @Override
+    public List<DepartamentoLightDTO> findAllDepartamentosByProvincia(ProvinciaLightDTO provinciaLightDTO) {
+        return DozerHelper.mapList(geoServicio.findDepartamentoByProvincia(provinciaLightDTO.getId()), DepartamentoLightDTO.class);
+    }
+
+    @Override
+    public List<LocalidadLightDTO> findAllLocalidadesByDepartamento(DepartamentoLightDTO departamentoLightDTO) {
+        return DozerHelper.mapList(geoServicio.findLocalidadesByDepartamento(departamentoLightDTO.getId()), LocalidadLightDTO.class);
     }
 
 
