@@ -264,6 +264,7 @@ export class MensualSeccionC1Component implements OnInit {
   }
 
   private cleanData(){
+    this.hideFormAlert();
     this.mensualSeccionC1Data = new MensualSeccionC1Data;
   }
 

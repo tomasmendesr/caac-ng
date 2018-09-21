@@ -162,6 +162,7 @@ export class MensualSeccionC2Component implements OnInit {
   }
 
   private cleanData(){
+    this.hideFormAlert();
     this.mensualSeccionC2Data = new MensualSeccionC2Data;
   }
 

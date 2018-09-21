@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by TMR on 21/09/2018.
@@ -59,17 +60,30 @@ public class HojaMensualAcompaniamientoServiceImpl implements HojaMensualAcompan
     }
 
     @Override
-    public List<HojaMensualAcompaniamientoDTO> findListByHojaId(Long idHoja) {
+    public List<HojaMensualAcompaniamientoDTO> findListByHojaAndAcompaniamientoId(Long idHoja, List<Integer> idsAcompaniamientos) {
         List<HojaMensualAcompaniamientoDTO> list = new ArrayList<>();
-        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_EST_SALUD_INTERVENCION);
-        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_ESTB_SALUD_CONSULTORIOS);
-        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_ESTB_SALUD_DESINTOXICACION);
-        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_ESTB_SALUD_EMERGENCIAS);
+        idsAcompaniamientos.forEach(id -> findAndAddIfExists(idHoja, list, id));
         return list;
     }
 
     private void findAndAddIfExists(Long idHoja, List<HojaMensualAcompaniamientoDTO> list, Integer idAcompaniamiento) {
         HojaMensualAcompaniamiento hojaMensualAcompaniamiento = hojaMensualAcompaniamientoDAO.findById(idHoja, idAcompaniamiento);
         if(hojaMensualAcompaniamiento != null) list.add(DozerHelper.map(hojaMensualAcompaniamiento, HojaMensualAcompaniamientoDTO.class));
+    }
+
+    @Override
+    public AppResponse validateInputsEnEstablecimiento(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento) {
+        List<String> messages = new ArrayList<>();
+        hojaMensualAcompaniamientoList.stream().filter(h -> establecimiento.equals(h.getAcompaniamiento().getEstablecimiento())).collect(Collectors.toList())
+            .forEach(hojaMensualAcompaniamientoDTO -> {
+                if(hojaMensualAcompaniamientoDTO.getCantidadGestiones() == null) messages.add("Debe ingresar la cantidad de gestiones para el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
+                else if(hojaMensualAcompaniamientoDTO.getCantidadGestiones() < 0) messages.add("El valor ingresado para la cantidad de gestiones para el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
+
+                if(hojaMensualAcompaniamientoDTO.getCantidadPersonas() == null) messages.add("Debe ingresar la cantidad de personas que alcanzó el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
+                else if(hojaMensualAcompaniamientoDTO.getCantidadPersonas() < 0) messages.add("El valor ingresado para la cantidad de personas en el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
+            }
+        );
+
+        return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
     }
 }

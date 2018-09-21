@@ -3,10 +3,13 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import ar.gov.sedronar.aplicacion.dto.*;
 import ar.gov.sedronar.aplicacion.services.interfaces.*;
 import ar.gov.sedronar.util.app.AppResponse;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by TMR on 18/09/2018.
@@ -54,6 +57,9 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
         AppResponse validationTramites = hojaMensualTramitesService.validateInputs(data.getHojaMensualTramitesList());
         if(validationTramites.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validationTramites.getData()));
 
+        // TODO - implementar esta validación
+        if(StringUtils.isNotBlank(data.getHojaMensualObservaciones().getActividadesFamiliares()) && data.getHojaMensualObservaciones().getActividadesFamiliares().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_2_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
+
         AppResponse validationAlimentacioEnSede = hojaMensualAlimentacionService.validateInputsEnSede(data.getHojaMensualAlimentacionList());
         if(validationAlimentacioEnSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validationAlimentacioEnSede.getData()));
 
@@ -97,7 +103,43 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
         MensualSeccionC2Data data = new MensualSeccionC2Data();
         data.setHojaMensualObservaciones(hojaMensualObservacionesService.findByHojaId(idHoja));
         data.setHojaMensualActividad(hojaMensualActividadService.findByHojaId(idHoja));
-        data.setHojaMensualAcompaniamientoList(hojaMensualAcompaniamientoService.findListByHojaId(idHoja));
+        List<Integer> idsAcompaniamientos = Arrays.asList(AcompaniamientoServiceImpl.ID_EST_SALUD_INTERVENCION, AcompaniamientoServiceImpl.ID_ESTB_SALUD_CONSULTORIOS,AcompaniamientoServiceImpl.ID_ESTB_SALUD_DESINTOXICACION, AcompaniamientoServiceImpl.ID_ESTB_SALUD_EMERGENCIAS);
+        data.setHojaMensualAcompaniamientoList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompaniamientos));
+        return data;
+    }
+
+    @Override
+    public AppResponse saveOrUpdateSeccionC3(MensualSeccionC3Data data) throws Exception {
+        AppResponse validateGestionEnEstablecimientoDeSalud = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_DE_SALUD);
+        if(validateGestionEnEstablecimientoDeSalud.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validateGestionEnEstablecimientoDeSalud.getData()));
+
+        if(StringUtils.isNotBlank(data.getHojaMensualObservaciones().getGestionesEstablecimientoSalud()) && data.getHojaMensualObservaciones().getGestionesEstablecimientoSalud().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_2_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
+
+        AppResponse validateEstablecimientoComunidadTerapeutica = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(),  AcompaniamientoServiceImpl.COMUNIDAD_TERAPEUTICA);
+        if(validateEstablecimientoComunidadTerapeutica.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validateEstablecimientoComunidadTerapeutica.getData()));
+
+        if(StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAcompaniamientoCentroEspecial()) && data.getHojaMensualObservaciones().getAcompaniamientoCentroEspecial().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_4_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
+
+        AppResponse validateEstablecimientoPatrocinioLegal = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(),  AcompaniamientoServiceImpl.PATROCINIO_LEGAL);
+        if(validateEstablecimientoPatrocinioLegal.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, validateEstablecimientoPatrocinioLegal.getData()));
+
+        if(StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAsesoramientoLegal()) && data.getHojaMensualObservaciones().getAsesoramientoLegal().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_6_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
+
+        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompaniamientoList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
+        hojaMensualObservacionesService.saveOrUpdate(data.getHojaMensualObservaciones());
+        return new AppResponse();
+    }
+
+    @Override
+    public MensualSeccionC2Data getDataForSeccionC3ByHojaId(Long idHoja) {
+        MensualSeccionC2Data data = new MensualSeccionC2Data();
+        data.setHojaMensualObservaciones(hojaMensualObservacionesService.findByHojaId(idHoja));
+        data.setHojaMensualActividad(hojaMensualActividadService.findByHojaId(idHoja));
+        List<Integer> idsAcompaniamientos = Arrays.asList(AcompaniamientoServiceImpl.ID_ESTB_SALUD_GESTION_DE_TURNOS, AcompaniamientoServiceImpl.ID_ESTB_SALUD_GESTION_DE_TRAMITES,AcompaniamientoServiceImpl.ID_ESTB_SALUD_GESTION_DE_SERVICIOS,
+                AcompaniamientoServiceImpl.ID_ACOMP_CENTRO_ESPECIALIZADO, AcompaniamientoServiceImpl.ID_GESTION_SIN_SUBSIDIO,
+                AcompaniamientoServiceImpl.ID_GESTION_CON_SUBSIDIO, AcompaniamientoServiceImpl.ID_GESTION_EN_SEDE,
+                AcompaniamientoServiceImpl.ID_GESTION_FUERA_DE_SEDE);
+        data.setHojaMensualAcompaniamientoList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompaniamientos));
         return data;
     }
 }

@@ -21,4 +21,8 @@ public interface AcompaniamientoService {
     @Path("findAllEstablecimientosDeSalud")
     @POST
     List<AcompaniamientoDTO> findAllEstablecimientosDeSalud();
+
+    @Path("findAll")
+    @POST
+    List<AcompaniamientoDTO> findAll();
 }
