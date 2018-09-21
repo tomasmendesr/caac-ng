@@ -23,4 +23,13 @@ export class PicsService {
   findAllDepartamentos(): Observable<Departamento[]> {
     return this.http.post<Departamento[]>(UrlConstants.FIND_DEPARTAMENTOS, {});
   }
+
+  findAllDepartamentosByProvincia(provincia): Observable<Departamento[]> {
+    return this.http.post<Departamento[]>(UrlConstants.FIND_DEPARTAMENTOS_BY_PROVINCIA, provincia);
+  }
+
+  findAllLocalidadesByDepartamento(departamento): Observable<Localidad[]> {
+    return this.http.post<Localidad[]>(UrlConstants.FIND_LOCALIDADES_BY_DEPARTAMENTO, departamento);
+  }
+
 }

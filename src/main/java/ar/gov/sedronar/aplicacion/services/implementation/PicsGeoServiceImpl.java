@@ -56,5 +56,15 @@ public class PicsGeoServiceImpl  implements PicsGeoService {
         return DozerHelper.mapList(geoServicio.findAllDepartamentoLigh(), DepartamentoLightDTO.class);
     }
 
+    @Override
+    public List<DepartamentoLightDTO> findAllDepartamentosByProvincia(ProvinciaLightDTO provinciaLightDTO) {
+        return DozerHelper.mapList(geoServicio.findDepartamentoByProvincia(provinciaLightDTO.getId()), DepartamentoLightDTO.class);
+    }
+
+    @Override
+    public List<LocalidadLightDTO> findAllLocalidadesByDepartamento(DepartamentoLightDTO departamentoLightDTO) {
+        return DozerHelper.mapList(geoServicio.findLocalidadesByDepartamento(departamentoLightDTO.getId()), LocalidadLightDTO.class);
+    }
+
 
 }

@@ -17,9 +17,6 @@ export default class CaacLight {
   departamento: Departamento;
 
   constructor() {
-    this.provincia = new Provincia();
-    this.localidad = new Localidad();
-    this.departamento = new Departamento();
   }
 
 }
