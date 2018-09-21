@@ -1,13 +1,7 @@
 package ar.gov.sedronar.aplicacion.services.implementation;
 
-import ar.gov.sedronar.aplicacion.dto.HojaMensualAlimentacionDTO;
-import ar.gov.sedronar.aplicacion.dto.HojaMensualTramitesDTO;
-import ar.gov.sedronar.aplicacion.dto.MensualSeccionC1Data;
-import ar.gov.sedronar.aplicacion.dto.MensualSeccionC2Data;
-import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualAlimentacionService;
-import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualObservacionesService;
-import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualTramitesService;
-import ar.gov.sedronar.aplicacion.services.interfaces.MensualSeccionCService;
+import ar.gov.sedronar.aplicacion.dto.*;
+import ar.gov.sedronar.aplicacion.services.interfaces.*;
 import ar.gov.sedronar.util.app.AppResponse;
 
 import javax.ejb.Stateless;
@@ -40,6 +34,14 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
     @Inject
     @DefaultServiceImpl
     private HojaMensualTramitesService hojaMensualTramitesService;
+
+    @Inject
+    @DefaultServiceImpl
+    private HojaMensualActividadService hojaMensualActividadService;
+
+    @Inject
+    @DefaultServiceImpl
+    private HojaMensualAcompaniamientoService hojaMensualAcompaniamientoService;
 
     /***
      * Si falló una validación retorna un app response con error code y en el atributo data
@@ -75,19 +77,19 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
     @Override
     public AppResponse saveOrUpdateSeccionC2(MensualSeccionC2Data data) throws Exception {
-     /*   AppResponse validationActividad = hojaMensualTramitesService.validateInputs(data.getHojaMensualTramitesList());
-        if(validationTramites.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validationTramites.getData()));
+        AppResponse validationActividadesFamiliares = hojaMensualActividadService.validateInputsActividadesFamiliares(data.getHojaMensualActividad());
+        if(validationActividadesFamiliares.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validationActividadesFamiliares.getData()));
 
-        AppResponse validationAlimentacioEnSede = hojaMensualAlimentacionService.validateInputsEnSede(data.getHojaMensualAlimentacionList());
-        if(validationAlimentacioEnSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validationAlimentacioEnSede.getData()));
+        AppResponse validationIntervencionEnCalle = hojaMensualActividadService.validateInputsIntervencionEnCalle(data.getHojaMensualActividad());
+        if(validationIntervencionEnCalle.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validationIntervencionEnCalle.getData()));
 
-        AppResponse validationAlimentacioFueraDeSede = hojaMensualAlimentacionService.validateInputsFueraDeSede(data.getHojaMensualAlimentacionList());
-        if(validationAlimentacioFueraDeSede.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, validationAlimentacioFueraDeSede.getData()));
+        AppResponse validationAcompaniamiento = hojaMensualAcompaniamientoService.validateInputs(data.getHojaMensualAcompaniamientoList());
+        if(validationAcompaniamiento.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, validationAcompaniamiento.getData()));
 
-        for (HojaMensualTramitesDTO hojaMensualTramitesDTO : data.getHojaMensualTramitesList()) hojaMensualTramitesService.saveOrUpdate(hojaMensualTramitesDTO);
-        for (HojaMensualAlimentacionDTO hojaMensualAlimentacionDTO : data.getHojaMensualAlimentacionList()) hojaMensualAlimentacionService.saveOrUpdate(hojaMensualAlimentacionDTO);
+        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompaniamientoList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
         hojaMensualObservacionesService.saveOrUpdate(data.getHojaMensualObservaciones());
-        return new AppResponse();   */
+        hojaMensualActividadService.saveOrUpdate(data.getHojaMensualActividad());
+        return new AppResponse();
     }
 
     @Override

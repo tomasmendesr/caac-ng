@@ -9,4 +9,6 @@ import ar.gov.sedronar.util.app.AppResponse;
 public interface HojaMensualActividadService {
     AppResponse validateInputsActividadesFamiliares(HojaMensualActividadDTO hojaMensualActividadDTO);
     AppResponse validateInputsIntervencionEnCalle(HojaMensualActividadDTO hojaMensualActividadDTO);
+
+    void saveOrUpdate(HojaMensualActividadDTO hojaMensualActividad) throws Exception;
 }
