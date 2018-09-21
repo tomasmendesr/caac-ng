@@ -72,6 +72,11 @@ export class UrlConstants {
   // mensual seccion c service
   static readonly SAVE_DATA_MENSUAL_SECCION_C1 = '/services/mensualSeccionC/saveOrUpdateSeccionC1';
   static readonly GET_DATA_FOR_SECCION_C1_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC1ByHojaId';
+  static readonly SAVE_DATA_MENSUAL_SECCION_C2 = '/services/mensualSeccionC/saveOrUpdateSeccionC2';
+  static readonly GET_DATA_FOR_SECCION_C2_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC2ByHojaId';
+
+  //acompaniamiento service
+  static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientosDeSalud';
 
 
 

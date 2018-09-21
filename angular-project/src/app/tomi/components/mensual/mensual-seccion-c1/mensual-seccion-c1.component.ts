@@ -6,7 +6,7 @@ import {HojaMensualTramites} from "../../../../model/hoja-mensual-tramites";
 import {HojaMensualObservaciones} from "../../../../model/hoja-mensual-observaciones";
 import {TramiteService} from "../../../services/tramite.service";
 import {Tramite} from "../../../../model/tramite";
-import {MensualSeccionC1Data} from "../../../../model/mensual-seccion-c1-data";
+import {MensualSeccionC1Data} from "../../../model/mensual-seccion-c1-data";
 import {AlimentacionService} from "../../../services/alimentacion.service";
 import {MensualSeccionCService} from "../../../services/mensual-seccion-c.service";
 import {AppResponse} from "../../../../model/app-response";
@@ -62,7 +62,7 @@ export class MensualSeccionC1Component implements OnInit {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       if (headerEvent.value.hojaId) {
-        this.mensualSeccionCService.findDataByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC1Data(data));
+        this.mensualSeccionCService.findDataSeccionC1ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC1Data(data));
       } else {
         this.initEmptyData();
       }
@@ -152,7 +152,7 @@ export class MensualSeccionC1Component implements OnInit {
   private setHojaIdToItems() {
     this.mensualSeccionC1Data.hojaMensualTramitesList.forEach(h => h.hoja.id = this.hojaId);
     this.mensualSeccionC1Data.hojaMensualAlimentacionList.forEach(h => h.hoja.id = this.hojaId);
-    this.hojaMensualObservaciones.hoja.id = this.hojaId;
+    this.mensualSeccionC1Data.hojaMensualObservaciones.hoja.id = this.hojaId;
   }
 
   private initHojaMensualTramites() {
