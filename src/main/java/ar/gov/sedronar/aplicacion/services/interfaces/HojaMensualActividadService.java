@@ -11,4 +11,6 @@ public interface HojaMensualActividadService {
     AppResponse validateInputsIntervencionEnCalle(HojaMensualActividadDTO hojaMensualActividadDTO);
 
     void saveOrUpdate(HojaMensualActividadDTO hojaMensualActividad) throws Exception;
+
+    HojaMensualActividadDTO findByHojaId(Long idHoja);
 }

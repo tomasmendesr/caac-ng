@@ -3,6 +3,7 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.HojaMensualAcompaniamientoDAO;
 import ar.gov.sedronar.aplicacion.dto.HojaMensualAcompaniamientoDTO;
+import ar.gov.sedronar.aplicacion.dto.HojaMensualTramitesDTO;
 import ar.gov.sedronar.aplicacion.model.*;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualAcompaniamientoService;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
@@ -55,5 +56,20 @@ public class HojaMensualAcompaniamientoServiceImpl implements HojaMensualAcompan
         model = DozerHelper.map(dto, HojaMensualAcompaniamiento.class);
         model.setId(new HojaMensualAcompaniamientoId(dto.getHoja().getId(), dto.getAcompaniamiento().getId()));
         hojaMensualAcompaniamientoDAO.merge(model);
+    }
+
+    @Override
+    public List<HojaMensualAcompaniamientoDTO> findListByHojaId(Long idHoja) {
+        List<HojaMensualAcompaniamientoDTO> list = new ArrayList<>();
+        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_EST_SALUD_INTERVENCION);
+        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_ESTB_SALUD_CONSULTORIOS);
+        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_ESTB_SALUD_DESINTOXICACION);
+        findAndAddIfExists(idHoja, list, AcompaniamientoServiceImpl.ID_ESTB_SALUD_EMERGENCIAS);
+        return list;
+    }
+
+    private void findAndAddIfExists(Long idHoja, List<HojaMensualAcompaniamientoDTO> list, Integer idAcompaniamiento) {
+        HojaMensualAcompaniamiento hojaMensualAcompaniamiento = hojaMensualAcompaniamientoDAO.findById(idHoja, idAcompaniamiento);
+        if(hojaMensualAcompaniamiento != null) list.add(DozerHelper.map(hojaMensualAcompaniamiento, HojaMensualAcompaniamientoDTO.class));
     }
 }

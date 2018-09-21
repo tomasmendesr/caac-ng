@@ -1,12 +1,20 @@
 package ar.gov.sedronar.aplicacion.services.implementation;
 
+import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
+import ar.gov.sedronar.aplicacion.dao.interfaces.HojaMensualActividadDAO;
 import ar.gov.sedronar.aplicacion.dto.HojaMensualActividadDTO;
+import ar.gov.sedronar.aplicacion.model.HojaMensualActividad;
+import ar.gov.sedronar.aplicacion.model.HojaMensualObservaciones;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualActividadService;
+import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.util.app.AppResponse;
+import ar.gov.sedronar.util.dozer.DozerHelper;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +24,15 @@ import java.util.List;
 @Transactional
 @DefaultServiceImpl
 public class HojaMensualActividadServiceImpl implements HojaMensualActividadService {
+
+    @Inject
+    @HibernateDAO
+    private HojaMensualActividadDAO hojaMensualActividadDAO;
+
+    @Inject
+    @UserServiceProvider
+    private UsuarioService usuarioService;
+
     @Override
     public AppResponse validateInputsActividadesFamiliares(HojaMensualActividadDTO hojaMensualActividadDTO) {
         List<String> messages = new ArrayList<>();
@@ -86,5 +103,22 @@ public class HojaMensualActividadServiceImpl implements HojaMensualActividadServ
 
         return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
 
+    }
+
+    @Override
+    public void saveOrUpdate(HojaMensualActividadDTO dto) throws Exception {
+        if (dto == null) throw new Exception("Error creando la consulta");
+        HojaMensualActividad model;
+        if(dto.getId() != null) model = hojaMensualActividadDAO.findById(HojaMensualActividad.class, dto.getId());
+        dto.setFum(new Date());
+        dto.setUum(usuarioService.getCurrentUsername());
+        model = DozerHelper.map(dto, HojaMensualActividad.class);
+        hojaMensualActividadDAO.merge(model);
+    }
+
+    @Override
+    public HojaMensualActividadDTO findByHojaId(Long idHoja) {
+        HojaMensualActividad hojaMensualActividad = hojaMensualActividadDAO.findById(HojaMensualActividad.class, idHoja);
+        return hojaMensualActividad != null ? DozerHelper.map(hojaMensualActividad, HojaMensualActividadDTO.class) : null;
     }
 }
