@@ -14,7 +14,9 @@
         <class>ar.gov.sedronar.modulo.geo.modelo.DepartamentoLight</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.Municipio</class>
         <class>ar.gov.sedronar.modulo.geo.modelo.Region</class>
-        <class>ar.gov.sedronar.modulo.geo.modelo.Departamento</class>
+
+        <!-- Tira un error de persistencia al levantar el Jboss cuando se agrega la clase Departamento -->
+        <!--<class>ar.gov.sedronar.modulo.geo.modelo.Departamento</class>-->
 
 
         <class>ar.gov.sedronar.aplicacion.model.Acompaniamiento</class>
