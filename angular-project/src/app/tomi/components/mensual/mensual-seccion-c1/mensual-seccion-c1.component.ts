@@ -62,7 +62,7 @@ export class MensualSeccionC1Component implements OnInit {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       if (headerEvent.value.hojaId) {
-        this.mensualSeccionCService.findDataByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC1Data(data));
+        this.mensualSeccionCService.findDataSeccionC1ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC1Data(data));
       } else {
         this.initEmptyData();
       }

@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {UrlConstants} from "./UrlConstants";
 import {Acompaniamiento} from "../../model/acompaniamiento";
-import {Alimentacion} from "../../model/alimentacion";
 
 @Injectable()
 export class AcompaniamientoService {
@@ -14,11 +13,11 @@ export class AcompaniamientoService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<Acompaniamiento[]>{
-    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ALIMENTACION, {});
+  findAllEstablecimientosDeSalud(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_DE_SALUD, {});
   }
 
-  getAlimentacionById(acompaniamientos: Acompaniamiento[], id: number): Acompaniamiento {
+  getAcompaniamientoById(acompaniamientos: Acompaniamiento[], id: number): Acompaniamiento {
     return acompaniamientos.find(t => t.id == id);
   }
 }
