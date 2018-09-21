@@ -7,6 +7,7 @@ import {AppResponse} from "../../../../model/app-response";
 import {HojaMensualAsistidosService} from "../../../services/hoja-mensual-asistidos.service";
 import {UrlConstants} from "../../../services/UrlConstants";
 import {Router} from "@angular/router";
+import MainConstants from "../../../../constants/main-constants";
 
 declare var $:any;
 @Component({
