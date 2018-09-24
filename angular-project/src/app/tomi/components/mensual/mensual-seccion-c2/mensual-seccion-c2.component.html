@@ -16,50 +16,50 @@
       <label class="col-6 text-center"><b>Personas asistidas (cantidad aproximada)</b></label>
     </div>
     <div class="form-group row">
-      <label for="visitasDom-input" class="col-3 col-form-label text-right">Visitas domiciliarias</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="visitasDom-input" [(ngModel)]="hojaMensualActividad.cantidadVisitasDomiciliarias" [readonly]="readonlyControl">
+      <label for="visitasDom-input" class="col-3 col-sm-3 col-form-label text-right">Visitas domiciliarias</label>
+      <div class="col-2 col-sm-2">
+        <input class="form-control" name="visitasDom-input" type="number" id="visitasDom-input" [(ngModel)]="hojaMensualActividad.cantidadVisitasDomiciliarias" [readonly]="readonlyControl">
       </div>
 
-      <label for="visitasDom2-input" class="col-3 col-form-label text-right">Visitas domiciliarias</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="visitasDom2-input" [(ngModel)]="hojaMensualActividad.personasVisitasDomiciliarias" [readonly]="readonlyControl">
+      <label for="visitasDom2-input" class="col-3 col-sm-3 col-form-label text-right">Visitas domiciliarias</label>
+      <div class="col-2 col-sm-2">
+        <input class="form-control" name="visitasDom2-input" type="number" id="visitasDom2-input" [(ngModel)]="hojaMensualActividad.personasVisitasDomiciliarias" [readonly]="readonlyControl">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="orientacion-input" class="col-3 col-form-label text-right">Orientación a familiares</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="orientacion-input" [(ngModel)]="hojaMensualActividad.cantidadOrientaciones" [readonly]="readonlyControl">
+        <input class="form-control" name="orientacion-input" type="number" id="orientacion-input" [(ngModel)]="hojaMensualActividad.cantidadOrientaciones" [readonly]="readonlyControl">
       </div>
 
-      <label for="orientacion-input" class="col-3 col-form-label text-right">Orientación a familiares</label>
+      <label for="orientacion2-input" class="col-3 col-form-label text-right">Orientación a familiares</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="orientacion2-input" [(ngModel)]="hojaMensualActividad.personasOrientaciones" [readonly]="readonlyControl">
+        <input class="form-control"  type="number" name="orientacion2-input" id="orientacion2-input" [(ngModel)]="hojaMensualActividad.personasOrientaciones" [readonly]="readonlyControl">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="gruposFam-input" class="col-3 col-form-label text-right">Grupos de familiares</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="gruposFam-input" [(ngModel)]="hojaMensualActividad.cantidadGrupos" [readonly]="readonlyControl">
+        <input class="form-control" name="gruposFam-input" type="number" id="gruposFam-input" [(ngModel)]="hojaMensualActividad.cantidadGrupos" [readonly]="readonlyControl">
       </div>
 
       <label for="gruposFam-input" class="col-3 col-form-label text-right">Grupos de familiares</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="gruposFam2-input" [(ngModel)]="hojaMensualActividad.personasGrupos" [readonly]="readonlyControl">
+        <input class="form-control" name="gruposFam-input" type="number" id="gruposFam2-input" [(ngModel)]="hojaMensualActividad.personasGrupos" [readonly]="readonlyControl">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="entrevistas-input" class="col-3 col-form-label text-right">Entrevistas a vinculares</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="entrevistas-input" [(ngModel)]="hojaMensualActividad.cantidadEntrevistas" [readonly]="readonlyControl">
+        <input class="form-control" name="entrevistas-input" type="number" id="entrevistas-input" [(ngModel)]="hojaMensualActividad.cantidadEntrevistas" [readonly]="readonlyControl">
       </div>
 
       <label for="entrevistas2-input" class="col-3 col-form-label text-right">Entrevistas a vinculares</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="entrevistas2-input" [(ngModel)]="hojaMensualActividad.personasEntrevistas" [readonly]="readonlyControl">
+        <input class="form-control" type="number" name="entrevistas2-input" id="entrevistas2-input" [(ngModel)]="hojaMensualActividad.personasEntrevistas" [readonly]="readonlyControl">
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@
     </div>
     <h5>Observaciones sobre ACTIVIDADES CON FAMILIARES</h5>
     <div class="form-group">
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" [(ngModel)]="hojaMensualObservaciones.actividadesFamiliares" [readonly]="readonlyControl"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea1" name="exampleFormControlTextarea1" rows="2" [(ngModel)]="hojaMensualObservaciones.actividadesFamiliares" [readonly]="readonlyControl"></textarea>
     </div>
   </div>
 
@@ -93,12 +93,12 @@
     <div class="form-group row">
       <label for="orie-input" class="col-3 col-form-label text-right">Orientación en calle</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="orie-input" [(ngModel)]="hojaMensualActividad.cantidadOrientacionesCalle" [readonly]="readonlyControl">
+        <input class="form-control" name="orie-input" type="number" id="orie-input" [(ngModel)]="hojaMensualActividad.cantidadOrientacionesCalle" [readonly]="readonlyControl">
       </div>
 
       <label for="acomp-input" class="col-3 col-form-label text-right">Acompañamiento en calle</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="acomp-input" [(ngModel)]="hojaMensualActividad.cantidadAcompaniamientoCalle" [readonly]="readonlyControl">
+        <input class="form-control" name="acomp-input" type="number" id="acomp-input" [(ngModel)]="hojaMensualActividad.cantidadAcompaniamientoCalle" [readonly]="readonlyControl">
       </div>
     </div>
   </div>
@@ -113,7 +113,7 @@
     </div>
     <h5>INTERVENCIÓN EN CALLE. Especificar días, actividades, articulaciones con otras instituciones y zonas o barrios en que se trabajó</h5>
     <div class="form-group">
-      <textarea class="form-control" id="exampleFormControlTextarea2" rows="2" [(ngModel)]="hojaMensualObservaciones.intervencionCalleObservacion" [readonly]="readonlyControl"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea2" name="exampleFormControlTextarea2" rows="2" [(ngModel)]="hojaMensualObservaciones.intervencionCalleObservacion" [readonly]="readonlyControl"></textarea>
     </div>
   </div>
 
@@ -131,50 +131,50 @@
       <label class="col-6 text-center"><b>Personas (cantidad aproximada)</b></label>
     </div>
     <div class="form-group row">
-      <label for="enInternacion-input" class="col-3 col-form-label text-right">En internación</label>
+      <label for="enInternacion-input"  class="col-3 col-form-label text-right">En internación</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="enInternacion-input" [(ngModel)]="hojaMensualAcompaniamientoInternacion.cantidadGestiones" [readonly]="readonlyControl">
+        <input class="form-control" name="enInternacion-input" type="number" id="enInternacion-input" [(ngModel)]="hojaMensualAcompaniamientoInternacion.cantidadGestiones" [readonly]="readonlyControl">
       </div>
 
       <label for="enInternacion2-input" class="col-3 col-form-label text-right">En internación</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="enInternacion2-input" [(ngModel)]="hojaMensualAcompaniamientoInternacion.cantidadPersonas" [readonly]="readonlyControl">
+        <input class="form-control" name="enInternacion2-input" type="number" id="enInternacion2-input" [(ngModel)]="hojaMensualAcompaniamientoInternacion.cantidadPersonas" [readonly]="readonlyControl">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="consultorios-input" class="col-3 col-form-label text-right">En consultorios externos</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="consultorios-input" [(ngModel)]="hojaMensualAcompaniamientoConsultorios.cantidadGestiones" [readonly]="readonlyControl">
+        <input class="form-control" name="consultorios-input" type="number" id="consultorios-input" [(ngModel)]="hojaMensualAcompaniamientoConsultorios.cantidadGestiones" [readonly]="readonlyControl">
       </div>
 
       <label for="consultorios2-input" class="col-3 col-form-label text-right">En consultorios externos</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="consultorios2-input" [(ngModel)]="hojaMensualAcompaniamientoConsultorios.cantidadPersonas" [readonly]="readonlyControl">
+        <input class="form-control" name="consultorios2-input" type="number" id="consultorios2-input" [(ngModel)]="hojaMensualAcompaniamientoConsultorios.cantidadPersonas" [readonly]="readonlyControl">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="emergencias-input" class="col-3 col-form-label text-right">En emergencias</label>
       <div class="col-2">
-        <input class="form-control" type="number"  id="emergencias-input" [(ngModel)]="hojaMensualAcompaniamientoEmergencias.cantidadGestiones" [readonly]="readonlyControl">
+        <input class="form-control" name="emergencias-input" type="number"  id="emergencias-input" [(ngModel)]="hojaMensualAcompaniamientoEmergencias.cantidadGestiones" [readonly]="readonlyControl">
       </div>
 
       <label for="emergencias2-input" class="col-3 col-form-label text-right">En emergencias</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="emergencias2-input" [(ngModel)]="hojaMensualAcompaniamientoEmergencias.cantidadPersonas" [readonly]="readonlyControl">
+        <input class="form-control" name="emergencias2-input" type="number" id="emergencias2-input" [(ngModel)]="hojaMensualAcompaniamientoEmergencias.cantidadPersonas" [readonly]="readonlyControl">
       </div>
     </div>
 
     <div class="form-group row">
       <label for="desint-input" class="col-3 col-form-label text-right">Desintoxicación e internación por consumo de sustancias</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="desint-input" [(ngModel)]="hojaMensualAcompaniamientoDesintoxicacion.cantidadGestiones" [readonly]="readonlyControl">
+        <input class="form-control" name="desint-input" type="number" id="desint-input" [(ngModel)]="hojaMensualAcompaniamientoDesintoxicacion.cantidadGestiones" [readonly]="readonlyControl">
       </div>
 
       <label for="desint2-input" class="col-3 col-form-label text-right">Desintoxicación e internación por consumo de sustancias</label>
       <div class="col-2">
-        <input class="form-control" type="number" id="desint2-input" [(ngModel)]="hojaMensualAcompaniamientoDesintoxicacion.cantidadPersonas" [readonly]="readonlyControl">
+        <input class="form-control" name="desint2-input" type="number" id="desint2-input" [(ngModel)]="hojaMensualAcompaniamientoDesintoxicacion.cantidadPersonas" [readonly]="readonlyControl">
       </div>
     </div>
   </div>
@@ -189,7 +189,7 @@
     </div>
     <h5>ACOMPAÑAMIENTO Y VISITAS A ESTABLECIMIENTOS DE SALUD. Especifique nombre de las instituciones donde se realizaron los acompañamientos o visitas</h5>
     <div class="form-group">
-      <textarea class="form-control" id="exampleFormControlTextarea3" rows="2" [(ngModel)]="hojaMensualObservaciones.acompaniamientoVisitasEstablecimientoSalud" [readonly]="readonlyControl"></textarea>
+      <textarea class="form-control" id="exampleFormControlTextarea3"   name="exampleFormControlTextarea3rows="2" [(ngModel)]="hojaMensualObservaciones.acompaniamientoVisitasEstablecimientoSalud" [readonly]="readonlyControl"></textarea>
     </div>
   </div>
 
