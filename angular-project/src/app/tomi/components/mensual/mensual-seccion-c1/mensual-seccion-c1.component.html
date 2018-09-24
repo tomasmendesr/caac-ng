@@ -68,15 +68,15 @@
       </div>
     </div>
   </div>
-
+    
     <div class="card card-body marginBottom">
         <div (click)="hideFormAlert()" id="formAlert3"  class="alert alert-danger formErrorMessages" role="alert">
-            <ul style="margin-bottom: 0">
-              <li *ngFor="let message of formMessages">
-                {{message}}
-              </li>
-            </ul>
-          </div>
+          <ul style="margin-bottom: 0">
+            <li *ngFor="let message of formMessages">
+              {{message}}
+            </li>
+          </ul>
+        </div>
         <h5>¿Cuántas prestaciones de ALIMENTACIÓN EN SEDE se realizaron en la CAAC en el mes y a cúantas personas alcanzó?</h5>
         <br>
       <div class="form-row">
@@ -113,7 +113,7 @@
             </form>
       </div>
     </div>
-
+    
     <div class="card card-body marginBottom">
         <div (click)="hideFormAlert()" id="formAlert4"  class="alert alert-danger formErrorMessages" role="alert">
             <ul style="margin-bottom: 0">
@@ -172,7 +172,7 @@
       <button class="Button -sm -raised -primary -rounded" (click)="onClickGuardar()" [disabled]="readonlyControl"><i class="far fa-save"></i><span> Guardar</span></button>
       <button class="Button -sm -default -outline -rounded" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
     </div>
-
+ 
 </div>
 
 <!-- CONFIRM DIALOG -->
