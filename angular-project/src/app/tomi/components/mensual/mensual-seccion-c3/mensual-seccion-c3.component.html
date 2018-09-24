@@ -10,59 +10,37 @@
       </ul>
     </div>
     <h5>¿Cuántas GESTIONES EN ESTABLECIMIENTOS DE SALUD se realizaron en el mes y a cuántas personas se alcanzó?</h5>
-    <div class="form-group row margin-top">
-      <label class="col-6 text-center"><b>Cantidad de gestiones en el mes</b></label>
-      <label class="col-6 text-center"><b>Personas asistidas</b></label>
-    </div>
-    <div class="form-group row">
-      <label for="gestionTurnos-input" class="col-4 col-form-label text-right">Gestión de turnos</label>
-      <div class="col-2">
-        <input class="form-control" name="gestionTurnos-input" type="number" id="gestionTurnos-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTurnos.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
+    <br>
+    <div class="form-row">
+        <form >
+          <div class="form-row">
+              <label class="col-9 text-center"><b>Cantidad de gestiones en el mes</b></label>
+              <div class="form-group ">
+                <label for="gestionTurnos-input">Gestión de turnos</label>
+                <input class="form-control" name="gestionTurnos-input" type="number" id="gestionTurnos-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTurnos.cantidadGestiones" [readonly]="readonlyControl">
+                <label for="orientacion-input">Gestión de trámites para medicación</label>
+                <input class="form-control" type="number" id="orientacion-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTramitesMedicacion.cantidadGestiones" [readonly]="readonlyControl" name="orientacion-input">
+                <label for="gruposFam-input">Gestión de servicios (ej. sillas de ruedas, protesis, anteojos, etc.)</label>
+                <input class="form-control" type="number" id="gruposFam-input" [(ngModel)]="hojaMensualAcompaniamientoGestionServicios.cantidadGestiones" [readonly]="readonlyControl" name="gruposFam-input">
+              </div>
+          </div>
+        </form>
 
-      <label for="gestionTurnos2-input" class="col-4 col-form-label text-right">Gestión de turnos</label>
-      <div class="col-2">
-        <input class="form-control" type="number" name="gestionTurnos2-input" id="gestionTurnos2-input"
-               [(ngModel)]="hojaMensualAcompaniamientoGestionTurnos.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="orientacion-input" class="col-4 col-form-label text-right">Gestión de trámites para
-        medicación</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="orientacion-input"
-               [(ngModel)]="hojaMensualAcompaniamientoGestionTramitesMedicacion.cantidadGestiones"
-               [readonly]="readonlyControl" name="orientacion-input">
-      </div>
-
-      <label for="orientacion-input" class="col-4 col-form-label text-right">Gestión de trámites para
-        medicación</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="orientacion2-input"
-               [(ngModel)]="hojaMensualAcompaniamientoGestionTramitesMedicacion.cantidadPersonas"
-               [readonly]="readonlyControl" name="orientacion-input">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="gruposFam-input" class="col-4 col-form-label text-right">Gestión de servicios (ej. sillas de ruedas,
-        protesis, anteojos, etc.)</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="gruposFam-input"
-               [(ngModel)]="hojaMensualAcompaniamientoGestionServicios.cantidadGestiones"
-               [readonly]="readonlyControl" name="gruposFam-input">
-      </div>
-
-      <label for="gruposFam-input" class="col-4 col-form-label text-right">Gestión de servicios (ej. sillas de ruedas,
-        protesis, anteojos, etc.)</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="gruposFam2-input" name="gruposFam-input"
-               [(ngModel)]="hojaMensualAcompaniamientoGestionServicios.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
+        <form>
+          <div class="form-row">
+              <label class="col-9 text-center"><b>Personas asistidas</b></label>
+              <div class="form-group ">
+                <label for="gestionTurnos2-input">Gestión de turnos</label>
+                <input class="form-control" type="number" name="gestionTurnos2-input" id="gestionTurnos2-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTurnos.cantidadPersonas" [readonly]="readonlyControl">
+                <label for="orientacion2-input">Gestión de trámites para medicación</label>
+                <input class="form-control" type="number" id="orientacion2-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTramitesMedicacion.cantidadPersonas" [readonly]="readonlyControl" name="orientacion-input">
+                <label for="gruposFam2-input">Gestión de servicios (ej. sillas de ruedas, protesis, anteojos, etc.)</label>
+                <input class="form-control" type="number" id="gruposFam2-input" name="gruposFam-input" [(ngModel)]="hojaMensualAcompaniamientoGestionServicios.cantidadPersonas" [readonly]="readonlyControl">
+              </div>
+          </div>
+        </form>
     </div>
   </div>
-
 
   <div class="card card-body marginBottom">
     <div (click)="hideFormAlert()" id="formAlert2" class="alert alert-danger formErrorMessages" role="alert">
@@ -73,6 +51,7 @@
       </ul>
     </div>
     <h5>GESTIONES EN ESTABLECIMIENTOS DE SALUD. Especifique el nombre de las instituciones con las que se trabajó</h5>
+    <br>
     <div class="form-group">
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
                 [(ngModel)]="hojaMensualObservaciones.gestionesEstablecimientoSalud"
@@ -91,61 +70,36 @@
     </div>
     <h5>¿Cuántos ACOMPAÑAMIENTOS EN COMUNIDAD TERAPÉUTICA/CENTRO ESPECIALIZADO se realizaron en el mes y a cuántas
       personas se alcanzó?</h5>
-    <div class="from-group row margin-top">
-      <label class="col-6 text-center"><b>Acompañamientos / gestiones en el mes</b></label>
-      <label class="col-6 text-center"><b>Personas (cantidad aproximada)</b></label>
-    </div>
-    <div class="form-group row">
-      <label for="orie-input" class="col-5 col-form-label text-right">Acompañamiento en centros de tratamiento
-        especializado</label>
-      <div class="col-1">
-        <input class="form-control" type="number" id="orie-input" name="orie-input"
-               [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoEspecializado.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
+      <br>
+      <div class="form-row">
+          <form >
+            <div class="form-row">
+                <label class="col-9 text-center"><b>Acompañamientos / gestiones en el mes</b></label>
+                <div class="form-group ">
+                  <label for="orie-input">Acompañamiento en centros de tratamiento <br> especializado</label>
+                  <input class="form-control" type="number" id="orie-input" name="orie-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoEspecializado.cantidadGestiones" [readonly]="readonlyControl">
+                  <label for="sinSubsidio-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>sin subsidio</b> de Sedronar</label>
+                  <input class="form-control" type="number" id="sinSubsidio-input"  name="sinSubsidio-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.cantidadGestiones" [readonly]="readonlyControl">
+                  <label for="subsidio-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>subsidiado</b> de Sedronar</label>
+                  <input class="form-control" type="number" id="subsidio-input" name="subsidio-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.cantidadGestiones" [readonly]="readonlyControl">
+                </div>
+            </div>
+          </form>
 
-      <label for="acomp-input" class="col-5 col-form-label text-right">Acompañamiento en centros de tratamiento
-        especializado</label>
-      <div class="col-1">
-        <input class="form-control" type="number" id="acomp-input" name="acomp-input"
-               [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoEspecializado.cantidadPersonas" [readonly]="readonlyControl">
+          <form>
+            <div class="form-row">
+                <label class="col-9 text-center"><b>Personas (cantidad aproximada)</b></label>
+                <div class="form-group ">
+                  <label for="acomp-input">Acompañamiento en centros de tratamiento <br> especializado</label>
+                  <input class="form-control" type="number" id="acomp-input" name="acomp-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoEspecializado.cantidadPersonas" [readonly]="readonlyControl">
+                  <label for="sinSubsidio2-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>sin subsidio</b> de Sedronar</label>
+                  <input class="form-control" type="number" id="sinSubsidio2-input" name="sinSubsidio2-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.cantidadPersonas" [readonly]="readonlyControl">
+                  <label for="subsidio2-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>subsidiado</b> de Sedronar</label>
+                  <input class="form-control" type="number" id="subsidio2-input"  name="subsidio2-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.cantidadPersonas" [readonly]="readonlyControl">
+                </div>
+            </div>
+            </form>
       </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="sinSubsidio-input" class="col-5 col-form-label text-right">Gestión de ingreso/asistencia en centros de
-        tratamiento especializado <b>sin subsidio</b> de Sedronar</label>
-      <div class="col-1">
-        <input class="form-control" type="number" id="sinSubsidio-input"  name="sinSubsidio-input"
-               [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.cantidadGestiones"
-               [readonly]="readonlyControl">
-      </div>
-
-      <label for="sinSubsidio2-input" class="col-5 col-form-label text-right">Gestión de ingreso/asistencia en centros
-        de tratamiento especializado <b>sin subsidio</b> de Sedronar</label>
-      <div class="col-1">
-        <input class="form-control" type="number" id="sinSubsidio2-input" name="sinSubsidio2-input"
-               [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.cantidadPersonas"
-               [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="subsidio-input" class="col-5 col-form-label text-right">Gestión de ingreso/asistencia en centros de
-        tratamiento especializado <b>subsidiado</b> de Sedronar</label>
-      <div class="col-1">
-        <input class="form-control" type="number" id="subsidio-input" name="subsidio-input"
-               [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.cantidadGestiones"
-               [readonly]="readonlyControl">
-      </div>
-
-      <label for="subsidio2-input" class="col-5 col-form-label text-right">Gestión de ingreso/asistencia en centros de
-        tratamiento especializado <b>subsidiado</b> de Sedronar</label>
-      <div class="col-1">
-        <input class="form-control" type="number" id="subsidio2-input"  name="subsidio2-input"
-               [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.cantidadPersonas"
-               [readonly]="readonlyControl">
-      </div>
-    </div>
   </div>
 
   <div class="card card-body marginBottom">
@@ -158,6 +112,7 @@
     </div>
     <h5>ACOMPAÑAMIENTO EN COMUNIDAD TERAPÉUTICA/CENTRO ESPECIALIZADO. Especifique nombre de las instituciones con las
       que se trabjó</h5>
+      <br>
     <div class="form-group">
       <textarea class="form-control" id="exampleFormControlTextarea2" rows="2"
                 [(ngModel)]="hojaMensualObservaciones.acompaniamientoCentroEspecial"
@@ -175,37 +130,32 @@
     </div>
     <h5>¿Cuántas gestiones de ASESORAMIENTO Y PATROCINIO LEGAL se realizaron en el mes y a cuántas personas se
       alcanzó?</h5>
-    <div class="from-group row margin-top">
-      <label class="col-6 text-center"><b>Cantidad de gestiones en el mes</b></label>
-      <label class="col-6 text-center"><b>Personas aproximadas</b></label>
-    </div>
-    <div class="form-group row">
-      <label for="enInternacion-input" class="col-3 col-form-label text-right">En sede</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="enInternacion-input" name="enInternacion-input"
-               [(ngModel)]="hojaMensualAcompaniamientoEnSede.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
+      <br>
+      <div class="form-row">
+          <form >
+            <div class="form-row">
+                <label class="col-9 text-center"><b>Cantidad de gestiones en el mes</b></label>
+                <div class="form-group ">
+                  <label for="enInternacion-input">En sede</label>
+                  <input class="form-control" type="number" id="enInternacion-input" name="enInternacion-input" [(ngModel)]="hojaMensualAcompaniamientoEnSede.cantidadGestiones" [readonly]="readonlyControl">
+                  <label for="consultorios-input">Fuera de sede</label>
+                  <input class="form-control" type="number" id="consultorios-input" name="consultorios-input" [(ngModel)]="hojaMensualAcompaniamientoFueraDeSede.cantidadGestiones" [readonly]="readonlyControl">
+                </div>
+            </div>
+          </form>
 
-      <label for="enInternacion2-input" class="col-3 col-form-label text-right">En sede</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="enInternacion2-input" name="enInternacion2-input"
-               [(ngModel)]="hojaMensualAcompaniamientoEnSede.cantidadPersonas" [readonly]="readonlyControl">
+          <form>
+            <div class="form-row">
+                <label class="col-9 text-center"><b>Personas aproximadas</b></label>
+                <div class="form-group ">
+                  <label for="enInternacion2-input">En sede</label>
+                  <input class="form-control" type="number" id="enInternacion2-input" name="enInternacion2-input" [(ngModel)]="hojaMensualAcompaniamientoEnSede.cantidadPersonas" [readonly]="readonlyControl">
+                  <label for="consultorios2-input">Fuera de sede</label>
+                  <input class="form-control" type="number" id="consultorios2-input"  name="consultorios2-input" [(ngModel)]="hojaMensualAcompaniamientoFueraDeSede.cantidadPersonas" [readonly]="readonlyControl">
+                </div>
+            </div>
+            </form>
       </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="consultorios-input" class="col-3 col-form-label text-right">Fuera de sede</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="consultorios-input" name="consultorios-input"
-               [(ngModel)]="hojaMensualAcompaniamientoFueraDeSede.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="consultorios2-input" class="col-3 col-form-label text-right">Fuera de sede</label>
-      <div class="col-2">
-        <input class="form-control" type="number" id="consultorios2-input"  name="consultorios2-input"
-               [(ngModel)]="hojaMensualAcompaniamientoFueraDeSede.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
   </div>
 
   <div class="card card-body marginBottom">
@@ -216,7 +166,7 @@
         </li>
       </ul>
     </div>
-    <h5>Observaciones sobre ASEOSRAMIENTO Y PATRICINIO LEGAL</h5>
+    <h5>Observaciones sobre ASEOSRAMIENTO Y PATRICINIO LEGAL</h5><br>
     <div class="form-group">
       <textarea class="form-control" id="exampleFormControlTextarea3" rows="2" name="exampleFormControlTextarea3"
                 [(ngModel)]="hojaMensualObservaciones.asesoramientoLegal" [readonly]="readonlyControl"></textarea>
@@ -224,9 +174,9 @@
   </div>
 
   <div class="text-right" style="width:100%">
-    <button class="btn btn-sm btn-primary" (click)="onClickGuardar()" [disabled]="readonlyControl"><i
+    <button class="Button -sm -primary -raised -rounded" (click)="onClickGuardar()" [disabled]="readonlyControl"><i
       class="far fa-save"></i><span> Guardar</span></button>
-    <button class="btn btn-sm btn-default" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
+    <button class="Button -sm -default -outline -rounded" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
   </div>
 </div>
 
