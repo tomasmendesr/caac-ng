@@ -47,6 +47,7 @@ export class UrlConstants {
   static readonly FIND_ALL_CASAS = '/services/casa/findAllGeneral';
   static readonly FIND_ALL_CASAS_DTO = '/services/casa/findAll';
   static readonly SAVE_OR_UPDATE_CASA = '/services/casa/saveOrUpdateCasa';
+  static readonly SAVE_OR_UPDATE_CASA_GENERAL = '/services/casa/saveOrUpdateCasaGeneral';
 
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';
@@ -79,6 +80,7 @@ export class UrlConstants {
 
   //acompaniamiento service
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientosDeSalud';
+
 
 
 

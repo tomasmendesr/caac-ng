@@ -78,10 +78,14 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   }
 
   openModalAndLoadGeo(caacParaPopup) {
-    alert(this.caacParaPopup);
     this.openModal();
-    this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
-    this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);
+    if(typeof caacParaPopup != 'undefined') {
+      this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
+      this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);
+    } else {
+      this.caacParaPopup = new CaacLight();
+
+    }
   }
 
   openModal() {
@@ -98,19 +102,26 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       keyboard: false,
       show: false
     });
+    this.caacParaPopup = null;
   }
 
   onClickGuardar() {
-    alert(JSON.stringify(this.caacParaPopup));
-
-    this.casaService.saveOrUpdate(<Casa> this.caacParaPopup).subscribe(success => {
-      this.caacParaPopup = null;
+    this.completarCaacParaGuardar(this.caacParaPopup);
+    this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {
       this.closeModal();
       NotifUtil.notifSuccess('Guardado exitosamente');
     }, (error) => {
       console.error(error)
       NotifUtil.notifError('Error al guardar, ingrese los datos correctamente');
     });
+  }
+
+  completarCaacParaGuardar(caacParaPopup: CaacLight) {
+
+  }
+
+  onCloseModal() {
+    this.closeModal();
   }
 
   onAniadirClick() {
@@ -128,12 +139,12 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   onProvinciaChange(provincia) { //para bindear
     this.caacParaPopup.provincia = provincia;
-    this.picsService.findAllDepartamentosByProvincia(provincia);
+    this.picsService.findAllDepartamentosByProvincia(provincia).subscribe(data => this.departamentos = data);
   }
 
   onDepartamentoChange(departamento) {
     this.caacParaPopup.departamento = departamento;
-    this.picsService.findAllLocalidadesByDepartamento(departamento);
+    this.picsService.findAllLocalidadesByDepartamento(departamento).subscribe(data => this.localidades = data);
   }
 
   onLocalidadChange(localidad) {

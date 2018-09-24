@@ -27,5 +27,9 @@ export class CasaService {
     return this.http.post<any>(UrlConstants.SAVE_OR_UPDATE_CASA, casa)
   }
 
+  saveOrUpdateCasaGeneral(casa: Casa): Observable<any> {
+    return this.http.post<any>(UrlConstants.SAVE_OR_UPDATE_CASA_GENERAL, casa)
+  }
+
 }
 

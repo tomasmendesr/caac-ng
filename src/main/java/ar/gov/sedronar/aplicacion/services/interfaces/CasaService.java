@@ -38,6 +38,10 @@ public interface CasaService {
     Boolean saveOrUpdate(CasaDTO casaDTO) throws Exception;
 
     @POST
+    @Path("/saveOrUpdateCasaGeneral")
+    Boolean saveGeneral(CasaDTO casaDTO) throws Exception;
+
+    @POST
     @Path("/findAllAdministrativo")
     DataTableObjectResponse findAllForAdministrativo(AdministrativoTableFilter administrativoTableFilter);
 }
