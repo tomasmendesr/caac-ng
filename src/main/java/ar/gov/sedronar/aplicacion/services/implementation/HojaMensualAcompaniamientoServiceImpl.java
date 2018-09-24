@@ -36,13 +36,8 @@ public class HojaMensualAcompaniamientoServiceImpl implements HojaMensualAcompan
     @Override
     public AppResponse validateInputs(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoDTOList) {
         List<String> messages = new ArrayList<>();
-        hojaMensualAcompaniamientoDTOList.forEach(hojaMensualAcompaniamientoDTO -> {
-            if(hojaMensualAcompaniamientoDTO.getCantidadGestiones() == null) messages.add("Debe ingresar la cantidad de gestiones para el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
-            else if(hojaMensualAcompaniamientoDTO.getCantidadGestiones() < 0) messages.add("El valor ingresado para la cantidad de gestiones para el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
-
-            if(hojaMensualAcompaniamientoDTO.getCantidadPersonas() == null) messages.add("Debe ingresar la cantidad de personas que alcanzó el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
-            else if(hojaMensualAcompaniamientoDTO.getCantidadPersonas() < 0) messages.add("El valor ingresado para la cantidad de personas en el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
-        });
+        hojaMensualAcompaniamientoDTOList.forEach(hojaMensualAcompaniamientoDTO ->
+                this.validateCantidadGestionesAndCantidadPersonas(messages,hojaMensualAcompaniamientoDTO, true,true));
 
         return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
     }
@@ -75,15 +70,34 @@ public class HojaMensualAcompaniamientoServiceImpl implements HojaMensualAcompan
     public AppResponse validateInputsEnEstablecimiento(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento) {
         List<String> messages = new ArrayList<>();
         hojaMensualAcompaniamientoList.stream().filter(h -> establecimiento.equals(h.getAcompaniamiento().getEstablecimiento())).collect(Collectors.toList())
-            .forEach(hojaMensualAcompaniamientoDTO -> {
-                if(hojaMensualAcompaniamientoDTO.getCantidadGestiones() == null) messages.add("Debe ingresar la cantidad de gestiones para el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
-                else if(hojaMensualAcompaniamientoDTO.getCantidadGestiones() < 0) messages.add("El valor ingresado para la cantidad de gestiones para el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
-
-                if(hojaMensualAcompaniamientoDTO.getCantidadPersonas() == null) messages.add("Debe ingresar la cantidad de personas que alcanzó el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
-                else if(hojaMensualAcompaniamientoDTO.getCantidadPersonas() < 0) messages.add("El valor ingresado para la cantidad de personas en el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
-            }
-        );
+            .forEach(hojaMensualAcompaniamientoDTO ->
+                    this.validateCantidadGestionesAndCantidadPersonas(messages, hojaMensualAcompaniamientoDTO,true,true));
 
         return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
+    }
+
+    @Override
+    public AppResponse validateInputsByEstablecimientoAndTipo(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento, String tipo, boolean validateGestiones, boolean validatePersonas) {
+        List<String> messages = new ArrayList<>();
+        hojaMensualAcompaniamientoList.stream().filter(h -> establecimiento.equals(h.getAcompaniamiento().getEstablecimiento()) && tipo.equals(h.getAcompaniamiento().getTipo())).collect(Collectors.toList())
+                .forEach(hojaMensualAcompaniamientoDTO ->
+                        this.validateCantidadGestionesAndCantidadPersonas(messages, hojaMensualAcompaniamientoDTO, validateGestiones, validatePersonas));
+        return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
+    }
+
+    private void validateCantidadGestionesAndCantidadPersonas(List<String> validationsMessages, HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO, boolean validateGestiones, boolean validatePersonas){
+        if (validateGestiones) {
+            if (hojaMensualAcompaniamientoDTO.getCantidadGestiones() == null)
+                validationsMessages.add("Debe ingresar la cantidad de gestiones para el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
+            else if (hojaMensualAcompaniamientoDTO.getCantidadGestiones() < 0)
+                validationsMessages.add("El valor ingresado para la cantidad de gestiones para el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
+        }
+
+        if(validatePersonas) {
+            if (hojaMensualAcompaniamientoDTO.getCantidadPersonas() == null)
+                validationsMessages.add("Debe ingresar la cantidad de personas que alcanzó el acompañamiento: " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle());
+            else if (hojaMensualAcompaniamientoDTO.getCantidadPersonas() < 0)
+                validationsMessages.add("El valor ingresado para la cantidad de personas en el acompañamiento " + hojaMensualAcompaniamientoDTO.getAcompaniamiento().getDetalle() + " debe ser mayor o igual a 0");
+        }
     }
 }

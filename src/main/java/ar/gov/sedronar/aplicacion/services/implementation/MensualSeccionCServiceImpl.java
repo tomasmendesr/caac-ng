@@ -131,14 +131,41 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
     }
 
     @Override
-    public MensualSeccionC2Data getDataForSeccionC3ByHojaId(Long idHoja) {
-        MensualSeccionC2Data data = new MensualSeccionC2Data();
+    public MensualSeccionC3Data getDataForSeccionC3ByHojaId(Long idHoja) {
+        MensualSeccionC3Data data = new MensualSeccionC3Data();
         data.setHojaMensualObservaciones(hojaMensualObservacionesService.findByHojaId(idHoja));
-        data.setHojaMensualActividad(hojaMensualActividadService.findByHojaId(idHoja));
         List<Integer> idsAcompaniamientos = Arrays.asList(AcompaniamientoServiceImpl.ID_ESTB_SALUD_GESTION_DE_TURNOS, AcompaniamientoServiceImpl.ID_ESTB_SALUD_GESTION_DE_TRAMITES,AcompaniamientoServiceImpl.ID_ESTB_SALUD_GESTION_DE_SERVICIOS,
                 AcompaniamientoServiceImpl.ID_ACOMP_CENTRO_ESPECIALIZADO, AcompaniamientoServiceImpl.ID_GESTION_SIN_SUBSIDIO,
                 AcompaniamientoServiceImpl.ID_GESTION_CON_SUBSIDIO, AcompaniamientoServiceImpl.ID_GESTION_EN_SEDE,
                 AcompaniamientoServiceImpl.ID_GESTION_FUERA_DE_SEDE);
+        data.setHojaMensualAcompaniamientoList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompaniamientos));
+        return data;
+    }
+
+    @Override
+    public AppResponse saveOrUpdateSeccionC4(MensualSeccionC4Data data) throws Exception {
+        AppResponse validateAcompaniamientosEnComisariasYPenales = hojaMensualAcompaniamientoService.validateInputsByEstablecimientoAndTipo(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_PENALES_COMISARIAS, AcompaniamientoServiceImpl.TIPO_ACOMPANIAMIENTO, true, true);
+        if(validateAcompaniamientosEnComisariasYPenales.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validateAcompaniamientosEnComisariasYPenales.getData()));
+
+        AppResponse validatePersonasActividadPenales = hojaMensualAcompaniamientoService.validateInputsByEstablecimientoAndTipo(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_PENALES_COMISARIAS, AcompaniamientoServiceImpl.TIPO_ACTIVIDADES, false, true);
+        if(validatePersonasActividadPenales.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_2_FORMULARIO, validatePersonasActividadPenales.getData()));
+
+        if(data.getHojaMensualObservaciones().getActividadesTalleresComisaria() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getActividadesTalleresComisaria()) && data.getHojaMensualObservaciones().getActividadesTalleresComisaria().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
+
+        if(data.getHojaMensualObservaciones().getActividadesProductivasComisaria() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getActividadesProductivasComisaria()) && data.getHojaMensualObservaciones().getActividadesProductivasComisaria().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_4_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
+
+        if(data.getHojaMensualObservaciones().getActividadesCapacitacionComisaria() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getActividadesCapacitacionComisaria()) && data.getHojaMensualObservaciones().getActividadesCapacitacionComisaria().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_4_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
+
+        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompaniamientoList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
+        hojaMensualObservacionesService.saveOrUpdate(data.getHojaMensualObservaciones());
+        return new AppResponse();    }
+
+    @Override
+    public MensualSeccionC4Data getDataForSeccionC4ByHojaId(Long idHoja) {
+        MensualSeccionC4Data data = new MensualSeccionC4Data();
+        data.setHojaMensualObservaciones(hojaMensualObservacionesService.findByHojaId(idHoja));
+        List<Integer> idsAcompaniamientos = Arrays.asList(AcompaniamientoServiceImpl.ID_ACOMPAÑAMIENTO_COMISARIAS, AcompaniamientoServiceImpl.ID_ACOMPAÑAMIENTO_PENALES,AcompaniamientoServiceImpl.ID_PENALES_COMISARIAS_TALLERES,
+                AcompaniamientoServiceImpl.ID_PENALES_COMISARIAS_ACT_PROD, AcompaniamientoServiceImpl.ID_PENALES_COMISARIAS_CAPACITACION);
         data.setHojaMensualAcompaniamientoList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompaniamientos));
         return data;
     }

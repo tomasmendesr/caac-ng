@@ -23,6 +23,12 @@ export class AcompaniamientoService {
   static readonly ID_GESTION_EN_SEDE= 11;
   static readonly ID_GESTION_FUERA_DE_SEDE = 12;
 
+  static readonly ID_ACOMPAÑAMIENTO_COMISARIAS = 13;
+  static readonly ID_ACOMPAÑAMIENTO_PENALES = 14;
+  static readonly ID_PENALES_COMISARIAS_TALLERES = 15;
+  static readonly ID_PENALES_COMISARIAS_ACT_PROD = 16;
+  static readonly ID_PENALES_COMISARIAS_CAPACITACION = 17;
+
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Acompaniamiento[]>{
@@ -31,6 +37,10 @@ export class AcompaniamientoService {
 
   findAllEstablecimientosDeSalud(): Observable<Acompaniamiento[]>{
     return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_DE_SALUD, {});
+  }
+
+  findAllEstablecimientoPenalesComisarias(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTO_PENALES_COMISARIAS, {});
   }
 
   getAcompaniamientoById(acompaniamientos: Acompaniamiento[], id: number): Acompaniamiento {

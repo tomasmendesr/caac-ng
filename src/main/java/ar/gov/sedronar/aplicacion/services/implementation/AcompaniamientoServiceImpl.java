@@ -22,6 +22,10 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     public static final String ESTABLECIMIENTO_DE_SALUD = "Establecimiento de Salud";
     public static final String COMUNIDAD_TERAPEUTICA = "Comunidad Terapéutica/Centro Especializado";
     public static final String PATROCINIO_LEGAL = "Patrocinio Legal";
+    public static final String ESTABLECIMIENTO_PENALES_COMISARIAS = "Penales o Comisarías";
+
+    public static final String TIPO_ACOMPANIAMIENTO = "Acompañamiento";
+    public static final String TIPO_ACTIVIDADES = "Actividades";
 
 
     public static final Integer ID_EST_SALUD_INTERVENCION = 1;
@@ -41,6 +45,12 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     public static final Integer ID_GESTION_EN_SEDE= 11;
     public static final Integer ID_GESTION_FUERA_DE_SEDE = 12;
 
+    public static final Integer ID_ACOMPAÑAMIENTO_COMISARIAS = 13;
+    public static final Integer ID_ACOMPAÑAMIENTO_PENALES = 14;
+    public static final Integer ID_PENALES_COMISARIAS_TALLERES = 15;
+    public static final Integer ID_PENALES_COMISARIAS_ACT_PROD = 16;
+    public static final Integer ID_PENALES_COMISARIAS_CAPACITACION = 17;
+
     @Inject
     @HibernateDAO
     private AcompaniamientoDAO acompaniamientoDAO;
@@ -49,6 +59,11 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     @Override
     public List<AcompaniamientoDTO> findAllEstablecimientosDeSalud() {
         return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimiento(ESTABLECIMIENTO_DE_SALUD), AcompaniamientoDTO.class);
+    }
+
+    @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientoPenalesComisarias() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimiento(ESTABLECIMIENTO_PENALES_COMISARIAS), AcompaniamientoDTO.class);
     }
 
     @Override
