@@ -15,6 +15,11 @@ export default class CaacLight {
   obser;
   localidad: Localidad;
   departamento: Departamento;
+  activa;
+  expsed;
+  req;
+  modal;
+  obseradm;
 
   constructor() {
   }

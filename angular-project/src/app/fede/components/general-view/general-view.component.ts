@@ -1,6 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {
-  COLUMN_CUIT, COLUMN_DIRECCION, COLUMN_MAIL, COLUMN_NOMBRE_CAAC, COLUMN_NOMBRE_REPRESENTANTE, COLUMN_OBSERVACIONES,
+  COLUMN_CUIT, COLUMN_DEPARTAMENTO, COLUMN_DIRECCION, COLUMN_LOCALIDAD, COLUMN_MAIL, COLUMN_NOMBRE_CAAC,
+  COLUMN_NOMBRE_REPRESENTANTE,
+  COLUMN_OBSERVACIONES,
   COLUMN_PERSONERIA_JURIDICA, COLUMN_PROVINCIA, COLUMN_TELEFONO
 } from "../../constants/commons-constants";
 import {EventBusService} from "../../../services/event-bus.service";
@@ -27,7 +29,7 @@ declare var $: any;
 export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   TITLE: string = 'Información General';
-  EDICION_CAAC: string = 'Edición CAAC';
+  CAAC_POPUP_TITLE: string;
   TABLE_ID: string = 'tablaInformacionGeneral';
   filter: GeneralFilter = new GeneralFilter();
 
@@ -37,6 +39,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   departamentos: Departamento[];
   localidades: Localidad[];
 
+
   constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService, private casaService: CasaService) { }
 
   ngOnInit() {
@@ -44,16 +47,18 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.loadDataTable();
-    this.loadProvincias();
+    this.picsService.findAllProvinciasCombo().subscribe(data => this.provincias = data);
   }
 
-  private loadDataTable() {
+  loadDataTable() {
     const self = this;
     const columns = [
       { data: COLUMN_NOMBRE_CAAC, title: 'Nombre CAAC' },
       { data: COLUMN_PERSONERIA_JURIDICA, title: 'Personería Juridica' },
       { data: COLUMN_CUIT, title: 'CUIT' },
       { data: COLUMN_PROVINCIA, title: 'Provincia', render: (item) => item.nombre },
+      { data: COLUMN_DEPARTAMENTO, title: 'Departamento', render: (item) => item.nombre },
+      { data: COLUMN_LOCALIDAD, title: 'Localidad', render: (item) => item.nombre },
       { data: COLUMN_DIRECCION, title: 'Dirección' },
       { data: COLUMN_NOMBRE_REPRESENTANTE, title: 'Nombre Representante' },
       { data: COLUMN_TELEFONO, title: 'Teléfono' },
@@ -72,28 +77,33 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
     );
 
     $('#tablaInformacionGeneral tbody').on('click', '.btnEditar', function () {
-      self.caacParaPopup = table.row($(this).parents('tr').first()).data();
-      self.openModalAndLoadGeo(self.caacParaPopup);
+      const caac = table.row($(this).parents('tr').first()).data();
+
+      self.caacParaPopup = caac;
+      self.openModalForCaacEdit(self.caacParaPopup);
     });
   }
 
-  openModalAndLoadGeo(caacParaPopup) {
-    this.openModal();
-    if(typeof caacParaPopup != 'undefined') {
-      this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
-      this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);
-    } else {
-      this.caacParaPopup = new CaacLight();
-
-    }
-  }
-
   openModal() {
+    $('#form').show();
     $('#form').modal({
       backdrop: 'static',
       keyboard: false,
       show: true
     });
+  }
+
+  openModalForNewCaac() {
+    this.CAAC_POPUP_TITLE = 'Nueva CAAC';
+    this.picsService.findAllProvinciasCombo();
+    this.openModal();
+  }
+
+  openModalForCaacEdit(caacParaPopup) {
+    this.CAAC_POPUP_TITLE = 'Edición CAAC';
+    this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
+    this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);
+    this.openModal();
   }
 
   closeModal() {
@@ -102,39 +112,23 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       keyboard: false,
       show: false
     });
-    this.caacParaPopup = null;
+    $('#form').hide();
   }
 
   onClickGuardar() {
-    this.completarCaacParaGuardar(this.caacParaPopup);
+    const self = this;
     this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {
-      this.closeModal();
       NotifUtil.notifSuccess('Guardado exitosamente');
+      self.closeModal();
     }, (error) => {
       console.error(error)
       NotifUtil.notifError('Error al guardar, ingrese los datos correctamente');
     });
   }
 
-  completarCaacParaGuardar(caacParaPopup: CaacLight) {
-
-  }
-
-  onCloseModal() {
-    this.closeModal();
-  }
-
   onAniadirClick() {
     this.caacParaPopup = new CaacLight();
-    this.openModalAndLoadGeo(this.caacParaPopup);
-  }
-
-  loadProvincias() {
-    this.picsService.findAllProvinciasCombo().subscribe(data => this.provincias = data);
-  }
-
-  compareFunct(o1: any, o2: any): boolean {
-    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+    this.openModalForNewCaac();
   }
 
   onProvinciaChange(provincia) { //para bindear
@@ -149,5 +143,9 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   onLocalidadChange(localidad) {
     this.caacParaPopup.localidad = localidad;
+  }
+
+  compareFunct(o1: any, o2: any): boolean {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
   }
 }

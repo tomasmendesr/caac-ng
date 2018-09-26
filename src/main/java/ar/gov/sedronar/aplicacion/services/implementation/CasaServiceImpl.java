@@ -77,8 +77,9 @@ public class CasaServiceImpl implements CasaService {
     }
 
     public Boolean saveGeneral(CasaDTO casaDTO) throws Exception {
-        if(casaDTO.getId()==null){ //robado del viejo y querido caac
-            casaDTO.setCat(DozerHelper.map(categoriaDAO.findById(Categoria.class, 1), CategoriaDTO.class));
+        if(casaDTO.getId() == null) { //robado del viejo y querido caac
+            casaDTO.setCat(DozerHelper.map(categoriaDAO.findById(1), CategoriaDTO.class)); //no se porque es categoria 1 pero en el viejo caac estaba asi
+            casaDTO.setNcat(DozerHelper.map(categoriaDAO.findById(2), CategoriaDTO.class)); //idem
             casaDTO.setExpsed("");
             casaDTO.setFechacon((Date)DefaultValues.FechaEmpty.getValue());
             casaDTO.setFechaini((Date)DefaultValues.FechaEmpty.getValue());
@@ -87,7 +88,13 @@ public class CasaServiceImpl implements CasaService {
             casaDTO.setObseradm("");
         }
 
+        validarCasa(casaDTO);
+
         return saveOrUpdate(casaDTO);
+    }
+
+    private void validarCasa(CasaDTO casaDTO) {
+        //todo implementar validacion
     }
 
     @Override
