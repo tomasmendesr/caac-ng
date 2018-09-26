@@ -68,6 +68,7 @@ import {TramiteService} from "./tomi/services/tramite.service";
 import {AlimentacionService} from "./tomi/services/alimentacion.service";
 import {MensualSeccionCService} from "./tomi/services/mensual-seccion-c.service";
 import {AcompaniamientoService} from "./tomi/services/acompaniamiento.service";
+import {CategoriaService} from "./services/categoria.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -151,7 +152,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     AlimentacionService,
     MensualSeccionCService,
     GeneralViewService,
-    AcompaniamientoService
+    AcompaniamientoService,
+    CategoriaService
   ],
   bootstrap: [AppComponent]
 })

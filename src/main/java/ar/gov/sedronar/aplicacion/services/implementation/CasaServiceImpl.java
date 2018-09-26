@@ -41,7 +41,6 @@ public class CasaServiceImpl implements CasaService {
     @HibernateDAO
     private CategoriaDAO categoriaDAO;
 
-
     @Override
     public List<CasaDTO> findAll() {
         return DozerHelper.mapList(casaDAO.findAll(Casa.class), CasaDTO.class);
