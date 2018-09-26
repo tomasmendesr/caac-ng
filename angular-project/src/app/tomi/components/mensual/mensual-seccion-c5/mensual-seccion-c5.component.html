@@ -15,110 +15,17 @@
       <label class="col-6 text-center"><b>Cantidad de prestaciones</b></label>
       <label class="col-6 text-center"><b>Personas aproximadas</b></label>
     </div>
-    <div class="form-group row">
-      <label for="terapiaIndividual-input" class="col-3 col-form-label text-right">Terapia individual</label>
-      <div class="col-2">
-        <input class="form-control" name="terapiaIndividual-input" type="number" id="terapiaIndividual-input" [(ngModel)]="hojaMensualAcompaniamientoTerapiaIndividual.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
+    <div *ngFor="let hojaMensualAcomp of hojaMensualAcompaniamientosEstablecimientoProfSaludList">
+      <div class="form-group row">
+        <label for="{{hojaMensualAcomp.acompaniamiento.id}}gestiones" class="col-3 col-form-label text-right">{{hojaMensualAcomp.acompaniamiento.detalle}}</label>
+        <div class="col-2">
+          <input class="form-control" name="{{hojaMensualAcomp.acompaniamiento.id}}gestiones" type="number" id="{{hojaMensualAcomp.acompaniamiento.id}}gestiones" [(ngModel)]="hojaMensualAcomp.cantidadGestiones" [readonly]="readonlyControl">
+        </div>
 
-      <label for="terapiaIndividual2-input" class="col-3 col-form-label text-right">Terapia individual</label>
-      <div class="col-2">
-        <input class="form-control" name="terapiaIndividual2-input" type="number" id="terapiaIndividual2-input" [(ngModel)]="hojaMensualAcompaniamientoTerapiaIndividual.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="terapiaGrupal-input" class="col-3 col-form-label text-right">Terapia grupal</label>
-      <div class="col-2">
-        <input class="form-control" name="terapiaGrupal-input" type="number" id="terapiaGrupal-input" [(ngModel)]="hojaMensualAcompaniamientoTerapiaGrupal.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="terapiaGrupal2-input" class="col-3 col-form-label text-right">Terapia grupal</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="terapiaGrupal2-input" id="terapiaGrupal2-input" [(ngModel)]="hojaMensualAcompaniamientoTerapiaGrupal.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="reunion-input" class="col-3 col-form-label text-right">Reunión multifamiliar</label>
-      <div class="col-2">
-        <input class="form-control" name="reunion-input" type="number" id="reunion-input" [(ngModel)]="hojaMensualAcompaniamientoReunion.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-      <label for="reunion2-input" class="col-3 col-form-label text-right">Reunión multifamiliar</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="reunion2-input" id="reunion2-input" [(ngModel)]="hojaMensualAcompaniamientoReunion.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="informe-input" class="col-3 col-form-label text-right">Informe social</label>
-      <div class="col-2">
-        <input class="form-control" name="informe-input" type="number" id="informe-input" [(ngModel)]="hojaMensualAcompaniamientoInforme.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="informe2-input" class="col-3 col-form-label text-right">Informe social</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="informe2-input" id="informe2-input" [(ngModel)]="hojaMensualAcompaniamientoInforme.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="orientacion-input" class="col-3 col-form-label text-right">Orientación vocacional</label>
-      <div class="col-2">
-        <input class="form-control" name="orientacion-input" type="number" id="orientacion-input" [(ngModel)]="hojaMensualAcompaniamientoOrientacion.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="orientacion2-input" class="col-3 col-form-label text-right">Orientación vocacional</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="orientacion2-input" id="orientacion2-input" [(ngModel)]="hojaMensualAcompaniamientoOrientacion.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="eval-input" class="col-3 col-form-label text-right">Evaluación diagnóstica pscicológica/psiquiátrica</label>
-      <div class="col-2">
-        <input class="form-control" name="eval-input" type="number" id="eval-input" [(ngModel)]="hojaMensualAcompaniamientoEvaluacion.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="eval2-input" class="col-3 col-form-label text-right">Evaluación diagnóstica pscicológica/psiquiátrica</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="eval2-input" id="eval2-input" [(ngModel)]="hojaMensualAcompaniamientoEvaluacion.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="controlMedico-input" class="col-3 col-form-label text-right">Control médico clínico</label>
-      <div class="col-2">
-        <input class="form-control" name="controlMedico-input" type="number" id="controlMedico-input" [(ngModel)]="hojaMensualAcompaniamientoControlMedico.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="controlMedico2-input" class="col-3 col-form-label text-right">Control médico clínico</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="controlMedico2-input" id="controlMedico2-input" [(ngModel)]="hojaMensualAcompaniamientoControlMedico.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="seg-input" class="col-3 col-form-label text-right">Seguimiento farmacológico</label>
-      <div class="col-2">
-        <input class="form-control" name="seg-input" type="number" id="seg-input" [(ngModel)]="hojaMensualAcompaniamientoSeguimiento.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="seg2-input" class="col-3 col-form-label text-right">Seguimiento farmacológico</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="seg2-input" id="seg2-input" [(ngModel)]="hojaMensualAcompaniamientoSeguimiento.cantidadPersonas" [readonly]="readonlyControl">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="grupos-input" class="col-3 col-form-label text-right">Grupos terapéuticos para asistidos</label>
-      <div class="col-2">
-        <input class="form-control" name="grupos-input" type="number" id="grupos-input" [(ngModel)]="hojaMensualAcompaniamientoGrupos.cantidadGestiones" [readonly]="readonlyControl">
-      </div>
-
-      <label for="grupos2-input" class="col-3 col-form-label text-right">Grupos terapéuticos para asistidos</label>
-      <div class="col-2">
-        <input class="form-control"  type="number" name="grupos2-input" id="grupos2-input" [(ngModel)]="hojaMensualAcompaniamientoGrupos.cantidadPersonas" [readonly]="readonlyControl">
+        <label for="{{hojaMensualAcomp.acompaniamiento.id}}personas" class="col-3 col-form-label text-right">{{hojaMensualAcomp.acompaniamiento.detalle}}</label>
+        <div class="col-2">
+          <input class="form-control" name="{{hojaMensualAcomp.acompaniamiento.id}}personas" type="number" id="{{hojaMensualAcomp.acompaniamiento.id}}personas" [(ngModel)]="hojaMensualAcomp.cantidadPersonas" [readonly]="readonlyControl">
+        </div>
       </div>
     </div>
   </div>
@@ -160,48 +67,6 @@
             </div>
           </div>
         </div>
-        <!--<div class="form-group row">-->
-          <!--<label for="medicamentos-input" class="col-6 col-form-label text-right">Medicamentos</label>-->
-          <!--<div class="col-6">-->
-            <!--<input class="form-control" name="medicamentos-input" type="number" id="medicamentos-input" [(ngModel)]="hojaMensualRecursoMedicamentos.cantidadPersonas" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group row">-->
-          <!--<label for="preservativo-input" class="col-6 col-form-label text-right">Anticonceptivo/preservativo</label>-->
-          <!--<div class="col-6">-->
-            <!--<input class="form-control" name="preservativo-input" type="number" id="preservativo-input" [(ngModel)]="hojaMensualRecursoAnticonceptivo.cantidadPersonas" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group row">-->
-          <!--<label for="utiles-input" class="col-6 col-form-label text-right">Útiles escolares</label>-->
-          <!--<div class="col-6">-->
-            <!--<input class="form-control" name="utiles-input" type="number" id="utiles-input" [(ngModel)]="hojaMensualRecursoUtilesEscolares.cantidadPersonas" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group row">-->
-          <!--<label for="transporte-input" class="col-6 col-form-label text-right">Gastos de transporte</label>-->
-          <!--<div class="col-6">-->
-            <!--<input class="form-control" name="transporte-input" type="number" id="transporte-input" [(ngModel)]="hojaMensualRecursoGastosTransporte.cantidadPersonas" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group row">-->
-          <!--<label for="ropa-input" class="col-6 col-form-label text-right">Ropa</label>-->
-          <!--<div class="col-6">-->
-            <!--<input class="form-control" name="ropa-input" type="number" id="ropa-input" [(ngModel)]="hojaMensualRecursoRopa.cantidadPersonas" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group row">-->
-          <!--<label for="construccion-input" class="col-6 col-form-label text-right">Material de construcción</label>-->
-          <!--<div class="col-6">-->
-            <!--<input class="form-control" name="construccion-input" type="number" id="construccion-input" [(ngModel)]="hojaMensualRecursoMaterialConstruccion.cantidadPersonas" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-group row">-->
-          <!--<label for="higiene-input" class="col-6 col-form-label text-right">Elementos de higiene personal</label>-->
-          <!--<div class="col-6">-->
-            <!--<input class="form-control" name="higiene-input" type="number" id="higiene-input" [(ngModel)]="hojaMensualRecursoHigiene.cantidadPersonas" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
       </div>
     </div>
 

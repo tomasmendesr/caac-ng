@@ -3,9 +3,12 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {UrlConstants} from "./UrlConstants";
 import {Acompaniamiento} from "../../model/acompaniamiento";
+import {HojaMensualAcompaniamiento} from "../../model/hoja-mensual-acompaniamiento";
 
 @Injectable()
 export class AcompaniamientoService {
+  static readonly ESTABLECIMIENTO_PROF_SALUD = "Profesional de Salud";
+
   static readonly ID_ESTB_SALUD_INTERNACION = 1;
   static readonly ID_ESTB_SALUD_CONSULTORIOS = 2;
   static readonly ID_ESTB_SALUD_EMERGENCIAS = 3;
@@ -61,5 +64,9 @@ export class AcompaniamientoService {
 
   getAcompaniamientoById(acompaniamientos: Acompaniamiento[], id: number): Acompaniamiento {
     return acompaniamientos.find(t => t.id == id);
+  }
+
+  filterByEstablecimiento(hojaMensualAcompaniamientoList: HojaMensualAcompaniamiento[], establecimiento: string) {
+    return hojaMensualAcompaniamientoList.filter(h => h.acompaniamiento.establecimiento == establecimiento);
   }
 }

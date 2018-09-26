@@ -28,17 +28,9 @@ export class MensualSeccionC5Component implements OnInit {
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
   private recursos: Recurso[] = [];
   private acompaniamientos: Acompaniamiento[] = [];
+  private acompaniamientosEstablecimientoProfSalud: Acompaniamiento[] = [];
   private mensualSeccionC5Data: MensualSeccionC5Data = new MensualSeccionC5Data;
 
-  private hojaMensualAcompaniamientoTerapiaIndividual: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoTerapiaGrupal: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoReunion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoInforme: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoOrientacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoEvaluacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoControlMedico: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoSeguimiento: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoGrupos: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoEscuela: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoActividadPrevencion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoApoyoEscolar: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
@@ -47,6 +39,7 @@ export class MensualSeccionC5Component implements OnInit {
 
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
   private hojaMensualRecursosList: HojaMensualRecurso[] = [];
+  private hojaMensualAcompaniamientosEstablecimientoProfSaludList: HojaMensualAcompaniamiento[] = [];
 
   constructor(private router: Router, private recursoService: RecursoService,
               private acompaniamientoService: AcompaniamientoService, private mensualSeccionCService: MensualSeccionCService) { }
@@ -56,7 +49,11 @@ export class MensualSeccionC5Component implements OnInit {
       this.recursos = data;
       this.initHojaMensualRecursosList();
     });
-    this.acompaniamientoService.findAll().subscribe(data => this.acompaniamientos = data);
+    this.acompaniamientoService.findAll().subscribe(data => {
+      this.acompaniamientos = data;
+      this.acompaniamientosEstablecimientoProfSalud = this.acompaniamientos.filter(a => a.establecimiento == AcompaniamientoService.ESTABLECIMIENTO_PROF_SALUD);
+      this.initHojaMensualAcompaniamientoProfSaludList();
+    });
   }
 
   private initHojaMensualRecursosList(){
@@ -65,6 +62,15 @@ export class MensualSeccionC5Component implements OnInit {
       let hojaMensualRecurso = new HojaMensualRecurso;
       hojaMensualRecurso.recurso = recurso;
       this.hojaMensualRecursosList.push(hojaMensualRecurso);
+    });
+  }
+
+  private initHojaMensualAcompaniamientoProfSaludList(){
+    this.hojaMensualAcompaniamientosEstablecimientoProfSaludList = [];
+    this.acompaniamientosEstablecimientoProfSalud.forEach(acomp => {
+      let hojaMensual = new HojaMensualAcompaniamiento;
+      hojaMensual.acompaniamiento = acomp;
+      this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.push(hojaMensual);
     });
   }
 
@@ -138,21 +144,13 @@ export class MensualSeccionC5Component implements OnInit {
   private bindDataToDTO() {
     this.mensualSeccionC5Data.hojaMensualRecursoList = this.hojaMensualRecursosList;
     this.addAHojaMensualAcompaniamientoToDTOList(this.mensualSeccionC5Data.hojaMensualAcompaniamientoList);
+    this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.forEach(hm => this.mensualSeccionC5Data.hojaMensualAcompaniamientoList.push(hm));
     this.mensualSeccionC5Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
     this.setHojaIdToItems();
   }
 
 
   private addAHojaMensualAcompaniamientoToDTOList(list: any[]) {
-    list.push(this.hojaMensualAcompaniamientoTerapiaIndividual  );
-    list.push(this.hojaMensualAcompaniamientoTerapiaGrupal  );
-    list.push(this.hojaMensualAcompaniamientoReunion  );
-    list.push(this.hojaMensualAcompaniamientoInforme  );
-    list.push(this.hojaMensualAcompaniamientoOrientacion );
-    list.push(this.hojaMensualAcompaniamientoEvaluacion );
-    list.push(this.hojaMensualAcompaniamientoControlMedico );
-    list.push(this.hojaMensualAcompaniamientoSeguimiento );
-    list.push(this.hojaMensualAcompaniamientoGrupos  );
     list.push(this.hojaMensualAcompaniamientoEscuela  );
     list.push(this.hojaMensualAcompaniamientoApoyoEscolar   );
     list.push(this.hojaMensualAcompaniamientoInclusionEducativa  );
@@ -166,30 +164,12 @@ export class MensualSeccionC5Component implements OnInit {
   }
 
   private initHojaMensualAcompaniamiento() {
-    this.hojaMensualAcompaniamientoTerapiaIndividual = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoTerapiaGrupal = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoReunion = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoInforme = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoOrientacion= new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoEvaluacion= new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoControlMedico= new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoSeguimiento= new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoGrupos = new HojaMensualAcompaniamiento;
+    this.initHojaMensualAcompaniamientoProfSaludList();
     this.hojaMensualAcompaniamientoEscuela = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoActividadPrevencion = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoApoyoEscolar = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoInclusionEducativa = new HojaMensualAcompaniamiento;
     this.hojaMensualAcompaniamientoEscuelaEnSede = new HojaMensualAcompaniamiento;
-
-    this.hojaMensualAcompaniamientoTerapiaIndividual.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_TERAPIA_INDIVIDUAL);
-    this.hojaMensualAcompaniamientoTerapiaGrupal.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_TERAPIA_FAMILIAR);
-    this.hojaMensualAcompaniamientoReunion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_REUNION_MULTIFAMILIAR);
-    this.hojaMensualAcompaniamientoInforme.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_INFORME_SOCIAL);
-    this.hojaMensualAcompaniamientoOrientacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ORIENTACION_VOCACIONAL);
-    this.hojaMensualAcompaniamientoEvaluacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_EVALUACION);
-    this.hojaMensualAcompaniamientoControlMedico.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_CONTROL_MEDICO);
-    this.hojaMensualAcompaniamientoSeguimiento.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_SEGUIMIENTO_FARMACOLOGICO);
-    this.hojaMensualAcompaniamientoGrupos.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GRUPOS_TERAPEUTICOS);
 
     this.hojaMensualAcompaniamientoEscuela.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACOMP_ESCUELA);
     this.hojaMensualAcompaniamientoActividadPrevencion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACTIVIDADES_PREVENCION);
@@ -224,15 +204,7 @@ export class MensualSeccionC5Component implements OnInit {
 
   private buildHojaMensualAcompaniamientos(data: MensualSeccionC5Data) {
     if (data.hojaMensualAcompaniamientoList) {
-      this.hojaMensualAcompaniamientoTerapiaIndividual = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_TERAPIA_INDIVIDUAL);
-      this.hojaMensualAcompaniamientoTerapiaGrupal = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_TERAPIA_FAMILIAR);
-      this.hojaMensualAcompaniamientoReunion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_REUNION_MULTIFAMILIAR);
-      this.hojaMensualAcompaniamientoInforme = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_INFORME_SOCIAL);
-      this.hojaMensualAcompaniamientoOrientacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ORIENTACION_VOCACIONAL);
-      this.hojaMensualAcompaniamientoEvaluacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_EVALUACION);
-      this.hojaMensualAcompaniamientoControlMedico = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_CONTROL_MEDICO);
-      this.hojaMensualAcompaniamientoSeguimiento = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_SEGUIMIENTO_FARMACOLOGICO);
-      this.hojaMensualAcompaniamientoGrupos = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GRUPOS_TERAPEUTICOS);
+      this.hojaMensualAcompaniamientosEstablecimientoProfSaludList = this.acompaniamientoService.filterByEstablecimiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ESTABLECIMIENTO_PROF_SALUD);
 
       this.hojaMensualAcompaniamientoEscuela = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACOMP_ESCUELA);
       this.hojaMensualAcompaniamientoActividadPrevencion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACTIVIDADES_PREVENCION);
