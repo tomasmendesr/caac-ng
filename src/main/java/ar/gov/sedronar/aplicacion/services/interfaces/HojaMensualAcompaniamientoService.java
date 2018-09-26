@@ -16,7 +16,7 @@ public interface HojaMensualAcompaniamientoService {
 
     List<HojaMensualAcompaniamientoDTO> findListByHojaAndAcompaniamientoId(Long idHoja, List<Integer> idsAcompaniamientos);
 
-    AppResponse validateInputsEnEstablecimiento(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento);
+    AppResponse validateInputsEnEstablecimiento(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento, boolean validateGestiones, boolean validatePersonas);
 
     AppResponse validateInputsByEstablecimientoAndTipo(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento, String tipo, boolean validateGestiones, boolean validatePersonas);
 }

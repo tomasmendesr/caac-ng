@@ -115,17 +115,17 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
     @Override
     public AppResponse saveOrUpdateSeccionC3(MensualSeccionC3Data data) throws Exception {
-        AppResponse validateGestionEnEstablecimientoDeSalud = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_DE_SALUD);
+        AppResponse validateGestionEnEstablecimientoDeSalud = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_DE_SALUD, true,true);
         if(validateGestionEnEstablecimientoDeSalud.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validateGestionEnEstablecimientoDeSalud.getData()));
 
         if(StringUtils.isNotBlank(data.getHojaMensualObservaciones().getGestionesEstablecimientoSalud()) && data.getHojaMensualObservaciones().getGestionesEstablecimientoSalud().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_2_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
 
-        AppResponse validateEstablecimientoComunidadTerapeutica = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(),  AcompaniamientoServiceImpl.COMUNIDAD_TERAPEUTICA);
+        AppResponse validateEstablecimientoComunidadTerapeutica = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(),  AcompaniamientoServiceImpl.COMUNIDAD_TERAPEUTICA,true,true);
         if(validateEstablecimientoComunidadTerapeutica.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validateEstablecimientoComunidadTerapeutica.getData()));
 
         if(StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAcompaniamientoCentroEspecial()) && data.getHojaMensualObservaciones().getAcompaniamientoCentroEspecial().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_4_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
 
-        AppResponse validateEstablecimientoPatrocinioLegal = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(),  AcompaniamientoServiceImpl.PATROCINIO_LEGAL);
+        AppResponse validateEstablecimientoPatrocinioLegal = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(),  AcompaniamientoServiceImpl.PATROCINIO_LEGAL,true,true);
         if(validateEstablecimientoPatrocinioLegal.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, validateEstablecimientoPatrocinioLegal.getData()));
 
         if(StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAsesoramientoLegal()) && data.getHojaMensualObservaciones().getAsesoramientoLegal().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_6_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
@@ -177,7 +177,7 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
     @Override
     public AppResponse saveOrUpdateSeccionC5(MensualSeccionC5Data data) throws Exception {
-        AppResponse validateProfesionalDeSalud = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_PROFESIONAL_DE_SALUD);
+        AppResponse validateProfesionalDeSalud = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_PROFESIONAL_DE_SALUD, true, true);
         if(validateProfesionalDeSalud.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validateProfesionalDeSalud.getData()));
 
         if(data.getHojaMensualObservaciones().getAcompaniamientoProfesionalSalud() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAcompaniamientoProfesionalSalud()) && data.getHojaMensualObservaciones().getAcompaniamientoProfesionalSalud().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_2_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
@@ -185,7 +185,7 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
         AppResponse validateRecursos = hojaMensualRecursosService.validateInputs(data.getHojaMensualRecursoList());
         if(validateRecursos.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validateRecursos.getData()));
 
-        AppResponse validateTrayectorias = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_TRAYECTORIAS_EDUCATIVAS);
+        AppResponse validateTrayectorias = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_TRAYECTORIAS_EDUCATIVAS, false, true);
         if(validateTrayectorias.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_4_FORMULARIO, validateTrayectorias.getData()));
 
         if(data.getHojaMensualObservaciones().getAcompaniamientoTrayectoriaEducativa() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAcompaniamientoTrayectoriaEducativa()) && data.getHojaMensualObservaciones().getAcompaniamientoTrayectoriaEducativa().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));

@@ -229,6 +229,7 @@ export class MensualSeccionC5Component implements OnInit {
     if (data.hojaMensualRecursoList) {
       this.hojaMensualRecursoMedicamentos = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_MEDICAMENTO);
       this.hojaMensualRecursoAnticonceptivo = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_ANTICONCEPTIVO);
+      this.hojaMensualRecursoUtilesEscolares = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_UTILES_ESCOLARES);
       this.hojaMensualRecursoGastosTransporte = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_GASTOS_TRANSPORTE);
       this.hojaMensualRecursoRopa = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_ROPA);
       this.hojaMensualRecursoMaterialConstruccion = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_MATERIAL);
