@@ -5,4 +5,6 @@ import ar.gov.sedronar.aplicacion.model.Categoria;
 
 public interface CategoriaDAO extends AbstractDAO<Categoria>{
 
+    Categoria findById(Integer id);
+
 }

@@ -1,6 +1,7 @@
 package ar.gov.sedronar.aplicacion.dto;
 
 import ar.gov.sedronar.aplicacion.model.Categoria;
+import ar.gov.sedronar.modulo.geo.dto.DepartamentoLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.ProvinciaLightDTO;
 
@@ -11,11 +12,13 @@ import java.util.Date;
  */
 public class CasaLightDTO {
     private Integer id;
-    private String nomcaac, perjuridica, cuit, dir, nomrepre, tel, mail, obser;
+    private String nomcaac, perjuridica, cuit, dir, nomrepre, tel, mail, obser, expsed, req, modal, obseradm;
     private ProvinciaLightDTO provincia;
     private LocalidadLightDTO localidad;
+    private DepartamentoLightDTO departamento;
     private Categoria cat, ncat;
     private Date fechaini, fechacon;
+    private Boolean activa;
 
     public Integer getId() {
         return id;
@@ -135,5 +138,53 @@ public class CasaLightDTO {
 
     public void setFechaini(Date fechaini) {
         this.fechaini = fechaini;
+    }
+
+    public DepartamentoLightDTO getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(DepartamentoLightDTO departamento) {
+        this.departamento = departamento;
+    }
+
+    public Boolean getActiva() {
+        return activa;
+    }
+
+    public void setActiva(Boolean activa) {
+        this.activa = activa;
+    }
+
+    public String getExpsed() {
+        return expsed;
+    }
+
+    public void setExpsed(String expsed) {
+        this.expsed = expsed;
+    }
+
+    public String getReq() {
+        return req;
+    }
+
+    public void setReq(String req) {
+        this.req = req;
+    }
+
+    public String getModal() {
+        return modal;
+    }
+
+    public void setModal(String modal) {
+        this.modal = modal;
+    }
+
+    public String getObseradm() {
+        return obseradm;
+    }
+
+    public void setObseradm(String obseradm) {
+        this.obseradm = obseradm;
     }
 }
