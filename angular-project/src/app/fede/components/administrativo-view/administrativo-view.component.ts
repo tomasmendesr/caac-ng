@@ -7,6 +7,15 @@ import { COLUMN_NOMBRE_CAAC,
 import {DataTableService} from "../../../services/data-table.service";
 import {UrlConstantsCaac} from "../../constants/url-constants";
 import AdministrativoFilter from "../../model/filters/administrativo-filter";
+import CaacLight from "../../model/caac-light";
+import {PicsService} from "../../../tomi/services/pics.service";
+import {Departamento} from "../../../model/departamento";
+import {Provincia} from "../../../model/provincia";
+import {Localidad} from "../../../model/localidad";
+import {Categoria} from "../../../model/categoria";
+import {CategoriaService} from "../../../services/categoria.service";
+
+declare var $: any;
 
 @Component({
   selector: 'app-administrativo-view',
@@ -19,14 +28,22 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
   TABLE_ID = 'tableAdministrativo';
 
   filter: AdministrativoFilter = new AdministrativoFilter();
+  provincias: Provincia[];
+  departamentos: Departamento[];
+  localidades: Localidad[];
+  categorias: Categoria[];
 
-  constructor(private dataTableService: DataTableService) { }
+  caacParaPopup: CaacLight;
+
+  constructor(private dataTableService: DataTableService, private picsService: PicsService, private categoriaService: CategoriaService) { }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
     this.loadTable();
+    this.picsService.findAllProvinciasCombo().subscribe(data => this.provincias = data);
+    this.categoriaService.findAllCategorias().subscribe(data => this.categorias = data);
   }
 
   loadTable() {
@@ -35,13 +52,12 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
       { data: COLUMN_NOMBRE_CAAC, title: 'Nombre CAAC' },
       { data: COLUMN_PERSONERIA_JURIDICA, title: 'Personería Juridica' },
       { data: COLUMN_CUIT, title: 'CUIT' },
-      { data: COLUMN_MODALIDAD_CONVENIO, title: 'Modalidad del Convenio', render: (item) => item.cat },
+      { data: COLUMN_MODALIDAD_CONVENIO, title: 'Modalidad del Convenio' },
       { data: COLUMN_CATEGORIA_INICIAL, title: 'Categoría Inicial', render: (item) => item.cat },
-      { data: COLUMN_NUEVA_CATEGORIA, title: 'Nueva Categoría' },
+      { data: COLUMN_NUEVA_CATEGORIA, title: 'Nueva Categoría', render: (item) => item.cat },
       { data: COLUMN_FECHA_AUDITORIA_INICIAL, title: 'Fecha de Auditoría Inicial' },
       { data: COLUMN_FECHA_INICIO_CONVENIO, title: 'Fecha de Inicio de Convenio' },
       { data: COLUMN_OBSERVACIONES, title: 'Observaciones' },
-      { defaultContent: "<button class='btnEditar'>Editar</button>" }
     ];
     const table = this.dataTableService.buildTable(
       this.TABLE_ID,
@@ -52,6 +68,41 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
       [],
       false
     );
+
+    $('#tableAdministrativo tbody').on('click', 'tr', function () {
+      const caac = table.row(this).data();
+
+      self.caacParaPopup = caac;
+      self.openModalForCaacEdit(self.caacParaPopup);
+    });
   }
+
+  onCatChange(cat) {
+    this.caacParaPopup.cat = cat;
+  }
+
+  onNcatChange(ncat) {
+    this.caacParaPopup.ncat = ncat;
+  }
+
+  openModalForCaacEdit(caacParaPopup) {
+    this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
+    this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);
+    this.openModal();
+  }
+
+  openModal() {
+    // $('#form').show();
+    $('#form').modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
+  }
+
+  compareFunct(o1: any, o2: any): boolean {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  }
+
 
 }

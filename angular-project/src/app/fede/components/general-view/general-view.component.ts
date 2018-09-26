@@ -64,7 +64,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       { data: COLUMN_TELEFONO, title: 'Teléfono' },
       { data: COLUMN_MAIL, title: 'Mail' },
       { data: COLUMN_OBSERVACIONES, title: 'Observaciones' },
-      { defaultContent: "<button class='btnEditar'>Editar</button>" }
+      // { defaultContent: "<button class='btnEditar'>Editar</button>" }
     ];
     const table = this.dataTableService.buildTable(
       this.TABLE_ID,
@@ -76,8 +76,8 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       false
     );
 
-    $('#tablaInformacionGeneral tbody').on('click', '.btnEditar', function () {
-      const caac = table.row($(this).parents('tr').first()).data();
+    $('#tablaInformacionGeneral tbody').on('click', 'tr', function () {
+      const caac = table.row(this).data();
 
       self.caacParaPopup = caac;
       self.openModalForCaacEdit(self.caacParaPopup);

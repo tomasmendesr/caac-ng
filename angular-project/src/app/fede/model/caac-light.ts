@@ -20,6 +20,8 @@ export default class CaacLight {
   req;
   modal;
   obseradm;
+  cat;
+  ncat;
 
   constructor() {
   }
