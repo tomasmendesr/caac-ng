@@ -11,10 +11,36 @@ export class AcompaniamientoService {
   static readonly ID_ESTB_SALUD_EMERGENCIAS = 3;
   static readonly ID_ESTB_SALUD_DESINTOXICACION = 4;
 
+  static readonly ID_ESTB_SALUD_GESTION_DE_TURNOS = 5;
+  static readonly ID_ESTB_SALUD_GESTION_DE_TRAMITES = 6;
+  static readonly ID_ESTB_SALUD_GESTION_DE_SERVICIOS = 7;
+
+  static readonly ID_ACOMP_CENTRO_ESPECIALIZADO = 8;
+
+  static readonly ID_GESTION_SIN_SUBSIDIO = 9;
+  static readonly ID_GESTION_CON_SUBSIDIO = 10;
+
+  static readonly ID_GESTION_EN_SEDE= 11;
+  static readonly ID_GESTION_FUERA_DE_SEDE = 12;
+
+  static readonly ID_ACOMPAÑAMIENTO_COMISARIAS = 13;
+  static readonly ID_ACOMPAÑAMIENTO_PENALES = 14;
+  static readonly ID_PENALES_COMISARIAS_TALLERES = 15;
+  static readonly ID_PENALES_COMISARIAS_ACT_PROD = 16;
+  static readonly ID_PENALES_COMISARIAS_CAPACITACION = 17;
+
   constructor(private http: HttpClient) { }
+
+  findAll(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL, {});
+  }
 
   findAllEstablecimientosDeSalud(): Observable<Acompaniamiento[]>{
     return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_DE_SALUD, {});
+  }
+
+  findAllEstablecimientoPenalesComisarias(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTO_PENALES_COMISARIAS, {});
   }
 
   getAcompaniamientoById(acompaniamientos: Acompaniamiento[], id: number): Acompaniamiento {

@@ -47,6 +47,7 @@ export class MensualSeccionC2Component implements OnInit {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       if (headerEvent.value.hojaId) {
+        this.loadingComponent.showLoading();
         this.mensualSeccionCService.findDataSeccionC2ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC2Data(data));
       } else {
         this.initEmptyData();
@@ -81,12 +82,18 @@ export class MensualSeccionC2Component implements OnInit {
     $("#"+id).modal('hide');
   }
 
+  private onClickSiguiente(){
+    this.showConfirmDialog('confirmDialogSiguiente');
+  }
+
   private siguiente(){
     this.router.navigateByUrl(UrlConstants.MENSUAL_SECCION_C3);
   }
 
   private onClickConfirmDialogSiguiente(){
     this.loadingComponent.showLoading();
+    this.cleanData();
+    this.bindDataToDTO();
     this.mensualSeccionCService.saveDataSeccionC2(this.mensualSeccionC2Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();
@@ -132,6 +139,7 @@ export class MensualSeccionC2Component implements OnInit {
     } else {
       this.initHojaMensualAcompaniamientos();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(list: HojaMensualAcompaniamiento[], idAcompaniamiento: number): HojaMensualAcompaniamiento {
@@ -162,6 +170,7 @@ export class MensualSeccionC2Component implements OnInit {
   }
 
   private cleanData(){
+    this.hideFormAlert();
     this.mensualSeccionC2Data = new MensualSeccionC2Data;
   }
 

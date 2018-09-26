@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by TMR on 04/09/2018.
  */
 public class HojaMensualActividadDTO {
-    private Integer id;
+    private Long id;
     private HojaDTO hoja;
     private Integer cantidadVisitasDomiciliarias;
     private Integer cantidadOrientaciones;
@@ -22,11 +22,11 @@ public class HojaMensualActividadDTO {
     private String uum;
     private Date fum;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

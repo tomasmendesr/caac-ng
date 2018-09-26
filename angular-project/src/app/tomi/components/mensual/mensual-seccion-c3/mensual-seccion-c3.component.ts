@@ -6,6 +6,11 @@ import {NotifUtil} from "../../../utils/notif-util";
 import {UrlConstants} from "../../../services/UrlConstants";
 import {Router} from "@angular/router";
 import {HojaMensualAcompaniamiento} from "../../../../model/hoja-mensual-acompaniamiento";
+import {HojaMensualObservaciones} from "../../../../model/hoja-mensual-observaciones";
+import {MensualSeccionC3Data} from "../../../model/mensual-seccion-c3-data";
+import {MensualSeccionCService} from "../../../services/mensual-seccion-c.service";
+import {Acompaniamiento} from "../../../../model/acompaniamiento";
+import {AcompaniamientoService} from "../../../services/acompaniamiento.service";
 declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-c3',
@@ -18,18 +23,22 @@ export class MensualSeccionC3Component implements OnInit {
   private errorSection: number = -1;
   private hojaId: number;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
-
+  private mensualSeccionC3Data: MensualSeccionC3Data = new MensualSeccionC3Data;
   private hojaMensualAcompaniamientoGestionTurnos: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoGestionTramitesMedicacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoGestionServicios: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoCentroTratamiento: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+  private hojaMensualAcompaniamientoCentroTratamientoEspecializado: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoEnSede: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
   private hojaMensualAcompaniamientoFueraDeSede: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  constructor(private router: Router) { }
+  private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
+  private acompaniamientos: Acompaniamiento[] = [];
+
+  constructor(private router: Router, private mensualSeccionCService: MensualSeccionCService, private acompaniamientoService: AcompaniamientoService) { }
 
   ngOnInit() {
+    this.acompaniamientoService.findAll().subscribe(data => this.acompaniamientos = data);
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
@@ -37,18 +46,19 @@ export class MensualSeccionC3Component implements OnInit {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       if (headerEvent.value.hojaId) {
-        // this.mensualSeccionCService.findDataSeccionC2ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC2Data(data));
+        this.loadingComponent.showLoading();
+        this.mensualSeccionCService.findDataSeccionC3ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC3Data(data));
       } else {
-        // this.initEmptyData();
+        this.initEmptyData();
       }
     }
   }
 
-  private onClickGuardar() {/*
+  private onClickGuardar() {
     this.cleanData();
     this.bindDataToDTO();
     this.loadingComponent.showLoading();
-    this.mensualSeccionCService.saveDataSeccionC2(this.mensualSeccionC2Data).subscribe(appResponse => {
+    this.mensualSeccionCService.saveDataSeccionC3(this.mensualSeccionC3Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
@@ -56,7 +66,7 @@ export class MensualSeccionC3Component implements OnInit {
       }else{
         this.showErrorMsgs(appResponse.data);
       }
-    }, (error) => this.notifError(error));*/
+    }, (error) => this.notifError(error));
   }
 
   private showConfirmDialog(id: string){
@@ -75,16 +85,18 @@ export class MensualSeccionC3Component implements OnInit {
     this.router.navigateByUrl(UrlConstants.MENSUAL_SECCION_C4);
   }
 
-  private onClickConfirmDialogSiguiente(){/*
+  private onClickConfirmDialogSiguiente(){
     this.loadingComponent.showLoading();
-    this.mensualSeccionCService.saveDataSeccionC2(this.mensualSeccionC2Data).subscribe(appResponse => {
+    this.cleanData();
+    this.bindDataToDTO();
+    this.mensualSeccionCService.saveDataSeccionC3(this.mensualSeccionC3Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();
         this.siguiente();
       }else{
         this.showErrorMsgs(appResponse.data);
       }
-    }, (error) => this.notifError(error));*/
+    }, (error) => this.notifError(error));
   }
 
   private notifError(error){
@@ -105,6 +117,92 @@ export class MensualSeccionC3Component implements OnInit {
     let formAlertId = "#formAlert" + this.errorSection;
     $(formAlertId).hide();
     this.errorSection = -1;
+  }
+
+  private onClickSiguiente(){
+    this.showConfirmDialog('confirmDialogSiguiente');
+  }
+
+  private parseSeccionC3Data(data: MensualSeccionC3Data) {
+    this.hojaMensualObservaciones = data.hojaMensualObservaciones ? data.hojaMensualObservaciones : new HojaMensualObservaciones;
+    this.buildHojaMensualAcompaniamientoList(data);
+  }
+
+  private buildHojaMensualAcompaniamientoList(data: MensualSeccionC3Data) {
+    if (data.hojaMensualAcompaniamientoList) {
+      this.hojaMensualAcompaniamientoGestionTurnos = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TURNOS);
+      this.hojaMensualAcompaniamientoGestionTramitesMedicacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TRAMITES);
+      this.hojaMensualAcompaniamientoGestionServicios = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_SERVICIOS);
+      this.hojaMensualAcompaniamientoCentroTratamientoEspecializado = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACOMP_CENTRO_ESPECIALIZADO);
+      this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GESTION_SIN_SUBSIDIO);
+      this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GESTION_CON_SUBSIDIO);
+      this.hojaMensualAcompaniamientoEnSede = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GESTION_EN_SEDE);
+      this.hojaMensualAcompaniamientoFueraDeSede = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_GESTION_FUERA_DE_SEDE);
+    } else {
+      this.initHojaMensualAcompaniamientos();
+    }
+    this.loadingComponent.hideLoading();
+  }
+
+  private getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(list: HojaMensualAcompaniamiento[], idAcompaniamiento: number): HojaMensualAcompaniamiento {
+    let hojaMensualAcompaniamiento = list.find(a => a.acompaniamiento.id == idAcompaniamiento);
+    if(hojaMensualAcompaniamiento == null){
+      hojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+      hojaMensualAcompaniamiento.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, idAcompaniamiento);
+    }
+    return hojaMensualAcompaniamiento;
+  }
+
+  private initEmptyData() {
+    this.hojaMensualObservaciones = new HojaMensualObservaciones;
+    this.initHojaMensualAcompaniamientos();
+  }
+
+  private initHojaMensualAcompaniamientos() {
+    this.hojaMensualAcompaniamientoGestionTurnos = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoGestionTramitesMedicacion = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoGestionServicios = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoCentroTratamientoEspecializado = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoEnSede = new HojaMensualAcompaniamiento;
+    this.hojaMensualAcompaniamientoFueraDeSede = new HojaMensualAcompaniamiento;
+
+    this.hojaMensualAcompaniamientoGestionTurnos.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TURNOS);
+    this.hojaMensualAcompaniamientoGestionTramitesMedicacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_TRAMITES);
+    this.hojaMensualAcompaniamientoGestionServicios.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_GESTION_DE_SERVICIOS);
+    this.hojaMensualAcompaniamientoCentroTratamientoEspecializado.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACOMP_CENTRO_ESPECIALIZADO);
+    this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GESTION_SIN_SUBSIDIO);
+    this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GESTION_CON_SUBSIDIO);
+    this.hojaMensualAcompaniamientoEnSede.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GESTION_EN_SEDE);
+    this.hojaMensualAcompaniamientoFueraDeSede.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_GESTION_FUERA_DE_SEDE);
+  }
+
+  private cleanData(){
+    this.hideFormAlert();
+    this.mensualSeccionC3Data = new MensualSeccionC3Data;
+  }
+
+  private bindDataToDTO() {
+    this.addAcompaniamientosToDTOList();
+    this.mensualSeccionC3Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
+    this.setHojaIdToItems();
+  }
+
+  private addAcompaniamientosToDTOList() {
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoGestionTurnos);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoGestionTramitesMedicacion);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoGestionServicios);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoCentroTratamientoEspecializado);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoEnSede);
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoFueraDeSede);
+  }
+
+  private setHojaIdToItems() {
+    this.mensualSeccionC3Data.hojaMensualAcompaniamientoList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC3Data.hojaMensualObservaciones.hoja.id = this.hojaId;
   }
 
 }

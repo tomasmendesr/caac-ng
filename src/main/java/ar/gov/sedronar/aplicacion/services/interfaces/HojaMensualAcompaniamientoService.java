@@ -14,5 +14,9 @@ public interface HojaMensualAcompaniamientoService {
 
     void saveOrUpdate(HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO) throws Exception;
 
-    List<HojaMensualAcompaniamientoDTO> findListByHojaId(Long idHoja);
+    List<HojaMensualAcompaniamientoDTO> findListByHojaAndAcompaniamientoId(Long idHoja, List<Integer> idsAcompaniamientos);
+
+    AppResponse validateInputsEnEstablecimiento(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento);
+
+    AppResponse validateInputsByEstablecimientoAndTipo(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento, String tipo, boolean validateGestiones, boolean validatePersonas);
 }

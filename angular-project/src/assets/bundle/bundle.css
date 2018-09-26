@@ -7602,13 +7602,13 @@ html.-rounded,
   vertical-align: middle;
   background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
   background-size: 8px 10px;
-  border: 1px solid #ced4da;
+  border: 1px solid #8bc34a;
   border-radius: 0.25rem;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none; }
   .custom-select:focus {
-    border-color: #80bdff;
+    border-color: #8bc34a;
     outline: none; }
   .custom-select:focus::-ms-value {
       color: #495057;
@@ -7657,7 +7657,7 @@ html.-rounded,
       -ms-user-select: none;
           user-select: none;
   background-color: #fff;
-  border: 1px solid #ced4da;
+  border: 1px solid #8bc34a;
   border-radius: 0.25rem; }
   .custom-file-control:lang(en):empty::after {
     content: "Choose file..."; }
@@ -7673,7 +7673,7 @@ html.-rounded,
     line-height: 1.5;
     color: #495057;
     background-color: #e9ecef;
-    border: 1px solid #ced4da;
+    border: 1px solid #8bc34a;
     border-radius: 0 0.25rem 0.25rem 0; }
   .custom-file-control:lang(en)::before {
     content: "Browse"; }
@@ -7723,7 +7723,7 @@ html.-rounded,
   color: #495057;
   text-align: center;
   background-color: #e9ecef;
-  border: 1px solid #ced4da;
+  border: 1px solid #8bc34a;
   border-radius: 0.25rem; }
   .input-group-addon.form-control-sm,
   .input-group-sm > .input-group-addon,
