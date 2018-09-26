@@ -7,6 +7,7 @@ import {MensualSeccionC1Data} from "../model/mensual-seccion-c1-data";
 import {MensualSeccionC2Data} from "../model/mensual-seccion-c2-data";
 import {MensualSeccionC3Data} from "../model/mensual-seccion-c3-data";
 import {MensualSeccionC4Data} from "../model/mensual-seccion-c4-data";
+import {MensualSeccionC5Data} from "../model/mensual-seccion-c5.data";
 
 @Injectable()
 export class MensualSeccionCService {
@@ -43,6 +44,14 @@ export class MensualSeccionCService {
 
   findDataSeccionC4ByHojaId(idHoja: number): Observable<MensualSeccionC4Data>{
     return this.http.post<MensualSeccionC4Data>(UrlConstants.GET_DATA_FOR_SECCION_C4_BY_HOJA_ID,idHoja);
+  }
+
+  saveDataSeccionC5(data: MensualSeccionC5Data): Observable<AppResponse>{
+    return this.http.post<AppResponse>(UrlConstants.SAVE_DATA_MENSUAL_SECCION_C5, data);
+  }
+
+  findDataSeccionC5ByHojaId(idHoja: number): Observable<MensualSeccionC5Data>{
+    return this.http.post<MensualSeccionC5Data>(UrlConstants.GET_DATA_FOR_SECCION_C5_BY_HOJA_ID,idHoja);
   }
 
 

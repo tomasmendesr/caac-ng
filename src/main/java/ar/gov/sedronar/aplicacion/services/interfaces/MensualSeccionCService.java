@@ -1,9 +1,6 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 
-import ar.gov.sedronar.aplicacion.dto.MensualSeccionC1Data;
-import ar.gov.sedronar.aplicacion.dto.MensualSeccionC2Data;
-import ar.gov.sedronar.aplicacion.dto.MensualSeccionC3Data;
-import ar.gov.sedronar.aplicacion.dto.MensualSeccionC4Data;
+import ar.gov.sedronar.aplicacion.dto.*;
 import ar.gov.sedronar.util.app.AppResponse;
 
 import javax.ws.rs.Consumes;
@@ -51,4 +48,12 @@ public interface MensualSeccionCService {
     @POST
     @Path("/getDataForSeccionC4ByHojaId")
     MensualSeccionC4Data getDataForSeccionC4ByHojaId(Long idHoja);
+
+    @POST
+    @Path("/saveOrUpdateSeccionC5")
+    AppResponse saveOrUpdateSeccionC5(MensualSeccionC5Data data) throws Exception;
+
+    @POST
+    @Path("/getDataForSeccionC5ByHojaId")
+    MensualSeccionC5Data getDataForSeccionC5ByHojaId(Long idHoja);
 }

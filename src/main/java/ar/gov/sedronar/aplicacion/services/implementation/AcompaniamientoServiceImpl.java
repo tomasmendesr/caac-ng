@@ -20,6 +20,8 @@ import java.util.List;
 @DefaultServiceImpl
 public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     public static final String ESTABLECIMIENTO_DE_SALUD = "Establecimiento de Salud";
+    public static final String ESTABLECIMIENTO_PROFESIONAL_DE_SALUD = "Profesional de Salud";
+    public static final String ESTABLECIMIENTO_TRAYECTORIAS_EDUCATIVAS = "Trayectorias Educativas";
     public static final String COMUNIDAD_TERAPEUTICA = "Comunidad Terapéutica/Centro Especializado";
     public static final String PATROCINIO_LEGAL = "Patrocinio Legal";
     public static final String ESTABLECIMIENTO_PENALES_COMISARIAS = "Penales o Comisarías";

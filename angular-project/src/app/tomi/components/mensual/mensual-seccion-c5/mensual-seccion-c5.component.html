@@ -87,6 +87,18 @@
     </div>
 
     <div class="form-group row">
+      <label for="controlMedico-input" class="col-3 col-form-label text-right">Control médico clínico</label>
+      <div class="col-2">
+        <input class="form-control" name="controlMedico-input" type="number" id="controlMedico-input" [(ngModel)]="hojaMensualAcompaniamientoControlMedico.cantidadGestiones" [readonly]="readonlyControl">
+      </div>
+
+      <label for="controlMedico2-input" class="col-3 col-form-label text-right">Control médico clínico</label>
+      <div class="col-2">
+        <input class="form-control"  type="number" name="controlMedico2-input" id="controlMedico2-input" [(ngModel)]="hojaMensualAcompaniamientoControlMedico.cantidadPersonas" [readonly]="readonlyControl">
+      </div>
+    </div>
+
+    <div class="form-group row">
       <label for="seg-input" class="col-3 col-form-label text-right">Seguimiento farmacológico</label>
       <div class="col-2">
         <input class="form-control" name="seg-input" type="number" id="seg-input" [(ngModel)]="hojaMensualAcompaniamientoSeguimiento.cantidadGestiones" [readonly]="readonlyControl">
@@ -155,7 +167,31 @@
         <div class="form-group row">
           <label for="utiles-input" class="col-6 col-form-label text-right">Útiles escolares</label>
           <div class="col-6">
-            <input class="form-control" name="preservativo-input" type="number" id="utiles-input" [(ngModel)]="hojaMensualRecursoUtilesEscolares.cantidadPersonas" [readonly]="readonlyControl">
+            <input class="form-control" name="utiles-input" type="number" id="utiles-input" [(ngModel)]="hojaMensualRecursoUtilesEscolares.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="transporte-input" class="col-6 col-form-label text-right">Gastos de transporte</label>
+          <div class="col-6">
+            <input class="form-control" name="transporte-input" type="number" id="transporte-input" [(ngModel)]="hojaMensualRecursoGastosTransporte.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="ropa-input" class="col-6 col-form-label text-right">Ropa</label>
+          <div class="col-6">
+            <input class="form-control" name="ropa-input" type="number" id="ropa-input" [(ngModel)]="hojaMensualRecursoRopa.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="construccion-input" class="col-6 col-form-label text-right">Material de construcción</label>
+          <div class="col-6">
+            <input class="form-control" name="construccion-input" type="number" id="construccion-input" [(ngModel)]="hojaMensualRecursoMaterialConstruccion.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="higiene-input" class="col-6 col-form-label text-right">Elementos de higiene personal</label>
+          <div class="col-6">
+            <input class="form-control" name="higiene-input" type="number" id="higiene-input" [(ngModel)]="hojaMensualRecursoHigiene.cantidadPersonas" [readonly]="readonlyControl">
           </div>
         </div>
       </div>
@@ -170,8 +206,53 @@
             </li>
           </ul>
         </div>
-        <h5>¿Qué cantidad de personas recibieron RECURSOS ENTREGADOS por la CAAC según tipo de recurso?</h5>
-
+        <h5>¿Qué cantidad de personas recibieron ACOMPAÑAMIENTO DE TRAYECTORIAS EDUCATIVAS en el último mes según tipo de acompañamiento?</h5>
+        <div class="form-group row margin-top">
+          <label class="col-12 text-center"><b>Personas aproximadas</b></label>
+        </div>
+        <div class="form-group row">
+          <label for="acompEscuela-input" class="col-6 col-form-label text-right">Acompañamiento en escuela</label>
+          <div class="col-6">
+            <input class="form-control" name="acompEscuela-input" type="number" id="acompEscuela-input" [(ngModel)]="hojaMensualAcompaniamientoEscuela.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="actividadesPrev-input" class="col-6 col-form-label text-right">Actividad de prevención (talleres/charlas/grupos)</label>
+          <div class="col-6">
+            <input class="form-control" name="actividadesPrev-input" type="number" id="actividadesPrev-input" [(ngModel)]="hojaMensualAcompaniamientoActividadPrevencion.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="apoyoEscolar-input" class="col-6 col-form-label text-right">Apoyo escolar/alfabetización</label>
+          <div class="col-6">
+            <input class="form-control" name="apoyoEscolar-input" type="number" id="apoyoEscolar-input" [(ngModel)]="hojaMensualAcompaniamientoApoyoEscolar.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="programa-input" class="col-6 col-form-label text-right">Programa para la inclusión educativa (fines, progresar, etc.)</label>
+          <div class="col-6">
+            <input class="form-control" name="programa-input" type="number" id="programa-input" [(ngModel)]="hojaMensualAcompaniamientoInclusionEducativa.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="escuelaEnSede-input" class="col-6 col-form-label text-right">Escuela en sede</label>
+          <div class="col-6">
+            <input class="form-control" name="escuelaEnSede-input" type="number" id="escuelaEnSede-input" [(ngModel)]="hojaMensualAcompaniamientoEscuelaEnSede.cantidadPersonas" [readonly]="readonlyControl">
+          </div>
+        </div>
+      </div>
+      <div class="card card-body marginBottom">
+        <div (click)="hideFormAlert()" id="formAlert5"  class="alert alert-danger formErrorMessages" role="alert">
+          <ul style="margin-bottom: 0">
+            <li *ngFor="let message of formMessages">
+              {{message}}
+            </li>
+          </ul>
+        </div>
+        <h5>Observaciones sobre ACOMPAÑAMIENTO DE TRAYECTORIAS EDUCATIVAS</h5>
+        <div class="form-group">
+          <textarea class="form-control" id="exampleFormControlTextarea3" name="exampleFormControlTextarea3" rows="2" [(ngModel)]="hojaMensualObservaciones.acompaniamientoTrayectoriaEducativa" [readonly]="readonlyControl"></textarea>
+        </div>
       </div>
     </div>
   </div>
