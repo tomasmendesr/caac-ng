@@ -152,48 +152,56 @@
         <div class="form-group row margin-top">
           <label class="col-12 text-center"><b>Personas aproximadas</b></label>
         </div>
-        <div class="form-group row">
-          <label for="medicamentos-input" class="col-6 col-form-label text-right">Medicamentos</label>
-          <div class="col-6">
-            <input class="form-control" name="medicamentos-input" type="number" id="medicamentos-input" [(ngModel)]="hojaMensualRecursoMedicamentos.cantidadPersonas" [readonly]="readonlyControl">
+        <div *ngFor="let hojaMensualRecurso of hojaMensualRecursosList">
+          <div class="form-group row">
+            <label for="{{hojaMensualRecurso.recurso.id}}" class="col-6 col-form-label text-right">{{hojaMensualRecurso.recurso.detalle}}</label>
+            <div class="col-6">
+              <input class="form-control" name="{{hojaMensualRecurso.recurso.id}}" type="number" id="{{hojaMensualRecurso.recurso.id}}" [(ngModel)]="hojaMensualRecurso.cantidadPersonas" [readonly]="readonlyControl">
+            </div>
           </div>
         </div>
-        <div class="form-group row">
-          <label for="preservativo-input" class="col-6 col-form-label text-right">Anticonceptivo/preservativo</label>
-          <div class="col-6">
-            <input class="form-control" name="preservativo-input" type="number" id="preservativo-input" [(ngModel)]="hojaMensualRecursoAnticonceptivo.cantidadPersonas" [readonly]="readonlyControl">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="utiles-input" class="col-6 col-form-label text-right">Útiles escolares</label>
-          <div class="col-6">
-            <input class="form-control" name="utiles-input" type="number" id="utiles-input" [(ngModel)]="hojaMensualRecursoUtilesEscolares.cantidadPersonas" [readonly]="readonlyControl">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="transporte-input" class="col-6 col-form-label text-right">Gastos de transporte</label>
-          <div class="col-6">
-            <input class="form-control" name="transporte-input" type="number" id="transporte-input" [(ngModel)]="hojaMensualRecursoGastosTransporte.cantidadPersonas" [readonly]="readonlyControl">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="ropa-input" class="col-6 col-form-label text-right">Ropa</label>
-          <div class="col-6">
-            <input class="form-control" name="ropa-input" type="number" id="ropa-input" [(ngModel)]="hojaMensualRecursoRopa.cantidadPersonas" [readonly]="readonlyControl">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="construccion-input" class="col-6 col-form-label text-right">Material de construcción</label>
-          <div class="col-6">
-            <input class="form-control" name="construccion-input" type="number" id="construccion-input" [(ngModel)]="hojaMensualRecursoMaterialConstruccion.cantidadPersonas" [readonly]="readonlyControl">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="higiene-input" class="col-6 col-form-label text-right">Elementos de higiene personal</label>
-          <div class="col-6">
-            <input class="form-control" name="higiene-input" type="number" id="higiene-input" [(ngModel)]="hojaMensualRecursoHigiene.cantidadPersonas" [readonly]="readonlyControl">
-          </div>
-        </div>
+        <!--<div class="form-group row">-->
+          <!--<label for="medicamentos-input" class="col-6 col-form-label text-right">Medicamentos</label>-->
+          <!--<div class="col-6">-->
+            <!--<input class="form-control" name="medicamentos-input" type="number" id="medicamentos-input" [(ngModel)]="hojaMensualRecursoMedicamentos.cantidadPersonas" [readonly]="readonlyControl">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group row">-->
+          <!--<label for="preservativo-input" class="col-6 col-form-label text-right">Anticonceptivo/preservativo</label>-->
+          <!--<div class="col-6">-->
+            <!--<input class="form-control" name="preservativo-input" type="number" id="preservativo-input" [(ngModel)]="hojaMensualRecursoAnticonceptivo.cantidadPersonas" [readonly]="readonlyControl">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group row">-->
+          <!--<label for="utiles-input" class="col-6 col-form-label text-right">Útiles escolares</label>-->
+          <!--<div class="col-6">-->
+            <!--<input class="form-control" name="utiles-input" type="number" id="utiles-input" [(ngModel)]="hojaMensualRecursoUtilesEscolares.cantidadPersonas" [readonly]="readonlyControl">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group row">-->
+          <!--<label for="transporte-input" class="col-6 col-form-label text-right">Gastos de transporte</label>-->
+          <!--<div class="col-6">-->
+            <!--<input class="form-control" name="transporte-input" type="number" id="transporte-input" [(ngModel)]="hojaMensualRecursoGastosTransporte.cantidadPersonas" [readonly]="readonlyControl">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group row">-->
+          <!--<label for="ropa-input" class="col-6 col-form-label text-right">Ropa</label>-->
+          <!--<div class="col-6">-->
+            <!--<input class="form-control" name="ropa-input" type="number" id="ropa-input" [(ngModel)]="hojaMensualRecursoRopa.cantidadPersonas" [readonly]="readonlyControl">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group row">-->
+          <!--<label for="construccion-input" class="col-6 col-form-label text-right">Material de construcción</label>-->
+          <!--<div class="col-6">-->
+            <!--<input class="form-control" name="construccion-input" type="number" id="construccion-input" [(ngModel)]="hojaMensualRecursoMaterialConstruccion.cantidadPersonas" [readonly]="readonlyControl">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group row">-->
+          <!--<label for="higiene-input" class="col-6 col-form-label text-right">Elementos de higiene personal</label>-->
+          <!--<div class="col-6">-->
+            <!--<input class="form-control" name="higiene-input" type="number" id="higiene-input" [(ngModel)]="hojaMensualRecursoHigiene.cantidadPersonas" [readonly]="readonlyControl">-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
     </div>
 

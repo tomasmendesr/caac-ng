@@ -46,21 +46,26 @@ export class MensualSeccionC5Component implements OnInit {
   private hojaMensualAcompaniamientoEscuelaEnSede: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
 
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
-
-  private hojaMensualRecursoMedicamentos: HojaMensualRecurso = new HojaMensualRecurso;
-  private hojaMensualRecursoAnticonceptivo: HojaMensualRecurso = new HojaMensualRecurso;
-  private hojaMensualRecursoUtilesEscolares: HojaMensualRecurso = new HojaMensualRecurso;
-  private hojaMensualRecursoGastosTransporte: HojaMensualRecurso = new HojaMensualRecurso;
-  private hojaMensualRecursoRopa: HojaMensualRecurso = new HojaMensualRecurso;
-  private hojaMensualRecursoMaterialConstruccion: HojaMensualRecurso = new HojaMensualRecurso;
-  private hojaMensualRecursoHigiene: HojaMensualRecurso = new HojaMensualRecurso;
+  private hojaMensualRecursosList: HojaMensualRecurso[] = [];
 
   constructor(private router: Router, private recursoService: RecursoService,
               private acompaniamientoService: AcompaniamientoService, private mensualSeccionCService: MensualSeccionCService) { }
 
   ngOnInit() {
-    this.recursoService.findAll().subscribe(data => this.recursos = data);
+    this.recursoService.findAll().subscribe(data => {
+      this.recursos = data;
+      this.initHojaMensualRecursosList();
+    });
     this.acompaniamientoService.findAll().subscribe(data => this.acompaniamientos = data);
+  }
+
+  private initHojaMensualRecursosList(){
+    this.hojaMensualRecursosList = [];
+    this.recursos.forEach(recurso => {
+      let hojaMensualRecurso = new HojaMensualRecurso;
+      hojaMensualRecurso.recurso = recurso;
+      this.hojaMensualRecursosList.push(hojaMensualRecurso);
+    });
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
@@ -125,26 +130,18 @@ export class MensualSeccionC5Component implements OnInit {
 
   private initEmptyData() {
     this.hojaMensualObservaciones = new HojaMensualObservaciones;
-    this.initHojaMensualRecursos();
+    // this.initHojaMensualRecursos();
+    this.initHojaMensualRecursosList();
     this.initHojaMensualAcompaniamiento();
   }
 
   private bindDataToDTO() {
-    this.addHojaMensualRecursosToDTOList(this.mensualSeccionC5Data.hojaMensualRecursoList);
+    this.mensualSeccionC5Data.hojaMensualRecursoList = this.hojaMensualRecursosList;
     this.addAHojaMensualAcompaniamientoToDTOList(this.mensualSeccionC5Data.hojaMensualAcompaniamientoList);
     this.mensualSeccionC5Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
     this.setHojaIdToItems();
   }
 
-  private addHojaMensualRecursosToDTOList(list: any[]) {
-    list.push(this.hojaMensualRecursoMedicamentos );
-    list.push(this.hojaMensualRecursoAnticonceptivo );
-    list.push(this.hojaMensualRecursoUtilesEscolares );
-    list.push(this.hojaMensualRecursoGastosTransporte );
-    list.push(this.hojaMensualRecursoRopa );
-    list.push(this.hojaMensualRecursoMaterialConstruccion );
-    list.push(this.hojaMensualRecursoHigiene );
-  }
 
   private addAHojaMensualAcompaniamientoToDTOList(list: any[]) {
     list.push(this.hojaMensualAcompaniamientoTerapiaIndividual  );
@@ -166,24 +163,6 @@ export class MensualSeccionC5Component implements OnInit {
     this.mensualSeccionC5Data.hojaMensualRecursoList.forEach(h => h.hoja.id = this.hojaId);
     this.mensualSeccionC5Data.hojaMensualAcompaniamientoList.forEach(h => h.hoja.id = this.hojaId);
     this.mensualSeccionC5Data.hojaMensualObservaciones.hoja.id = this.hojaId;
-  }
-
-  private initHojaMensualRecursos() {
-    this.hojaMensualRecursoMedicamentos = new HojaMensualRecurso;
-    this.hojaMensualRecursoAnticonceptivo = new HojaMensualRecurso;
-    this.hojaMensualRecursoUtilesEscolares = new HojaMensualRecurso;
-    this.hojaMensualRecursoGastosTransporte = new HojaMensualRecurso;
-    this.hojaMensualRecursoRopa = new HojaMensualRecurso;
-    this.hojaMensualRecursoMaterialConstruccion = new HojaMensualRecurso;
-    this.hojaMensualRecursoHigiene = new HojaMensualRecurso;
-
-    this.hojaMensualRecursoMedicamentos.recurso = this.recursoService.getRecursoById(this.recursos, RecursoService.ID_MEDICAMENTO);
-    this.hojaMensualRecursoAnticonceptivo.recurso = this.recursoService.getRecursoById(this.recursos, RecursoService.ID_ANTICONCEPTIVO);
-    this.hojaMensualRecursoUtilesEscolares.recurso = this.recursoService.getRecursoById(this.recursos, RecursoService.ID_UTILES_ESCOLARES);
-    this.hojaMensualRecursoGastosTransporte.recurso = this.recursoService.getRecursoById(this.recursos, RecursoService.ID_GASTOS_TRANSPORTE);
-    this.hojaMensualRecursoRopa.recurso = this.recursoService.getRecursoById(this.recursos, RecursoService.ID_ROPA);
-    this.hojaMensualRecursoMaterialConstruccion.recurso = this.recursoService.getRecursoById(this.recursos, RecursoService.ID_MATERIAL);
-    this.hojaMensualRecursoHigiene.recurso = this.recursoService.getRecursoById(this.recursos, RecursoService.ID_HIGIENE);
   }
 
   private initHojaMensualAcompaniamiento() {
@@ -227,26 +206,11 @@ export class MensualSeccionC5Component implements OnInit {
 
   private buildHojaMensualRecursos(data: MensualSeccionC5Data) {
     if (data.hojaMensualRecursoList) {
-      this.hojaMensualRecursoMedicamentos = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_MEDICAMENTO);
-      this.hojaMensualRecursoAnticonceptivo = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_ANTICONCEPTIVO);
-      this.hojaMensualRecursoUtilesEscolares = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_UTILES_ESCOLARES);
-      this.hojaMensualRecursoGastosTransporte = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_GASTOS_TRANSPORTE);
-      this.hojaMensualRecursoRopa = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_ROPA);
-      this.hojaMensualRecursoMaterialConstruccion = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_MATERIAL);
-      this.hojaMensualRecursoHigiene = this.getHojaMensualRecursoFromListByIdRecurso(data.hojaMensualRecursoList, RecursoService.ID_HIGIENE);
+      this.hojaMensualRecursosList = data.hojaMensualRecursoList;
     } else {
-      this.initHojaMensualRecursos();
+      this.initHojaMensualRecursosList();
     }
     this.loadingComponent.hideLoading();
-  }
-
-  private getHojaMensualRecursoFromListByIdRecurso(list: HojaMensualRecurso[], id: number): HojaMensualRecurso {
-    let hojaMensualRecurso = list.find(t => t.recurso.id == id);
-    if(hojaMensualRecurso == null){
-      hojaMensualRecurso = new HojaMensualRecurso;
-      hojaMensualRecurso.recurso = this.recursoService.getRecursoById(this.recursos, id);
-    }
-    return hojaMensualRecurso;
   }
 
   private getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(list: HojaMensualAcompaniamiento[], id: number): HojaMensualAcompaniamiento {
