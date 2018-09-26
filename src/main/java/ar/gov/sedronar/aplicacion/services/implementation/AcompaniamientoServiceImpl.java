@@ -53,6 +53,22 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     public static final Integer ID_PENALES_COMISARIAS_ACT_PROD = 16;
     public static final Integer ID_PENALES_COMISARIAS_CAPACITACION = 17;
 
+    public static final Integer ID_TERAPIA_INDIVIDUAL = 18;
+    public static final Integer ID_TERAPIA_FAMILIAR = 19;
+    public static final Integer ID_REUNION_MULTIFAMILIAR = 20;
+    public static final Integer ID_INFORME_SOCIAL = 21;
+    public static final Integer ID_ORIENTACION_VOCACIONAL = 22;
+    public static final Integer ID_EVALUACION = 23;
+    public static final Integer ID_CONTROL_MEDICO = 24;
+    public static final Integer ID_SEGUIMIENTO_FARMACOLOGICO = 25;
+    public static final Integer ID_GRUPOS_TERAPEUTICOS = 26;
+
+    public static final Integer ID_ACOMP_ESCUELA = 27;
+    public static final Integer ID_ACTIVIDADES_PREVENCION = 27;
+    public static final Integer ID_APOYO_ESCOLAR = 27;
+    public static final Integer ID_INCLUSION = 27;
+    public static final Integer ID_ESCUELA_EN_SEDE = 27;
+
     @Inject
     @HibernateDAO
     private AcompaniamientoDAO acompaniamientoDAO;

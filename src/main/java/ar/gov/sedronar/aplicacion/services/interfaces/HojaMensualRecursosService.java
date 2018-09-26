@@ -10,4 +10,8 @@ import java.util.List;
  */
 public interface HojaMensualRecursosService {
     AppResponse validateInputs(List<HojaMensualRecursosDTO> hojaMensualRecursoList);
+
+    void saveOrUpdate(HojaMensualRecursosDTO hojaMensualRecursosDTO) throws Exception;
+
+    List<HojaMensualRecursosDTO> findByHojaId(Long idHoja);
 }
