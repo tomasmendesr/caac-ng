@@ -4,6 +4,7 @@ import {Localidad} from "../../model/localidad";
 
 export default class CaacLight {
 
+  id;
   nomcaac;
   perjuridica;
   cuit;
@@ -22,6 +23,8 @@ export default class CaacLight {
   obseradm;
   cat;
   ncat;
+  fechaini;
+  fechacon;
 
   constructor() {
   }

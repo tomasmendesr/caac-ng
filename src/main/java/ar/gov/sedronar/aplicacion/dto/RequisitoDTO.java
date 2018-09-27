@@ -2,7 +2,7 @@ package ar.gov.sedronar.aplicacion.dto;
 
 
 
-public class RequisitoDTO {
+public class RequisitoDTO { //ES UN ASCO PERO ES LO QUE HAY
 
     private Integer id;
     private String actaasa;

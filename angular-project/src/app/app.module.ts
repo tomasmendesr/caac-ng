@@ -69,6 +69,7 @@ import {AlimentacionService} from "./tomi/services/alimentacion.service";
 import {MensualSeccionCService} from "./tomi/services/mensual-seccion-c.service";
 import {AcompaniamientoService} from "./tomi/services/acompaniamiento.service";
 import {CategoriaService} from "./services/categoria.service";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -132,8 +133,9 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     NgxPermissionsModule.forRoot(),
     MatProgressSpinnerModule,
     MatButtonModule,
-    MatIconModule
-],
+    MatIconModule,
+    BsDatepickerModule.forRoot()
+  ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     {provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true},
