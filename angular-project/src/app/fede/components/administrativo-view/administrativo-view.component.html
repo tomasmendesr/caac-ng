@@ -53,7 +53,7 @@
                   <div class="form-group required row">
                     <label for="provincia" class="col-3 col-form-label control-label">Provincia</label>
                     <div class="col-9">
-                      <select class="form-control" id="provincia" [compareWith]="compareFunct" [ngModel]="caacParaPopup.provincia" name="provincia" (ngModelChange)="onProvinciaChange($event)">
+                      <select class="form-control" id="provincia" [compareWith]="compareFunct" [ngModel]="caacParaPopup.provincia" name="provincia" (ngModelChange)="onChange('provincia', $event)">
                         <option *ngFor="let provincia of provincias" [ngValue]="provincia">{{provincia.nombre}}</option>
                       </select>
                       <!--<input type="text" [(ngModel)]="caacParaPopup.provincia.nombre" name="provincia" class="form-control" id="provincia" placeholder="Provincia">-->
@@ -63,7 +63,7 @@
                   <div class="form-group required row">
                     <label for="departamento" class="col-3 col-form-label control-label">Departamento</label>
                     <div class="col-9">
-                      <select class="form-control" id="departamento" [compareWith]="compareFunct" [ngModel]="caacParaPopup.departamento" name="departamento" (ngModelChange)="onDepartamentoChange($event)" >
+                      <select class="form-control" id="departamento" [compareWith]="compareFunct" [ngModel]="caacParaPopup.departamento" name="departamento" (ngModelChange)="onChange('departamento', $event)" >
                         <option *ngFor="let departamento of departamentos" [ngValue]="departamento">{{ departamento.nombre }}</option>
                       </select>
                     </div>
@@ -72,7 +72,7 @@
                   <div class="form-group required row">
                     <label for="localidad" class="col-3 col-form-label control-label">Localidad</label>
                     <div class="col-9">
-                      <select class="form-control" id="localidad" [compareWith]="compareFunct" [ngModel]="caacParaPopup.localidad" name="localidad" (ngModelChange)="onLocalidadChange($event)" >
+                      <select class="form-control" id="localidad" [compareWith]="compareFunct" [ngModel]="caacParaPopup.localidad" name="localidad" (ngModelChange)="onChange('localidad', $event)" >
                         <option *ngFor="let localidad of localidades" [ngValue]="localidad">{{ localidad.nombre }}</option>
                       </select>
                     </div>
@@ -103,7 +103,7 @@
                   <div class="form-group required row">
                     <label for="cat" class="col-3 col-form-label control-label">Categoria Inicial</label>
                     <div class="col-9">
-                      <select class="form-control" id="cat" [compareWith]="compareCat" [ngModel]="caacParaPopup.cat" name="cat" (ngModelChange)="onCatChange($event)" >
+                      <select class="form-control" id="cat" [compareWith]="compareCat" [ngModel]="caacParaPopup.cat" name="cat" (ngModelChange)="onChange('cat', $event)" >
                         <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat.cat }}</option>
                       </select>
                     </div>
@@ -112,7 +112,7 @@
                   <div class="form-group required row">
                     <label for="ncat" class="col-3 col-form-label control-label">Nueva Categoria</label>
                     <div class="col-9">
-                      <select class="form-control" id="ncat" [compareWith]="compareCat" [ngModel]="caacParaPopup.ncat" name="ncat" (ngModelChange)="onNcatChange($event)" >
+                      <select class="form-control" id="ncat" [compareWith]="compareCat" [ngModel]="caacParaPopup.ncat" name="ncat" (ngModelChange)="onChange('ncat', $event)" >
                         <option *ngFor="let ncat of categorias" [ngValue]="ncat">{{ ncat.cat }}</option>
                       </select>
                     </div>

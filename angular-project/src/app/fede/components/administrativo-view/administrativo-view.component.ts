@@ -99,12 +99,26 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
     });
   }
 
-  onCatChange(cat) {
-    this.caacParaPopup.cat = cat;
-  }
+  onChange(propertyId, value) {
+    this.caacParaPopup[propertyId] = value;
 
-  onNcatChange(ncat) {
-    this.caacParaPopup.ncat = ncat;
+    if(propertyId === 'provincia') {
+      this.picsService.findAllDepartamentosByProvincia(value).subscribe(data => {
+        this.departamentos = data;
+        this.caacParaPopup.departamento = data[0];
+      }, (error)=> console.error(error), () =>
+        this.picsService.findAllLocalidadesByDepartamento(this.caacParaPopup.departamento).subscribe(data => {
+          this.localidades = data;
+          this.caacParaPopup.localidad = data[0];
+        }));
+    } else if(propertyId === 'departamento') {
+      this.picsService.findAllLocalidadesByDepartamento(value).subscribe(data => {
+        this.localidades = data;
+        this.caacParaPopup.localidad = data[0];
+      });
+    }
+
+    const i = 0;
   }
 
   onClickGuardar(event) {
