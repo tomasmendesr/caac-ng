@@ -18,6 +18,7 @@ import Requisito from "../../../model/requisito";
 import {CasaService} from "../../../tomi/services/casa.service";
 import {Casa} from "../../../model/casa";
 import {NotifUtil} from "../../../tomi/utils/notif-util";
+import {RequisitoService} from "../../services/requisito.service";
 
 declare var $: any;
 
@@ -55,7 +56,7 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
   caacParaPopup: CaacLight;
   requisitoParaPopup: Requisito;
 
-  constructor(private dataTableService: DataTableService, private picsService: PicsService, private categoriaService: CategoriaService, private casaService: CasaService) { }
+  constructor(private dataTableService: DataTableService, private picsService: PicsService, private categoriaService: CategoriaService, private casaService: CasaService, private requisitoService: RequisitoService) { }
 
   ngOnInit() {
   }
@@ -117,18 +118,21 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
         this.caacParaPopup.localidad = data[0];
       });
     }
-
-    const i = 0;
   }
 
   onClickGuardar(event) {
     const self = this;
-    this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {
-      NotifUtil.notifSuccess('Guardado exitosamente');
-      self.closeModal();
-    }, (error) => {
+    this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {}, (error) => {
       console.error(error);
-      NotifUtil.notifError('Error al guardar, ingrese los datos correctamente');
+      NotifUtil.notifError('Error al guardar');
+    }, () => {
+      this.requisitoService.saveOrUpdateRequisito(this.requisitoParaPopup).subscribe(success => {}, (error) => {
+        console.error(error);
+        NotifUtil.notifError('Error al guardar');
+      }, () => {
+          NotifUtil.notifSuccess('Guardado exitosamente');
+          self.closeModal();
+        });
     });
   }
 

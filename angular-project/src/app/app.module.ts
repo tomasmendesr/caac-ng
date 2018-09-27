@@ -71,6 +71,7 @@ import {AcompaniamientoService} from "./tomi/services/acompaniamiento.service";
 import {RecursoService} from "./tomi/services/recurso.service";
 import {CategoriaService} from "./services/categoria.service";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import {RequisitoService} from "./fede/services/requisito.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -157,7 +158,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     GeneralViewService,
     AcompaniamientoService,
     RecursoService,
-    CategoriaService
+    CategoriaService,
+    RequisitoService
   ],
   bootstrap: [AppComponent]
 })
