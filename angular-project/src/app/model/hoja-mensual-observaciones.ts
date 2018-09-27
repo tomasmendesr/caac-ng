@@ -19,7 +19,7 @@ export class HojaMensualObservaciones {
   actividadesProductivasComisaria: string;
   actividadesCapacitacionComisaria: string;
   acompaniamientoProfesionalSalud: string;
-  acompaniamientoTrayectoriaSalud: string;
+  acompaniamientoTrayectoriaEducativa: string;
   mejorasInfraestructura: string;
   requerimientosFormacion: string;
 }

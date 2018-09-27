@@ -15,7 +15,7 @@ public class HojaMensualRecursosId implements Serializable {
 
     public HojaMensualRecursosId(){}
 
-    public HojaMensualRecursosId(Integer idRecursos, Long idhoja){
+    public HojaMensualRecursosId( Long idhoja, Integer idRecursos){
         this.idRecursos = idRecursos;
         this.idHoja = idhoja;
     }

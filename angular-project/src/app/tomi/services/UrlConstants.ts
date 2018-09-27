@@ -81,14 +81,16 @@ export class UrlConstants {
   static readonly GET_DATA_FOR_SECCION_C3_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC3ByHojaId';
   static readonly SAVE_DATA_MENSUAL_SECCION_C4 = '/services/mensualSeccionC/saveOrUpdateSeccionC4';
   static readonly GET_DATA_FOR_SECCION_C4_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC4ByHojaId';
+  static readonly SAVE_DATA_MENSUAL_SECCION_C5 = '/services/mensualSeccionC/saveOrUpdateSeccionC5';
+  static readonly GET_DATA_FOR_SECCION_C5_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC5ByHojaId';
 
   //acompaniamiento service
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientosDeSalud';
   static readonly FIND_ALL_ESTABLECIMIENTO_PENALES_COMISARIAS = '/services/acompaniamiento/findAllEstablecimientoPenalesComisarias';
-  static readonly FIND_ALL = '/services/acompaniamiento/findAll';
+  static readonly FIND_ALL_ACOMPANIAMIENTOS = '/services/acompaniamiento/findAll';
 
-
-
+  // recurso service
+  static readonly FIND_ALL_RECURSOS = '/services/recurso/findAll';
 
 
 

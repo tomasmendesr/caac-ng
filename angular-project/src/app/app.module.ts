@@ -68,6 +68,7 @@ import {TramiteService} from "./tomi/services/tramite.service";
 import {AlimentacionService} from "./tomi/services/alimentacion.service";
 import {MensualSeccionCService} from "./tomi/services/mensual-seccion-c.service";
 import {AcompaniamientoService} from "./tomi/services/acompaniamiento.service";
+import {RecursoService} from "./tomi/services/recurso.service";
 import {CategoriaService} from "./services/categoria.service";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
@@ -155,6 +156,7 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     MensualSeccionCService,
     GeneralViewService,
     AcompaniamientoService,
+    RecursoService,
     CategoriaService
   ],
   bootstrap: [AppComponent]

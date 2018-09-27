@@ -67,11 +67,11 @@ public class HojaMensualAcompaniamientoServiceImpl implements HojaMensualAcompan
     }
 
     @Override
-    public AppResponse validateInputsEnEstablecimiento(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento) {
+    public AppResponse validateInputsEnEstablecimiento(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList, String establecimiento, boolean validateGestiones, boolean validatePersonas) {
         List<String> messages = new ArrayList<>();
         hojaMensualAcompaniamientoList.stream().filter(h -> establecimiento.equals(h.getAcompaniamiento().getEstablecimiento())).collect(Collectors.toList())
             .forEach(hojaMensualAcompaniamientoDTO ->
-                    this.validateCantidadGestionesAndCantidadPersonas(messages, hojaMensualAcompaniamientoDTO,true,true));
+                    this.validateCantidadGestionesAndCantidadPersonas(messages, hojaMensualAcompaniamientoDTO,validateGestiones,validatePersonas));
 
         return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
     }

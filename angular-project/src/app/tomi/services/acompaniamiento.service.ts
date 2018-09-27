@@ -3,9 +3,12 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {UrlConstants} from "./UrlConstants";
 import {Acompaniamiento} from "../../model/acompaniamiento";
+import {HojaMensualAcompaniamiento} from "../../model/hoja-mensual-acompaniamiento";
 
 @Injectable()
 export class AcompaniamientoService {
+  static readonly ESTABLECIMIENTO_PROF_SALUD = "Profesional de Salud";
+
   static readonly ID_ESTB_SALUD_INTERNACION = 1;
   static readonly ID_ESTB_SALUD_CONSULTORIOS = 2;
   static readonly ID_ESTB_SALUD_EMERGENCIAS = 3;
@@ -29,10 +32,26 @@ export class AcompaniamientoService {
   static readonly ID_PENALES_COMISARIAS_ACT_PROD = 16;
   static readonly ID_PENALES_COMISARIAS_CAPACITACION = 17;
 
+  static readonly ID_TERAPIA_INDIVIDUAL = 18;
+  static readonly ID_TERAPIA_FAMILIAR = 19;
+  static readonly ID_REUNION_MULTIFAMILIAR = 20;
+  static readonly ID_INFORME_SOCIAL = 21;
+  static readonly ID_ORIENTACION_VOCACIONAL = 22;
+  static readonly ID_EVALUACION = 23;
+  static readonly ID_CONTROL_MEDICO = 24;
+  static readonly ID_SEGUIMIENTO_FARMACOLOGICO = 25;
+  static readonly ID_GRUPOS_TERAPEUTICOS = 26;
+
+  static readonly ID_ACOMP_ESCUELA = 27;
+  static readonly ID_ACTIVIDADES_PREVENCION = 27;
+  static readonly ID_APOYO_ESCOLAR = 27;
+  static readonly ID_INCLUSION = 27;
+  static readonly ID_ESCUELA_EN_SEDE = 27;
+
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<Acompaniamiento[]>{
-    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL, {});
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ACOMPANIAMIENTOS, {});
   }
 
   findAllEstablecimientosDeSalud(): Observable<Acompaniamiento[]>{
@@ -45,5 +64,9 @@ export class AcompaniamientoService {
 
   getAcompaniamientoById(acompaniamientos: Acompaniamiento[], id: number): Acompaniamiento {
     return acompaniamientos.find(t => t.id == id);
+  }
+
+  filterByEstablecimiento(hojaMensualAcompaniamientoList: HojaMensualAcompaniamiento[], establecimiento: string) {
+    return hojaMensualAcompaniamientoList.filter(h => h.acompaniamiento.establecimiento == establecimiento);
   }
 }

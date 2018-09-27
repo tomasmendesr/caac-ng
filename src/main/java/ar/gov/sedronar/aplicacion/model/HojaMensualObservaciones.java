@@ -23,7 +23,7 @@ public class HojaMensualObservaciones {
     private String actividadesProductivasComisaria;
     private String actividadesCapacitacionComisaria;
     private String acompaniamientoProfesionalSalud;
-    private String acompaniamientoTrayectoriaSalud;
+    private String acompaniamientoTrayectoriaEducativa;
     private String mejorasInfraestructura;
     private String requerimientosFormacion;
     private String uum;
@@ -171,12 +171,12 @@ public class HojaMensualObservaciones {
     }
 
     @Column(name = "acomp_trayectoria_educ", length = 500)
-    public String getAcompaniamientoTrayectoriaSalud() {
-        return acompaniamientoTrayectoriaSalud;
+    public String getAcompaniamientoTrayectoriaEducativa() {
+        return acompaniamientoTrayectoriaEducativa;
     }
 
-    public void setAcompaniamientoTrayectoriaSalud(String acompaniamientoTrayectoriaSalud) {
-        this.acompaniamientoTrayectoriaSalud = acompaniamientoTrayectoriaSalud;
+    public void setAcompaniamientoTrayectoriaEducativa(String acompaniamientoTrayectoriaEducativa) {
+        this.acompaniamientoTrayectoriaEducativa = acompaniamientoTrayectoriaEducativa;
     }
 
     @Column(name = "mejoras_infraestructura", length = 2000)

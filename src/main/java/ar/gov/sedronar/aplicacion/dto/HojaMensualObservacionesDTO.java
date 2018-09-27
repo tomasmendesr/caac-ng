@@ -21,7 +21,7 @@ public class HojaMensualObservacionesDTO {
     private String actividadesProductivasComisaria;
     private String actividadesCapacitacionComisaria;
     private String acompaniamientoProfesionalSalud;
-    private String acompaniamientoTrayectoriaSalud;
+    private String acompaniamientoTrayectoriaEducativa;
     private String mejorasInfraestructura;
     private String requerimientosFormacion;
     private String uum;
@@ -147,12 +147,12 @@ public class HojaMensualObservacionesDTO {
         this.acompaniamientoProfesionalSalud = acompaniamientoProfesionalSalud;
     }
 
-    public String getAcompaniamientoTrayectoriaSalud() {
-        return acompaniamientoTrayectoriaSalud;
+    public String getAcompaniamientoTrayectoriaEducativa() {
+        return acompaniamientoTrayectoriaEducativa;
     }
 
-    public void setAcompaniamientoTrayectoriaSalud(String acompaniamientoTrayectoriaSalud) {
-        this.acompaniamientoTrayectoriaSalud = acompaniamientoTrayectoriaSalud;
+    public void setAcompaniamientoTrayectoriaEducativa(String acompaniamientoTrayectoriaEducativa) {
+        this.acompaniamientoTrayectoriaEducativa = acompaniamientoTrayectoriaEducativa;
     }
 
     public String getMejorasInfraestructura() {
