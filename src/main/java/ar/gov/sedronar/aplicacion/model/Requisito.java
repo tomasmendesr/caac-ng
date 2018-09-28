@@ -1,4 +1,6 @@
 package ar.gov.sedronar.aplicacion.model;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 /**
@@ -66,7 +68,7 @@ public class Requisito {
     private String statuto;
 
     //uni-directional many-to-one association to Casa
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name="idcaac")
     private Casa casa;
 

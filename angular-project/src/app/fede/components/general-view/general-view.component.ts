@@ -28,6 +28,9 @@ declare var $: any;
 })
 export class GeneralViewComponent implements OnInit, AfterViewInit {
 
+  //TODO VALIDACIONES AL GUARDAR Y REFRESCAR LA TABLA AL GUARDAR
+
+
   TITLE: string = 'Información General';
   CAAC_POPUP_TITLE: string;
   TABLE_ID: string = 'tablaInformacionGeneral';
@@ -71,7 +74,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       self,
       columns,
       UrlConstantsCaac.FIND_ALL_CASAS_GENERAL,
-      this.filter,
+      (data) => JSON.stringify(data),
       [],
       false
     );
@@ -117,14 +120,13 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   onClickGuardar() {
     const self = this;
-    // TODO - lo dejo comentado porque el casteo rompe la compilación de angular
-    // this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {
-    //   NotifUtil.notifSuccess('Guardado exitosamente');
-    //   self.closeModal();
-    // }, (error) => {
-    //   console.error(error)
-    //   NotifUtil.notifError('Error al guardar, ingrese los datos correctamente');
-    // });
+    this.casaService.saveOrUpdateCasaGeneral(this.caacParaPopup).subscribe(success => {
+      NotifUtil.notifSuccess('Guardado exitosamente');
+      self.closeModal();
+    }, (error) => {
+      console.error(error)
+      NotifUtil.notifError('Error al guardar, ingrese los datos correctamente');
+    });
   }
 
   onAniadirClick() {

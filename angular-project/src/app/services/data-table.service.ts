@@ -9,7 +9,7 @@ export class DataTableService {
 
   constructor() { }
 
-  public buildTable(tableId: string, controller: any, columns: any[], requestUrl: string, filter: any, exportButtons: string[], selectable: boolean): any {
+  public buildTable(tableId: string, controller: any, columns: any[], requestUrl: string, dataRendering: (any) => any, exportButtons: string[], selectable: boolean): any {
     const self = controller;
     $.fn.dataTable.ext.errMode = 'none';
 
@@ -23,18 +23,14 @@ export class DataTableService {
         url: environment.apiUrl + requestUrl,
         type: 'POST',
         contentType: 'application/json',
-        data: (data) => {
-          data.filter = filter;
-
-          return JSON.stringify(data);
-        },
+        data: dataRendering,
         error: (xhr, error, thrown) => {
           if (xhr.responseJSON && xhr.responseJSON.code == 403) {
             NotifUtil.notifError(xhr.responseJSON.message)
           } else if (xhr.status === 401 || xhr.status === 0) {
             self.eventBusService.broadcast('http-error-auth', null);
           }
-        }
+        },
       },
       language: {
         url: 'assets/datatable/spanish.json'

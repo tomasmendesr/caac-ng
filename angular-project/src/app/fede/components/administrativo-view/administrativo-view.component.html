@@ -25,45 +25,45 @@
             </ul>
           </div>
 
-          <div *ngIf="caacParaPopup">
+          <div *ngIf="requisitoParaPopup">
             <div class="container">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group required row">
                     <label for="nomcaac" class="col-3 col-form-label control-label">Nombre CAAC</label>
                     <div class="col-9">
-                      <input type="text" [(ngModel)]="caacParaPopup.nomcaac" name="nomcaac" class="form-control" id="nomcaac" placeholder="Nombre CAAC">
+                      <input type="text" [(ngModel)]="requisitoParaPopup.casa.nomcaac" name="nomcaac" class="form-control" id="nomcaac" placeholder="Nombre CAAC">
                     </div>
                   </div>
 
                   <div class="form-group required row">
                     <label for="perjuridica" class="col-3 col-form-label control-label">Personería Juridica</label>
                     <div class="col-9">
-                      <input type="text" [(ngModel)]="caacParaPopup.perjuridica" name="perjuridica" class="form-control" id="perjuridica" placeholder="Personería Juridica">
+                      <input type="text" [(ngModel)]="requisitoParaPopup.casa.perjuridica" name="perjuridica" class="form-control" id="perjuridica" placeholder="Personería Juridica">
                     </div>
                   </div>
 
                   <div class="form-group required row">
                     <label for="cuit" class="col-3 col-form-label control-label">CUIT</label>
                     <div class="col-9">
-                      <input type="text" [(ngModel)]="caacParaPopup.cuit" name="cuit" class="form-control" id="cuit" placeholder="CUIT">
+                      <input type="text" [(ngModel)]="requisitoParaPopup.casa.cuit" name="cuit" class="form-control" id="cuit" placeholder="CUIT">
                     </div>
                   </div>
 
                   <div class="form-group required row">
                     <label for="provincia" class="col-3 col-form-label control-label">Provincia</label>
                     <div class="col-9">
-                      <select class="form-control" id="provincia" [compareWith]="compareFunct" [ngModel]="caacParaPopup.provincia" name="provincia" (ngModelChange)="onChange('provincia', $event)">
+                      <select class="form-control" id="provincia" [compareWith]="compareFunct" [(ngModel)]="requisitoParaPopup.casa.provincia" name="provincia" (ngModelChange)="onChange('provincia', $event)">
                         <option *ngFor="let provincia of provincias" [ngValue]="provincia">{{provincia.nombre}}</option>
                       </select>
-                      <!--<input type="text" [(ngModel)]="caacParaPopup.provincia.nombre" name="provincia" class="form-control" id="provincia" placeholder="Provincia">-->
+                      <!--<input type="text" [(ngModel)]="requisitoParaPopup.casa.provincia.nombre" name="provincia" class="form-control" id="provincia" placeholder="Provincia">-->
                     </div>
                   </div>
 
                   <div class="form-group required row">
                     <label for="departamento" class="col-3 col-form-label control-label">Departamento</label>
                     <div class="col-9">
-                      <select class="form-control" id="departamento" [compareWith]="compareFunct" [ngModel]="caacParaPopup.departamento" name="departamento" (ngModelChange)="onChange('departamento', $event)" >
+                      <select class="form-control" id="departamento" [compareWith]="compareFunct" [(ngModel)]="requisitoParaPopup.casa.departamento" name="departamento" (ngModelChange)="onChange('departamento', $event)" >
                         <option *ngFor="let departamento of departamentos" [ngValue]="departamento">{{ departamento.nombre }}</option>
                       </select>
                     </div>
@@ -72,7 +72,7 @@
                   <div class="form-group required row">
                     <label for="localidad" class="col-3 col-form-label control-label">Localidad</label>
                     <div class="col-9">
-                      <select class="form-control" id="localidad" [compareWith]="compareFunct" [ngModel]="caacParaPopup.localidad" name="localidad" (ngModelChange)="onChange('localidad', $event)" >
+                      <select class="form-control" id="localidad" [compareWith]="compareFunct" [(ngModel)]="requisitoParaPopup.casa.localidad" name="localidad" (ngModelChange)="onChange('localidad', $event)" >
                         <option *ngFor="let localidad of localidades" [ngValue]="localidad">{{ localidad.nombre }}</option>
                       </select>
                     </div>
@@ -81,14 +81,14 @@
                   <div class="form-group required row">
                     <label for="dir" class="col-3 col-form-label control-label">Dirección</label>
                     <div class="col-9">
-                      <input type="text" [(ngModel)]="caacParaPopup.dir" name="dir" class="form-control" id="dir" placeholder="Dirección">
+                      <input type="text" [(ngModel)]="requisitoParaPopup.casa.dir" name="dir" class="form-control" id="dir" placeholder="Dirección">
                     </div>
                   </div>
 
                   <div class="form-group required row">
                     <label for="nomrepre" class="col-3 col-form-label control-label">Nombre Representante</label>
                     <div class="col-9">
-                      <input type="text" [(ngModel)]="caacParaPopup.nomrepre" name="nomrepre" class="form-control" id="nomrepre" placeholder="Nombre Representante">
+                      <input type="text" [(ngModel)]="requisitoParaPopup.casa.nomrepre" name="nomrepre" class="form-control" id="nomrepre" placeholder="Nombre Representante">
                     </div>
                   </div>
                 </div>
@@ -96,14 +96,14 @@
                   <div class="form-group required row">
                     <label for="modal" class="col-3 col-form-label control-label">Modalidad</label>
                     <div class="col-9">
-                      <input type="text" [(ngModel)]="caacParaPopup.modal" name="modal" class="form-control" id="modal" placeholder="Modalidad">
+                      <input type="text" [(ngModel)]="requisitoParaPopup.casa.modal" name="modal" class="form-control" id="modal" placeholder="Modalidad">
                     </div>
                   </div>  <!--ver si no hay quilombo con el ID modal-->
 
                   <div class="form-group required row">
                     <label for="cat" class="col-3 col-form-label control-label">Categoria Inicial</label>
                     <div class="col-9">
-                      <select class="form-control" id="cat" [compareWith]="compareCat" [ngModel]="caacParaPopup.cat" name="cat" (ngModelChange)="onChange('cat', $event)" >
+                      <select class="form-control" id="cat" [compareWith]="compareCat" [(ngModel)]="requisitoParaPopup.casa.cat" name="cat" >
                         <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat.cat }}</option>
                       </select>
                     </div>
@@ -112,7 +112,7 @@
                   <div class="form-group required row">
                     <label for="ncat" class="col-3 col-form-label control-label">Nueva Categoria</label>
                     <div class="col-9">
-                      <select class="form-control" id="ncat" [compareWith]="compareCat" [ngModel]="caacParaPopup.ncat" name="ncat" (ngModelChange)="onChange('ncat', $event)" >
+                      <select class="form-control" id="ncat" [compareWith]="compareCat" [(ngModel)]="requisitoParaPopup.casa.ncat" name="ncat"  >
                         <option *ngFor="let ncat of categorias" [ngValue]="ncat">{{ ncat.cat }}</option>
                       </select>
                     </div>
@@ -121,21 +121,21 @@
                   <div class="form-group required row">
                     <label for="fechaini" class="col-3 col-form-label control-label">Fecha de Auditoría Inicial</label>
                     <div class="col-9">
-                      <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="caacParaPopup.fechaini" id="fechaini" name="fechaini">
+                      <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="requisitoParaPopup.casa.fechaini" id="fechaini" name="fechaini">
                     </div>
                   </div>
 
                   <div class="form-group required row">
                     <label for="fechacon" class="col-3 col-form-label control-label">Fecha Inicio de Convenio</label>
                     <div class="col-9">
-                      <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="caacParaPopup.fechacon" id="fechacon" name="fechacon">
+                      <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="requisitoParaPopup.casa.fechacon" id="fechacon" name="fechacon">
                     </div>
                   </div>
 
                   <div class="form-group required row">
                     <label for="expsed" class="col-3 col-form-label control-label">Expediente SED</label>
                     <div class="col-9">
-                      <input type="text" [(ngModel)]="caacParaPopup.expsed" name="expsed" class="form-control" id="expsed" placeholder="Expediente SED">
+                      <input type="text" [(ngModel)]="requisitoParaPopup.casa.expsed" name="expsed" class="form-control" id="expsed" placeholder="Expediente SED">
                     </div>
                   </div>
                 </div>
@@ -143,7 +143,7 @@
               <div class="form-group required row">
                   <label for="obser" class="col-3 col-form-label control-label">Observaciones</label>
                   <div class="col-9">
-                    <input type="text" [(ngModel)]="caacParaPopup.obser" name="obser" class="form-control" id="obser" placeholder="Observaciones">
+                    <input type="text" [(ngModel)]="requisitoParaPopup.casa.obser" name="obser" class="form-control" id="obser" placeholder="Observaciones">
                   </div>
                 </div>
               <div class="row" id="requisitos">
@@ -153,7 +153,7 @@
                     <div class="form-group">
                       <div *ngFor="let req1 of requisitosColumna1">
                         <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="{{req1.id}}" [ngModel]="requisitoParaPopup[req1.id]" name="{{req1.id}}">
+                          <input class="form-check-input" type="checkbox" id="{{req1.id}}" [checked]="requisitoParaPopup[req1.id]" name="{{req1.id}}" (change)="requisitoParaPopup[req1.id] = !requisitoParaPopup[req1.id]">
                           <label class="form-check-label" for="{{req1.id}}">{{req1.descripcion}}</label>
                         </div>
                       </div>
@@ -162,8 +162,8 @@
                   <div class="col-6">
                     <div class="form-group">
                       <div *ngFor="let req2 of requisitosColumna2">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="{{req2.id}}" [ngModel]="requisitoParaPopup[req2.id]" name="{{req2.id}}">
+                        <div class="form-check" ngCon>
+                          <input class="form-check-input" type="checkbox" id="{{req2.id}}" [checked]="requisitoParaPopup[req2.id]" name="{{req2.id}}" (change)="requisitoParaPopup[req2.id] = !requisitoParaPopup[req2.id]">
                           <label class="form-check-label" for="{{req2.id}}">{{req2.descripcion}}</label>
                         </div>
                       </div>
@@ -177,7 +177,7 @@
       </div> <!-- /.modal-body -->
 
       <div class="modal-footer">
-        <button class="Button -sm -default -outline -rounded" data-dismiss="modal">Cancelar</button>
+        <button (click)="closeModal()" class="Button -sm -default -outline -rounded" data-dismiss="modal">Cancelar</button>
         <button (click)="onClickGuardar($event)" class="Button -sm -primary -raised -rounded">Aceptar</button>
       </div>
     </div>

@@ -96,18 +96,4 @@ public class CasaServiceImpl implements CasaService {
         //todo implementar validacion
     }
 
-    @Override
-    public DataTableObjectResponse findAllForAdministrativo(AdministrativoTableFilter administrativoTableFilter) {
-        Collection<CasaLightDTO> items = DozerHelper.mapList(
-                casaDAO.findAllForAdministrativo(
-                        administrativoTableFilter.getStart(),
-                        administrativoTableFilter.getLength(),
-                        QueryUtil.getColumnOrders(administrativoTableFilter),
-                        administrativoTableFilter.getFilter()
-                ),
-                CasaLightDTO.class
-        );
-        Integer count = casaDAO.count(administrativoTableFilter.getFilter());
-        return new DataTableObjectResponse(items, administrativoTableFilter.getDraw(), count , count);
-    }
 }

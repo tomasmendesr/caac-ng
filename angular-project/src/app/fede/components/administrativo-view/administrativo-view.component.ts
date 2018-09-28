@@ -29,6 +29,8 @@ declare var $: any;
 })
 export class AdministrativoViewComponent implements OnInit, AfterViewInit {
 
+  //TODO VALIDACIONES AL GUARDAR Y REFRESCAR TABLA AL GUARDAR
+
   TITLE = 'Administrativo';
   TABLE_ID = 'tableAdministrativo';
 
@@ -53,7 +55,6 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
     {id: 'soliform', descripcion: 'Solicitud formal'}, {id: 'statuto', descripcion: 'Estatuto'}
   ];
 
-  caacParaPopup: CaacLight;
   requisitoParaPopup: Requisito;
 
   constructor(private dataTableService: DataTableService, private picsService: PicsService, private categoriaService: CategoriaService, private casaService: CasaService, private requisitoService: RequisitoService) { }
@@ -70,80 +71,93 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
   loadTable() {
     const self = this;
     const columns = [
-      { data: COLUMN_NOMBRE_CAAC, title: 'Nombre CAAC' },
-      { data: COLUMN_PERSONERIA_JURIDICA, title: 'Personería Juridica' },
-      { data: COLUMN_CUIT, title: 'CUIT' },
-      { data: COLUMN_MODALIDAD_CONVENIO, title: 'Modalidad del Convenio' },
-      { data: COLUMN_CATEGORIA_INICIAL, title: 'Categoría Inicial', render: (item) => item.cat },
-      { data: COLUMN_NUEVA_CATEGORIA, title: 'Nueva Categoría', render: (item) => item.cat },
-      { data: COLUMN_FECHA_AUDITORIA_INICIAL, title: 'Fecha de Auditoría Inicial', render: (item) => this.dateFormat(new Date(item)) },
-      { data: COLUMN_FECHA_INICIO_CONVENIO, title: 'Fecha de Inicio de Convenio', render: (item) => this.dateFormat(new Date(item))  },
-      { data: COLUMN_OBSERVACIONES, title: 'Observaciones' },
+      { data: 'casa.nomcaac', title: 'Nombre CAAC' },
+      { data: 'casa.perjuridica', title: 'Personería Juridica' },
+      { data: 'casa.cuit', title: 'CUIT' },
+      { data: 'casa.modal', title: 'Modalidad del Convenio' },
+      { data: 'casa.cat', title: 'Categoría Inicial', render: (item) => item.cat },
+      { data: 'casa.ncat', title: 'Nueva Categoría', render: (item) => item.cat },
+      { data: 'casa.fechaini', title: 'Fecha de Auditoría Inicial', render: (item) => this.dateFormat(new Date(item)) },
+      { data: 'casa.fechacon', title: 'Fecha de Inicio de Convenio', render: (item) => this.dateFormat(new Date(item))  },
+      { data: 'casa.obser', title: 'Observaciones' },
     ];
+
     const table = this.dataTableService.buildTable(
       this.TABLE_ID,
       self,
       columns,
-      UrlConstantsCaac.FIND_ALL_CASAS_ADMINISTRATIVO,
-      this.filter,
+      UrlConstantsCaac.FIND_ALL_REQUISITOS,
+      (data) => JSON.stringify(data),
       [],
       false
     );
 
     $('#tableAdministrativo tbody').on('click', 'tr', function () {
-      var caac = table.row(this).data();
+      self.requisitoParaPopup = table.row(this).data();
+
+      var caac = self.requisitoParaPopup.casa;
       caac.fechaini = new Date(caac.fechaini); //no se porque trae los dates como milisegundos
       caac.fechacon = new Date(caac.fechacon);
 
-      self.caacParaPopup = caac;
-      self.openModalForCaacEdit(self.caacParaPopup);
+      self.openModalForCaacEdit();
     });
   }
 
   onChange(propertyId, value) {
-    this.caacParaPopup[propertyId] = value;
+    this.requisitoParaPopup.casa[propertyId] = value;
 
     if(propertyId === 'provincia') {
       this.picsService.findAllDepartamentosByProvincia(value).subscribe(data => {
         this.departamentos = data;
-        this.caacParaPopup.departamento = data[0];
+        this.requisitoParaPopup.casa.departamento = data[0];
       }, (error)=> console.error(error), () =>
-        this.picsService.findAllLocalidadesByDepartamento(this.caacParaPopup.departamento).subscribe(data => {
+        this.picsService.findAllLocalidadesByDepartamento(this.requisitoParaPopup.casa.departamento).subscribe(data => {
           this.localidades = data;
-          this.caacParaPopup.localidad = data[0];
+          this.requisitoParaPopup.casa.localidad = data[0];
         }));
     } else if(propertyId === 'departamento') {
       this.picsService.findAllLocalidadesByDepartamento(value).subscribe(data => {
         this.localidades = data;
-        this.caacParaPopup.localidad = data[0];
+        this.requisitoParaPopup.casa.localidad = data[0];
       });
     }
   }
 
   onClickGuardar(event) {
     const self = this;
+    var backendRequisito = this.mapToBackendRequisito(this.requisitoParaPopup);
+    this.requisitoService.saveOrUpdateRequisito(backendRequisito).subscribe(success => {}, (error) => {
+      console.error(error);
+      NotifUtil.notifError('Error al guardar');
+    }, () => {
+      NotifUtil.notifSuccess('Guardado exitosamente');
+      self.closeModal();
+    });
+    /*
     this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {}, (error) => {
       console.error(error);
       NotifUtil.notifError('Error al guardar');
     }, () => {
-      this.requisitoService.saveOrUpdateRequisito(this.requisitoParaPopup).subscribe(success => {}, (error) => {
+      const backendRequisito = this.mapToBackendRequisito(this.requisitoParaPopup);
+      alert(JSON.stringify(backendRequisito));
+      this.requisitoService.saveOrUpdateRequisito(backendRequisito).subscribe(success => {}, (error) => {
         console.error(error);
         NotifUtil.notifError('Error al guardar');
       }, () => {
           NotifUtil.notifSuccess('Guardado exitosamente');
           self.closeModal();
         });
-    });
+    });*/
   }
 
-  openModalForCaacEdit(caacParaPopup) {
-    this.requisitoParaPopup = new Requisito();
-    this.picsService.findAllDepartamentosByProvincia(caacParaPopup.provincia).subscribe(data => this.departamentos = data);
-    this.picsService.findAllLocalidadesByDepartamento(caacParaPopup.departamento).subscribe(data => this.localidades = data);
+  openModalForCaacEdit() {
+    this.picsService.findAllDepartamentosByProvincia(this.requisitoParaPopup.casa.provincia).subscribe(data => this.departamentos = data);
+    this.picsService.findAllLocalidadesByDepartamento(this.requisitoParaPopup.casa.departamento).subscribe(data => this.localidades = data);
     this.openModal();
   }
 
   openModal() {
+    $('#form').show();
     $('#form').modal({
       backdrop: 'static',
       keyboard: false,
@@ -152,6 +166,7 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
   }
 
   closeModal() {
+    $('#form').hide();
     $('#form').modal({
       backdrop: 'static',
       keyboard: false,
@@ -179,4 +194,62 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
 
     return dd + '/' + mm + '/' + yyyy;
   }
+
+  mapToBackendRequisito(requisito: Requisito): any {
+    return {
+      id: requisito.id,
+      actaasa: this.booleanToString(requisito.actaasa),
+      altbanca: this.booleanToString(requisito.altbanca),
+      cronalimen: this.booleanToString(requisito.cronalimen),
+      crondiayh: this.booleanToString(requisito.crondiayh),
+      cronmerc: this.booleanToString(requisito.cronmerc),
+      cronparad: this.booleanToString(requisito.cronparad),
+      cvsliscom: this.booleanToString(requisito.cvsliscom),
+      desaut: this.booleanToString(requisito.desaut),
+      forafip: this.booleanToString(requisito.forafip),
+      fotodni: this.booleanToString(requisito.fotodni),
+      lisrrhh: this.booleanToString(requisito.lisrrhh),
+      organi: this.booleanToString(requisito.organi),
+      perjur: this.booleanToString(requisito.perjur),
+      prodesex: this.booleanToString(requisito.prodesex),
+      segmalpra: this.booleanToString(requisito.segmalpra),
+      segrescivil: this.booleanToString(requisito.segrescivil),
+      soliform: this.booleanToString(requisito.soliform),
+      statuto: this.booleanToString(requisito.statuto),
+      casa: requisito.casa
+    }
+  }
+
+  // mapToFrontendRequisito(requisitoBack: any): Requisito {
+  //   return <Requisito> {
+  //     id: requisitoBack.id,
+  //     actaasa: this.stringToBoolean(requisitoBack.actaasa),
+  //     altbanca: this.stringToBoolean(requisitoBack.altbanca),
+  //     cronalimen: this.stringToBoolean(requisitoBack.cronalimen),
+  //     crondiayh: this.stringToBoolean(requisitoBack.crondiayh),
+  //     cronmerc: this.stringToBoolean(requisitoBack.cronmerc),
+  //     cronparad: this.stringToBoolean(requisitoBack.cronparad),
+  //     cvsliscom: this.stringToBoolean(requisitoBack.cvsliscom),
+  //     desaut: this.stringToBoolean(requisitoBack.desaut),
+  //     forafip: this.stringToBoolean(requisitoBack.forafip),
+  //     fotodni: this.stringToBoolean(requisitoBack.fotodni),
+  //     lisrrhh: this.stringToBoolean(requisitoBack.lisrrhh),
+  //     organi: this.stringToBoolean(requisitoBack.organi),
+  //     perjur: this.stringToBoolean(requisitoBack.perjur),
+  //     prodesex: this.stringToBoolean(requisitoBack.prodesex),
+  //     segmalpra: this.stringToBoolean(requisitoBack.segmalpra),
+  //     segrescivil: this.stringToBoolean(requisitoBack.segrescivil),
+  //     soliform: this.stringToBoolean(requisitoBack.soliform),
+  //     statuto: this.stringToBoolean(requisitoBack.statuto),
+  //     casa: requisitoBack.casa
+  //   }
+  // }
+
+  booleanToString(bool: boolean): string {
+    return bool ? 'checked' : 'unchecked';
+  }
+
+  // stringToBoolean(string: string): boolean {
+  //   return string === 'checked' ? true : false;
+  // }
 }

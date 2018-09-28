@@ -26,13 +26,6 @@ public class CasaDAOImpl extends AbstractDAOImpl<Casa> implements CasaDAO {
     }
 
     @Override
-    public List<Casa> findAllForAdministrativo(Integer start, Integer length, Map<String, Boolean> columnOrders, GeneralFilter filter) {
-        Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Casa.class);
-
-        return super.executeCriteria(criteria, start, length, columnOrders, null);
-    }
-
-    @Override
     public List<Casa> findAllForGeneral(Integer start, Integer length, Map<String, Boolean> sortOrder, GeneralFilter filter) {
         Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Casa.class);
 

@@ -4,13 +4,13 @@ import ar.gov.sedronar.util.dataTable.DataTablePagingRequest;
 
 public class AdministrativoTableFilter extends DataTablePagingRequest {
 
-    private GeneralFilter filter;
+    private AdministrativoFilter filter;
 
-    public GeneralFilter getFilter() {
+    public AdministrativoFilter getFilter() {
         return filter;
     }
 
-    public void setFilter(GeneralFilter filter) {
+    public void setFilter(AdministrativoFilter filter) {
         this.filter = filter;
     }
 
