@@ -22,6 +22,14 @@ public interface AcompaniamientoService {
     @POST
     List<AcompaniamientoDTO> findAllEstablecimientosDeSalud();
 
+    @Path("findAllEstablecimientosPatrocinioLegal")
+    @POST
+    List<AcompaniamientoDTO> findAllEstablecimientosPatrocinioLegal();
+
+    @Path("findAllEstablecimientosComunuidadTerapeutica")
+    @POST
+    List<AcompaniamientoDTO> findAllEstablecimientosComunuidadTerapeutica();
+
     @Path("findAllEstablecimientoPenalesComisarias")
     @POST
     List<AcompaniamientoDTO> findAllEstablecimientoPenalesComisarias();
@@ -29,4 +37,14 @@ public interface AcompaniamientoService {
     @Path("findAll")
     @POST
     List<AcompaniamientoDTO> findAll();
+
+    @Path("findAllEstablecimientosDeSaludAndTipoAcompaniamiento")
+    @POST
+    List<AcompaniamientoDTO> findAllEstablecimientosDeSaludAndTipoAcompaniamiento();
+
+    @Path("findAllEstablecimientosDeSaludAndTipoGestion")
+    @POST
+    List<AcompaniamientoDTO> findAllEstablecimientosDeSaludAndTipoGestion();
+
+
 }

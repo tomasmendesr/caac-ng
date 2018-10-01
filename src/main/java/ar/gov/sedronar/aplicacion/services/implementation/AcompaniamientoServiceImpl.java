@@ -22,12 +22,14 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     public static final String ESTABLECIMIENTO_DE_SALUD = "Establecimiento de Salud";
     public static final String ESTABLECIMIENTO_PROFESIONAL_DE_SALUD = "Profesional de Salud";
     public static final String ESTABLECIMIENTO_TRAYECTORIAS_EDUCATIVAS = "Trayectorias Educativas";
-    public static final String COMUNIDAD_TERAPEUTICA = "Comunidad Terapéutica/Centro Especializado";
-    public static final String PATROCINIO_LEGAL = "Patrocinio Legal";
+    public static final String ESTABLECIMIENTO_COMUNIDAD_TERAPEUTICA = "Comunidad Terapéutica/Centro Especializado";
+    public static final String ESTABLECIMIENTO_PATROCINIO_LEGAL = "Patrocinio Legal";
     public static final String ESTABLECIMIENTO_PENALES_COMISARIAS = "Penales o Comisarías";
 
     public static final String TIPO_ACOMPANIAMIENTO = "Acompañamiento";
+    public static final String TIPO_ACOMPANIAMIENTO_VISITA = "Acompañamiento/Visita";
     public static final String TIPO_ACTIVIDADES = "Actividades";
+    public static final String TIPO_GESTION = "Gestión";
 
 
     public static final Integer ID_EST_SALUD_INTERVENCION = 1;
@@ -80,6 +82,16 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     }
 
     @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientosPatrocinioLegal() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimiento(ESTABLECIMIENTO_PATROCINIO_LEGAL), AcompaniamientoDTO.class);
+    }
+
+    @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientosComunuidadTerapeutica() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimiento(ESTABLECIMIENTO_COMUNIDAD_TERAPEUTICA), AcompaniamientoDTO.class);
+    }
+
+    @Override
     public List<AcompaniamientoDTO> findAllEstablecimientoPenalesComisarias() {
         return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimiento(ESTABLECIMIENTO_PENALES_COMISARIAS), AcompaniamientoDTO.class);
     }
@@ -87,5 +99,15 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     @Override
     public List<AcompaniamientoDTO> findAll() {
         return DozerHelper.mapList(acompaniamientoDAO.findAll(Acompaniamiento.class), AcompaniamientoDTO.class);
+    }
+
+    @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientosDeSaludAndTipoAcompaniamiento() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimientoAndTipo(ESTABLECIMIENTO_DE_SALUD, TIPO_ACOMPANIAMIENTO_VISITA), AcompaniamientoDTO.class);
+    }
+
+    @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientosDeSaludAndTipoGestion() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimientoAndTipo(ESTABLECIMIENTO_DE_SALUD, TIPO_GESTION), AcompaniamientoDTO.class);
     }
 }

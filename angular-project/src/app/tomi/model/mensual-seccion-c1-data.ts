@@ -4,10 +4,12 @@ import {HojaMensualAlimentacion} from "../../model/hoja-mensual-alimentacion";
 export class MensualSeccionC1Data {
   constructor(){
     this.hojaMensualTramitesList = [];
-    this.hojaMensualAlimentacionList = [];
+    this.hojaMensualAlimentacionEnSedeList = [];
+    this.hojaMensualAlimentacionFueraDeSedeList = [];
   }
 
   hojaMensualTramitesList: HojaMensualTramites[];
-  hojaMensualAlimentacionList: HojaMensualAlimentacion[];
+  hojaMensualAlimentacionFueraDeSedeList: HojaMensualAlimentacion[];
+  hojaMensualAlimentacionEnSedeList: HojaMensualAlimentacion[];
   hojaMensualObservaciones: HojaMensualObservaciones;
 }

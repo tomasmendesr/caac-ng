@@ -54,8 +54,24 @@ export class AcompaniamientoService {
     return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ACOMPANIAMIENTOS, {});
   }
 
+  findAllEstablecimientosDeSaludAndTipoAcompaniamiento(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_DE_SALUD_TIPO_ACOMPANIAMIENTO, {});
+  }
+
+  findAllEstablecimientosDeSaludAndTipoGestion(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_DE_SALUD_TIPO_GESTION, {});
+  }
+
   findAllEstablecimientosDeSalud(): Observable<Acompaniamiento[]>{
     return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_DE_SALUD, {});
+  }
+
+  findAllEstablecimientosPatrocinioLegal(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_PATROCINIO_LEGAL, {});
+  }
+
+  findAllEstablecimientosComunidadTerapeutica(): Observable<Acompaniamiento[]>{
+    return this.http.post<Acompaniamiento[]>(UrlConstants.FIND_ALL_ESTABLECIMIENTOS_COMUNIDAD_TERAPEUTICA, {});
   }
 
   findAllEstablecimientoPenalesComisarias(): Observable<Acompaniamiento[]>{

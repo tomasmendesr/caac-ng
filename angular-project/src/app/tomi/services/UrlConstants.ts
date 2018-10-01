@@ -71,6 +71,8 @@ export class UrlConstants {
 
   //alimentacion service
   static readonly FIND_ALL_ALIMENTACION = '/services/alimentacion/findAll';
+  static readonly FIND_ALIMENTACION_EN_SEDE = '/services/alimentacion/findAllEnSede';
+  static readonly FIND_ALIMENTACION_FUERA_DE_SEDE = '/services/alimentacion/findAllFueraDeSede';
 
   // mensual seccion c service
   static readonly SAVE_DATA_MENSUAL_SECCION_C1 = '/services/mensualSeccionC/saveOrUpdateSeccionC1';
@@ -86,6 +88,10 @@ export class UrlConstants {
 
   //acompaniamiento service
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientosDeSalud';
+  static readonly FIND_ALL_ESTABLECIMIENTOS_PATROCINIO_LEGAL = '/services/acompaniamiento/findAllEstablecimientosPatrocinioLegal';
+  static readonly FIND_ALL_ESTABLECIMIENTOS_COMUNIDAD_TERAPEUTICA = '/services/acompaniamiento/findAllEstablecimientosComunuidadTerapeutica';
+  static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD_TIPO_ACOMPANIAMIENTO = '/services/acompaniamiento/findAllEstablecimientosDeSaludAndTipoAcompaniamiento';
+  static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD_TIPO_GESTION = '/services/acompaniamiento/findAllEstablecimientosDeSaludAndTipoGestion';
   static readonly FIND_ALL_ESTABLECIMIENTO_PENALES_COMISARIAS = '/services/acompaniamiento/findAllEstablecimientoPenalesComisarias';
   static readonly FIND_ALL_ACOMPANIAMIENTOS = '/services/acompaniamiento/findAll';
 

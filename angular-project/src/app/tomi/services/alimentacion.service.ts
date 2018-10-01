@@ -21,6 +21,15 @@ export class AlimentacionService {
     return this.http.post<Alimentacion[]>(UrlConstants.FIND_ALL_ALIMENTACION, {});
   }
 
+
+  findAllEnSede(): Observable<Alimentacion[]>{
+    return this.http.post<Alimentacion[]>(UrlConstants.FIND_ALIMENTACION_EN_SEDE, {});
+  }
+
+  findAllFueraDeSede(): Observable<Alimentacion[]>{
+    return this.http.post<Alimentacion[]>(UrlConstants.FIND_ALIMENTACION_FUERA_DE_SEDE, {});
+  }
+
   getAlimentacionById(alimentaciones: Alimentacion[], id: number): Alimentacion {
     return alimentaciones.find(t => t.id == id);
   }

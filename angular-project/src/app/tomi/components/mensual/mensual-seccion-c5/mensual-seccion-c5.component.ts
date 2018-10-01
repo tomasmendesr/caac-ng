@@ -136,7 +136,6 @@ export class MensualSeccionC5Component implements OnInit {
 
   private initEmptyData() {
     this.hojaMensualObservaciones = new HojaMensualObservaciones;
-    // this.initHojaMensualRecursos();
     this.initHojaMensualRecursosList();
     this.initHojaMensualAcompaniamiento();
   }

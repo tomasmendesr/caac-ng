@@ -34,10 +34,10 @@ public class HojaMensualAcompaniamientoServiceImpl implements HojaMensualAcompan
     private UsuarioService usuarioService;
 
     @Override
-    public AppResponse validateInputs(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoDTOList) {
+    public AppResponse validateInputs(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoDTOList, boolean validateGestiones, boolean validatePersonas) {
         List<String> messages = new ArrayList<>();
         hojaMensualAcompaniamientoDTOList.forEach(hojaMensualAcompaniamientoDTO ->
-                this.validateCantidadGestionesAndCantidadPersonas(messages,hojaMensualAcompaniamientoDTO, true,true));
+                this.validateCantidadGestionesAndCantidadPersonas(messages,hojaMensualAcompaniamientoDTO, validateGestiones,validatePersonas));
 
         return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
     }
