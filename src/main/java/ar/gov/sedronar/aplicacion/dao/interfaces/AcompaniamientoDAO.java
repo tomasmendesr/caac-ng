@@ -10,4 +10,5 @@ import java.util.List;
 public interface AcompaniamientoDAO extends AbstractDAO<Acompaniamiento> {
 
     List<Acompaniamiento> findByEstablecimiento(String establecimiento);
+    List<Acompaniamiento> findByEstablecimientoAndTipo(String establecimiento, String tipo);
 }

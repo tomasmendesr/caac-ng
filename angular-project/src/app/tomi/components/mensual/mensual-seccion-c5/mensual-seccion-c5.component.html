@@ -37,8 +37,6 @@
         </div>
       </div>
     </div>
-
-    
   </div>
 
   <div class="card card-body marginBottom">
@@ -109,36 +107,36 @@
           </div>
           <div class="form-row">
             <div class="container">
-              <div class="row">
+              <div class="row" *ngFor="let hojaMensual of hojaMensualAcompaniamientosEstablecimientoTrayEducativaList">
                 <div class="col">
-                    <label for="acompEscuela-input">Acompañamiento en escuela</label>
-                    <input class="form-control" name="acompEscuela-input" type="number" id="acompEscuela-input" [(ngModel)]="hojaMensualAcompaniamientoEscuela.cantidadPersonas" [readonly]="readonlyControl">
+                    <label for="{{hojaMensual.acompaniamiento.id}}">{{hojaMensual.acompaniamiento.detalle}}</label>
+                    <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}" type="number" id="{{hojaMensual.acompaniamiento.id}}" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
                 </div>
               </div>
-              <div class="row">
-                  <div class="col">
-                    <label for="actividadesPrev-input">Actividad de prevención (talleres/charlas/grupos)</label>
-                    <input class="form-control" name="actividadesPrev-input" type="number" id="actividadesPrev-input" [(ngModel)]="hojaMensualAcompaniamientoActividadPrevencion.cantidadPersonas" [readonly]="readonlyControl">
-                </div>
-              </div>
-              <div class="row">
-                  <div class="col">
-                    <label for="apoyoEscolar-input">Apoyo escolar/alfabetización</label>
-                    <input class="form-control" name="apoyoEscolar-input" type="number" id="apoyoEscolar-input" [(ngModel)]="hojaMensualAcompaniamientoApoyoEscolar.cantidadPersonas" [readonly]="readonlyControl">
-                </div>
-              </div>
-              <div class="row">
-                  <div class="col">
-                    <label for="programa-input">Programa para la inclusión educativa (fines, progresar, etc.)</label>
-                    <input class="form-control" name="programa-input" type="number" id="programa-input" [(ngModel)]="hojaMensualAcompaniamientoInclusionEducativa.cantidadPersonas" [readonly]="readonlyControl">
-                </div>
-              </div>
-              <div class="row">
-                  <div class="col">
-                    <label for="escuelaEnSede-input">Escuela en sede</label>
-                    <input class="form-control" name="escuelaEnSede-input" type="number" id="escuelaEnSede-input" [(ngModel)]="hojaMensualAcompaniamientoEscuelaEnSede.cantidadPersonas" [readonly]="readonlyControl">
-                </div>
-              </div>
+              <!--<div class="row">-->
+                  <!--<div class="col">-->
+                    <!--<label for="actividadesPrev-input">Actividad de prevención (talleres/charlas/grupos)</label>-->
+                    <!--<input class="form-control" name="actividadesPrev-input" type="number" id="actividadesPrev-input" [(ngModel)]="hojaMensualAcompaniamientoActividadPrevencion.cantidadPersonas" [readonly]="readonlyControl">-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="row">-->
+                  <!--<div class="col">-->
+                    <!--<label for="apoyoEscolar-input">Apoyo escolar/alfabetización</label>-->
+                    <!--<input class="form-control" name="apoyoEscolar-input" type="number" id="apoyoEscolar-input" [(ngModel)]="hojaMensualAcompaniamientoApoyoEscolar.cantidadPersonas" [readonly]="readonlyControl">-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="row">-->
+                  <!--<div class="col">-->
+                    <!--<label for="programa-input">Programa para la inclusión educativa (fines, progresar, etc.)</label>-->
+                    <!--<input class="form-control" name="programa-input" type="number" id="programa-input" [(ngModel)]="hojaMensualAcompaniamientoInclusionEducativa.cantidadPersonas" [readonly]="readonlyControl">-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="row">-->
+                  <!--<div class="col">-->
+                    <!--<label for="escuelaEnSede-input">Escuela en sede</label>-->
+                    <!--<input class="form-control" name="escuelaEnSede-input" type="number" id="escuelaEnSede-input" [(ngModel)]="hojaMensualAcompaniamientoEscuelaEnSede.cantidadPersonas" [readonly]="readonlyControl">-->
+                <!--</div>-->
+              <!--</div>-->
             </div>
           </div>
       </div>

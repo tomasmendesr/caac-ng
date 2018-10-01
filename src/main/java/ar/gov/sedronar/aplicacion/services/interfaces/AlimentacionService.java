@@ -21,4 +21,12 @@ public interface AlimentacionService {
     @POST
     @Path("/findAll")
     List<AlimentacionDTO> findAll();
+
+    @POST
+    @Path("/findAllEnSede")
+    List<AlimentacionDTO> findAllEnSede();
+
+    @POST
+    @Path("/findAllFueraDeSede")
+    List<AlimentacionDTO> findAllFueraDeSede();
 }

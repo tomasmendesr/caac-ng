@@ -23,20 +23,43 @@ export class MensualSeccionC4Component implements OnInit {
   private errorSection: number = -1;
   private hojaId: number;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
-  private mensualSeccionC4Data: MensualSeccionC4Data = new MensualSeccionC4Data;
-  private acompaniamientos: Acompaniamiento[] = [];
+  private acompaniamientosEstPenalesAndTipoAcomp: Acompaniamiento[] = [];
+  private acompaniamientosEstPenalesandTipoAct: Acompaniamiento[] = [];
 
-  private hojaMensualAcompaniamientoComisarias: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoPenales: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoTalleres: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoActividadesProductivas: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoCapacitacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+  private mensualSeccionC4Data: MensualSeccionC4Data = new MensualSeccionC4Data;
+  private hojaMensualAcompEstPenalesTipoAcompList: HojaMensualAcompaniamiento[] = [];
+  private hojaMensualAcompEstPenalesTipoActividadesList: HojaMensualAcompaniamiento[] = [];
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
 
   constructor(private router: Router, private mensualSeccionCService: MensualSeccionCService, private acompaniamientoService: AcompaniamientoService) { }
 
   ngOnInit() {
-    this.acompaniamientoService.findAllEstablecimientoPenalesComisarias().subscribe(data => this.acompaniamientos = data);
+    this.acompaniamientoService.findAllEstablecimientoPenalesComisariasAndTipoAcompaniamiento().subscribe(data => {
+      this.acompaniamientosEstPenalesAndTipoAcomp = data;
+      this.initHojaMensualAcompEstPenalesTipoAcompList();
+    });
+    this.acompaniamientoService.findAllEstablecimientoPenalesComisariasAndTipoActividades().subscribe(data => {
+      this.acompaniamientosEstPenalesandTipoAct = data;
+      this.initHojaMensualAcompEstPenalesTipoActividadesList();
+    });
+  }
+
+  private initHojaMensualAcompEstPenalesTipoAcompList(){
+    this.hojaMensualAcompEstPenalesTipoAcompList = [];
+    this.acompaniamientosEstPenalesAndTipoAcomp.forEach(ac => {
+      let hojaMensual = new HojaMensualAcompaniamiento();
+      hojaMensual.acompaniamiento = ac;
+      this.hojaMensualAcompEstPenalesTipoAcompList.push(hojaMensual);
+    });
+  }
+
+  private initHojaMensualAcompEstPenalesTipoActividadesList(){
+    this.hojaMensualAcompEstPenalesTipoActividadesList = [];
+    this.acompaniamientosEstPenalesandTipoAct.forEach(ac => {
+      let hojaMensual = new HojaMensualAcompaniamiento();
+      hojaMensual.acompaniamiento = ac;
+      this.hojaMensualAcompEstPenalesTipoActividadesList.push(hojaMensual);
+    });
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
@@ -123,48 +146,32 @@ export class MensualSeccionC4Component implements OnInit {
 
   private parseSeccionC4Data(data: MensualSeccionC4Data) {
     this.hojaMensualObservaciones = data.hojaMensualObservaciones ? data.hojaMensualObservaciones : new HojaMensualObservaciones;
-    this.buildHojaMensualAcompaniamientoList(data);
+    this.buildHojaMensualAcompaniamientoEstabPenalesAndTipoAcompList(data);
+    this.buildHojaMensualAcompaniamientoEstabPenalesAndTipoActividadesList(data);
   }
 
-  private buildHojaMensualAcompaniamientoList(data: MensualSeccionC4Data) {
-    if (data.hojaMensualAcompaniamientoList) {
-      this.hojaMensualAcompaniamientoComisarias = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACOMPAÑAMIENTO_COMISARIAS);
-      this.hojaMensualAcompaniamientoPenales = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACOMPAÑAMIENTO_PENALES);
-      this.hojaMensualAcompaniamientoTalleres = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_PENALES_COMISARIAS_TALLERES);
-      this.hojaMensualAcompaniamientoActividadesProductivas = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_PENALES_COMISARIAS_ACT_PROD);
-      this.hojaMensualAcompaniamientoCapacitacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_PENALES_COMISARIAS_CAPACITACION);
+  private buildHojaMensualAcompaniamientoEstabPenalesAndTipoAcompList(data: MensualSeccionC4Data) {
+    if (data.hojaMensualAcompEstPenalesTipoAcompList) {
+      this.hojaMensualAcompEstPenalesTipoAcompList = data.hojaMensualAcompEstPenalesTipoAcompList;
     } else {
-      this.initHojaMensualAcompaniamientos();
+      this.initHojaMensualAcompEstPenalesTipoAcompList();
     }
     this.loadingComponent.hideLoading();
   }
 
-  private getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(list: HojaMensualAcompaniamiento[], idAcompaniamiento: number): HojaMensualAcompaniamiento {
-    let hojaMensualAcompaniamiento = list.find(a => a.acompaniamiento.id == idAcompaniamiento);
-    if(hojaMensualAcompaniamiento == null){
-      hojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-      hojaMensualAcompaniamiento.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, idAcompaniamiento);
+  private buildHojaMensualAcompaniamientoEstabPenalesAndTipoActividadesList(data: MensualSeccionC4Data) {
+    if (data.hojaMensualAcompEstPenalesTipoActividadesList) {
+      this.hojaMensualAcompEstPenalesTipoActividadesList = data.hojaMensualAcompEstPenalesTipoActividadesList;
+    } else {
+      this.initHojaMensualAcompEstPenalesTipoActividadesList();
     }
-    return hojaMensualAcompaniamiento;
+    this.loadingComponent.hideLoading();
   }
 
   private initEmptyData() {
     this.hojaMensualObservaciones = new HojaMensualObservaciones;
-    this.initHojaMensualAcompaniamientos();
-  }
-
-  private initHojaMensualAcompaniamientos() {
-    this.hojaMensualAcompaniamientoComisarias = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoPenales = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoTalleres = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoActividadesProductivas = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoCapacitacion = new HojaMensualAcompaniamiento;
-
-    this.hojaMensualAcompaniamientoComisarias.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACOMPAÑAMIENTO_COMISARIAS);
-    this.hojaMensualAcompaniamientoPenales.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACOMPAÑAMIENTO_PENALES);
-    this.hojaMensualAcompaniamientoTalleres.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_PENALES_COMISARIAS_TALLERES);
-    this.hojaMensualAcompaniamientoActividadesProductivas.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_PENALES_COMISARIAS_ACT_PROD);
-    this.hojaMensualAcompaniamientoCapacitacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_PENALES_COMISARIAS_CAPACITACION);
+    this.initHojaMensualAcompEstPenalesTipoAcompList();
+    this.initHojaMensualAcompEstPenalesTipoActividadesList();
   }
 
   private cleanData(){
@@ -173,21 +180,16 @@ export class MensualSeccionC4Component implements OnInit {
   }
 
   private bindDataToDTO() {
-    this.addAcompaniamientosToDTOList();
+    this.hojaMensualAcompEstPenalesTipoAcompList = this.mensualSeccionC4Data.hojaMensualAcompEstPenalesTipoAcompList;
+    this.hojaMensualAcompEstPenalesTipoActividadesList = this.mensualSeccionC4Data.hojaMensualAcompEstPenalesTipoActividadesList;
     this.mensualSeccionC4Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
     this.setHojaIdToItems();
   }
 
-  private addAcompaniamientosToDTOList() {
-    this.mensualSeccionC4Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoComisarias);
-    this.mensualSeccionC4Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoPenales);
-    this.mensualSeccionC4Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoTalleres);
-    this.mensualSeccionC4Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoActividadesProductivas);
-    this.mensualSeccionC4Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoCapacitacion);
-  }
 
   private setHojaIdToItems() {
-    this.mensualSeccionC4Data.hojaMensualAcompaniamientoList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC4Data.hojaMensualAcompEstPenalesTipoAcompList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC4Data.hojaMensualAcompEstPenalesTipoActividadesList.forEach(h => h.hoja.id = this.hojaId);
     this.mensualSeccionC4Data.hojaMensualObservaciones.hoja.id = this.hojaId;
   }
 }

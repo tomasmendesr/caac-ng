@@ -16,5 +16,5 @@ public interface HojaMensualAlimentacionService {
 
     void saveOrUpdate(HojaMensualAlimentacionDTO h) throws Exception;
 
-    List<HojaMensualAlimentacionDTO> findListByHojaId(Long idHoja);
+    List<HojaMensualAlimentacionDTO> findListByHojaIdAndClasificacion(Long idHoja,String clasificacion);
 }

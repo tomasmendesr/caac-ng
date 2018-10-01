@@ -2,9 +2,13 @@ import {HojaMensualAcompaniamiento} from "../../model/hoja-mensual-acompaniamien
 import {HojaMensualObservaciones} from "../../model/hoja-mensual-observaciones";
 export class MensualSeccionC3Data {
   constructor(){
-    this.hojaMensualAcompaniamientoList = [];
+    this.hojaMensualAcompaniamientoTipoGestionList = [];
+    this.hojaMensualAcompaniamientoEstablComuTerapeuticaList = [];
+    this.hojaMensualAcompaniamientoEstablPatrocinioLegalList = [];
   }
 
-  hojaMensualAcompaniamientoList: HojaMensualAcompaniamiento[];
+  hojaMensualAcompaniamientoTipoGestionList: HojaMensualAcompaniamiento[];
+  hojaMensualAcompaniamientoEstablComuTerapeuticaList: HojaMensualAcompaniamiento[];
+  hojaMensualAcompaniamientoEstablPatrocinioLegalList: HojaMensualAcompaniamiento[];
   hojaMensualObservaciones: HojaMensualObservaciones;
 }

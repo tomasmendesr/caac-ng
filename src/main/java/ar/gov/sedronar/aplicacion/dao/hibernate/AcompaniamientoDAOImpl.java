@@ -23,4 +23,12 @@ public class AcompaniamientoDAOImpl extends AbstractDAOImpl<Acompaniamiento> imp
         criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
         return criteria.list();
     }
+
+    @Override
+    public List<Acompaniamiento> findByEstablecimientoAndTipo(String establecimiento, String tipo) {
+        Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Acompaniamiento.class);
+        criteria.add(Restrictions.eq("establecimiento", establecimiento));
+        criteria.add(Restrictions.eq("tipo", tipo));
+        criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+        return criteria.list();    }
 }

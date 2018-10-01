@@ -21,4 +21,13 @@ public class HojaMensualAlimentacionDAOImpl extends AbstractDAOImpl<HojaMensualA
         criteria.add(Restrictions.eq("hojaMensualAlimentacion.id.idTipoAlimentacion", idAlimentacion));
         return (HojaMensualAlimentacion) criteria.uniqueResult();
     }
+
+    @Override
+    public HojaMensualAlimentacion findByIdAndClasificacion(Long idHoja, Integer idAlimentacion, String clasificacion) {
+        Criteria criteria = entityManager.unwrap(Session.class).createCriteria(HojaMensualAlimentacion.class, "hojaMensualAlimentacion");
+        criteria.add(Restrictions.eq("hojaMensualAlimentacion.id.idHoja", idHoja));
+        criteria.add(Restrictions.eq("hojaMensualAlimentacion.id.idTipoAlimentacion", idAlimentacion));
+        criteria.add(Restrictions.eq("hojaMensualAlimentacion.tipoAlimentacion.clasificacion", clasificacion));
+        return (HojaMensualAlimentacion) criteria.uniqueResult();
+    }
 }

@@ -8,7 +8,8 @@ import java.util.List;
  */
 public class MensualSeccionC5Data {
     private HojaMensualObservacionesDTO hojaMensualObservaciones;
-    private List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList;
+    private List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoEstabTrayEducativaList;
+    private List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoEstabProfSaludList;
     private List<HojaMensualRecursosDTO> hojaMensualRecursoList;
 
     public HojaMensualObservacionesDTO getHojaMensualObservaciones() {
@@ -20,19 +21,27 @@ public class MensualSeccionC5Data {
     }
 
 
-    public List<HojaMensualAcompaniamientoDTO> getHojaMensualAcompaniamientoList() {
-        return hojaMensualAcompaniamientoList;
-    }
-
-    public void setHojaMensualAcompaniamientoList(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoList) {
-        this.hojaMensualAcompaniamientoList = hojaMensualAcompaniamientoList;
-    }
-
     public List<HojaMensualRecursosDTO> getHojaMensualRecursoList() {
         return hojaMensualRecursoList;
     }
 
     public void setHojaMensualRecursoList(List<HojaMensualRecursosDTO> hojaMensualRecursoList) {
         this.hojaMensualRecursoList = hojaMensualRecursoList;
+    }
+
+    public List<HojaMensualAcompaniamientoDTO> getHojaMensualAcompaniamientoEstabTrayEducativaList() {
+        return hojaMensualAcompaniamientoEstabTrayEducativaList;
+    }
+
+    public void setHojaMensualAcompaniamientoEstabTrayEducativaList(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoEstabTrayEducativaList) {
+        this.hojaMensualAcompaniamientoEstabTrayEducativaList = hojaMensualAcompaniamientoEstabTrayEducativaList;
+    }
+
+    public List<HojaMensualAcompaniamientoDTO> getHojaMensualAcompaniamientoEstabProfSaludList() {
+        return hojaMensualAcompaniamientoEstabProfSaludList;
+    }
+
+    public void setHojaMensualAcompaniamientoEstabProfSaludList(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoEstabProfSaludList) {
+        this.hojaMensualAcompaniamientoEstabProfSaludList = hojaMensualAcompaniamientoEstabProfSaludList;
     }
 }

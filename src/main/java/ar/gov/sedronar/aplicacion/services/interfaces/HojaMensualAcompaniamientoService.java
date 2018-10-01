@@ -10,7 +10,7 @@ import java.util.List;
  * Created by TMR on 21/09/2018.
  */
 public interface HojaMensualAcompaniamientoService {
-    AppResponse validateInputs(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoDTOList);
+    AppResponse validateInputs(List<HojaMensualAcompaniamientoDTO> hojaMensualAcompaniamientoDTOList, boolean validateGestiones, boolean validatePersonas);
 
     void saveOrUpdate(HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO) throws Exception;
 

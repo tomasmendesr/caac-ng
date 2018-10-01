@@ -10,7 +10,8 @@ import java.util.List;
  */
 public class MensualSeccionC1Data {
     private List<HojaMensualTramitesDTO> hojaMensualTramitesList;
-    private List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionList;
+    private List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionEnSedeList;
+    private List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionFueraDeSedeList;
     private HojaMensualObservacionesDTO hojaMensualObservaciones;
 
     public List<HojaMensualTramitesDTO> getHojaMensualTramitesList() {
@@ -21,19 +22,27 @@ public class MensualSeccionC1Data {
         this.hojaMensualTramitesList = hojaMensualTramitesList;
     }
 
-    public List<HojaMensualAlimentacionDTO> getHojaMensualAlimentacionList() {
-        return hojaMensualAlimentacionList;
-    }
-
-    public void setHojaMensualAlimentacionList(List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionList) {
-        this.hojaMensualAlimentacionList = hojaMensualAlimentacionList;
-    }
-
     public HojaMensualObservacionesDTO getHojaMensualObservaciones() {
         return hojaMensualObservaciones;
     }
 
     public void setHojaMensualObservaciones(HojaMensualObservacionesDTO hojaMensualObservaciones) {
         this.hojaMensualObservaciones = hojaMensualObservaciones;
+    }
+
+    public List<HojaMensualAlimentacionDTO> getHojaMensualAlimentacionEnSedeList() {
+        return hojaMensualAlimentacionEnSedeList;
+    }
+
+    public void setHojaMensualAlimentacionEnSedeList(List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionEnSedeList) {
+        this.hojaMensualAlimentacionEnSedeList = hojaMensualAlimentacionEnSedeList;
+    }
+
+    public List<HojaMensualAlimentacionDTO> getHojaMensualAlimentacionFueraDeSedeList() {
+        return hojaMensualAlimentacionFueraDeSedeList;
+    }
+
+    public void setHojaMensualAlimentacionFueraDeSedeList(List<HojaMensualAlimentacionDTO> hojaMensualAlimentacionFueraDeSedeList) {
+        this.hojaMensualAlimentacionFueraDeSedeList = hojaMensualAlimentacionFueraDeSedeList;
     }
 }

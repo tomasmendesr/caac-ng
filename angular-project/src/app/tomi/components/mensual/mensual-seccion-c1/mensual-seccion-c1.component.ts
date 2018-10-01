@@ -28,33 +28,59 @@ export class MensualSeccionC1Component implements OnInit {
   private hojaId: number;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
   private tramites: Tramite[] = [];
-  private alimentaciones: Alimentacion[] = [];
+  private alimentacionesEnSede: Alimentacion[] = [];
+  private alimentacionesFueraDeSede: Alimentacion[] = [];
 
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
+  private hojaMensualTramitesList: HojaMensualTramites[] =  [];
+  private hojaMensualAlimentacionEnSedeList: HojaMensualAlimentacion[] =  [];
+  private hojaMensualAlimentacionFueraDeSedeList: HojaMensualAlimentacion[] =  [];
 
-  private hojaMensualTramiteDNI: HojaMensualTramites = new HojaMensualTramites;
-  private hojaMensualTramiteSubsidios: HojaMensualTramites = new HojaMensualTramites;
-  private hojaMensualTramiteBecas: HojaMensualTramites = new HojaMensualTramites;
-  private hojaMensualTramiteCertificadoDiscapacidad: HojaMensualTramites = new HojaMensualTramites;
-  private hojaMensualTramiteInsercionLaboral: HojaMensualTramites = new HojaMensualTramites;
-  private hojaMensualTramiteServiciosPrevisionales: HojaMensualTramites = new HojaMensualTramites;
-  private hojaMensualTramiteGestiones: HojaMensualTramites = new HojaMensualTramites;
-  private hojaMensualTramiteOtro: HojaMensualTramites = new HojaMensualTramites;
-
-  private hojaMensualAlimentacionDesayuno: HojaMensualAlimentacion = new HojaMensualAlimentacion;
-  private hojaMensualAlimentacionAlmuerzo: HojaMensualAlimentacion = new HojaMensualAlimentacion;
-  private hojaMensualAlimentacionMerienda: HojaMensualAlimentacion = new HojaMensualAlimentacion;
-  private hojaMensualAlimentacionCena: HojaMensualAlimentacion = new HojaMensualAlimentacion;
-  private hojaMensualAlimentacionViandas: HojaMensualAlimentacion = new HojaMensualAlimentacion;
-  private hojaMensualAlimentacionBolsones: HojaMensualAlimentacion = new HojaMensualAlimentacion;
 
   constructor(private tramiteService: TramiteService, private alimentacionService: AlimentacionService,
               private mensualSeccionCService: MensualSeccionCService, private router: Router) {
   }
 
   ngOnInit() {
-    this.tramiteService.findAll().subscribe(data => this.tramites = data);
-    this.alimentacionService.findAll().subscribe(data => this.alimentaciones = data);
+    this.tramiteService.findAll().subscribe(data => {
+      this.tramites = data;
+      this.initHojaMensualTramitesList();
+    });
+    this.alimentacionService.findAllEnSede().subscribe(data => {
+      this.alimentacionesEnSede = data;
+      this.initHojaMensualAlimentacionEnSedeList();
+    });
+    this.alimentacionService.findAllFueraDeSede().subscribe(data => {
+      this.alimentacionesFueraDeSede = data;
+      this.initHojaMensualAlimentacionFueraDeSedeList();
+    });
+  }
+
+  private initHojaMensualTramitesList(){
+    this.hojaMensualTramitesList = [];
+    this.tramites.forEach(tramite => {
+      let hojaMensual = new HojaMensualTramites;
+      hojaMensual.tramite = tramite;
+      this.hojaMensualTramitesList.push(hojaMensual);
+    });
+  }
+
+  private initHojaMensualAlimentacionEnSedeList(){
+    this.hojaMensualAlimentacionEnSedeList = [];
+    this.alimentacionesEnSede.forEach(a => {
+      let hojaMensual = new HojaMensualAlimentacion;
+      hojaMensual.tipoAlimentacion = a;
+      this.hojaMensualAlimentacionEnSedeList.push(hojaMensual);
+    });
+  }
+
+  private initHojaMensualAlimentacionFueraDeSedeList(){
+    this.hojaMensualAlimentacionFueraDeSedeList = [];
+    this.alimentacionesFueraDeSede.forEach(a => {
+      let hojaMensual = new HojaMensualAlimentacion;
+      hojaMensual.tipoAlimentacion = a;
+      this.hojaMensualAlimentacionFueraDeSedeList.push(hojaMensual);
+    });
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
@@ -119,130 +145,60 @@ export class MensualSeccionC1Component implements OnInit {
 
   private initEmptyData() {
     this.hojaMensualObservaciones = new HojaMensualObservaciones;
-    this.initHojaMensualTramites();
-    this.initHojaMensualAlimentacion();
+    this.initHojaMensualTramitesList();
+    this.initHojaMensualAlimentacionEnSedeList();
+    this.initHojaMensualAlimentacionFueraDeSedeList();
   }
 
   private bindDataToDTO() {
-    this.addTramitesToDTOList();
-    this.addAlimentacionToDTOList();
+    this.mensualSeccionC1Data.hojaMensualTramitesList = this.hojaMensualTramitesList;
+    this.mensualSeccionC1Data.hojaMensualAlimentacionEnSedeList = this.hojaMensualAlimentacionEnSedeList
+    this.mensualSeccionC1Data.hojaMensualAlimentacionFueraDeSedeList = this.hojaMensualAlimentacionFueraDeSedeList
     this.mensualSeccionC1Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
     this.setHojaIdToItems();
   }
 
-  private addAlimentacionToDTOList() {
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionDesayuno);
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionCena);
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionAlmuerzo);
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionMerienda);
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionViandas);
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.push(this.hojaMensualAlimentacionBolsones);
-  }
-
-  private addTramitesToDTOList() {
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteDNI);
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteServiciosPrevisionales);
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteBecas);
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteGestiones);
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteOtro);
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteSubsidios);
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteInsercionLaboral);
-    this.mensualSeccionC1Data.hojaMensualTramitesList.push(this.hojaMensualTramiteCertificadoDiscapacidad);
-  }
 
   private setHojaIdToItems() {
     this.mensualSeccionC1Data.hojaMensualTramitesList.forEach(h => h.hoja.id = this.hojaId);
-    this.mensualSeccionC1Data.hojaMensualAlimentacionList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC1Data.hojaMensualAlimentacionEnSedeList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC1Data.hojaMensualAlimentacionFueraDeSedeList.forEach(h => h.hoja.id = this.hojaId);
     this.mensualSeccionC1Data.hojaMensualObservaciones.hoja.id = this.hojaId;
-  }
-
-  private initHojaMensualTramites() {
-    this.hojaMensualTramiteDNI = new HojaMensualTramites;
-    this.hojaMensualTramiteSubsidios = new HojaMensualTramites;
-    this.hojaMensualTramiteBecas = new HojaMensualTramites;
-    this.hojaMensualTramiteCertificadoDiscapacidad = new HojaMensualTramites;
-    this.hojaMensualTramiteInsercionLaboral = new HojaMensualTramites;
-    this.hojaMensualTramiteServiciosPrevisionales = new HojaMensualTramites;
-    this.hojaMensualTramiteGestiones = new HojaMensualTramites;
-    this.hojaMensualTramiteOtro = new HojaMensualTramites;
-
-    this.hojaMensualTramiteDNI.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_DNI);
-    this.hojaMensualTramiteSubsidios.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_SUBSIDIOS);
-    this.hojaMensualTramiteInsercionLaboral.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_INSERCION_LABORAL);
-    this.hojaMensualTramiteServiciosPrevisionales.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_SERVICIOS_PREVISIONALES);
-    this.hojaMensualTramiteBecas.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_BECAS);
-    this.hojaMensualTramiteGestiones.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_GESTIONES);
-    this.hojaMensualTramiteCertificadoDiscapacidad.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_CERTIFICADO_DISCAPACIDAD);
-    this.hojaMensualTramiteOtro.tramite = this.tramiteService.getTramiteById(this.tramites, TramiteService.ID_OTROS);
-  }
-
-  private initHojaMensualAlimentacion() {
-    this.hojaMensualAlimentacionDesayuno = new HojaMensualAlimentacion;
-    this.hojaMensualAlimentacionAlmuerzo = new HojaMensualAlimentacion;
-    this.hojaMensualAlimentacionMerienda = new HojaMensualAlimentacion;
-    this.hojaMensualAlimentacionCena = new HojaMensualAlimentacion;
-    this.hojaMensualAlimentacionViandas = new HojaMensualAlimentacion;
-    this.hojaMensualAlimentacionBolsones = new HojaMensualAlimentacion;
-
-    this.hojaMensualAlimentacionAlmuerzo.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_ALMUERZO);
-    this.hojaMensualAlimentacionDesayuno.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_DESAYUNO);
-    this.hojaMensualAlimentacionMerienda.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_MERIENDA);
-    this.hojaMensualAlimentacionCena.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_CENA);
-    this.hojaMensualAlimentacionViandas.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_VIANDAS);
-    this.hojaMensualAlimentacionBolsones.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, AlimentacionService.ID_BOLSONES);
   }
 
   private parseSeccionC1Data(data: MensualSeccionC1Data) {
     this.hojaMensualObservaciones = data.hojaMensualObservaciones ? data.hojaMensualObservaciones : new HojaMensualObservaciones;
     this.buildHojaMensualTramites(data);
-    this.buildHojaMensualAlimentacion(data);
+    this.buildHojaMensualAlimentacionEnSede(data);
+    this.buildHojaMensualAlimentacionFueraDeSede(data);
   }
 
   private buildHojaMensualTramites(data: MensualSeccionC1Data) {
     if (data.hojaMensualTramitesList) {
-      this.hojaMensualTramiteDNI = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_DNI);
-        this.hojaMensualTramiteSubsidios = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_SUBSIDIOS);
-      this.hojaMensualTramiteCertificadoDiscapacidad = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_CERTIFICADO_DISCAPACIDAD);
-      this.hojaMensualTramiteServiciosPrevisionales = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_SERVICIOS_PREVISIONALES);
-      this.hojaMensualTramiteInsercionLaboral = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_INSERCION_LABORAL);
-      this.hojaMensualTramiteGestiones = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_GESTIONES);
-      this.hojaMensualTramiteBecas = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_BECAS);
-      this.hojaMensualTramiteOtro = this.getHojaMensualTramiteFromListByIdTramite(data.hojaMensualTramitesList, TramiteService.ID_OTROS);
+      this.hojaMensualTramitesList = data.hojaMensualTramitesList;
     } else {
-      this.initHojaMensualTramites();
+      this.initHojaMensualTramitesList();
     }
     this.loadingComponent.hideLoading();
   }
 
-  private getHojaMensualTramiteFromListByIdTramite(list: HojaMensualTramites[], idTramite: number): HojaMensualTramites {
-    let hojaMensualTramite = list.find(t => t.tramite.id == idTramite);
-    if(hojaMensualTramite == null){
-      hojaMensualTramite = new HojaMensualTramites;
-      hojaMensualTramite.tramite = this.tramiteService.getTramiteById(this.tramites, idTramite);
-    }
-    return hojaMensualTramite;
-  }
 
-  private getHojaMensualAlimentacionFromListByIdAlimentacion(list: HojaMensualAlimentacion[], idAlimentacion: number): HojaMensualAlimentacion {
-    let hojMensualAlimentacion = list.find(a => a.tipoAlimentacion.id == idAlimentacion);
-    if(hojMensualAlimentacion == null){
-      hojMensualAlimentacion = new HojaMensualAlimentacion;
-      hojMensualAlimentacion.tipoAlimentacion = this.alimentacionService.getAlimentacionById(this.alimentaciones, idAlimentacion);
-    }
-    return hojMensualAlimentacion;
-  }
-
-  private buildHojaMensualAlimentacion(data: MensualSeccionC1Data) {
-    if (data.hojaMensualAlimentacionList) {
-      this.hojaMensualAlimentacionAlmuerzo = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_ALMUERZO);
-      this.hojaMensualAlimentacionDesayuno = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_DESAYUNO);
-      this.hojaMensualAlimentacionMerienda = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_MERIENDA);
-      this.hojaMensualAlimentacionCena = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_CENA);
-      this.hojaMensualAlimentacionViandas = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_VIANDAS);
-      this.hojaMensualAlimentacionBolsones = this.getHojaMensualAlimentacionFromListByIdAlimentacion(data.hojaMensualAlimentacionList, AlimentacionService.ID_BOLSONES);
+  private buildHojaMensualAlimentacionEnSede(data: MensualSeccionC1Data) {
+    if (data.hojaMensualAlimentacionEnSedeList) {
+      this.hojaMensualAlimentacionEnSedeList = data.hojaMensualAlimentacionEnSedeList;
     } else {
-      this.initHojaMensualAlimentacion();
+      this.initHojaMensualAlimentacionEnSedeList();
     }
+    this.loadingComponent.hideLoading();
+  }
+
+  private buildHojaMensualAlimentacionFueraDeSede(data: MensualSeccionC1Data) {
+    if (data.hojaMensualAlimentacionFueraDeSedeList) {
+      this.hojaMensualAlimentacionFueraDeSedeList = data.hojaMensualAlimentacionFueraDeSedeList;
+    } else {
+      this.initHojaMensualAlimentacionFueraDeSedeList();
+    }
+    this.loadingComponent.hideLoading();
   }
 
   private notifError(error){

@@ -7,4 +7,5 @@ import ar.gov.sedronar.aplicacion.model.HojaMensualAlimentacion;
  */
 public interface HojaMensualAlimentacionDAO extends AbstractDAO<HojaMensualAlimentacion> {
     HojaMensualAlimentacion findById(Long idHoja, Integer idAlimentacion);
+    HojaMensualAlimentacion findByIdAndClasificacion(Long idHoja, Integer idAlimentacion, String clasificacion);
 }

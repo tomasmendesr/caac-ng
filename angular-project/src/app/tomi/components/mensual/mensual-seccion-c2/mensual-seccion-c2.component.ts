@@ -29,17 +29,25 @@ export class MensualSeccionC2Component implements OnInit {
   private acompaniamientos: Acompaniamiento[] = [];
   private hojaMensualActividad: HojaMensualActividad = new HojaMensualActividad;
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
-
-  private hojaMensualAcompaniamientoInternacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoConsultorios: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoEmergencias: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoDesintoxicacion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
+  private hojaMensualAcompaniamientoList: HojaMensualAcompaniamiento[] = [];
 
 
   constructor(private router: Router, private acompaniamientoService: AcompaniamientoService, private mensualSeccionCService: MensualSeccionCService) { }
 
   ngOnInit() {
-    this.acompaniamientoService.findAllEstablecimientosDeSalud().subscribe(data => this.acompaniamientos = data);
+    this.acompaniamientoService.findAllEstablecimientosDeSaludAndTipoAcompaniamiento().subscribe(data => {
+      this.acompaniamientos = data;
+      this.initHojaMensualAcompaniamientoList();
+    });
+  }
+
+  private initHojaMensualAcompaniamientoList(){
+      this.hojaMensualAcompaniamientoList = [];
+      this.acompaniamientos.forEach(ac => {
+        let hojaMensual = new HojaMensualAcompaniamiento();
+        hojaMensual.acompaniamiento = ac;
+        this.hojaMensualAcompaniamientoList.push(hojaMensual);
+      });
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
@@ -132,41 +140,18 @@ export class MensualSeccionC2Component implements OnInit {
 
   private buildHojaMensualAcompaniamientoList(data: MensualSeccionC2Data) {
     if (data.hojaMensualAcompaniamientoList) {
-      this.hojaMensualAcompaniamientoInternacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_INTERNACION);
-      this.hojaMensualAcompaniamientoConsultorios = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_CONSULTORIOS);
-      this.hojaMensualAcompaniamientoEmergencias = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_EMERGENCIAS);
-      this.hojaMensualAcompaniamientoDesintoxicacion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESTB_SALUD_DESINTOXICACION);
+      this.hojaMensualAcompaniamientoList = data.hojaMensualAcompaniamientoList;
     } else {
-      this.initHojaMensualAcompaniamientos();
+      this.initHojaMensualAcompaniamientoList();
     }
     this.loadingComponent.hideLoading();
   }
 
-  private getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(list: HojaMensualAcompaniamiento[], idAcompaniamiento: number): HojaMensualAcompaniamiento {
-    let hojaMensualAcompaniamiento = list.find(a => a.acompaniamiento.id == idAcompaniamiento);
-    if(hojaMensualAcompaniamiento == null){
-      hojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-      hojaMensualAcompaniamiento.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, idAcompaniamiento);
-    }
-    return hojaMensualAcompaniamiento;
-  }
 
   private initEmptyData() {
     this.hojaMensualObservaciones = new HojaMensualObservaciones;
     this.hojaMensualActividad = new HojaMensualActividad;
-    this.initHojaMensualAcompaniamientos();
-  }
-
-  private initHojaMensualAcompaniamientos() {
-    this.hojaMensualAcompaniamientoInternacion = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoEmergencias = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoConsultorios = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoDesintoxicacion = new HojaMensualAcompaniamiento;
-
-    this.hojaMensualAcompaniamientoInternacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_INTERNACION);
-    this.hojaMensualAcompaniamientoConsultorios.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_CONSULTORIOS);
-    this.hojaMensualAcompaniamientoEmergencias.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_EMERGENCIAS);
-    this.hojaMensualAcompaniamientoDesintoxicacion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESTB_SALUD_DESINTOXICACION);
+    this.initHojaMensualAcompaniamientoList();
   }
 
   private cleanData(){
@@ -175,17 +160,10 @@ export class MensualSeccionC2Component implements OnInit {
   }
 
   private bindDataToDTO() {
-    this.addAcompaniamientosToDTOList();
+    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList = this.hojaMensualAcompaniamientoList;
     this.mensualSeccionC2Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
     this.mensualSeccionC2Data.hojaMensualActividad = this.hojaMensualActividad;
     this.setHojaIdToItems();
-  }
-
-  private addAcompaniamientosToDTOList() {
-    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoInternacion);
-    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoConsultorios);
-    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoEmergencias);
-    this.mensualSeccionC2Data.hojaMensualAcompaniamientoList.push(this.hojaMensualAcompaniamientoDesintoxicacion);
   }
 
 
