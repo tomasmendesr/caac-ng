@@ -3,10 +3,12 @@ import {HojaMensualObservaciones} from "../../model/hoja-mensual-observaciones";
 import {HojaMensualRecurso} from "../../model/hoja-mensual-recurso";
 export class MensualSeccionC5Data {
   constructor(){
-    this.hojaMensualAcompaniamientoList = [];
+    this.hojaMensualAcompaniamientoEstabTrayEducativaList = [];
+    this.hojaMensualAcompaniamientoEstabProfSaludList = [];
     this.hojaMensualRecursoList = [];
   }
   hojaMensualObservaciones: HojaMensualObservaciones;
-  hojaMensualAcompaniamientoList: HojaMensualAcompaniamiento[];
+  hojaMensualAcompaniamientoEstabProfSaludList: HojaMensualAcompaniamiento[];
+  hojaMensualAcompaniamientoEstabTrayEducativaList: HojaMensualAcompaniamiento[];
   hojaMensualRecursoList: HojaMensualRecurso[];
 }

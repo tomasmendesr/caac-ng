@@ -167,10 +167,10 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
     @Override
     public AppResponse saveOrUpdateSeccionC4(MensualSeccionC4Data data) throws Exception {
-        AppResponse validateAcompaniamientosEnComisariasYPenales = hojaMensualAcompaniamientoService.validateInputsByEstablecimientoAndTipo(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_PENALES_COMISARIAS, AcompaniamientoServiceImpl.TIPO_ACOMPANIAMIENTO, true, true);
+        AppResponse validateAcompaniamientosEnComisariasYPenales = hojaMensualAcompaniamientoService.validateInputs(data.getHojaMensualAcompEstPenalesTipoAcompList(), true, true);
         if(validateAcompaniamientosEnComisariasYPenales.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validateAcompaniamientosEnComisariasYPenales.getData()));
 
-        AppResponse validatePersonasActividadPenales = hojaMensualAcompaniamientoService.validateInputsByEstablecimientoAndTipo(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_PENALES_COMISARIAS, AcompaniamientoServiceImpl.TIPO_ACTIVIDADES, false, true);
+        AppResponse validatePersonasActividadPenales = hojaMensualAcompaniamientoService.validateInputs(data.getHojaMensualAcompEstPenalesTipoActividadesList(), false, true);
         if(validatePersonasActividadPenales.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_2_FORMULARIO, validatePersonasActividadPenales.getData()));
 
         if(data.getHojaMensualObservaciones().getActividadesTalleresComisaria() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getActividadesTalleresComisaria()) && data.getHojaMensualObservaciones().getActividadesTalleresComisaria().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
@@ -179,7 +179,8 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
         if(data.getHojaMensualObservaciones().getActividadesCapacitacionComisaria() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getActividadesCapacitacionComisaria()) && data.getHojaMensualObservaciones().getActividadesCapacitacionComisaria().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_4_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
 
-        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompaniamientoList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
+        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompEstPenalesTipoAcompList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
+        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompEstPenalesTipoActividadesList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
         hojaMensualObservacionesService.saveOrUpdate(data.getHojaMensualObservaciones());
         return new AppResponse();    }
 
@@ -187,15 +188,18 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
     public MensualSeccionC4Data getDataForSeccionC4ByHojaId(Long idHoja) {
         MensualSeccionC4Data data = new MensualSeccionC4Data();
         data.setHojaMensualObservaciones(hojaMensualObservacionesService.findByHojaId(idHoja));
-        List<Integer> idsAcompaniamientos = Arrays.asList(AcompaniamientoServiceImpl.ID_ACOMPAÑAMIENTO_COMISARIAS, AcompaniamientoServiceImpl.ID_ACOMPAÑAMIENTO_PENALES,AcompaniamientoServiceImpl.ID_PENALES_COMISARIAS_TALLERES,
-                AcompaniamientoServiceImpl.ID_PENALES_COMISARIAS_ACT_PROD, AcompaniamientoServiceImpl.ID_PENALES_COMISARIAS_CAPACITACION);
-        data.setHojaMensualAcompaniamientoList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompaniamientos));
+        List<Integer> idsAcompEstPenalesTipoAcomp = acompaniamientoService.findAllEstablecimientosPenalesAndTipoAcompaniamiento().stream().map(a -> a.getId()).collect(Collectors.toList());
+        data.setHojaMensualAcompEstPenalesTipoAcompList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompEstPenalesTipoAcomp));
+
+        List<Integer> idsAcompEstPenalesTipoAct = acompaniamientoService.findAllEstablecimientosPenalesAndTipoActividades().stream().map(a -> a.getId()).collect(Collectors.toList());
+        data.setHojaMensualAcompEstPenalesTipoActividadesList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompEstPenalesTipoAct));
+
         return data;
     }
 
     @Override
     public AppResponse saveOrUpdateSeccionC5(MensualSeccionC5Data data) throws Exception {
-        AppResponse validateProfesionalDeSalud = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_PROFESIONAL_DE_SALUD, true, true);
+        AppResponse validateProfesionalDeSalud = hojaMensualAcompaniamientoService.validateInputs(data.getHojaMensualAcompaniamientoEstabProfSaludList(),  true, true);
         if(validateProfesionalDeSalud.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_1_FORMULARIO, validateProfesionalDeSalud.getData()));
 
         if(data.getHojaMensualObservaciones().getAcompaniamientoProfesionalSalud() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAcompaniamientoProfesionalSalud()) && data.getHojaMensualObservaciones().getAcompaniamientoProfesionalSalud().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_2_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
@@ -203,12 +207,13 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
         AppResponse validateRecursos = hojaMensualRecursosService.validateInputs(data.getHojaMensualRecursoList());
         if(validateRecursos.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_3_FORMULARIO, validateRecursos.getData()));
 
-        AppResponse validateTrayectorias = hojaMensualAcompaniamientoService.validateInputsEnEstablecimiento(data.getHojaMensualAcompaniamientoList(), AcompaniamientoServiceImpl.ESTABLECIMIENTO_TRAYECTORIAS_EDUCATIVAS, false, true);
+        AppResponse validateTrayectorias = hojaMensualAcompaniamientoService.validateInputs(data.getHojaMensualAcompaniamientoEstabTrayEducativaList(), false, true);
         if(validateTrayectorias.getCode() == AppResponse.ERROR) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_4_FORMULARIO, validateTrayectorias.getData()));
 
         if(data.getHojaMensualObservaciones().getAcompaniamientoTrayectoriaEducativa() != null && StringUtils.isNotBlank(data.getHojaMensualObservaciones().getAcompaniamientoTrayectoriaEducativa()) && data.getHojaMensualObservaciones().getAcompaniamientoTrayectoriaEducativa().length() > 500) return new AppResponse(AppResponse.ERROR, new AppResponse(SECCION_5_FORMULARIO, Arrays.asList("Las observaciones no pueden tener más de 500 caracteres")));
 
-        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompaniamientoList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
+        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompaniamientoEstabProfSaludList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
+        for (HojaMensualAcompaniamientoDTO hojaMensualAcompaniamientoDTO : data.getHojaMensualAcompaniamientoEstabTrayEducativaList()) hojaMensualAcompaniamientoService.saveOrUpdate(hojaMensualAcompaniamientoDTO);
         for (HojaMensualRecursosDTO hojaMensualRecursosDTO : data.getHojaMensualRecursoList()) hojaMensualRecursosService.saveOrUpdate(hojaMensualRecursosDTO);
         hojaMensualObservacionesService.saveOrUpdate(data.getHojaMensualObservaciones());
         return new AppResponse();
@@ -219,9 +224,11 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
         MensualSeccionC5Data data = new MensualSeccionC5Data();
         data.setHojaMensualObservaciones(hojaMensualObservacionesService.findByHojaId(idHoja));
 
-        List<Integer> idsAcompaniamientos = new ArrayList<>();
-        for(int i = AcompaniamientoServiceImpl.ID_TERAPIA_INDIVIDUAL; i<=AcompaniamientoServiceImpl.ID_ESCUELA_EN_SEDE; i++) idsAcompaniamientos.add(i);
-        data.setHojaMensualAcompaniamientoList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompaniamientos));
+        List<Integer> idsAcompEstProfSalud = acompaniamientoService.findAllEstablecimientoProfesionalDeSalud().stream().map(a -> a.getId()).collect(Collectors.toList());
+        data.setHojaMensualAcompaniamientoEstabProfSaludList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompEstProfSalud));
+
+        List<Integer> idsAcompEstTrayEduc = acompaniamientoService.findAllEstablecimientoTrayectoriasEducativas().stream().map(a -> a.getId()).collect(Collectors.toList());
+        data.setHojaMensualAcompaniamientoEstabTrayEducativaList(hojaMensualAcompaniamientoService.findListByHojaAndAcompaniamientoId(idHoja,idsAcompEstTrayEduc));
 
         data.setHojaMensualRecursoList(hojaMensualRecursosService.findByHojaId(idHoja));
         return data;

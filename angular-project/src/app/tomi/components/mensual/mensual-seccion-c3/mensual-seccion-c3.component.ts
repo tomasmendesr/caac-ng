@@ -171,6 +171,7 @@ export class MensualSeccionC3Component implements OnInit {
     } else {
       this.initHojaMensualAcompaniamientoTipoGestionList();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAcompaniamientoEstabPatrocinioLegalList(data: MensualSeccionC3Data) {
@@ -179,6 +180,7 @@ export class MensualSeccionC3Component implements OnInit {
     } else {
       this.initHojaMensualAcompaniamientoEstabPatrocinioLegalList();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAcompaniamientoEstabComuTerapeuticaList(data: MensualSeccionC3Data) {
@@ -187,6 +189,7 @@ export class MensualSeccionC3Component implements OnInit {
     } else {
       this.initHojaMensualAcompaniamientoEstabComuTerapeuticaList();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private initEmptyData() {

@@ -27,19 +27,14 @@ export class MensualSeccionC5Component implements OnInit {
   private hojaId: number;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
   private recursos: Recurso[] = [];
-  private acompaniamientos: Acompaniamiento[] = [];
   private acompaniamientosEstablecimientoProfSalud: Acompaniamiento[] = [];
+  private acompaniamientosEstablecimientoTrayEducativa: Acompaniamiento[] = [];
   private mensualSeccionC5Data: MensualSeccionC5Data = new MensualSeccionC5Data;
-
-  private hojaMensualAcompaniamientoEscuela: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoActividadPrevencion: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoApoyoEscolar: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoInclusionEducativa: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
-  private hojaMensualAcompaniamientoEscuelaEnSede: HojaMensualAcompaniamiento = new HojaMensualAcompaniamiento;
 
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
   private hojaMensualRecursosList: HojaMensualRecurso[] = [];
   private hojaMensualAcompaniamientosEstablecimientoProfSaludList: HojaMensualAcompaniamiento[] = [];
+  private hojaMensualAcompaniamientosEstablecimientoTrayEducativaList: HojaMensualAcompaniamiento[] = [];
 
   constructor(private router: Router, private recursoService: RecursoService,
               private acompaniamientoService: AcompaniamientoService, private mensualSeccionCService: MensualSeccionCService) { }
@@ -49,10 +44,13 @@ export class MensualSeccionC5Component implements OnInit {
       this.recursos = data;
       this.initHojaMensualRecursosList();
     });
-    this.acompaniamientoService.findAll().subscribe(data => {
-      this.acompaniamientos = data;
-      this.acompaniamientosEstablecimientoProfSalud = this.acompaniamientos.filter(a => a.establecimiento == AcompaniamientoService.ESTABLECIMIENTO_PROF_SALUD);
+    this.acompaniamientoService.findAllEstablecimientosProfesionalDeSalud().subscribe(data => {
+      this.acompaniamientosEstablecimientoProfSalud = data;
       this.initHojaMensualAcompaniamientoProfSaludList();
+    });
+    this.acompaniamientoService.findAllEstablecimientosTrayectoriasEducativas().subscribe(data => {
+      this.acompaniamientosEstablecimientoTrayEducativa = data;
+      this.initHojaMensualAcompaniamientoTrayectoriaEducativadList();
     });
   }
 
@@ -65,12 +63,33 @@ export class MensualSeccionC5Component implements OnInit {
     });
   }
 
+  private initHojaMensualAcompaniamientoTrayectoriaEducativadList(){
+    this.hojaMensualAcompaniamientosEstablecimientoTrayEducativaList = [];
+    this.completeHojaMensualAcompaniamientosTrayEducativaList();
+  }
+
+  private completeHojaMensualAcompaniamientosTrayEducativaList(){
+    this.acompaniamientosEstablecimientoTrayEducativa.forEach(acomp => {
+      if(this.hojaMensualAcompaniamientosEstablecimientoTrayEducativaList.find(h => h.acompaniamiento.id == acomp.id) == null) {
+        let hojaMensual = new HojaMensualAcompaniamiento;
+        hojaMensual.acompaniamiento = acomp;
+        this.hojaMensualAcompaniamientosEstablecimientoTrayEducativaList.push(hojaMensual);
+      }
+    });
+  }
+
   private initHojaMensualAcompaniamientoProfSaludList(){
     this.hojaMensualAcompaniamientosEstablecimientoProfSaludList = [];
+    this.completeHojaMensualAcompaniamientosProfSaludList();
+  }
+
+  private completeHojaMensualAcompaniamientosProfSaludList(){
     this.acompaniamientosEstablecimientoProfSalud.forEach(acomp => {
-      let hojaMensual = new HojaMensualAcompaniamiento;
-      hojaMensual.acompaniamiento = acomp;
-      this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.push(hojaMensual);
+      if(this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.find(h => h.acompaniamiento.id == acomp.id) == null) {
+        let hojaMensual = new HojaMensualAcompaniamiento;
+        hojaMensual.acompaniamiento = acomp;
+        this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.push(hojaMensual);
+      }
     });
   }
 
@@ -137,50 +156,32 @@ export class MensualSeccionC5Component implements OnInit {
   private initEmptyData() {
     this.hojaMensualObservaciones = new HojaMensualObservaciones;
     this.initHojaMensualRecursosList();
-    this.initHojaMensualAcompaniamiento();
+    this.initHojaMensualAcompaniamientoProfSaludList();
+    this.initHojaMensualAcompaniamientoTrayectoriaEducativadList();
   }
 
   private bindDataToDTO() {
     this.mensualSeccionC5Data.hojaMensualRecursoList = this.hojaMensualRecursosList;
-    this.addAHojaMensualAcompaniamientoToDTOList(this.mensualSeccionC5Data.hojaMensualAcompaniamientoList);
-    this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.forEach(hm => this.mensualSeccionC5Data.hojaMensualAcompaniamientoList.push(hm));
+    this.mensualSeccionC5Data.hojaMensualAcompaniamientoEstabProfSaludList = this.hojaMensualAcompaniamientosEstablecimientoProfSaludList;
+    this.mensualSeccionC5Data.hojaMensualAcompaniamientoEstabTrayEducativaList = this.hojaMensualAcompaniamientosEstablecimientoTrayEducativaList;
     this.mensualSeccionC5Data.hojaMensualObservaciones = this.hojaMensualObservaciones;
     this.setHojaIdToItems();
   }
 
 
-  private addAHojaMensualAcompaniamientoToDTOList(list: any[]) {
-    list.push(this.hojaMensualAcompaniamientoEscuela  );
-    list.push(this.hojaMensualAcompaniamientoApoyoEscolar   );
-    list.push(this.hojaMensualAcompaniamientoInclusionEducativa  );
-    list.push(this.hojaMensualAcompaniamientoEscuelaEnSede   );
-  }
-
   private setHojaIdToItems() {
     this.mensualSeccionC5Data.hojaMensualRecursoList.forEach(h => h.hoja.id = this.hojaId);
-    this.mensualSeccionC5Data.hojaMensualAcompaniamientoList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC5Data.hojaMensualAcompaniamientoEstabProfSaludList.forEach(h => h.hoja.id = this.hojaId);
+    this.mensualSeccionC5Data.hojaMensualAcompaniamientoEstabTrayEducativaList.forEach(h => h.hoja.id = this.hojaId);
     this.mensualSeccionC5Data.hojaMensualObservaciones.hoja.id = this.hojaId;
   }
 
-  private initHojaMensualAcompaniamiento() {
-    this.initHojaMensualAcompaniamientoProfSaludList();
-    this.hojaMensualAcompaniamientoEscuela = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoActividadPrevencion = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoApoyoEscolar = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoInclusionEducativa = new HojaMensualAcompaniamiento;
-    this.hojaMensualAcompaniamientoEscuelaEnSede = new HojaMensualAcompaniamiento;
-
-    this.hojaMensualAcompaniamientoEscuela.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACOMP_ESCUELA);
-    this.hojaMensualAcompaniamientoActividadPrevencion.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ACTIVIDADES_PREVENCION);
-    this.hojaMensualAcompaniamientoApoyoEscolar.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_APOYO_ESCOLAR);
-    this.hojaMensualAcompaniamientoInclusionEducativa.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_INCLUSION);
-    this.hojaMensualAcompaniamientoEscuelaEnSede.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, AcompaniamientoService.ID_ESCUELA_EN_SEDE);
-  }
 
   private parseSeccionC5Data(data: MensualSeccionC5Data) {
     this.hojaMensualObservaciones = data.hojaMensualObservaciones ? data.hojaMensualObservaciones : new HojaMensualObservaciones;
     this.buildHojaMensualRecursos(data);
-    this.buildHojaMensualAcompaniamientos(data);
+    this.buildHojaMensualAcompaniamientosEstabProfSalud(data);
+    this.buildHojaMensualAcompaniamientosEstabTrayEducativa(data);
   }
 
   private buildHojaMensualRecursos(data: MensualSeccionC5Data) {
@@ -192,27 +193,19 @@ export class MensualSeccionC5Component implements OnInit {
     this.loadingComponent.hideLoading();
   }
 
-  private getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(list: HojaMensualAcompaniamiento[], id: number): HojaMensualAcompaniamiento {
-    let hojMensualAcomp = list.find(a => a.acompaniamiento.id == id);
-    if(hojMensualAcomp == null){
-      hojMensualAcomp = new HojaMensualAcompaniamiento;
-      hojMensualAcomp.acompaniamiento = this.acompaniamientoService.getAcompaniamientoById(this.acompaniamientos, id);
+  private buildHojaMensualAcompaniamientosEstabProfSalud(data: MensualSeccionC5Data) {
+    this.hojaMensualAcompaniamientosEstablecimientoProfSaludList = data.hojaMensualAcompaniamientoEstabProfSaludList;
+    if(this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.length != this.acompaniamientosEstablecimientoProfSalud.length){
+      this.completeHojaMensualAcompaniamientosProfSaludList();
     }
-    return hojMensualAcomp;
   }
 
-  private buildHojaMensualAcompaniamientos(data: MensualSeccionC5Data) {
-    if (data.hojaMensualAcompaniamientoList) {
-      this.hojaMensualAcompaniamientosEstablecimientoProfSaludList = this.acompaniamientoService.filterByEstablecimiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ESTABLECIMIENTO_PROF_SALUD);
-
-      this.hojaMensualAcompaniamientoEscuela = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACOMP_ESCUELA);
-      this.hojaMensualAcompaniamientoActividadPrevencion = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ACTIVIDADES_PREVENCION);
-      this.hojaMensualAcompaniamientoApoyoEscolar = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_APOYO_ESCOLAR);
-      this.hojaMensualAcompaniamientoInclusionEducativa = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_INCLUSION);
-      this.hojaMensualAcompaniamientoEscuelaEnSede = this.getHojaMensualAcompaniamientoFromListByIdAcompaniamiento(data.hojaMensualAcompaniamientoList, AcompaniamientoService.ID_ESCUELA_EN_SEDE);
-    } else {
-      this.initHojaMensualAcompaniamiento();
+  private buildHojaMensualAcompaniamientosEstabTrayEducativa(data: MensualSeccionC5Data) {
+    this.hojaMensualAcompaniamientosEstablecimientoTrayEducativaList = data.hojaMensualAcompaniamientoEstabTrayEducativaList;
+    if(this.hojaMensualAcompaniamientosEstablecimientoTrayEducativaList.length != this.acompaniamientosEstablecimientoTrayEducativa.length){
+      this.completeHojaMensualAcompaniamientosTrayEducativaList();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private notifError(error){

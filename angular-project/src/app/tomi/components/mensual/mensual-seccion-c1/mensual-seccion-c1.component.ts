@@ -189,6 +189,7 @@ export class MensualSeccionC1Component implements OnInit {
     } else {
       this.initHojaMensualAlimentacionEnSedeList();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAlimentacionFueraDeSede(data: MensualSeccionC1Data) {
@@ -197,6 +198,7 @@ export class MensualSeccionC1Component implements OnInit {
     } else {
       this.initHojaMensualAlimentacionFueraDeSedeList();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private notifError(error){

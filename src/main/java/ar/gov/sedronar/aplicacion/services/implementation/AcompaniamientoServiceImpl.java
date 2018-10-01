@@ -31,46 +31,6 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     public static final String TIPO_ACTIVIDADES = "Actividades";
     public static final String TIPO_GESTION = "Gestión";
 
-
-    public static final Integer ID_EST_SALUD_INTERVENCION = 1;
-    public static final Integer ID_ESTB_SALUD_CONSULTORIOS = 2;
-    public static final Integer ID_ESTB_SALUD_EMERGENCIAS = 3;
-    public static final Integer ID_ESTB_SALUD_DESINTOXICACION = 4;
-
-    public static final Integer ID_ESTB_SALUD_GESTION_DE_TURNOS = 5;
-    public static final Integer ID_ESTB_SALUD_GESTION_DE_TRAMITES = 6;
-    public static final Integer ID_ESTB_SALUD_GESTION_DE_SERVICIOS = 7;
-
-    public static final Integer ID_ACOMP_CENTRO_ESPECIALIZADO = 8;
-
-    public static final Integer ID_GESTION_SIN_SUBSIDIO = 9;
-    public static final Integer ID_GESTION_CON_SUBSIDIO = 10;
-
-    public static final Integer ID_GESTION_EN_SEDE= 11;
-    public static final Integer ID_GESTION_FUERA_DE_SEDE = 12;
-
-    public static final Integer ID_ACOMPAÑAMIENTO_COMISARIAS = 13;
-    public static final Integer ID_ACOMPAÑAMIENTO_PENALES = 14;
-    public static final Integer ID_PENALES_COMISARIAS_TALLERES = 15;
-    public static final Integer ID_PENALES_COMISARIAS_ACT_PROD = 16;
-    public static final Integer ID_PENALES_COMISARIAS_CAPACITACION = 17;
-
-    public static final Integer ID_TERAPIA_INDIVIDUAL = 18;
-    public static final Integer ID_TERAPIA_FAMILIAR = 19;
-    public static final Integer ID_REUNION_MULTIFAMILIAR = 20;
-    public static final Integer ID_INFORME_SOCIAL = 21;
-    public static final Integer ID_ORIENTACION_VOCACIONAL = 22;
-    public static final Integer ID_EVALUACION = 23;
-    public static final Integer ID_CONTROL_MEDICO = 24;
-    public static final Integer ID_SEGUIMIENTO_FARMACOLOGICO = 25;
-    public static final Integer ID_GRUPOS_TERAPEUTICOS = 26;
-
-    public static final Integer ID_ACOMP_ESCUELA = 27;
-    public static final Integer ID_ACTIVIDADES_PREVENCION = 27;
-    public static final Integer ID_APOYO_ESCOLAR = 27;
-    public static final Integer ID_INCLUSION = 27;
-    public static final Integer ID_ESCUELA_EN_SEDE = 27;
-
     @Inject
     @HibernateDAO
     private AcompaniamientoDAO acompaniamientoDAO;
@@ -107,7 +67,27 @@ public class AcompaniamientoServiceImpl implements AcompaniamientoService{
     }
 
     @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientosPenalesAndTipoAcompaniamiento() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimientoAndTipo(ESTABLECIMIENTO_PENALES_COMISARIAS, TIPO_ACOMPANIAMIENTO), AcompaniamientoDTO.class);
+    }
+
+    @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientosPenalesAndTipoActividades() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimientoAndTipo(ESTABLECIMIENTO_PENALES_COMISARIAS, TIPO_ACTIVIDADES), AcompaniamientoDTO.class);
+    }
+
+    @Override
     public List<AcompaniamientoDTO> findAllEstablecimientosDeSaludAndTipoGestion() {
         return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimientoAndTipo(ESTABLECIMIENTO_DE_SALUD, TIPO_GESTION), AcompaniamientoDTO.class);
+    }
+
+    @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientoProfesionalDeSalud() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimiento(ESTABLECIMIENTO_PROFESIONAL_DE_SALUD), AcompaniamientoDTO.class);
+    }
+
+    @Override
+    public List<AcompaniamientoDTO> findAllEstablecimientoTrayectoriasEducativas() {
+        return DozerHelper.mapList(acompaniamientoDAO.findByEstablecimiento(ESTABLECIMIENTO_TRAYECTORIAS_EDUCATIVAS), AcompaniamientoDTO.class);
     }
 }

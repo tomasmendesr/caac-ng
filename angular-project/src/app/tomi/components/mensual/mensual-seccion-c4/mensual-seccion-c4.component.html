@@ -12,32 +12,49 @@
     </div>
     <h5>¿Cuántos ACOMPAÑAMIENTOS EN PENALES O COMISARÍAS se realizaron en el mes y a cuántas personas se alcanzó?</h5>
     <br>
-    <div class="form-row">
-        <form >
-          <div class="form-row">
-              <label class="col-8 text-center"><b>Cantidad de acompañamientos en el mes</b></label>
-              <div class="form-group ">
-                <label for="comisarias-input">Acompañamiento en comisarías</label>
-                <input class="form-control" name="comisarias-input" type="number" id="comisarias-input" [(ngModel)]="hojaMensualAcompaniamientoComisarias.cantidadGestiones" [readonly]="readonlyControl">
-                <label for="penales-input">Acompañamiento en penales</label>
-                <input class="form-control" name="penales-input" type="number" id="penales-input" [(ngModel)]="hojaMensualAcompaniamientoPenales.cantidadGestiones" [readonly]="readonlyControl">
-              </div>
-          </div>
-        </form>
-
-        <form>
-          <div class="form-row">
-              <label class="col-8 text-center"><b>Personas aproximadas</b></label>
-              <div class="form-group ">
-                <label for="comisarias2-input">Acompañamiento en comisarías</label>
-                <input class="form-control" name="comisarias2-input" type="number" id="comisarias2-input" [(ngModel)]="hojaMensualAcompaniamientoComisarias.cantidadPersonas" [readonly]="readonlyControl">
-                <label for="penales2-input">Acompañamiento en penales</label>
-                <input class="form-control"  type="number" name="penales2-input" id="penales2-input" [(ngModel)]="hojaMensualAcompaniamientoPenales.cantidadPersonas" [readonly]="readonlyControl">
-              </div>
-          </div>
-          </form>
-    </div>
+    <form>
+      <div class="form-row">
+        <label class="col-6 text-center"><b>Cantidad de acompañamientos en el mes</b></label>
+        <label class="col-6 text-center"><b>Personas aproximadas</b></label>
+      </div>
+      <div class="form-row" *ngFor="let hojaMensual of hojaMensualAcompEstPenalesTipoAcompList">
+        <div class="form-group col-6">
+          <label for="{{hojaMensual.acompaniamiento.id}}gest">{{hojaMensual.acompaniamiento.detalle}}</label>
+          <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}gest" type="number" id="{{hojaMensual.acompaniamiento.id}}gest" [(ngModel)]="hojaMensual.cantidadGestiones" [readonly]="readonlyControl">
+        </div>
+        <div class="form-group col-6">
+          <label for="{{hojaMensual.acompaniamiento.id}}per">{{hojaMensual.acompaniamiento.detalle}}</label>
+          <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}per" type="number" id="{{hojaMensual.acompaniamiento.id}}per" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
+        </div>
+      </div>
+    </form>
   </div>
+    <!--<div class="form-row">-->
+        <!--<form >-->
+          <!--<div class="form-row">-->
+              <!--<label class="col-8 text-center"><b>Cantidad de acompañamientos en el mes</b></label>-->
+              <!--<div class="form-group ">-->
+                <!--<label for="comisarias-input">Acompañamiento en comisarías</label>-->
+                <!--<input class="form-control" name="comisarias-input" type="number" id="comisarias-input" [(ngModel)]="hojaMensualAcompaniamientoComisarias.cantidadGestiones" [readonly]="readonlyControl">-->
+                <!--<label for="penales-input">Acompañamiento en penales</label>-->
+                <!--<input class="form-control" name="penales-input" type="number" id="penales-input" [(ngModel)]="hojaMensualAcompaniamientoPenales.cantidadGestiones" [readonly]="readonlyControl">-->
+              <!--</div>-->
+          <!--</div>-->
+        <!--</form>-->
+
+        <!--<form>-->
+          <!--<div class="form-row">-->
+              <!--<label class="col-8 text-center"><b>Personas aproximadas</b></label>-->
+              <!--<div class="form-group ">-->
+                <!--<label for="comisarias2-input">Acompañamiento en comisarías</label>-->
+                <!--<input class="form-control" name="comisarias2-input" type="number" id="comisarias2-input" [(ngModel)]="hojaMensualAcompaniamientoComisarias.cantidadPersonas" [readonly]="readonlyControl">-->
+                <!--<label for="penales2-input">Acompañamiento en penales</label>-->
+                <!--<input class="form-control"  type="number" name="penales2-input" id="penales2-input" [(ngModel)]="hojaMensualAcompaniamientoPenales.cantidadPersonas" [readonly]="readonlyControl">-->
+              <!--</div>-->
+          <!--</div>-->
+          <!--</form>-->
+    <!--</div>-->
+  <!--</div>-->
 
   <div class="card card-body marginBottom">
     <div (click)="hideFormAlert()" id="formAlert2" class="alert alert-danger formErrorMessages" role="alert">
@@ -49,26 +66,17 @@
     </div>
     <h5>¿A cuántas personas se alcanzó con las siguientes ACTIVIDADES EN PENALES O COMISARÍAS en el mes?</h5>
     <br>
-    <div class="form-group row margin-top">
-      <label class="col-12 text-center"><b>Personas aproximadas</b></label>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-            <label for="talleres-input">Talleres/charlas</label>
-            <input class="form-control"  name="talleres-input" type="number" id="talleres-input" [(ngModel)]="hojaMensualAcompaniamientoTalleres.cantidadPersonas" [readonly]="readonlyControl">
-        </div>
-        <div class="col">
-            <label for="actividades-input">Actividades productivas</label>
-        <input class="form-control"  name="actividades-input" type="number" id="actividades-input" [(ngModel)]="hojaMensualAcompaniamientoActividadesProductivas.cantidadPersonas" [readonly]="readonlyControl">
-        </div>
-        <div class="col">
-            <label for="capacitacion-input">Capacitación</label>
-            <input class="form-control"  name="capacitacion-input" type="number" id="capacitacion-input" [(ngModel)]="hojaMensualAcompaniamientoCapacitacion.cantidadPersonas" [readonly]="readonlyControl">
-          </div>
+    <form>
+      <div class="form-row">
+        <label class="col-12 text-center"><b>Personas aproximadas</b></label>
       </div>
-    </div>
-
+      <div class="form-row">
+        <div *ngFor="let hojaMensual of hojaMensualAcompEstPenalesTipoActividadesList" class="form-group col">
+            <label for="{{hojaMensual.acompaniamiento.id}}">{{hojaMensual.acompaniamiento.detalle}}</label>
+            <input class="form-control"  name="{{hojaMensual.acompaniamiento.id}}" type="number" id="{{hojaMensual.acompaniamiento.id}}" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
+        </div>
+      </div>
+    </form>
   </div>
 
   <div class="card card-body marginBottom">

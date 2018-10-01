@@ -90,10 +90,14 @@ export class UrlConstants {
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientosDeSalud';
   static readonly FIND_ALL_ESTABLECIMIENTOS_PATROCINIO_LEGAL = '/services/acompaniamiento/findAllEstablecimientosPatrocinioLegal';
   static readonly FIND_ALL_ESTABLECIMIENTOS_COMUNIDAD_TERAPEUTICA = '/services/acompaniamiento/findAllEstablecimientosComunuidadTerapeutica';
+  static readonly FIND_ALL_ESTABLECIMIENTO_PENALES_COMISARIAS_TIPO_ACOMPANIAMIENTO = '/services/acompaniamiento/findAllEstablecimientosPenalesAndTipoAcompaniamiento';
+  static readonly FIND_ALL_ESTABLECIMIENTO_PENALES_COMISARIAS_TIPO_ACTIVIDADES = '/services/acompaniamiento/findAllEstablecimientosPenalesAndTipoActividades';
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD_TIPO_ACOMPANIAMIENTO = '/services/acompaniamiento/findAllEstablecimientosDeSaludAndTipoAcompaniamiento';
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD_TIPO_GESTION = '/services/acompaniamiento/findAllEstablecimientosDeSaludAndTipoGestion';
   static readonly FIND_ALL_ESTABLECIMIENTO_PENALES_COMISARIAS = '/services/acompaniamiento/findAllEstablecimientoPenalesComisarias';
   static readonly FIND_ALL_ACOMPANIAMIENTOS = '/services/acompaniamiento/findAll';
+  static readonly FIND_ALL_ESTABLECIMIENTO_PROFESIONAL_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientoProfesionalDeSalud';
+  static readonly FIND_ALL_ESTABLECIMIENTO_TRAYECTORIAS_EDUCATIVAS = '/services/acompaniamiento/findAllEstablecimientoTrayectoriasEducativas';
 
   // recurso service
   static readonly FIND_ALL_RECURSOS = '/services/recurso/findAll';
