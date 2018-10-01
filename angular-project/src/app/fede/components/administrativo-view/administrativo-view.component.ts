@@ -29,7 +29,7 @@ declare var $: any;
 })
 export class AdministrativoViewComponent implements OnInit, AfterViewInit {
 
-  //TODO VALIDACIONES AL GUARDAR Y REFRESCAR TABLA AL GUARDAR
+  //TODO VALIDACIONES AL GUARDAR
 
   TITLE = 'Administrativo';
   TABLE_ID = 'tableAdministrativo';
@@ -131,6 +131,7 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
       NotifUtil.notifError('Error al guardar');
     }, () => {
       NotifUtil.notifSuccess('Guardado exitosamente');
+      self.reloadTable();
       self.closeModal();
     });
     /*
@@ -148,6 +149,12 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
           self.closeModal();
         });
     });*/
+  }
+
+  reloadTable(): void {
+    const table = $('#tableAdministrativo').DataTable();
+
+    table.ajax.reload();
   }
 
   openModalForCaacEdit() {
