@@ -28,7 +28,7 @@ declare var $: any;
 })
 export class GeneralViewComponent implements OnInit, AfterViewInit {
 
-  //TODO VALIDACIONES AL GUARDAR Y REFRESCAR LA TABLA AL GUARDAR
+  //TODO VALIDACIONES AL GUARDAR
 
 
   TITLE: string = 'Información General';
@@ -123,6 +123,7 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
     this.casaService.saveOrUpdateCasaGeneral(this.caacParaPopup).subscribe(success => {
       NotifUtil.notifSuccess('Guardado exitosamente');
       self.closeModal();
+      self.reloadTable();
     }, (error) => {
       console.error(error)
       NotifUtil.notifError('Error al guardar, ingrese los datos correctamente');
@@ -132,6 +133,12 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
   onAniadirClick() {
     this.caacParaPopup = new CaacLight();
     this.openModalForNewCaac();
+  }
+
+  reloadTable(): void {
+    const table = $('#tablaInformacionGeneral').DataTable();
+
+    table.ajax.reload();
   }
 
   onProvinciaChange(provincia) { //para bindear
