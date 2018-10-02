@@ -21,7 +21,6 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
   vencimientoParaPopup: Vencimiento;
   vencimientosPropertys: any[] = [
     {recibido: 'asamrecib',     vencimiento: 'asambaja',      otro: '', descripcion: 'Acta asamblea', textField: false },
-    {recibido: 'asamrecib',     vencimiento: 'asambaja',      otro: '', descripcion: 'Acta asamblea', textField: false },
     {recibido: 'autorirecib',   vencimiento: 'autoribaja',    otro: '', descripcion: 'Acta Autoridades:', textField: false},
     {recibido: 'afiprecib',     vencimiento: 'afipbaja',      otro: '', descripcion: 'AFIP:', textField: false},
     {recibido: 'responrecib',   vencimiento: 'responbaja',    otro: '', descripcion: 'Seguro de Responsabilidad Civil:', textField: false},
@@ -113,6 +112,10 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
       keyboard: false,
       show: false
     });
+  }
+
+  onClickGuardar() {
+    console.log(JSON.stringify(this.vencimientoParaPopup));
   }
 
   private showDatesForPopup(vencimientoParaPopup: Vencimiento): void {
