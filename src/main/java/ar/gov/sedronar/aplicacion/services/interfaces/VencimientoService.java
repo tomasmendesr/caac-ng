@@ -9,13 +9,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/tramite")
+@Path("/vencimiento")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public interface VencimientoService {
 
-    @Path("/findAllForVencimientos")
+
     @POST
+    @Path("/findAllForVencimientos")
     DataTableObjectResponse findAllForVencimientos(VencimientoTableFilter vencimientoTableFilter) throws Exception;
 
 }

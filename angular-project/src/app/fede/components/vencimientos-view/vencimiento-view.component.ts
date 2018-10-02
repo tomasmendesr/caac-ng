@@ -3,6 +3,7 @@ import Vencimiento from "../../../model/vencimiento";
 import {COLUMN_NOMBRE_CAAC} from "../../constants/commons-constants";
 import {UrlConstantsCaac} from "../../constants/url-constants";
 import {DataTableService} from "../../../services/data-table.service";
+import {DateService} from "../../../services/date.service";
 
 declare var $: any;
 
@@ -34,7 +35,7 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
     {id1: 'fechRecMala10', id2: 'fechVenMala10', id3: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true},
   ];
 
-  constructor(private dataTableService: DataTableService) { }
+  constructor(private dataTableService: DataTableService, private dateService: DateService) { }
 
   ngOnInit() {
   }
@@ -45,11 +46,9 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
 
   loadDataTable() {
     const self = this;
-    const columns = [
-      { data: COLUMN_NOMBRE_CAAC, title: 'Nombre CAAC' },
-      // { title: 'Acta Autoridades', render(item) },
-      // { data: , title: 'Provincia', render: (item) => item.nombre },
-    ];
+
+    var columns = this.generateColumns();
+
     const table = this.dataTableService.buildTable(
       this.TABLE_ID,
       self,
@@ -68,7 +67,28 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
     });
   }
 
+  renderRecibidoVencimiento(item1, item2) {
+    return 'Recibido: ' + this.dateService.dateFormat(new Date(item1)) + ' | Vencimiento: ' + this.dateService.dateFormat(new Date(item2));
+  }
+
   openModalForVencimientoEdit(vencimientoParaPopup: Vencimiento) {
 
+  }
+
+  generateColumns(): any[] {
+    var columns = [
+      { data: 'casa', title: 'Nombre CAAC', render: (item) => item.nomcaac },
+      { data: null, title: 'Acta Asamblea', render: (data, type, row: Vencimiento) => this.renderRecibidoVencimiento(row.asamrecib, row.asambaja) },
+      { data: null, title: 'Acta Autoridades', render: (data, type, row: Vencimiento) => this.renderRecibidoVencimiento(row.autorirecib, row.autoribaja) },
+      { data: null, title: 'AFIP', render: (data, type, row: Vencimiento) => this.renderRecibidoVencimiento(row.afiprecib, row.afipbaja) },
+      { data: null, title: 'Seguro de Responsabilidad Civil', render: (data, type, row: Vencimiento) => this.renderRecibidoVencimiento(row.responrecib, row.responbaja) }
+    ];
+    var malaPraxis = [];
+    for(let i = 1; i <= 10; i++)
+      malaPraxis.push({ data: null, title: 'Seguro de Malapraxis ' + i, render:(data, type, row: Vencimiento) => row['malapra' + i] + ' | ' + row['fechVenMala' + i] });
+
+    columns.push.apply(columns, malaPraxis);
+
+    return columns
   }
 }
