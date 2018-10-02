@@ -95,6 +95,20 @@
       </div>
 
       <div class="modal-body">
+        <div class="box box-primary card card-block">
+          <h5 style="padding: 5px">Búsqueda por filtros</h5>
+          <form class="form-inline">
+            <div class="form-group col-6">
+              <select class="custom-select" id="tipoDoc" name="tipoDoc">
+                <option [value]="undefined" selected>Tipo documento</option>
+              </select>
+            </div>
+            <div class="form-group col-6">
+              <input type="number" name="dni" class="form-control" id="dni">
+            </div>
+          </form>
+        </div>
+
         <form class="form-horizontal">
 
           <div id="formAlertPopup" (click)="hideFormAlert()"  style="display:none; cursor: pointer" class="alert alert-danger" role="alert">
