@@ -19,6 +19,7 @@ import {CasaService} from "../../../tomi/services/casa.service";
 import {Casa} from "../../../model/casa";
 import {NotifUtil} from "../../../tomi/utils/notif-util";
 import {RequisitoService} from "../../services/requisito.service";
+import {DateService} from "../../../services/date.service";
 
 declare var $: any;
 
@@ -57,7 +58,7 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
 
   requisitoParaPopup: Requisito;
 
-  constructor(private dataTableService: DataTableService, private picsService: PicsService, private categoriaService: CategoriaService, private casaService: CasaService, private requisitoService: RequisitoService) { }
+  constructor(private dataTableService: DataTableService, private picsService: PicsService, private categoriaService: CategoriaService, private casaService: CasaService, private requisitoService: RequisitoService, private dateService: DateService) { }
 
   ngOnInit() {
   }
@@ -77,8 +78,8 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
       { data: 'casa.modal', title: 'Modalidad del Convenio' },
       { data: 'casa.cat', title: 'Categoría Inicial', render: (item) => item.cat },
       { data: 'casa.ncat', title: 'Nueva Categoría', render: (item) => item.cat },
-      { data: 'casa.fechaini', title: 'Fecha de Auditoría Inicial', render: (item) => this.dateFormat(new Date(item)) },
-      { data: 'casa.fechacon', title: 'Fecha de Inicio de Convenio', render: (item) => this.dateFormat(new Date(item))  },
+      { data: 'casa.fechaini', title: 'Fecha de Auditoría Inicial', render: (item) => self.dateService.dateFormat(new Date(item)) },
+      { data: 'casa.fechacon', title: 'Fecha de Inicio de Convenio', render: (item) => self.dateService.dateFormat(new Date(item))  },
       { data: 'casa.obser', title: 'Observaciones' },
     ];
 
@@ -134,21 +135,6 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
       self.reloadTable();
       self.closeModal();
     });
-    /*
-    this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {}, (error) => {
-      console.error(error);
-      NotifUtil.notifError('Error al guardar');
-    }, () => {
-      const backendRequisito = this.mapToBackendRequisito(this.requisitoParaPopup);
-      alert(JSON.stringify(backendRequisito));
-      this.requisitoService.saveOrUpdateRequisito(backendRequisito).subscribe(success => {}, (error) => {
-        console.error(error);
-        NotifUtil.notifError('Error al guardar');
-      }, () => {
-          NotifUtil.notifSuccess('Guardado exitosamente');
-          self.closeModal();
-        });
-    });*/
   }
 
   reloadTable(): void {
@@ -189,19 +175,6 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
     return c1 && c2 ? c1.cat === c2.cat : c1 === c2;
   }
 
-  dateFormat(date) {
-    var dd = date.getDate();
-    var mm = date.getMonth()+1;
-    var yyyy = date.getFullYear();
-
-    if (dd < 10)
-      dd = '0' + dd;
-    if(mm < 10)
-      mm = '0' + mm;
-
-    return dd + '/' + mm + '/' + yyyy;
-  }
-
   mapToBackendRequisito(requisito: Requisito): any {
     return {
       id: requisito.id,
@@ -227,36 +200,8 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // mapToFrontendRequisito(requisitoBack: any): Requisito {
-  //   return <Requisito> {
-  //     id: requisitoBack.id,
-  //     actaasa: this.stringToBoolean(requisitoBack.actaasa),
-  //     altbanca: this.stringToBoolean(requisitoBack.altbanca),
-  //     cronalimen: this.stringToBoolean(requisitoBack.cronalimen),
-  //     crondiayh: this.stringToBoolean(requisitoBack.crondiayh),
-  //     cronmerc: this.stringToBoolean(requisitoBack.cronmerc),
-  //     cronparad: this.stringToBoolean(requisitoBack.cronparad),
-  //     cvsliscom: this.stringToBoolean(requisitoBack.cvsliscom),
-  //     desaut: this.stringToBoolean(requisitoBack.desaut),
-  //     forafip: this.stringToBoolean(requisitoBack.forafip),
-  //     fotodni: this.stringToBoolean(requisitoBack.fotodni),
-  //     lisrrhh: this.stringToBoolean(requisitoBack.lisrrhh),
-  //     organi: this.stringToBoolean(requisitoBack.organi),
-  //     perjur: this.stringToBoolean(requisitoBack.perjur),
-  //     prodesex: this.stringToBoolean(requisitoBack.prodesex),
-  //     segmalpra: this.stringToBoolean(requisitoBack.segmalpra),
-  //     segrescivil: this.stringToBoolean(requisitoBack.segrescivil),
-  //     soliform: this.stringToBoolean(requisitoBack.soliform),
-  //     statuto: this.stringToBoolean(requisitoBack.statuto),
-  //     casa: requisitoBack.casa
-  //   }
-  // }
-
   booleanToString(bool: boolean): string {
     return bool ? 'checked' : 'unchecked';
   }
 
-  // stringToBoolean(string: string): boolean {
-  //   return string === 'checked' ? true : false;
-  // }
 }

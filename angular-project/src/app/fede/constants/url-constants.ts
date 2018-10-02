@@ -13,5 +13,6 @@ export class UrlConstantsCaac {
   public static readonly FIND_ALL_CATEGORIAS = '/services/categoria/findAllCategorias';
   public static readonly SAVE_OR_UPDATE_REQUISITO = '/services/requisito/saveOrUpdate';
   public static readonly FIND_ALL_REQUISITOS = '/services/requisito/findAllRequisitosForAdministrativo';
+  public static readonly FIND_ALL_VENCIMIENTOS = '/services/vencimiento/findAllForVencimientos';
 
 }
