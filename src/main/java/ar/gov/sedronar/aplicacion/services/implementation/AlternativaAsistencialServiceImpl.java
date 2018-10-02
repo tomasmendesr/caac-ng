@@ -18,7 +18,7 @@ import java.util.List;
 @Stateless
 @DefaultServiceImpl
 @Transactional
-public class AlternativaAsistencialDAOImpl implements AlternativaAsistencialService {
+public class AlternativaAsistencialServiceImpl implements AlternativaAsistencialService {
 
     @Inject
     @HibernateDAO

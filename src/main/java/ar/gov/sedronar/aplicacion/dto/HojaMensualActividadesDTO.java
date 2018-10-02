@@ -1,10 +1,13 @@
 package ar.gov.sedronar.aplicacion.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 
 /**
  * Created by TMR on 05/09/2018.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class HojaMensualActividadesDTO {
     private HojaDTO hoja;
     private ActividadIntervencionDTO actividadIntervencion;

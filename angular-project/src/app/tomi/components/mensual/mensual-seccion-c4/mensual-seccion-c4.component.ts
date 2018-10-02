@@ -119,9 +119,9 @@ export class MensualSeccionC4Component implements OnInit {
   }
 
   private onClickConfirmDialogSiguiente(){
-    this.loadingComponent.showLoading();
     this.cleanData();
     this.bindDataToDTO();
+    this.loadingComponent.showLoading();
     this.mensualSeccionCService.saveDataSeccionC4(this.mensualSeccionC4Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();

@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by TMR on 18/09/2018.
@@ -21,6 +22,7 @@ import java.util.List;
 public class AlimentacionServiceImpl implements AlimentacionService {
     public static final String EN_SEDE = "En Sede";
     public static final String FUERA_DE_SEDE = "Fuera de Sede";
+    public static final String OTRO = "Otro";
 
     @Inject
     @HibernateDAO
@@ -33,11 +35,15 @@ public class AlimentacionServiceImpl implements AlimentacionService {
 
     @Override
     public List<AlimentacionDTO> findAllEnSede() {
-        return DozerHelper.mapList(alimentacionDAO.findByClasificacion(EN_SEDE), AlimentacionDTO.class);
+        return DozerHelper.mapList(filterOtro(alimentacionDAO.findByClasificacion(EN_SEDE)), AlimentacionDTO.class);
     }
 
     @Override
     public List<AlimentacionDTO> findAllFueraDeSede() {
-        return DozerHelper.mapList(alimentacionDAO.findByClasificacion(FUERA_DE_SEDE), AlimentacionDTO.class);
+        return DozerHelper.mapList(filterOtro(alimentacionDAO.findByClasificacion(FUERA_DE_SEDE)), AlimentacionDTO.class);
+    }
+
+    private List<Alimentacion> filterOtro(List<Alimentacion> list){
+        return list.stream().filter(a -> !a.getDescripcion().equals(OTRO)).collect(Collectors.toList());
     }
 }

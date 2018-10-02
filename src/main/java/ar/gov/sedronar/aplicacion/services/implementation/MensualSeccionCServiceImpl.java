@@ -56,6 +56,15 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
     @DefaultServiceImpl
     private AcompaniamientoService acompaniamientoService;
 
+    @Inject
+    @DefaultServiceImpl
+    private HojaMensualActividadesService hojaMensualActividadesService;
+
+    @Inject
+    @DefaultServiceImpl
+    private ActividadIntervencionService actividadIntervencionService;
+
+
     /***
      * Si falló una validación retorna un app response con error code y en el atributo data
     * contiene otro app response con el code que identifica a la sección del formulario que falló y la lista de errores de validación
@@ -232,5 +241,20 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
         data.setHojaMensualRecursoList(hojaMensualRecursosService.findByHojaId(idHoja));
         return data;
+    }
+
+    @Override
+    public AppResponse saveOrUpdateSeccionC6(List<HojaMensualActividadesDTO> data) throws Exception {
+        AppResponse validateInputs = hojaMensualActividadesService.validateInputs(data);
+        if(validateInputs.getCode() == AppResponse.ERROR) return validateInputs;
+
+        for (HojaMensualActividadesDTO hoja : data) hojaMensualActividadesService.saveOrUpdate(hoja);
+        return new AppResponse();
+    }
+
+    @Override
+    public List<HojaMensualActividadesDTO> getDataForSeccionC6ByHojaId(Long idHoja) {
+        List<Integer> idsActividades = actividadIntervencionService.findAllTipoActividad().stream().map(a -> a.getId()).collect(Collectors.toList());
+        return hojaMensualActividadesService.findListByHojaAndActividadId(idHoja,idsActividades);
     }
 }

@@ -148,6 +148,8 @@ export class MensualSeccionC5Component implements OnInit {
   }
 
   private onClickConfirmDialogSiguiente(){
+    this.cleanData();
+    this.bindDataToDTO();
     this.loadingComponent.showLoading();
     this.mensualSeccionCService.saveDataSeccionC5(this.mensualSeccionC5Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
