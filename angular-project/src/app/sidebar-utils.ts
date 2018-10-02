@@ -1,25 +1,26 @@
 import MainConstants from "./constants/main-constants";
 declare var $: any;
 export class SidebarUtils {
-  private static sidebarIsOpen: boolean = true;
 
   private static hideSidebar(){
-    this.sidebarIsOpen = false;
-    $('#HeaderSidebarToggleButton').click();
+    if(!this.sidebarIsClose()) $('#HeaderSidebarToggleButton').click();
     $("#HeaderSidebarToggleButton").hide();
   }
 
   private static showSidebar(){
-    this.sidebarIsOpen = true;
+    if(this.sidebarIsClose()) $('#HeaderSidebarToggleButton').click();
     $("#HeaderSidebarToggleButton").show();
-    $('#HeaderSidebarToggleButton').click();
   }
 
   static handleSidebar(currentUrl: string){
     if(currentUrl.indexOf(MainConstants.SIGESE) == -1) {
-      if(this.sidebarIsOpen) this.hideSidebar();
+      this.hideSidebar();
     }else{
-      if(!this.sidebarIsOpen) this.showSidebar();
+      this.showSidebar();
     }
+  }
+
+  private static sidebarIsClose(): boolean{
+    return $("#Dashboard").hasClass("-sidebar-closed-desktop");// || !$("#Dashboard").hasClass("-sidebar-open-mobile"); cuando se usa mobile se maneja esta clase
   }
 }

@@ -8,7 +8,6 @@ import {MensualSeccionC2Data} from "../model/mensual-seccion-c2-data";
 import {MensualSeccionC3Data} from "../model/mensual-seccion-c3-data";
 import {MensualSeccionC4Data} from "../model/mensual-seccion-c4-data";
 import {MensualSeccionC5Data} from "../model/mensual-seccion-c5.data";
-import {MensualSeccionC6Data} from "../model/mensual-seccion-c6-data";
 import {HojaMensualActividades} from "../../model/hoja-mensual-actividades";
 
 @Injectable()
