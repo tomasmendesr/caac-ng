@@ -74,6 +74,7 @@ import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 import {RequisitoService} from "./fede/services/requisito.service";
 import {DateService} from "./services/date.service";
 import {ActividadIntervencionService} from "./tomi/services/actividad-intervencion.service";
+import {VencimientoService} from "./fede/services/vencimiento.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -163,7 +164,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     CategoriaService,
     RequisitoService,
     DateService,
-    ActividadIntervencionService
+    ActividadIntervencionService,
+    VencimientoService
   ],
   bootstrap: [AppComponent]
 })

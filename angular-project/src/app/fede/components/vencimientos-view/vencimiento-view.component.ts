@@ -4,6 +4,8 @@ import {COLUMN_NOMBRE_CAAC} from "../../constants/commons-constants";
 import {UrlConstantsCaac} from "../../constants/url-constants";
 import {DataTableService} from "../../../services/data-table.service";
 import {DateService} from "../../../services/date.service";
+import {VencimientoService} from "../../services/vencimiento.service";
+import {NotifUtil} from "../../../tomi/utils/notif-util";
 
 declare var $: any;
 
@@ -14,7 +16,9 @@ declare var $: any;
 })
 export class VencimientoViewComponent implements OnInit, AfterViewInit {
 
-  //TODO que las columnas queden mas lindas y que se marquen celdas en rojo cuando hay un vencimiento que supera la fecha actual, deshabilitar sorting de columnas de vencimientos
+  //TODO que las columnas queden mas lindas y que se marquen celdas en rojo cuando hay un vencimiento que supera la fecha actual
+  //todo deshabilitar sorting de columnas de vencimientos
+  //todo popup mas comprimido
 
   TITLE: string = 'Vencimientos';
   TABLE_ID: string = 'vencimientosTable';
@@ -36,14 +40,12 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
     {recibido: 'fechRecMala10', vencimiento: 'fechVenMala10', otro: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true},
   ];
 
-  constructor(private dataTableService: DataTableService, private dateService: DateService) { }
+  constructor(private dataTableService: DataTableService, private dateService: DateService, private vencimientoService: VencimientoService) { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    this.loadDataTable();
-  }
+  ngAfterViewInit() { this.loadDataTable(); }
 
   loadDataTable() {
     const self = this;
@@ -61,9 +63,9 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
     );
 
     $('#vencimientosTable tbody').on('click', 'tr', function () {
-      const vencimiento = table.row(this).data();
-
-      self.openModalForVencimientoEdit(vencimiento);
+      self.vencimientoParaPopup = table.row(this).data();
+      self.showDatesForPopup();
+      self.openModalForVencimientoEdit();
     });
   }
 
@@ -71,9 +73,8 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
     return 'Recibido: ' + this.dateService.dateFormat(new Date(item1)) + ' | Vencimiento: ' + this.dateService.dateFormat(new Date(item2));
   }
 
-  openModalForVencimientoEdit(vencimiento: Vencimiento) {
-    this.vencimientoParaPopup = vencimiento;
-    this.showDatesForPopup(this.vencimientoParaPopup);
+  openModalForVencimientoEdit() {
+    // this.showDatesForPopup();
 
     this.openModal()
   }
@@ -112,20 +113,36 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
       keyboard: false,
       show: false
     });
+    this.vencimientoParaPopup = null;
   }
 
   onClickGuardar() {
-    console.log(JSON.stringify(this.vencimientoParaPopup));
+    const self = this;
+    this.vencimientoService.saveVencimiento(this.vencimientoParaPopup).subscribe(data => {
+      NotifUtil.notifSuccess('Guardado exitosamente');
+      self.reloadTable();
+      self.closeModal();
+    }, (error) => {
+      console.error(error);
+      NotifUtil.notifError('Error al guardar');
+    });
   }
 
-  private showDatesForPopup(vencimientoParaPopup: Vencimiento): void {
+  reloadTable() {
+    const table = $('#vencimientosTable').DataTable();
+
+    table.ajax.reload();
+  }
+
+  private showDatesForPopup(): void {
+
     for(let i = 1; i <= 10; i++) {
-      vencimientoParaPopup['fechRecMala' + i] = new Date(vencimientoParaPopup['fechRecMala' + i]);
-      vencimientoParaPopup['fechVenMala' + i] = new Date(vencimientoParaPopup['fechVenMala' + i]);
+      this.vencimientoParaPopup['fechRecMala' + i] = new Date(this.vencimientoParaPopup['fechRecMala' + i]);
+      this.vencimientoParaPopup['fechVenMala' + i] = new Date(this.vencimientoParaPopup['fechVenMala' + i]);
     }
     ['afip', 'asam', 'autori', 'respon'].forEach(elem => {
-      vencimientoParaPopup[elem + 'recib'] = new Date(vencimientoParaPopup[elem + 'recib']);
-      vencimientoParaPopup[elem + 'baja'] = new Date(vencimientoParaPopup[elem + 'baja']);
+      this.vencimientoParaPopup[elem + 'recib'] = new Date(this.vencimientoParaPopup[elem + 'recib']);
+      this.vencimientoParaPopup[elem + 'baja'] = new Date(this.vencimientoParaPopup[elem + 'baja']);
     })
   }
 }
