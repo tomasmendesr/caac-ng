@@ -12,7 +12,9 @@ import {HojaMensualObservaciones} from "../../../../model/hoja-mensual-observaci
 import {AcompaniamientoService} from "../../../services/acompaniamiento.service";
 import {MensualSeccionCService} from "../../../services/mensual-seccion-c.service";
 import {Acompaniamiento} from "../../../../model/acompaniamiento";
+
 declare var $:any;
+
 @Component({
   selector: 'app-mensual-seccion-c2',
   templateUrl: './mensual-seccion-c2.component.html',
@@ -42,12 +44,18 @@ export class MensualSeccionC2Component implements OnInit {
   }
 
   private initHojaMensualAcompaniamientoList(){
-      this.hojaMensualAcompaniamientoList = [];
-      this.acompaniamientos.forEach(ac => {
+    this.hojaMensualAcompaniamientoList = [];
+    this.completeHojaMensualAcompaniamientoList();
+  }
+
+  private completeHojaMensualAcompaniamientoList(){
+    this.acompaniamientos.forEach(ac => {
+      if(this.hojaMensualAcompaniamientoList.find(h => h.acompaniamiento.id == ac.id) == null) {
         let hojaMensual = new HojaMensualAcompaniamiento();
         hojaMensual.acompaniamiento = ac;
         this.hojaMensualAcompaniamientoList.push(hojaMensual);
-      });
+      }
+    });
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
@@ -139,10 +147,9 @@ export class MensualSeccionC2Component implements OnInit {
   }
 
   private buildHojaMensualAcompaniamientoList(data: MensualSeccionC2Data) {
-    if (data.hojaMensualAcompaniamientoList) {
-      this.hojaMensualAcompaniamientoList = data.hojaMensualAcompaniamientoList;
-    } else {
-      this.initHojaMensualAcompaniamientoList();
+    this.hojaMensualAcompaniamientoList = data.hojaMensualAcompaniamientoList;
+    if(this.hojaMensualAcompaniamientoList.length != this.acompaniamientos.length){
+      this.completeHojaMensualAcompaniamientoList();
     }
     this.loadingComponent.hideLoading();
   }

@@ -56,10 +56,16 @@ export class MensualSeccionC5Component implements OnInit {
 
   private initHojaMensualRecursosList(){
     this.hojaMensualRecursosList = [];
+    this.completeHojaMensualRecursosList();
+  }
+
+  private completeHojaMensualRecursosList(){
     this.recursos.forEach(recurso => {
-      let hojaMensualRecurso = new HojaMensualRecurso;
-      hojaMensualRecurso.recurso = recurso;
-      this.hojaMensualRecursosList.push(hojaMensualRecurso);
+      if(this.hojaMensualRecursosList.find(h => h.recurso.id == recurso.id) == null) {
+        let hojaMensualRecurso = new HojaMensualRecurso;
+        hojaMensualRecurso.recurso = recurso;
+        this.hojaMensualRecursosList.push(hojaMensualRecurso);
+      }
     });
   }
 
@@ -142,6 +148,8 @@ export class MensualSeccionC5Component implements OnInit {
   }
 
   private onClickConfirmDialogSiguiente(){
+    this.cleanData();
+    this.bindDataToDTO();
     this.loadingComponent.showLoading();
     this.mensualSeccionCService.saveDataSeccionC5(this.mensualSeccionC5Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
@@ -185,12 +193,10 @@ export class MensualSeccionC5Component implements OnInit {
   }
 
   private buildHojaMensualRecursos(data: MensualSeccionC5Data) {
-    if (data.hojaMensualRecursoList) {
-      this.hojaMensualRecursosList = data.hojaMensualRecursoList;
-    } else {
-      this.initHojaMensualRecursosList();
+    this.hojaMensualRecursosList = data.hojaMensualRecursoList;
+    if(this.hojaMensualRecursosList.length != this.recursos.length){
+      this.completeHojaMensualRecursosList();
     }
-    this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAcompaniamientosEstabProfSalud(data: MensualSeccionC5Data) {
@@ -198,6 +204,7 @@ export class MensualSeccionC5Component implements OnInit {
     if(this.hojaMensualAcompaniamientosEstablecimientoProfSaludList.length != this.acompaniamientosEstablecimientoProfSalud.length){
       this.completeHojaMensualAcompaniamientosProfSaludList();
     }
+    this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAcompaniamientosEstabTrayEducativa(data: MensualSeccionC5Data) {

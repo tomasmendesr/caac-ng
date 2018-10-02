@@ -58,28 +58,46 @@ export class MensualSeccionC1Component implements OnInit {
 
   private initHojaMensualTramitesList(){
     this.hojaMensualTramitesList = [];
+    this.completeHojaMensualTramitesList();
+  }
+
+  private completeHojaMensualTramitesList(){
     this.tramites.forEach(tramite => {
-      let hojaMensual = new HojaMensualTramites;
-      hojaMensual.tramite = tramite;
-      this.hojaMensualTramitesList.push(hojaMensual);
+      if(this.hojaMensualTramitesList.find(h => h.tramite.id == tramite.id) == null) {
+        let hojaMensual = new HojaMensualTramites;
+        hojaMensual.tramite = tramite;
+        this.hojaMensualTramitesList.push(hojaMensual);
+      }
     });
   }
 
   private initHojaMensualAlimentacionEnSedeList(){
     this.hojaMensualAlimentacionEnSedeList = [];
+    this.completeHojaMensualAlimentacionEnSedeList();
+  }
+
+  private completeHojaMensualAlimentacionEnSedeList(){
     this.alimentacionesEnSede.forEach(a => {
-      let hojaMensual = new HojaMensualAlimentacion;
-      hojaMensual.tipoAlimentacion = a;
-      this.hojaMensualAlimentacionEnSedeList.push(hojaMensual);
+      if(this.hojaMensualAlimentacionEnSedeList.find(h => h.tipoAlimentacion.id == a.id) == null) {
+        let hojaMensual = new HojaMensualAlimentacion;
+        hojaMensual.tipoAlimentacion = a;
+        this.hojaMensualAlimentacionEnSedeList.push(hojaMensual);
+      }
     });
   }
 
   private initHojaMensualAlimentacionFueraDeSedeList(){
     this.hojaMensualAlimentacionFueraDeSedeList = [];
+    this.completeHojaMensualAlimentacionFueraDeSedeList();
+  }
+
+  private completeHojaMensualAlimentacionFueraDeSedeList(){
     this.alimentacionesFueraDeSede.forEach(a => {
-      let hojaMensual = new HojaMensualAlimentacion;
-      hojaMensual.tipoAlimentacion = a;
-      this.hojaMensualAlimentacionFueraDeSedeList.push(hojaMensual);
+      if(this.hojaMensualAlimentacionFueraDeSedeList.find(h => h.tipoAlimentacion.id == a.id) == null) {
+        let hojaMensual = new HojaMensualAlimentacion;
+        hojaMensual.tipoAlimentacion = a;
+        this.hojaMensualAlimentacionFueraDeSedeList.push(hojaMensual);
+      }
     });
   }
 
@@ -133,6 +151,8 @@ export class MensualSeccionC1Component implements OnInit {
 
   private onClickConfirmDialogSiguiente(){
     this.loadingComponent.showLoading();
+    this.cleanData();
+    this.bindDataToDTO();
     this.mensualSeccionCService.saveDataSeccionC1(this.mensualSeccionC1Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();
@@ -174,29 +194,26 @@ export class MensualSeccionC1Component implements OnInit {
   }
 
   private buildHojaMensualTramites(data: MensualSeccionC1Data) {
-    if (data.hojaMensualTramitesList) {
-      this.hojaMensualTramitesList = data.hojaMensualTramitesList;
-    } else {
-      this.initHojaMensualTramitesList();
+    this.hojaMensualTramitesList = data.hojaMensualTramitesList;
+    if(this.hojaMensualTramitesList.length != this.tramites.length){
+      this.completeHojaMensualTramitesList();
     }
     this.loadingComponent.hideLoading();
   }
 
 
   private buildHojaMensualAlimentacionEnSede(data: MensualSeccionC1Data) {
-    if (data.hojaMensualAlimentacionEnSedeList) {
-      this.hojaMensualAlimentacionEnSedeList = data.hojaMensualAlimentacionEnSedeList;
-    } else {
-      this.initHojaMensualAlimentacionEnSedeList();
+    this.hojaMensualAlimentacionEnSedeList = data.hojaMensualAlimentacionEnSedeList;
+    if(this.hojaMensualAlimentacionEnSedeList.length != this.alimentacionesEnSede.length){
+      this.completeHojaMensualAlimentacionEnSedeList();
     }
     this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAlimentacionFueraDeSede(data: MensualSeccionC1Data) {
-    if (data.hojaMensualAlimentacionFueraDeSedeList) {
-      this.hojaMensualAlimentacionFueraDeSedeList = data.hojaMensualAlimentacionFueraDeSedeList;
-    } else {
-      this.initHojaMensualAlimentacionFueraDeSedeList();
+    this.hojaMensualAlimentacionFueraDeSedeList = data.hojaMensualAlimentacionFueraDeSedeList;
+    if(this.hojaMensualAlimentacionFueraDeSedeList.length != this.alimentacionesFueraDeSede.length){
+      this.completeHojaMensualAlimentacionFueraDeSedeList();
     }
     this.loadingComponent.hideLoading();
   }

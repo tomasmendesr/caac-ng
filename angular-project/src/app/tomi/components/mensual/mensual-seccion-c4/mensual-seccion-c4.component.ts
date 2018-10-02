@@ -46,19 +46,31 @@ export class MensualSeccionC4Component implements OnInit {
 
   private initHojaMensualAcompEstPenalesTipoAcompList(){
     this.hojaMensualAcompEstPenalesTipoAcompList = [];
+    this.completeHojaMensualAcompEstPenalesTipoAcompList();
+  }
+
+  private completeHojaMensualAcompEstPenalesTipoAcompList(){
     this.acompaniamientosEstPenalesAndTipoAcomp.forEach(ac => {
-      let hojaMensual = new HojaMensualAcompaniamiento();
-      hojaMensual.acompaniamiento = ac;
-      this.hojaMensualAcompEstPenalesTipoAcompList.push(hojaMensual);
+      if(this.hojaMensualAcompEstPenalesTipoAcompList.find(h => h.acompaniamiento.id == ac.id) == null) {
+        let hojaMensual = new HojaMensualAcompaniamiento();
+        hojaMensual.acompaniamiento = ac;
+        this.hojaMensualAcompEstPenalesTipoAcompList.push(hojaMensual);
+      }
     });
   }
 
   private initHojaMensualAcompEstPenalesTipoActividadesList(){
     this.hojaMensualAcompEstPenalesTipoActividadesList = [];
+    this.completeHojaMensualAcompEstPenalesTipoActividadesList();
+  }
+
+  private completeHojaMensualAcompEstPenalesTipoActividadesList(){
     this.acompaniamientosEstPenalesandTipoAct.forEach(ac => {
-      let hojaMensual = new HojaMensualAcompaniamiento();
-      hojaMensual.acompaniamiento = ac;
-      this.hojaMensualAcompEstPenalesTipoActividadesList.push(hojaMensual);
+      if(this.hojaMensualAcompEstPenalesTipoActividadesList.find(h => h.acompaniamiento.id == ac.id) == null) {
+        let hojaMensual = new HojaMensualAcompaniamiento();
+        hojaMensual.acompaniamiento = ac;
+        this.hojaMensualAcompEstPenalesTipoActividadesList.push(hojaMensual);
+      }
     });
   }
 
@@ -107,9 +119,9 @@ export class MensualSeccionC4Component implements OnInit {
   }
 
   private onClickConfirmDialogSiguiente(){
-    this.loadingComponent.showLoading();
     this.cleanData();
     this.bindDataToDTO();
+    this.loadingComponent.showLoading();
     this.mensualSeccionCService.saveDataSeccionC4(this.mensualSeccionC4Data).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();
@@ -151,19 +163,17 @@ export class MensualSeccionC4Component implements OnInit {
   }
 
   private buildHojaMensualAcompaniamientoEstabPenalesAndTipoAcompList(data: MensualSeccionC4Data) {
-    if (data.hojaMensualAcompEstPenalesTipoAcompList) {
-      this.hojaMensualAcompEstPenalesTipoAcompList = data.hojaMensualAcompEstPenalesTipoAcompList;
-    } else {
-      this.initHojaMensualAcompEstPenalesTipoAcompList();
+    this.hojaMensualAcompEstPenalesTipoAcompList = data.hojaMensualAcompEstPenalesTipoAcompList;
+    if(this.hojaMensualAcompEstPenalesTipoAcompList.length != this.acompaniamientosEstPenalesAndTipoAcomp.length){
+      this.completeHojaMensualAcompEstPenalesTipoAcompList();
     }
     this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAcompaniamientoEstabPenalesAndTipoActividadesList(data: MensualSeccionC4Data) {
-    if (data.hojaMensualAcompEstPenalesTipoActividadesList) {
-      this.hojaMensualAcompEstPenalesTipoActividadesList = data.hojaMensualAcompEstPenalesTipoActividadesList;
-    } else {
-      this.initHojaMensualAcompEstPenalesTipoActividadesList();
+    this.hojaMensualAcompEstPenalesTipoActividadesList = data.hojaMensualAcompEstPenalesTipoActividadesList;
+    if(this.hojaMensualAcompEstPenalesTipoActividadesList.length != this.acompaniamientosEstPenalesandTipoAct.length){
+      this.completeHojaMensualAcompEstPenalesTipoActividadesList();
     }
     this.loadingComponent.hideLoading();
   }

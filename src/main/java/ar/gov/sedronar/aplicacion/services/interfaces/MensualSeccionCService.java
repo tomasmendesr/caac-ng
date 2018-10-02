@@ -8,6 +8,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * Created by TMR on 18/09/2018.
@@ -56,4 +57,12 @@ public interface MensualSeccionCService {
     @POST
     @Path("/getDataForSeccionC5ByHojaId")
     MensualSeccionC5Data getDataForSeccionC5ByHojaId(Long idHoja);
+
+    @POST
+    @Path("/saveOrUpdateSeccionC6")
+    AppResponse saveOrUpdateSeccionC6(List<HojaMensualActividadesDTO> data) throws Exception;
+
+    @POST
+    @Path("/getDataForSeccionC6ByHojaId")
+    List<HojaMensualActividadesDTO> getDataForSeccionC6ByHojaId(Long idHoja);
 }

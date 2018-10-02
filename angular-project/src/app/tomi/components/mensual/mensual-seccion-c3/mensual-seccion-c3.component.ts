@@ -51,28 +51,46 @@ export class MensualSeccionC3Component implements OnInit {
 
   private initHojaMensualAcompaniamientoTipoGestionList(){
     this.hojaMensualAcompaniamientoTipoGestionList = [];
+    this.completeHojaMensualAcompaniamientoTipoGestionList();
+  }
+
+  private completeHojaMensualAcompaniamientoTipoGestionList(){
     this.acompaniamientosTipoGestion.forEach(ac => {
-      let hojaMensual = new HojaMensualAcompaniamiento();
-      hojaMensual.acompaniamiento = ac;
-      this.hojaMensualAcompaniamientoTipoGestionList.push(hojaMensual);
+      if(this.hojaMensualAcompaniamientoTipoGestionList.find(h => h.acompaniamiento.id == ac.id) == null) {
+        let hojaMensual = new HojaMensualAcompaniamiento();
+        hojaMensual.acompaniamiento = ac;
+        this.hojaMensualAcompaniamientoTipoGestionList.push(hojaMensual);
+      }
     });
   }
 
   private initHojaMensualAcompaniamientoEstabComuTerapeuticaList(){
     this.hojaMensualAcompaniamientoEstabComuTerapeuticaList = [];
+    this.completeHojaMensualAcompaniamientoEstabComuTerapeuticaList();
+  }
+
+  private completeHojaMensualAcompaniamientoEstabComuTerapeuticaList(){
     this.acompaniamientosEstabComuTerapeutica.forEach(ac => {
-      let hojaMensual = new HojaMensualAcompaniamiento();
-      hojaMensual.acompaniamiento = ac;
-      this.hojaMensualAcompaniamientoEstabComuTerapeuticaList.push(hojaMensual);
+      if(this.hojaMensualAcompaniamientoEstabComuTerapeuticaList.find(h => h.acompaniamiento.id == ac.id) == null) {
+        let hojaMensual = new HojaMensualAcompaniamiento();
+        hojaMensual.acompaniamiento = ac;
+        this.hojaMensualAcompaniamientoEstabComuTerapeuticaList.push(hojaMensual);
+      }
     });
   }
 
   private initHojaMensualAcompaniamientoEstabPatrocinioLegalList(){
     this.hojaMensualAcompaniamientoEstabPatrocinioLegalList = [];
+    this.completeHojaMensualAcompaniamientoEstabPatrocinioLegalList();
+  }
+
+  private completeHojaMensualAcompaniamientoEstabPatrocinioLegalList(){
     this.acompaniamientosEstabPatrocinioLegal.forEach(ac => {
-      let hojaMensual = new HojaMensualAcompaniamiento();
-      hojaMensual.acompaniamiento = ac;
-      this.hojaMensualAcompaniamientoEstabPatrocinioLegalList.push(hojaMensual);
+      if(this.hojaMensualAcompaniamientoEstabPatrocinioLegalList.find(h => h.acompaniamiento.id == ac.id) == null) {
+        let hojaMensual = new HojaMensualAcompaniamiento();
+        hojaMensual.acompaniamiento = ac;
+        this.hojaMensualAcompaniamientoEstabPatrocinioLegalList.push(hojaMensual);
+      }
     });
   }
 
@@ -166,28 +184,25 @@ export class MensualSeccionC3Component implements OnInit {
   }
 
   private buildHojaMensualAcompaniamientoTipoGestionList(data: MensualSeccionC3Data) {
-    if (data.hojaMensualAcompaniamientoTipoGestionList) {
-      this.hojaMensualAcompaniamientoTipoGestionList = data.hojaMensualAcompaniamientoTipoGestionList;
-    } else {
-      this.initHojaMensualAcompaniamientoTipoGestionList();
+    this.hojaMensualAcompaniamientoTipoGestionList = data.hojaMensualAcompaniamientoTipoGestionList;
+    if(this.hojaMensualAcompaniamientoTipoGestionList.length != this.acompaniamientosTipoGestion.length){
+      this.completeHojaMensualAcompaniamientoTipoGestionList();
     }
     this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAcompaniamientoEstabPatrocinioLegalList(data: MensualSeccionC3Data) {
-    if (data.hojaMensualAcompaniamientoEstablPatrocinioLegalList) {
-      this.hojaMensualAcompaniamientoEstabPatrocinioLegalList = data.hojaMensualAcompaniamientoEstablPatrocinioLegalList;
-    } else {
-      this.initHojaMensualAcompaniamientoEstabPatrocinioLegalList();
+    this.hojaMensualAcompaniamientoEstabPatrocinioLegalList = data.hojaMensualAcompaniamientoEstablPatrocinioLegalList;
+    if(this.hojaMensualAcompaniamientoEstabPatrocinioLegalList.length != this.acompaniamientosEstabPatrocinioLegal.length){
+      this.completeHojaMensualAcompaniamientoEstabPatrocinioLegalList();
     }
     this.loadingComponent.hideLoading();
   }
 
   private buildHojaMensualAcompaniamientoEstabComuTerapeuticaList(data: MensualSeccionC3Data) {
-    if (data.hojaMensualAcompaniamientoEstablComuTerapeuticaList) {
-      this.hojaMensualAcompaniamientoEstabComuTerapeuticaList = data.hojaMensualAcompaniamientoEstablComuTerapeuticaList;
-    } else {
-      this.initHojaMensualAcompaniamientoEstabComuTerapeuticaList();
+    this.hojaMensualAcompaniamientoEstabComuTerapeuticaList = data.hojaMensualAcompaniamientoEstablComuTerapeuticaList;
+    if(this.hojaMensualAcompaniamientoEstabComuTerapeuticaList.length != this.acompaniamientosEstabComuTerapeutica.length){
+      this.completeHojaMensualAcompaniamientoEstabComuTerapeuticaList();
     }
     this.loadingComponent.hideLoading();
   }

@@ -2,9 +2,15 @@
 <div class="container-fluid h-100 margin-top">
   <app-header-caac-selection (headerChanged)="onChangeHeader($event)"></app-header-caac-selection>
 
+  <div (click)="hideFormAlert()" id="formAlert" class="alert alert-danger formErrorMessages" role="alert">
+    <ul style="margin-bottom: 0">
+      <li *ngFor="let message of formMessages">
+        {{message}}
+      </li>
+    </ul>
+  </div>
   <div class="form-row">
     <div class="form-group col-6">
-
       <div class="card card-body marginBottom">
         <div (click)="hideFormAlert()" id="formAlert1" class="alert alert-danger formErrorMessages" role="alert">
           <ul style="margin-bottom: 0">
@@ -14,176 +20,28 @@
           </ul>
         </div>
         <h5>¿Qué otro tipo de actividades se realizan en la CAAC?</h5>
-        <div class="form-group row" style="margin-bottom:0">
+        <div class="form-group row" style="margin-bottom:0" *ngFor="let hojaMensual of hojaMensualActividadesList">
           <div class="ItemCol ColCheck -size-auto col-2 text-right">
             <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="cbActDeportivas" name="cbActDeportivas">
+              <input class="form-check-input" type="checkbox" id="{{hojaMensual.actividadIntervencion.id}}" [disabled]="readonlyControl" name="{{hojaMensual.actividadIntervencion.id}}"
+                [checked]="hojaMensual.isChecked" (change)="onChangeCheckbox(hojaMensual, $event)">
               <span></span>
             </label>
           </div>
-          <label for="cbActDeportivas" class="col-10 col-form-label text-left" style="padding-top:4px">Actividades deportivas</label>
+          <label for="{{hojaMensual.actividadIntervencion.id}}" class="col-10 col-form-label text-left" style="padding-top:4px">{{hojaMensual.actividadIntervencion.descripcionActividad}}</label>
         </div>
-
-        <div class="form-group row" style="margin-bottom:0">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
-            <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="cbOficios" name="cbOficios">
-              <span></span>
-            </label>
-          </div>
-          <label for="cbOficios" class="col-10 col-form-label text-left" style="padding-top:4px">Capacitación en oficios</label>
-        </div>
-
-        <div class="form-group row" style="margin-bottom:0">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
-            <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="cbActCulturales" name="cbActCulturales">
-              <span></span>
-            </label>
-          </div>
-          <label for="cbActCulturales" class="col-10 col-form-label text-left" style="padding-top:4px">Actividades culturales</label>
-        </div>
-        <div class="form-group row" style="margin-bottom:0">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
-            <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="recreativas" name="recreativas">
-              <span></span>
-            </label>
-          </div>
-          <label for="recreativas" class="col-10 col-form-label text-left" style="padding-top:4px">Actividades recreativas</label>
-        </div>
-        <div class="form-group row" style="margin-bottom:0">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
-            <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="eventos" name="eventos">
-              <span></span>
-            </label>
-          </div>
-          <label for="eventos" class="col-10 col-form-label text-left" style="padding-top:4px">Eventos festivos</label>
-        </div>
-        <div class="form-group row" style="margin-bottom:0">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
-            <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="espirt" name="espirt">
-              <span></span>
-            </label>
-          </div>
-          <label for="espirt" class="col-10 col-form-label text-left" style="padding-top:4px">Actividades espirituales/religiosas</label>
-        </div>
-        <div class="form-group row" style="margin-bottom:0">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
-            <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="otro" name="otro">
-              <span></span>
-            </label>
-          </div>
-          <label for="otro" class="col-10 col-form-label text-left" style="padding-top:4px">Otro</label>
-        </div>
-        <textarea class="form-control" id="exampleFormControlTextarea0" name="exampleFormControlTextarea0" rows="4"
-                  [readonly]="readonlyControl"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea0" [(ngModel)]="descripcionActividadOtroText" name="exampleFormControlTextarea0" rows="2"
+                  [readonly]="!otroIsChecked"></textarea>
       </div>
     </div>
 
-    <div class="form-group col-6">
+    <div class="form-group col-6" *ngFor="let hojaMensual of hojaMensualActividadesListWithoutOtro()">
       <div class="card card-body marginBottom">
-        <div (click)="hideFormAlert()" id="formAlert2" class="alert alert-danger formErrorMessages" role="alert">
-          <ul style="margin-bottom: 0">
-            <li *ngFor="let message of formMessages">
-              {{message}}
-            </li>
-          </ul>
-        </div>
-        <h5>Especifique ACTIVIDADES DEPORTIVAS realizadas por la CAAC, dónde se realizaron, cantidad de actividades
+        <h5>Especifique {{hojaMensual.actividadIntervencion.descripcionActividad | uppercase}} realizadas por la CAAC, dónde se realizaron, cantidad de actividades
           mensuales, personas alcanzadas y frecuencia</h5>
         <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea1" name="exampleFormControlTextarea1" rows="2"
-                    [readonly]="readonlyControl"></textarea>
-        </div>
-      </div>
-
-      <div class="card card-body marginBottom">
-        <div (click)="hideFormAlert()" id="formAlert3" class="alert alert-danger formErrorMessages" role="alert">
-          <ul style="margin-bottom: 0">
-            <li *ngFor="let message of formMessages">
-              {{message}}
-            </li>
-          </ul>
-        </div>
-        <h5>Especifique ACTIVIDADES DE CAPACITACIÓN EN OFICIOS realizadas por la CAAC, dónde se realizaron, cantidad de
-          actividades mensuales, personas alcanzadas y frecuencia</h5>
-        <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea3" name="exampleFormControlTextarea3" rows="2"
-                    [readonly]="readonlyControl"></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-6">
-      <div class="card card-body marginBottom">
-        <div (click)="hideFormAlert()" id="formAlert4" class="alert alert-danger formErrorMessages" role="alert">
-          <ul style="margin-bottom: 0">
-            <li *ngFor="let message of formMessages">
-              {{message}}
-            </li>
-          </ul>
-        </div>
-        <h5>Especifique ACTIVIDADES RECREATIVAS realizadas por la CAAC, dónde se realizaron, cantidad de actividades
-          mensuales, personas alcanzadas y frecuencia</h5>
-        <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea4" name="exampleFormControlTextarea4" rows="2"
-                    [readonly]="readonlyControl"></textarea>
-        </div>
-      </div>
-
-      <div class="card card-body marginBottom">
-        <div (click)="hideFormAlert()" id="formAlert6" class="alert alert-danger formErrorMessages" role="alert">
-          <ul style="margin-bottom: 0">
-            <li *ngFor="let message of formMessages">
-              {{message}}
-            </li>
-          </ul>
-        </div>
-        <h5>Especifique ACTIVIDADES DE ESPIRITUALES/RELIGIOSAS realizadas por la CAAC, dónde se realizaron, cantidad de
-          actividades mensuales, personas alcanzadas y frecuencia</h5>
-        <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea6" name="exampleFormControlTextarea6" rows="2"
-                    [readonly]="readonlyControl"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group col-6">
-      <div class="card card-body marginBottom" style="padding-bottom: 45px !important">
-        <div (click)="hideFormAlert()" id="formAlert5" class="alert alert-danger formErrorMessages" role="alert">
-          <ul style="margin-bottom: 0">
-            <li *ngFor="let message of formMessages">
-              {{message}}
-            </li>
-          </ul>
-        </div>
-        <h5>Especifique EVENTOS FESTIVOS realizados por la CAAC, dónde se realizaron, cantidad de actividades mensuales,
-          personas alcanzadas y frecuencia</h5>
-        <div class="form-group">
-        <textarea class="form-control" id="exampleFormControlTextarea5" name="exampleFormControlTextarea5" rows="2"
-                  [readonly]="readonlyControl"></textarea>
-        </div>
-      </div>
-
-      <div class="card card-body marginBottom">
-        <div (click)="hideFormAlert()" id="formAlert7" class="alert alert-danger formErrorMessages" role="alert">
-          <ul style="margin-bottom: 0">
-            <li *ngFor="let message of formMessages">
-              {{message}}
-            </li>
-          </ul>
-        </div>
-        <h5>Especifique OTRAS ACTIVIDADES realizadas por la CAAC, dónde se realizaron, cantidad de actividades mensuales,
-          personas alcanzadas y frecuencia</h5>
-        <div class="form-group">
-        <textarea class="form-control" id="exampleFormControlTextarea7" name="exampleFormControlTextarea7" rows="2"
-                  [readonly]="readonlyControl"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="exampleFormControlTextarea1" rows="3"
+                    [readonly]="!hojaMensual.isChecked" [(ngModel)]="hojaMensual.descripcionActividad"></textarea>
         </div>
       </div>
     </div>

@@ -85,6 +85,8 @@ export class UrlConstants {
   static readonly GET_DATA_FOR_SECCION_C4_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC4ByHojaId';
   static readonly SAVE_DATA_MENSUAL_SECCION_C5 = '/services/mensualSeccionC/saveOrUpdateSeccionC5';
   static readonly GET_DATA_FOR_SECCION_C5_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC5ByHojaId';
+  static readonly SAVE_DATA_MENSUAL_SECCION_C6 = '/services/mensualSeccionC/saveOrUpdateSeccionC6';
+  static readonly GET_DATA_FOR_SECCION_C6_BY_HOJA_ID = '/services/mensualSeccionC/getDataForSeccionC6ByHojaId';
 
   //acompaniamiento service
   static readonly FIND_ALL_ESTABLECIMIENTOS_DE_SALUD = '/services/acompaniamiento/findAllEstablecimientosDeSalud';
@@ -101,6 +103,11 @@ export class UrlConstants {
 
   // recurso service
   static readonly FIND_ALL_RECURSOS = '/services/recurso/findAll';
+
+  // actividad intervencion service
+  static readonly FIND_ALL_ACT_INT_TIPO_ACTIVIDAD = '/services/actividadIntervencion/findAllTipoActividad';
+  static readonly FIND_ALL_ACT_INT_TIPO_FAMILIA = '/services/actividadIntervencion/findAllTipoFamilia';
+  static readonly FIND_ALL_ACT_INT_TIPO_INTERVENCION = '/services/actividadIntervencion/findAllTipoIntervencion';
 
 
 
