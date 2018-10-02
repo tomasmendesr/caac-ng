@@ -38,9 +38,9 @@
               <label class="col-3 col-form-label control-label">{{vencimiento.descripcion}}</label>
               <div> <!--luego ver si puedo anidar el label al grupo metiendo un for y un id en el div-->
                 <div class="col-9">
-                  <input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.id3]" name="vencimiento.id3" class="form-control" id="vencimiento.id3" placeholder="">
-                  <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="vencimientoParaPopup[vencimiento.id1]" id="vencimiento.id1" name="vencimiento.id1">
-                  <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="vencimientoParaPopup[vencimiento.id2]" id="vencimiento.id2" name="vencimiento.id2">
+                  <input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.otro]" name="vencimiento.otro" class="form-control" id="vencimiento.otro" placeholder="">
+                  <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="vencimientoParaPopup[vencimiento.recibido]" id="vencimiento.recibido" name="vencimiento.recibido">
+                  <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="vencimientoParaPopup[vencimiento.vencimiento]" id="vencimiento.vencimiento" name="vencimiento.vencimiento">
                 </div>
               </div>
             </div>
