@@ -109,6 +109,8 @@ export class UrlConstants {
   static readonly FIND_ALL_ACT_INT_TIPO_FAMILIA = '/services/actividadIntervencion/findAllTipoFamilia';
   static readonly FIND_ALL_ACT_INT_TIPO_INTERVENCION = '/services/actividadIntervencion/findAllTipoIntervencion';
 
+  // hoja mensual personal service
+  static readonly GET_HOJA_MENSUAL_PERSONAL_FOR_TABLE = '/services/hojaMensualPersonal/getDataForTable';
 
 
 }

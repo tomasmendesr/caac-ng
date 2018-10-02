@@ -21,6 +21,6 @@ export class SidebarUtils {
   }
 
   private static sidebarIsClose(): boolean{
-    return $("#Dashboard").hasClass("-sidebar-closed-desktop") || !$("#Dashboard").hasClass("-sidebar-open-mobile");
+    return $("#Dashboard").hasClass("-sidebar-closed-desktop");// || !$("#Dashboard").hasClass("-sidebar-open-mobile"); cuando se usa mobile se maneja esta clase
   }
 }
