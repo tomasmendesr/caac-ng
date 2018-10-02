@@ -1,5 +1,7 @@
 package ar.gov.sedronar.aplicacion.model;
 
+import ar.gov.sedronar.modulo.commonsModels.modelo.TipoDocumento;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -133,4 +135,5 @@ public class HojaMensualPersonal {
     public void setHorasSemanales(Integer horasSemanales) {
         this.horasSemanales = horasSemanales;
     }
+
 }

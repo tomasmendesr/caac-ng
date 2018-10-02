@@ -1,6 +1,7 @@
 package ar.gov.sedronar.aplicacion.model;
 
 import ar.gov.sedronar.modulo.commonsModels.modelo.Profesion;
+import ar.gov.sedronar.modulo.commonsModels.modelo.TipoDocumento;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -22,6 +23,9 @@ public class Personal {
     private String estadoActual;
     private String uum;
     private java.util.Date fum;
+    private TipoDocumento tipoDocumento;
+    private Integer numeroDocumento;
+
 
     public Personal(){}
 
@@ -125,5 +129,24 @@ public class Personal {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tipodocumento")
+    public TipoDocumento getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    @Column(name = "nrodocumento")
+    public Integer getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(Integer numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 }
