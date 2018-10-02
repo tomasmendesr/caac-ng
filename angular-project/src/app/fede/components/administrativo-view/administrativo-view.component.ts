@@ -134,21 +134,6 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
       self.reloadTable();
       self.closeModal();
     });
-    /*
-    this.casaService.saveOrUpdateCasaGeneral(<Casa> this.caacParaPopup).subscribe(success => {}, (error) => {
-      console.error(error);
-      NotifUtil.notifError('Error al guardar');
-    }, () => {
-      const backendRequisito = this.mapToBackendRequisito(this.requisitoParaPopup);
-      alert(JSON.stringify(backendRequisito));
-      this.requisitoService.saveOrUpdateRequisito(backendRequisito).subscribe(success => {}, (error) => {
-        console.error(error);
-        NotifUtil.notifError('Error al guardar');
-      }, () => {
-          NotifUtil.notifSuccess('Guardado exitosamente');
-          self.closeModal();
-        });
-    });*/
   }
 
   reloadTable(): void {
@@ -191,7 +176,7 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
 
   dateFormat(date) {
     var dd = date.getDate();
-    var mm = date.getMonth()+1;
+    var mm = date.getMonth() + 1;
     var yyyy = date.getFullYear();
 
     if (dd < 10)
@@ -227,36 +212,8 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // mapToFrontendRequisito(requisitoBack: any): Requisito {
-  //   return <Requisito> {
-  //     id: requisitoBack.id,
-  //     actaasa: this.stringToBoolean(requisitoBack.actaasa),
-  //     altbanca: this.stringToBoolean(requisitoBack.altbanca),
-  //     cronalimen: this.stringToBoolean(requisitoBack.cronalimen),
-  //     crondiayh: this.stringToBoolean(requisitoBack.crondiayh),
-  //     cronmerc: this.stringToBoolean(requisitoBack.cronmerc),
-  //     cronparad: this.stringToBoolean(requisitoBack.cronparad),
-  //     cvsliscom: this.stringToBoolean(requisitoBack.cvsliscom),
-  //     desaut: this.stringToBoolean(requisitoBack.desaut),
-  //     forafip: this.stringToBoolean(requisitoBack.forafip),
-  //     fotodni: this.stringToBoolean(requisitoBack.fotodni),
-  //     lisrrhh: this.stringToBoolean(requisitoBack.lisrrhh),
-  //     organi: this.stringToBoolean(requisitoBack.organi),
-  //     perjur: this.stringToBoolean(requisitoBack.perjur),
-  //     prodesex: this.stringToBoolean(requisitoBack.prodesex),
-  //     segmalpra: this.stringToBoolean(requisitoBack.segmalpra),
-  //     segrescivil: this.stringToBoolean(requisitoBack.segrescivil),
-  //     soliform: this.stringToBoolean(requisitoBack.soliform),
-  //     statuto: this.stringToBoolean(requisitoBack.statuto),
-  //     casa: requisitoBack.casa
-  //   }
-  // }
-
   booleanToString(bool: boolean): string {
     return bool ? 'checked' : 'unchecked';
   }
 
-  // stringToBoolean(string: string): boolean {
-  //   return string === 'checked' ? true : false;
-  // }
 }
