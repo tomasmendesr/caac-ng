@@ -34,16 +34,80 @@
               </div>
             </div>
 
-            <div *ngFor="let vencimiento of vencimientosPropertys" class="form-group required row">
-              <label class="col-3 col-form-label control-label">{{vencimiento.descripcion}}</label>
-              <div> <!--luego ver si puedo anidar el label al grupo metiendo un for y un id en el div-->
-                <div class="col-9">
-                  <input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.otro]" name="{{vencimiento.otro}}" class="form-control" id="{{vencimiento.otro}}" placeholder="">
-                  <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}">
-                  <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}">
+            <div class="row">
+              <div class="col-lg-6">
+                <div *ngFor="let vencimiento of vencimientoPopupLayout1RenderingColumna1" class="form-group required row">
+                  <label class="col-3 col-form-label control-label">{{vencimiento.descripcion}}</label>
+                  <div class="col-9">
+                    <input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.otro]" name="{{vencimiento.otro}}" class="form-control" id="{{vencimiento.otro}}" placeholder="">
+                    <div class="form-row">
+                      <label class="col-4">Recibido</label>
+                      <!--<input type="text" class="col-6 form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}">-->
+                      <datepicker  class="col-6 form-control"  [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}"></datepicker>
+
+                    </div>
+                    <div>
+                      <label class="col-4">Vencido</label>
+                      <!--<input type="text" class="col-6 form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}">-->
+                      <datepicker  class="col-6 form-control"  [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}"></datepicker>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div *ngFor="let vencimiento of vencimientoPopupLayout1RenderingColumna2" class="form-group required row">
+                  <label class="col-3 col-form-label control-label">{{vencimiento.descripcion}}</label>
+                  <div class="col-9">
+                    <input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.otro]" name="{{vencimiento.otro}}" class="form-control" id="{{vencimiento.otro}}" placeholder="">
+                    <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}">-->
+                    <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}">-->
+
+                    <datepicker type="text" class="form-control"  [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}"></datepicker>
+                    <datepicker type="text" class="form-control"  [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}"></datepicker>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div *ngFor="let vencimiento of vencimientoPopupLayout2RenderingColumna1" class="form-group required row">
+                  <label class="col-3 col-form-label control-label">{{vencimiento.descripcion}}</label>
+                  <div class="col-9">
+                    <input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.otro]" name="{{vencimiento.otro}}" class="form-control" id="{{vencimiento.otro}}" placeholder="">
+                    <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}">-->
+                    <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}">-->
+                    <datepicker  class="form-control"  [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}"></datepicker>
+                    <datepicker  class="form-control"  [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}"></datepicker>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div *ngFor="let vencimiento of vencimientoPopupLayout2RenderingColumna2" class="form-group required row">
+                  <label class="col-3 col-form-label control-label">{{vencimiento.descripcion}}</label>
+                  <div class="col-9">
+                    <input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.otro]" name="{{vencimiento.otro}}" class="form-control" id="{{vencimiento.otro}}" placeholder="">
+                    <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}">-->
+                    <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}">-->
+
+                    <datepicker  class="form-control" [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}"></datepicker>
+                    <datepicker  class="form-control"  [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}"></datepicker>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--<div *ngFor="let vencimiento of vencimientosPropertys" class="form-group required row">-->
+              <!--<label class="col-3 col-form-label control-label">{{vencimiento.descripcion}}</label>-->
+              <!--<div> &lt;!&ndash;luego ver si puedo anidar el label al grupo metiendo un for y un id en el div&ndash;&gt;-->
+                <!--<div class="col-9">-->
+                  <!--<input *ngIf="vencimiento.textField" type="text" [(ngModel)]="vencimientoParaPopup[vencimiento.otro]" name="{{vencimiento.otro}}" class="form-control" id="{{vencimiento.otro}}" placeholder="">-->
+                  <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.recibido]" id="{{vencimiento.recibido}}" name="{{vencimiento.recibido}}">-->
+                  <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [(ngModel)]="vencimientoParaPopup[vencimiento.vencimiento]" id="{{vencimiento.vencimiento}}" name="{{vencimiento.vencimiento}}">-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
           </div>
         </form>
       </div> <!-- /.modal-body -->

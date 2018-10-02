@@ -2,23 +2,23 @@
   <br>
   <h3 id="title" class="text-center">{{TITLE}}</h3>
   <table id={{this.TABLE_ID}} class="table table-striped table-sm table-bordered table-hover" style="width:100%" width="100%"></table>
-  
-  
+
+
   <!-- POPUP -->
   <div class="modal fade bd-example-modal-lg" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-  
+
         <div class="modal-header">
           <h4 class="modal-title" id="exampleModalLabel">{{EDICION_CAAC}}</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-  
+
         <div class="modal-body">
           <form class="form-horizontal">
-  
+
             <div id="formAlert" (click)="hideFormAlert()" class="alert alert-danger formErrorMessages" role="alert">
               <ul>
                 <li *ngFor="let message of formMessages">
@@ -26,7 +26,7 @@
                 </li>
               </ul>
             </div>
-  
+
             <div *ngIf="requisitoParaPopup">
               <div class="container">
                 <div class="row">
@@ -37,21 +37,21 @@
                         <input type="text" [(ngModel)]="requisitoParaPopup.casa.nomcaac" name="nomcaac" class="form-control" id="nomcaac" placeholder="Nombre CAAC">
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="perjuridica" class="col-5 col-form-label control-label">Personería Juridica</label>
                       <div class="col-7">
                         <input type="text" [(ngModel)]="requisitoParaPopup.casa.perjuridica" name="perjuridica" class="form-control" id="perjuridica" placeholder="Personería Juridica">
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="cuit" class="col-5 col-form-label control-label">CUIT</label>
                       <div class="col-7">
                         <input type="text" [(ngModel)]="requisitoParaPopup.casa.cuit" name="cuit" class="form-control" id="cuit" placeholder="CUIT">
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="provincia" class="col-5 col-form-label control-label">Provincia</label>
                       <div class="col-7">
@@ -61,7 +61,7 @@
                         <!--<input type="text" [(ngModel)]="requisitoParaPopup.casa.provincia.nombre" name="provincia" class="form-control" id="provincia" placeholder="Provincia">-->
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="departamento" class="col-5 col-form-label control-label">Departamento</label>
                       <div class="col-7">
@@ -70,7 +70,7 @@
                         </select>
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="localidad" class="col-5 col-form-label control-label">Localidad</label>
                       <div class="col-7">
@@ -79,14 +79,14 @@
                         </select>
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="dir" class="col-5 col-form-label control-label">Dirección</label>
                       <div class="col-7">
                         <input type="text" [(ngModel)]="requisitoParaPopup.casa.dir" name="dir" class="form-control" id="dir" placeholder="Dirección">
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="nomrepre" class="col-5 col-form-label control-label">Nombre Representante</label>
                       <div class="col-7">
@@ -101,7 +101,7 @@
                         <input type="text" [(ngModel)]="requisitoParaPopup.casa.modal" name="modal" class="form-control" id="modal" placeholder="Modalidad">
                       </div>
                     </div>  <!--ver si no hay quilombo con el ID modal-->
-  
+
                     <div class="form-group required row">
                       <label for="cat" class="col-5 col-form-label control-label">Categoria Inicial</label>
                       <div class="col-7">
@@ -110,7 +110,7 @@
                         </select>
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="ncat" class="col-5 col-form-label control-label">Nueva Categoria</label>
                       <div class="col-7">
@@ -119,21 +119,24 @@
                         </select>
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="fechaini" class="col-5 col-form-label control-label">Fecha de Auditoría Inicial</label>
                       <div class="col-7">
-                        <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="requisitoParaPopup.casa.fechaini" id="fechaini" name="fechaini">
+                        <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="requisitoParaPopup.casa.fechaini" id="fechaini" name="fechaini">-->
+                        <datepicker class="form-control" [ngModel]="requisitoParaPopup.casa.fechaini" id="fechaini" name="fechaini"></datepicker>
+
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="fechacon" class="col-5 col-form-label control-label">Fecha Inicio de Convenio</label>
                       <div class="col-7">
-                        <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="requisitoParaPopup.casa.fechacon" id="fechacon" name="fechacon">
+                        <!--<input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [ngModel]="requisitoParaPopup.casa.fechacon" id="fechacon" name="fechacon">-->
+                        <datepicker  class="form-control" [ngModel]="requisitoParaPopup.casa.fechacon" id="fechacon" name="fechacon"></datepicker>
                       </div>
                     </div>
-  
+
                     <div class="form-group required row">
                       <label for="expsed" class="col-5 col-form-label control-label">Expediente SED</label>
                       <div class="col-7">
@@ -154,7 +157,7 @@
                       <h5 >Seleccione requisitos entregados</h5>
                   </div>
                  <br>
-                  
+
                   <div class="row">
                       <div class="form-group">
                         <div *ngFor="let req1 of requisitosColumna1">
@@ -185,7 +188,7 @@
             </div>
           </form>
         </div> <!-- /.modal-body -->
-  
+
         <div class="modal-footer">
           <button (click)="closeModal()" class="Button -sm -default -outline -rounded" data-dismiss="modal">Cancelar</button>
           <button (click)="onClickGuardar($event)" class="Button -sm -primary -raised -rounded">Aceptar</button>
@@ -193,5 +196,5 @@
       </div>
     </div>
   </div>
-  
+
 </div>

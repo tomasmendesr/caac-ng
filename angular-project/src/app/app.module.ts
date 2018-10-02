@@ -70,7 +70,7 @@ import {MensualSeccionCService} from "./tomi/services/mensual-seccion-c.service"
 import {AcompaniamientoService} from "./tomi/services/acompaniamiento.service";
 import {RecursoService} from "./tomi/services/recurso.service";
 import {CategoriaService} from "./services/categoria.service";
-import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import {DatepickerModule} from "ngx-bootstrap/datepicker";
 import {RequisitoService} from "./fede/services/requisito.service";
 import {DateService} from "./services/date.service";
 import {ActividadIntervencionService} from "./tomi/services/actividad-intervencion.service";
@@ -139,7 +139,7 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,
-    BsDatepickerModule.forRoot()
+    DatepickerModule.forRoot()
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

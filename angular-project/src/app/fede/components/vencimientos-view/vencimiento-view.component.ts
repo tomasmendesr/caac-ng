@@ -19,26 +19,52 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
   //TODO que las columnas queden mas lindas y que se marquen celdas en rojo cuando hay un vencimiento que supera la fecha actual
   //todo deshabilitar sorting de columnas de vencimientos
   //todo popup mas comprimido
+  //todo validaciones
 
   TITLE: string = 'Vencimientos';
   TABLE_ID: string = 'vencimientosTable';
   vencimientoParaPopup: Vencimiento;
-  vencimientosPropertys: any[] = [
+  vencimientoPopupLayout1RenderingColumna1 = [
     {recibido: 'asamrecib',     vencimiento: 'asambaja',      otro: '', descripcion: 'Acta asamblea', textField: false },
     {recibido: 'autorirecib',   vencimiento: 'autoribaja',    otro: '', descripcion: 'Acta Autoridades:', textField: false},
+  ];
+  vencimientoPopupLayout1RenderingColumna2 = [
     {recibido: 'afiprecib',     vencimiento: 'afipbaja',      otro: '', descripcion: 'AFIP:', textField: false},
-    {recibido: 'responrecib',   vencimiento: 'responbaja',    otro: '', descripcion: 'Seguro de Responsabilidad Civil:', textField: false},
+    {recibido: 'responrecib',   vencimiento: 'responbaja',    otro: '', descripcion: 'Seguro de Responsabilidad Civil:', textField: false}
+  ];
+
+  vencimientoPopupLayout2RenderingColumna1 = [
     {recibido: 'fechRecMala1',  vencimiento: 'fechVenMala1',  otro: 'malapra1', descripcion: 'Seguro de Mala praxis 1:', textField: true},
     {recibido: 'fechRecMala2',  vencimiento: 'fechVenMala2',  otro: 'malapra2', descripcion: 'Seguro de Mala praxis 2:', textField: true},
     {recibido: 'fechRecMala3',  vencimiento: 'fechVenMala3',  otro: 'malapra3', descripcion: 'Seguro de Mala praxis 3:', textField: true},
     {recibido: 'fechRecMala4',  vencimiento: 'fechVenMala4',  otro: 'malapra4', descripcion: 'Seguro de Mala praxis 4:', textField: true},
-    {recibido: 'fechRecMala5',  vencimiento: 'fechVenMala5',  otro: 'malapra5', descripcion: 'Seguro de Mala praxis 5:', textField: true},
+    {recibido: 'fechRecMala5',  vencimiento: 'fechVenMala5',  otro: 'malapra5', descripcion: 'Seguro de Mala praxis 5:', textField: true}
+  ];
+
+  vencimientoPopupLayout2RenderingColumna2 = [
     {recibido: 'fechRecMala6',  vencimiento: 'fechVenMala6',  otro: 'malapra6', descripcion: 'Seguro de Mala praxis 6:', textField: true},
     {recibido: 'fechRecMala7',  vencimiento: 'fechVenMala7',  otro: 'malapra7', descripcion: 'Seguro de Mala praxis 7:', textField: true},
     {recibido: 'fechRecMala8',  vencimiento: 'fechVenMala8',  otro: 'malapra8', descripcion: 'Seguro de Mala praxis 8:', textField: true},
     {recibido: 'fechRecMala9',  vencimiento: 'fechVenMala9',  otro: 'malapra9', descripcion: 'Seguro de Mala praxis 9:', textField: true},
-    {recibido: 'fechRecMala10', vencimiento: 'fechVenMala10', otro: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true},
+    {recibido: 'fechRecMala10', vencimiento: 'fechVenMala10', otro: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true}
   ];
+
+  // vencimientosPropertys: any[] = [ //para renderizar de forma programable todx el popup
+  //   {recibido: 'asamrecib',     vencimiento: 'asambaja',      otro: '', descripcion: 'Acta asamblea', textField: false },
+  //   {recibido: 'autorirecib',   vencimiento: 'autoribaja',    otro: '', descripcion: 'Acta Autoridades:', textField: false},
+  //   {recibido: 'afiprecib',     vencimiento: 'afipbaja',      otro: '', descripcion: 'AFIP:', textField: false},
+  //   {recibido: 'responrecib',   vencimiento: 'responbaja',    otro: '', descripcion: 'Seguro de Responsabilidad Civil:', textField: false},
+  //   {recibido: 'fechRecMala1',  vencimiento: 'fechVenMala1',  otro: 'malapra1', descripcion: 'Seguro de Mala praxis 1:', textField: true},
+  //   {recibido: 'fechRecMala2',  vencimiento: 'fechVenMala2',  otro: 'malapra2', descripcion: 'Seguro de Mala praxis 2:', textField: true},
+  //   {recibido: 'fechRecMala3',  vencimiento: 'fechVenMala3',  otro: 'malapra3', descripcion: 'Seguro de Mala praxis 3:', textField: true},
+  //   {recibido: 'fechRecMala4',  vencimiento: 'fechVenMala4',  otro: 'malapra4', descripcion: 'Seguro de Mala praxis 4:', textField: true},
+  //   {recibido: 'fechRecMala5',  vencimiento: 'fechVenMala5',  otro: 'malapra5', descripcion: 'Seguro de Mala praxis 5:', textField: true},
+  //   {recibido: 'fechRecMala6',  vencimiento: 'fechVenMala6',  otro: 'malapra6', descripcion: 'Seguro de Mala praxis 6:', textField: true},
+  //   {recibido: 'fechRecMala7',  vencimiento: 'fechVenMala7',  otro: 'malapra7', descripcion: 'Seguro de Mala praxis 7:', textField: true},
+  //   {recibido: 'fechRecMala8',  vencimiento: 'fechVenMala8',  otro: 'malapra8', descripcion: 'Seguro de Mala praxis 8:', textField: true},
+  //   {recibido: 'fechRecMala9',  vencimiento: 'fechVenMala9',  otro: 'malapra9', descripcion: 'Seguro de Mala praxis 9:', textField: true},
+  //   {recibido: 'fechRecMala10', vencimiento: 'fechVenMala10', otro: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true},
+  // ];
 
   constructor(private dataTableService: DataTableService, private dateService: DateService, private vencimientoService: VencimientoService) { }
 
