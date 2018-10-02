@@ -9,6 +9,12 @@ public class HojaMensualPersonalDTO {
     private String altaBaja;
     private String uum;
     private java.util.Date fum;
+    private String nombre;
+    private Integer horasSemanales;
+    private String apellido;
+    private String rol;
+    private String titulo;
+    private String esRentado;
 
     public HojaDTO getHoja() {
         return hoja;
@@ -48,5 +54,53 @@ public class HojaMensualPersonalDTO {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getHorasSemanales() {
+        return horasSemanales;
+    }
+
+    public void setHorasSemanales(Integer horasSemanales) {
+        this.horasSemanales = horasSemanales;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getEsRentado() {
+        return esRentado;
+    }
+
+    public void setEsRentado(String esRentado) {
+        this.esRentado = esRentado;
     }
 }
