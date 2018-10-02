@@ -14,7 +14,6 @@ export class MensualSeccionDComponent implements OnInit {
   private errorSection: number = -1;
   private hojaId: number;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
-
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
 
   constructor() { }
