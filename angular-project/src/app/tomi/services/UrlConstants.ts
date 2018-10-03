@@ -112,9 +112,14 @@ export class UrlConstants {
 
   // hoja mensual personal service
   static readonly GET_HOJA_MENSUAL_PERSONAL_FOR_TABLE = '/services/hojaMensualPersonal/getDataForTable';
+  static readonly SAVE_OR_UPDATE_SECCION_D_HOJA_MENSUAL_PERSONAL = '/services/hojaMensualPersonal/saveOrUpdateSeccionD';
 
   //hoja mensual observaciones service
   static readonly FIND_HOJA_MENSUAL_OBSERVACIONES_BY_HOJA_ID = '/services/hojaMensualObservaciones/findByHojaId';
   static readonly SAVE_OR_UPDATE_MENSUAL_OBSERVACIONES_SECCION_D = '/services/hojaMensualObservaciones/saveOrUpdateSeccionD';
+
+  //personal service
+  static readonly FIND_PERSONAL_BY_DOCUMENTO = '/services/personal/findByDocumento';
+
 
 }

@@ -9,7 +9,7 @@ import {Injectable} from "@angular/core";
 export class HojaMensualPersonalService {
   constructor(private http: HttpClient){}
 
-  saveOrUpdate(hojaMensualPersonal: HojaMensualPersonal): Observable<AppResponse> {
-    return this.http.post<AppResponse>(UrlConstants.FIND_ALL_RECURSOS, hojaMensualPersonal);
+  saveOrUpdateSeccionD(hojaMensualPersonal: HojaMensualPersonal): Observable<AppResponse> {
+    return this.http.post<AppResponse>(UrlConstants.SAVE_OR_UPDATE_SECCION_D_HOJA_MENSUAL_PERSONAL, hojaMensualPersonal);
   }
 }

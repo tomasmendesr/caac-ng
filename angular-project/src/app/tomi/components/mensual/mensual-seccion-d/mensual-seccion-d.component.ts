@@ -15,6 +15,7 @@ import {HojaMensualPersonalService} from "../../../services/hoja-mensual-persona
 import {AppResponse} from "../../../../model/app-response";
 import {NotifUtil} from "../../../utils/notif-util";
 import {Router} from "@angular/router";
+import {PersonalService} from "../../../services/personal.service";
 declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-d',
@@ -31,8 +32,9 @@ export class MensualSeccionDComponent implements OnInit {
   documentFilter: DocumentFilter = new DocumentFilter;
   private tiposDocumento: TipoDocumento[] = [];
   filter: DefaultFilter = new DefaultFilter;
+  private personalEncontradoByDocumento: boolean = false;
 
-  constructor(private eventBusService: EventBusService, private picsService: PicsService, private router: Router,
+  constructor(private eventBusService: EventBusService, private picsService: PicsService, private router: Router, private personalService: PersonalService,
               private hojaMensualObservacionesService: HojaMensualObservacionesService, private hojaMensualPersonalService: HojaMensualPersonalService) { }
 
   ngOnInit() {
@@ -137,10 +139,26 @@ export class MensualSeccionDComponent implements OnInit {
 
   private cleanFilter(){
     this.documentFilter = new DocumentFilter;
+    this.personalEncontradoByDocumento = false;
+  }
+
+  compare(t1: any, t2: any): boolean {
+    return  t1 === t2;
   }
 
   private findPersonal(){
-
+    this.personalService.findByDocumento(this.documentFilter).subscribe(p => {
+      if(p){
+        this.personalMensual.nombre = p.nombre;
+        this.personalMensual.apellido = p.apellido;
+        this.personalMensual.personal.tipoDocumento = p.tipoDocumento;
+        this.personalMensual.personal.numeroDocumento = p.numeroDocumento;
+        this.personalMensual.rol = p.rol;
+        this.personalMensual.titulo = p.titulo;
+        this.personalMensual.esRentado = p.esRentado;
+        this.personalEncontradoByDocumento = true;
+      } else this.personalEncontradoByDocumento = false;
+    });
   }
 
   private onChangeTipoDocumento(tipoDoc: any){
@@ -149,15 +167,15 @@ export class MensualSeccionDComponent implements OnInit {
 
   onClickAceptarPopup(event: any) {
     event.preventDefault();
-    this.loadingComponent.showLoading();
+    // this.loadingComponent.showLoading(); // no sé por qué buguea el modal
     this.personalMensual.hoja.id = this.hojaId;
-    this.hojaMensualPersonalService.saveOrUpdate(this.personalMensual).subscribe(appResponse => {
+    this.hojaMensualPersonalService.saveOrUpdateSeccionD(this.personalMensual).subscribe(appResponse => {
       if (appResponse.code == AppResponse.SUCCESS) {
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
         this.closeModal();
       } else {
-        this.showErrorMsgs(appResponse, "formAlert");
+        this.showErrorMsgs(appResponse, "formAlertPopup");
       }
     }, (error) => this.notifError(error));
   }

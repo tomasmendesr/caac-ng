@@ -108,15 +108,15 @@
               <button type="button" class="btn btn-default" (click)="cleanFilter()" title="Limpiar filtros"><span class="fas fa-eraser"></span></button>
             </div>
             <div class="col-1" style="padding-left: 3px">
-              <button type="button" class="btn btn-primary -lg -raised" (click)="findPersonal()" [disabled]="documentFilter.tipoDocumento == null || documentFilter.numeroDocumento == null" title="Actualizar búsqueda"> <span class="fas fa-search"></span></button>
+              <button type="button" class="btn btn-primary -lg -raised" (click)="findPersonal()" title="Actualizar búsqueda"> <span class="fas fa-search"></span></button>
             </div>
           </form>
         </div>
 
         <form class="form-horizontal">
 
-          <div id="formAlertPopup" (click)="hideFormAlert()"  style="display:none; cursor: pointer" class="alert alert-danger" role="alert">
-            <ul>
+          <div id="formAlertPopup" (click)="hideFormAlert()"  style="display:none; cursor: pointer" class="alert alert-danger formErrorMessages" role="alert">
+            <ul style="margin-bottom:0">
               <li *ngFor="let message of formMessages">
                 {{message}}
               </li>
@@ -127,20 +127,20 @@
             <div class="form-group required row">
               <label for="nombre" class="col-3 col-form-label control-label">Nombre</label>
               <div class="col-9">
-                <input type="text" name="nombre" class="form-control" id="nombre" [(ngModel)]="personalMensual.nombre">
+                <input type="text" name="nombre" class="form-control" id="nombre" [(ngModel)]="personalMensual.nombre" [readonly]="personalEncontradoByDocumento">
               </div>
             </div>
             <div class="form-group required row">
               <label for="apellido" class="col-3 col-form-label control-label">Apellido</label>
               <div class="col-9">
-                <input type="text" name="apellido" class="form-control" id="apellido" [(ngModel)]="personalMensual.apellido">
+                <input type="text" name="apellido" class="form-control" id="apellido" [(ngModel)]="personalMensual.apellido" [readonly]="personalEncontradoByDocumento">
               </div>
             </div>
 
             <div class="form-group required row">
               <label for="tipoDocPersonal" class="col-3 col-form-label control-label">Tipo Documento</label>
               <div class="col-9">
-                <select class="custom-select col-4" id="tipoDocPersonal" name="tipoDocPersonal" [(ngModel)]="personalMensual.personal.tipoDocumento">
+                <select class="custom-select col-4" [compareWith]="compare"  id="tipoDocPersonal" name="tipoDocPersonal" [disabled]="personalEncontradoByDocumento" [(ngModel)]="personalMensual.personal.tipoDocumento">
                   <option *ngFor="let tipoDoc of tiposDocumento" [ngValue]="tipoDoc">{{tipoDoc.descripcion}}</option>
                 </select>
               </div>
@@ -148,36 +148,36 @@
             <div class="form-group required row">
               <label for="nroDocPersonal" class="col-3 col-form-label control-label">Número documento</label>
               <div class="col-9">
-                <input type="number" name="nroDocPersonal" class="form-control" id="nroDocPersonal" [(ngModel)]="personalMensual.personal.numeroDocumento" [disabled]="personalMensual.tipoDocumento == null">
+                <input type="number" name="nroDocPersonal" class="form-control" [readonly]="personalEncontradoByDocumento" id="nroDocPersonal" [(ngModel)]="personalMensual.personal.numeroDocumento" >
               </div>
             </div>
             <div class="form-group required row">
               <label for="altaBaja" class="col-3 col-form-label control-label">Alta/Baja</label>
               <div class="col-9">
-                <select class="custom-select"  id="altaBaja" name="altaBaja" [(ngModel)]="personalMensual.altaBaja">
-                  <option [ngValue]="alta" selected>Alta</option>
-                  <option [ngValue]="baja">Baja</option>
+                <select class="custom-select" [compareWith]="compare" id="altaBaja" name="altaBaja" [(ngModel)]="personalMensual.altaBaja">
+                  <option [ngValue]="'alta'">Alta</option>
+                  <option [ngValue]="'baja'">Baja</option>
                 </select>
               </div>
             </div>
             <div class="form-group required row">
               <label for="rol" class="col-3 col-form-label control-label">Rol</label>
               <div class="col-9">
-                <input type="text" name="rol" class="form-control" id="rol" [(ngModel)]="personalMensual.rol">
+                <input type="text" name="rol" class="form-control" id="rol" [readonly]="personalEncontradoByDocumento" [(ngModel)]="personalMensual.rol">
               </div>
             </div>
             <div class="form-group required row">
               <label for="titulo" class="col-3 col-form-label control-label">Título</label>
               <div class="col-9">
-                <input type="text" name="titulo" class="form-control" id="titulo" [(ngModel)]="personalMensual.titulo">
+                <input type="text" name="titulo" class="form-control" [readonly]="personalEncontradoByDocumento" id="titulo" [(ngModel)]="personalMensual.titulo">
               </div>
             </div>
             <div class="form-group required row">
               <label for="rentado" class="col-3 col-form-label control-label">Rentado/No Rentado</label>
               <div class="col-9">
-                <select class="custom-select"  id="rentado" name="rentado" [(ngModel)]="personalMensual.esRentado">
-                  <option [ngValue]="S">Sí</option>
-                  <option [ngValue]="N">No</option>
+                <select class="custom-select" [compareWith]="compare" id="rentado" name="rentado" [disabled]="personalEncontradoByDocumento" [(ngModel)]="personalMensual.esRentado">
+                  <option [ngValue]="'S'">Sí</option>
+                  <option [ngValue]="'N'">No</option>
                 </select>
               </div>
             </div>

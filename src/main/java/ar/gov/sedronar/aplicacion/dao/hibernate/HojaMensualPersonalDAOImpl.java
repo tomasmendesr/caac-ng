@@ -24,6 +24,11 @@ import java.util.Map;
 @Stateless
 @HibernateDAO
 public class HojaMensualPersonalDAOImpl extends AbstractDAOImpl<HojaMensualPersonal> implements HojaMensualPersonalDAO {
+
+    private Criteria getCriteria(){
+        return entityManager.unwrap(Session.class).createCriteria(HojaMensualPersonal.class, "hojaMensual");
+    }
+
     @Override
     public Integer count(AbstractFilter filter) {
         Criteria criteria = this.applyFilters(filter,null);
@@ -38,8 +43,16 @@ public class HojaMensualPersonalDAOImpl extends AbstractDAOImpl<HojaMensualPerso
         return super.executeCriteria(criteria, start, length, sortOrder, aliases);
     }
 
+    @Override
+    public HojaMensualPersonal findById(Long idHoja, Integer idPersonal) {
+        Criteria criteria = getCriteria();
+        criteria.add(Restrictions.eq("hojaMensual.id.idHoja", idHoja));
+        criteria.add(Restrictions.eq("hojaMensual.id.idEmpleado", idPersonal));
+        return (HojaMensualPersonal) criteria.uniqueResult();
+    }
+
     private Criteria applyFilters(AbstractFilter filter, Map<String,String> aliases){
-        Criteria criteria = entityManager.unwrap(Session.class).createCriteria(HojaMensualPersonal.class, "hojaMensual");
+        Criteria criteria = getCriteria();
         criteria.add(Restrictions.eq("hojaMensual.id.idHoja", Long.parseLong(filter.getValue())));
         return criteria;
     }

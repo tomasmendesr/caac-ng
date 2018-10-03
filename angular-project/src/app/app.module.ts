@@ -76,6 +76,7 @@ import {DateService} from "./services/date.service";
 import {ActividadIntervencionService} from "./tomi/services/actividad-intervencion.service";
 import {HojaMensualObservacionesService} from "./tomi/services/hoja-mensual-observaciones.service";
 import {HojaMensualPersonalService} from "./tomi/services/hoja-mensual-personal.service";
+import {PersonalService} from "./tomi/services/personal.service";
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -167,7 +168,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     DateService,
     ActividadIntervencionService,
     HojaMensualObservacionesService,
-    HojaMensualPersonalService
+    HojaMensualPersonalService,
+    PersonalService
   ],
   bootstrap: [AppComponent]
 })

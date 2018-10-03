@@ -15,4 +15,5 @@ import java.util.Map;
 public interface HojaMensualPersonalDAO extends AbstractDAO<HojaMensualPersonal> {
     Integer count(AbstractFilter filter);
     List<HojaMensualPersonal> findAll(Integer start, Integer length, Map<String, Boolean> sortOrder, AbstractFilter filter);
+    HojaMensualPersonal findById(Long idHoja, Integer idPersonal);
 }

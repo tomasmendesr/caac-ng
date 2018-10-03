@@ -95,7 +95,7 @@ public class Personal {
         this.titulo = titulo;
     }
 
-    @Column(name = "es_rentado", length = 1, columnDefinition = "char(1")
+    @Column(name = "es_rentado", length = 1, columnDefinition = "char(1)")
     public String getEsRentado() {
         return esRentado;
     }
@@ -104,7 +104,7 @@ public class Personal {
         this.esRentado = esRentado;
     }
 
-    @Column(name = "estado_actual", length = 4, columnDefinition = "char(4")
+    @Column(name = "estado_actual", length = 4, columnDefinition = "char(4)")
     public String getEstadoActual() {
         return estadoActual;
     }
