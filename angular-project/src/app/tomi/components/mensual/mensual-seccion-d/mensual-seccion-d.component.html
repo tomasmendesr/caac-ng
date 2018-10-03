@@ -140,7 +140,7 @@
             <div class="form-group required row">
               <label for="tipoDocPersonal" class="col-3 col-form-label control-label">Tipo Documento</label>
               <div class="col-9">
-                <select class="custom-select col-4" [compareWith]="compare"  id="tipoDocPersonal" name="tipoDocPersonal" [disabled]="personalEncontradoByDocumento" [(ngModel)]="personalMensual.personal.tipoDocumento">
+                <select class="custom-select col-4" [compareWith]="compareObject"  id="tipoDocPersonal" name="tipoDocPersonal" [disabled]="personalEncontradoByDocumento" [(ngModel)]="personalMensual.personal.tipoDocumento">
                   <option *ngFor="let tipoDoc of tiposDocumento" [ngValue]="tipoDoc">{{tipoDoc.descripcion}}</option>
                 </select>
               </div>

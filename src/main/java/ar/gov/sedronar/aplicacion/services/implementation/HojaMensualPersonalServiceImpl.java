@@ -74,6 +74,7 @@ public class HojaMensualPersonalServiceImpl implements HojaMensualPersonalServic
         personal.setApellido(dto.getApellido());
         personal.setEsRentado(dto.getEsRentado());
         personal.setNumeroDocumento(dto.getPersonal().getNumeroDocumento());
+        personal.setTipoDocumento(dto.getPersonal().getTipoDocumento());
         personal.setRol(dto.getRol());
         personal.setTitulo(dto.getTitulo());
         personal.setEstadoActual(dto.getAltaBaja() == ALTA ? PersonalServiceImpl.ESTADO_ACTUAL_ACTIVO : PersonalServiceImpl.ESTADO_ACTUAL_INACTIVO);

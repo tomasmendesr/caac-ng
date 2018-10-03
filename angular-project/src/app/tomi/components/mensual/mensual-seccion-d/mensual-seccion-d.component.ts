@@ -47,7 +47,7 @@ export class MensualSeccionDComponent implements OnInit {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
       this.filter.value = this.hojaId ? this.hojaId.toString() : null;
-      this.buildTable();
+      this.updateTable();
       if(this.hojaId) this.hojaMensualObservacionesService.findByHojaId(headerEvent.value.hojaId).subscribe(data => this.hojaMensualObservaciones = data);
     }
   }
@@ -146,6 +146,10 @@ export class MensualSeccionDComponent implements OnInit {
     return  t1 === t2;
   }
 
+  compareObject(o1: any, o2: any): boolean {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  }
+
   private findPersonal(){
     this.personalService.findByDocumento(this.documentFilter).subscribe(p => {
       if(p){
@@ -187,6 +191,7 @@ export class MensualSeccionDComponent implements OnInit {
       if(appResponse.code == AppResponse.SUCCESS){
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
+        this.updateTable();
       }else{
         this.showErrorMsgs(appResponse, "formAlert");
       }
