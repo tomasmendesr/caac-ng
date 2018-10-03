@@ -6,6 +6,15 @@ import {HojaMensualPersonal} from "../../../../model/hoja-mensual-personal";
 import {EventBusService} from "../../../../services/event-bus.service";
 import {environment} from "../../../../../environments/environment";
 import {UrlConstants} from "../../../services/UrlConstants";
+import {DocumentFilter} from "../../../filters/document-filter";
+import {TipoDocumento} from "../../../../model/tipo-documento";
+import {PicsService} from "../../../services/pics.service";
+import {DefaultFilter} from "../../../filters/default-filter";
+import {HojaMensualObservacionesService} from "../../../services/hoja-mensual-observaciones.service";
+import {HojaMensualPersonalService} from "../../../services/hoja-mensual-personal.service";
+import {AppResponse} from "../../../../model/app-response";
+import {NotifUtil} from "../../../utils/notif-util";
+import {Router} from "@angular/router";
 declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-d',
@@ -15,28 +24,29 @@ declare var $:any;
 export class MensualSeccionDComponent implements OnInit {
   private readonlyControl: boolean = true;
   private formMessages: string[] = [];
-  private errorSection: number = -1;
   private hojaId: number;
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
   private hojaMensualObservaciones: HojaMensualObservaciones = new HojaMensualObservaciones;
   private personalMensual: HojaMensualPersonal = new HojaMensualPersonal;
+  documentFilter: DocumentFilter = new DocumentFilter;
+  private tiposDocumento: TipoDocumento[] = [];
+  filter: DefaultFilter = new DefaultFilter;
 
-  constructor(private eventBusService: EventBusService) { }
+  constructor(private eventBusService: EventBusService, private picsService: PicsService, private router: Router,
+              private hojaMensualObservacionesService: HojaMensualObservacionesService, private hojaMensualPersonalService: HojaMensualPersonalService) { }
 
   ngOnInit() {
     this.buildTable();
+    this.picsService.findAllTiposDocumento().subscribe(data => this.tiposDocumento = data);
   }
 
   private onChangeHeader(headerEvent: HeaderEvent) {
     if (headerEvent.evento == HeaderEvent.HOJA_ID) {
       this.readonlyControl = headerEvent.value.hojaId == null;
       this.hojaId = headerEvent.value.hojaId;
-      if (headerEvent.value.hojaId) {
-        // this.loadingComponent.showLoading();
-        // this.mensualSeccionCService.findDataSeccionC5ByHojaId(headerEvent.value.hojaId).subscribe(data => this.parseSeccionC5Data(data));
-      } else {
-        // this.initEmptyData();
-      }
+      this.filter.value = this.hojaId ? this.hojaId.toString() : null;
+      this.buildTable();
+      if(this.hojaId) this.hojaMensualObservacionesService.findByHojaId(headerEvent.value.hojaId).subscribe(data => this.hojaMensualObservaciones = data);
     }
   }
 
@@ -71,7 +81,7 @@ export class MensualSeccionDComponent implements OnInit {
         type: 'POST',
         contentType: 'application/json',
         data: function (d) {
-          // d.filter = self.filter;
+          d.filter = self.filter;
           return JSON.stringify(d);
         },
         error: function (xhr, error, thrown) {
@@ -108,14 +118,15 @@ export class MensualSeccionDComponent implements OnInit {
     $("#form").modal('hide');
     this.hideFormAlert();
     this.personalMensual = new HojaMensualPersonal;
+    this.cleanFilter();
   }
 
   private captureCloseModalEvent() {
     var self = this;
     $("#form").on("hidden.bs.modal", function () {
       self.personalMensual = new HojaMensualPersonal;
+      self.closeModal();
     });
-    this.hideFormAlert();
   }
 
   hideFormAlert() {
@@ -124,5 +135,88 @@ export class MensualSeccionDComponent implements OnInit {
     $('#formAlertPopup').hide();
   }
 
+  private cleanFilter(){
+    this.documentFilter = new DocumentFilter;
+  }
 
+  private findPersonal(){
+
+  }
+
+  private onChangeTipoDocumento(tipoDoc: any){
+    this.documentFilter.tipoDocumento = tipoDoc ? tipoDoc : null;
+  }
+
+  onClickAceptarPopup(event: any) {
+    event.preventDefault();
+    this.loadingComponent.showLoading();
+    this.personalMensual.hoja.id = this.hojaId;
+    this.hojaMensualPersonalService.saveOrUpdate(this.personalMensual).subscribe(appResponse => {
+      if (appResponse.code == AppResponse.SUCCESS) {
+        NotifUtil.notifSuccess("Guardado exitosamente");
+        this.loadingComponent.hideLoading();
+        this.closeModal();
+      } else {
+        this.showErrorMsgs(appResponse, "formAlert");
+      }
+    }, (error) => this.notifError(error));
+  }
+
+  private onClickGuardar() {
+    this.loadingComponent.showLoading();
+    this.hojaMensualObservaciones.hoja.id = this.hojaId;
+    this.hojaMensualObservacionesService.saveOrUpdateSeccionD(this.hojaMensualObservaciones).subscribe(appResponse => {
+      if(appResponse.code == AppResponse.SUCCESS){
+        NotifUtil.notifSuccess("Guardado exitosamente");
+        this.loadingComponent.hideLoading();
+      }else{
+        this.showErrorMsgs(appResponse, "formAlert");
+      }
+    }, (error) => this.notifError(error));
+  }
+
+  private notifError(error){
+    NotifUtil.notifError(error.error.message);
+    this.loadingComponent.hideLoading();
+  }
+
+  private showErrorMsgs(appResponse: AppResponse, idFormAlert: string){
+    this.loadingComponent.hideLoading();
+    NotifUtil.notifError("Ocurrieron errores de validación. Verifique los formularios.");
+    this.formMessages = appResponse.data;
+    $("#"+idFormAlert).show();
+  }
+
+  private onClickSiguiente(){
+    this.showConfirmDialog('confirmDialogSiguiente');
+  }
+
+  private showConfirmDialog(id: string){
+    $("#"+id).modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
+  }
+
+  private hideConfirmDialog(id: string){
+    $("#"+id).modal('hide');
+  }
+
+  private siguiente(){
+    this.router.navigateByUrl(UrlConstants.MENSUAL_SECCION_C2);
+  }
+
+  private onClickConfirmDialogSiguiente(){
+    this.loadingComponent.showLoading();
+    this.hojaMensualObservaciones.hoja.id = this.hojaId;
+    this.hojaMensualObservacionesService.saveOrUpdateSeccionD(this.hojaMensualObservaciones).subscribe(appResponse => {
+      if(appResponse.code == AppResponse.SUCCESS){
+        this.loadingComponent.hideLoading();
+        this.siguiente();
+      }else{
+        this.showErrorMsgs(appResponse, "formAlert");
+      }
+    }, (error) => this.notifError(error));
+  }
 }

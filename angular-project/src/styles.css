@@ -29,5 +29,10 @@
   margin-bottom: 20px;
 }
 
+.bottomSpace{
+  margin-bottom:5px;
+  padding-bottom:5px;
+}
+
 /*.HeaderContainer{ left: 0 !important; }*/
 /*.ContentContainer{ margin-left: 0px !important; }*/

@@ -3,6 +3,7 @@ import {Personal} from "./personal";
 export class HojaMensualPersonal {
   constructor(){
     this.hoja = new Hoja;
+    this.personal = new Personal;
   }
   hoja: Hoja;
   personal: Personal;
@@ -13,4 +14,6 @@ export class HojaMensualPersonal {
   titulo: string;
   esRentado: string;
   altaBaja: string;
+
+
 }

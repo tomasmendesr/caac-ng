@@ -14,6 +14,7 @@ import ar.gov.sedronar.util.dozer.DozerHelper;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +32,8 @@ public class HojaMensualPersonalServiceImpl implements HojaMensualPersonalServic
 
     @Override
     public DataTableObjectResponse getDataForTable(AbstractTableFilter filtro) {
+        if(filtro.getFilter().getValue() == null) return new DataTableObjectResponse(new ArrayList<>(),filtro.getDraw(),0, 0);
+
         Map<String, Boolean> sortOrder = new HashMap<>();
         for (ColumnOrder order : filtro.getOrder()) {
             Column column = filtro.getColumns().get(order.getColumn());

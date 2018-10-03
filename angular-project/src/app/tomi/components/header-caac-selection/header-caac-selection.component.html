@@ -19,13 +19,13 @@
             <form class="form-inline" id="periodoCarga">
               <div class="form-group">
                 <select class="custom-select" id="anioCarga" [(ngModel)]="headerSigeseForms.anioCarga" [disabled]="!modificarValoresCarga" (change)="onChangeAnioCarga($event)" name="anioCarga">
-                  <option [value]="-1" selected>Año</option>
+                  <option [value]="undefined" selected>Año</option>
                   <option *ngFor="let anio of anios" [value]="anio">{{ anio }}</option>
                 </select>
               </div>
               <div class="form-group" style="padding-left: 5px">
                 <select class="custom-select" id="mesCarga" [compareWith]="compareFunct" [(ngModel)]="headerSigeseForms.mesCarga" [disabled]="!modificarValoresCarga" (ngModelChange)="onChangeMesCarga($event)" name="mesCarga">
-                  <option [value]="-1" selected>Mes</option>
+                  <option [ngValue]="undefined" selected>Mes</option>
                   <option *ngFor="let mes of meses" [ngValue]="mes">{{ mes.id }}</option>
                 </select>
               </div>

@@ -1,4 +1,5 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
+import ar.gov.sedronar.modulo.commonsModels.dto.TipoDocumentoDTO;
 import ar.gov.sedronar.modulo.geo.dto.DepartamentoDTO;
 import ar.gov.sedronar.modulo.geo.dto.DepartamentoLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
@@ -18,7 +19,7 @@ import java.util.List;
 @Path("/pics")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public interface PicsGeoService {
+public interface PicsService {
 
     @POST
     @Path("/findAllProvinciasCombo")
@@ -39,5 +40,10 @@ public interface PicsGeoService {
     @POST
     @Path("/findAllLocalidadesByDepartamento")
     List<LocalidadLightDTO> findAllLocalidadesByDepartamento(DepartamentoLightDTO departamentoLightDTO);
+
+    @POST
+    @Path("/findAllTiposDocumento")
+    List<TipoDocumentoDTO> findAllTiposDocumento();
+
 
 }

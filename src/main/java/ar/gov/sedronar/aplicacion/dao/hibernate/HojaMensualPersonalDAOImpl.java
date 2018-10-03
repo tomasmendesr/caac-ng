@@ -39,7 +39,8 @@ public class HojaMensualPersonalDAOImpl extends AbstractDAOImpl<HojaMensualPerso
     }
 
     private Criteria applyFilters(AbstractFilter filter, Map<String,String> aliases){
-        Criteria criteria = entityManager.unwrap(Session.class).createCriteria(HojaMensualPersonal.class);
+        Criteria criteria = entityManager.unwrap(Session.class).createCriteria(HojaMensualPersonal.class, "hojaMensual");
+        criteria.add(Restrictions.eq("hojaMensual.id.idHoja", Long.parseLong(filter.getValue())));
         return criteria;
     }
 }

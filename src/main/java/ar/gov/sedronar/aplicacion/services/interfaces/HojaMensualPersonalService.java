@@ -18,6 +18,11 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public interface HojaMensualPersonalService {
 
+    /********
+     * El filtro contiene el id de la hoja
+     * @param filter
+     * @return
+     */
     @POST
     @Path("/getDataForTable")
     DataTableObjectResponse getDataForTable(AbstractTableFilter filter);

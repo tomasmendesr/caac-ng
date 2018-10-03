@@ -5,6 +5,7 @@ import {Observable} from "rxjs/Observable";
 import {Provincia} from "../../model/provincia";
 import {Localidad} from "../../model/localidad";
 import {Departamento} from "../../model/departamento";
+import {TipoDocumento} from "../../model/tipo-documento";
 
 @Injectable()
 export class PicsService {
@@ -30,6 +31,10 @@ export class PicsService {
 
   findAllLocalidadesByDepartamento(departamento): Observable<Localidad[]> {
     return this.http.post<Localidad[]>(UrlConstants.FIND_LOCALIDADES_BY_DEPARTAMENTO, departamento);
+  }
+
+  findAllTiposDocumento(): Observable<TipoDocumento[]>{
+    return this.http.post<TipoDocumento[]>(UrlConstants.FIND_ALL_TIPOS_DOCUMENTO,{});
   }
 
 }

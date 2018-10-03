@@ -42,7 +42,7 @@
     <form>
       <div class="form-row">
         <div class="form-group col-12 text-right">
-          <button type="button" class="Button -sm -primary -raised -rounded" (click)="openModal()"><span class='fas fa-plus'></span> Agregar registro</button>
+          <button type="button" [disabled]="readonlyControl" class="Button -sm -primary -raised -rounded" (click)="openModal()"><span class='fas fa-plus'></span> Agregar registro</button>
         </div>
       </div>
     </form>
@@ -95,16 +95,20 @@
       </div>
 
       <div class="modal-body">
-        <div class="box box-primary card card-block">
+        <div class="card card-block bottomSpace">
           <h5 style="padding: 5px">Búsqueda por filtros</h5>
-          <form class="form-inline">
-            <div class="form-group col-6">
-              <select class="custom-select" id="tipoDoc" name="tipoDoc">
-                <option [value]="undefined" selected>Tipo documento</option>
-              </select>
+          <form class="form-inline container">
+            <select class="custom-select col-4" id="tipoDoc" name="tipoDoc" [(ngModel)]="documentFilter.tipoDocumento" >
+              <option [ngValue]="undefined" selected>Tipo documento</option>
+              <option *ngFor="let tipoDoc of tiposDocumento" [ngValue]="tipoDoc">{{tipoDoc.descripcion}}</option>
+            </select>
+            <div class="col-1"></div>
+            <input type="number" name="dni" class="form-control col-5" id="dni" [disabled]="documentFilter.tipoDocumento == null" placeholder="Número de documento">
+            <div class="col-1">
+              <button type="button" class="btn btn-default" (click)="cleanFilter()" title="Limpiar filtros"><span class="fas fa-eraser"></span></button>
             </div>
-            <div class="form-group col-6">
-              <input type="number" name="dni" class="form-control" id="dni">
+            <div class="col-1" style="padding-left: 3px">
+              <button type="button" class="btn btn-primary -lg -raised" (click)="findPersonal()" [disabled]="documentFilter.tipoDocumento == null || documentFilter.numeroDocumento == null" title="Actualizar búsqueda"> <span class="fas fa-search"></span></button>
             </div>
           </form>
         </div>
@@ -130,6 +134,21 @@
               <label for="apellido" class="col-3 col-form-label control-label">Apellido</label>
               <div class="col-9">
                 <input type="text" name="apellido" class="form-control" id="apellido" [(ngModel)]="personalMensual.apellido">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="tipoDocPersonal" class="col-3 col-form-label control-label">Tipo Documento</label>
+              <div class="col-9">
+                <select class="custom-select col-4" id="tipoDocPersonal" name="tipoDocPersonal" [(ngModel)]="personalMensual.personal.tipoDocumento">
+                  <option *ngFor="let tipoDoc of tiposDocumento" [ngValue]="tipoDoc">{{tipoDoc.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group required row">
+              <label for="nroDocPersonal" class="col-3 col-form-label control-label">Número documento</label>
+              <div class="col-9">
+                <input type="number" name="nroDocPersonal" class="form-control" id="nroDocPersonal" [(ngModel)]="personalMensual.personal.numeroDocumento" [disabled]="personalMensual.tipoDocumento == null">
               </div>
             </div>
             <div class="form-group required row">
@@ -168,7 +187,7 @@
 
       <div class="modal-footer">
         <button type="button" (click)="closeModal()" class="Button -sm -default -outline -rounded" data-dismiss="modal">Cancelar</button>
-        <button type="submit" (click)="onClickAceptar($event)" class="Button -sm -primary -raised -rounded">Aceptar</button>
+        <button type="submit" (click)="onClickAceptarPopup($event)" class="Button -sm -primary -raised -rounded">Aceptar</button>
       </div>
 
 
