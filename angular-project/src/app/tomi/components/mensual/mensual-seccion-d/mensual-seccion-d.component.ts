@@ -16,6 +16,7 @@ import {AppResponse} from "../../../../model/app-response";
 import {NotifUtil} from "../../../utils/notif-util";
 import {Router} from "@angular/router";
 import {PersonalService} from "../../../services/personal.service";
+import {Personal} from "../../../../model/personal";
 declare var $:any;
 @Component({
   selector: 'app-mensual-seccion-d',
@@ -32,7 +33,6 @@ export class MensualSeccionDComponent implements OnInit {
   documentFilter: DocumentFilter = new DocumentFilter;
   private tiposDocumento: TipoDocumento[] = [];
   filter: DefaultFilter = new DefaultFilter;
-  private personalEncontradoByDocumento: boolean = false;
 
   constructor(private eventBusService: EventBusService, private picsService: PicsService, private router: Router, private personalService: PersonalService,
               private hojaMensualObservacionesService: HojaMensualObservacionesService, private hojaMensualPersonalService: HojaMensualPersonalService) { }
@@ -139,29 +139,30 @@ export class MensualSeccionDComponent implements OnInit {
 
   private cleanFilter(){
     this.documentFilter = new DocumentFilter;
-    this.personalEncontradoByDocumento = false;
+    this.personalMensual.personal = new Personal;
   }
 
   compare(t1: any, t2: any): boolean {
     return  t1 === t2;
   }
 
-  compareObject(o1: any, o2: any): boolean {
-    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  compareTipoDoc(o1: any, o2: any): boolean {
+    return o1 && o2 ? o1.idTipoDoc === o2.idTipoDoc : o1 === o2;
   }
 
   private findPersonal(){
     this.personalService.findByDocumento(this.documentFilter).subscribe(p => {
       if(p){
+        this.personalMensual.personal = p;
         this.personalMensual.nombre = p.nombre;
         this.personalMensual.apellido = p.apellido;
-        this.personalMensual.personal.tipoDocumento = p.tipoDocumento;
-        this.personalMensual.personal.numeroDocumento = p.numeroDocumento;
         this.personalMensual.rol = p.rol;
         this.personalMensual.titulo = p.titulo;
         this.personalMensual.esRentado = p.esRentado;
-        this.personalEncontradoByDocumento = true;
-      } else this.personalEncontradoByDocumento = false;
+      }else{
+        this.personalMensual.personal = new Personal;
+        NotifUtil.notifError("No se encontró ningún empleado");
+      }
     });
   }
 
@@ -178,6 +179,7 @@ export class MensualSeccionDComponent implements OnInit {
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
         this.closeModal();
+        this.updateTable();
       } else {
         this.showErrorMsgs(appResponse, "formAlertPopup");
       }
@@ -191,7 +193,6 @@ export class MensualSeccionDComponent implements OnInit {
       if(appResponse.code == AppResponse.SUCCESS){
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
-        this.updateTable();
       }else{
         this.showErrorMsgs(appResponse, "formAlert");
       }

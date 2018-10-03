@@ -4,9 +4,7 @@ import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.PersonalDAO;
 import ar.gov.sedronar.aplicacion.dto.PersonalDTO;
 import ar.gov.sedronar.aplicacion.filters.DocumentFilter;
-import ar.gov.sedronar.aplicacion.model.HojaMensualObservaciones;
 import ar.gov.sedronar.aplicacion.model.Personal;
-import ar.gov.sedronar.aplicacion.model.Usuario;
 import ar.gov.sedronar.aplicacion.services.interfaces.PersonalService;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.modulo.commonsModels.dto.TipoDocumentoDTO;
@@ -60,6 +58,6 @@ public class PersonalServiceImpl implements PersonalService {
 
     @Override
     public PersonalDTO findByDocumento(DocumentFilter documentFilter) {
-        return findByDocumento(documentFilter.getTipoDocumentoDTO(), documentFilter.getNumeroDocumento());
+        return findByDocumento(documentFilter.getTipoDocumento(), documentFilter.getNumeroDocumento());
     }
 }

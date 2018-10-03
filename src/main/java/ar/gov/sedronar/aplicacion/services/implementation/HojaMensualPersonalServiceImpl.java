@@ -68,20 +68,21 @@ public class HojaMensualPersonalServiceImpl implements HojaMensualPersonalServic
         if (validation.getCode() == AppResponse.ERROR) return validation;
 
         // update tabla personal
-        PersonalDTO personal = personalService.findByDocumento(dto.getPersonal().getTipoDocumento(), dto.getPersonal().getNumeroDocumento());
-        if (personal == null) personal = new PersonalDTO();
-        personal.setNombre(dto.getNombre());
-        personal.setApellido(dto.getApellido());
-        personal.setEsRentado(dto.getEsRentado());
-        personal.setNumeroDocumento(dto.getPersonal().getNumeroDocumento());
-        personal.setTipoDocumento(dto.getPersonal().getTipoDocumento());
-        personal.setRol(dto.getRol());
-        personal.setTitulo(dto.getTitulo());
-        personal.setEstadoActual(dto.getAltaBaja() == ALTA ? PersonalServiceImpl.ESTADO_ACTUAL_ACTIVO : PersonalServiceImpl.ESTADO_ACTUAL_INACTIVO);
-        Integer idPersonal = personalService.saveOrUpdate(personal);
-        personal = personalService.findById(idPersonal);
-
-        dto.setPersonal(personal);
+        if(dto.getPersonal().getId() == null) {
+            PersonalDTO personal = personalService.findByDocumento(dto.getPersonal().getTipoDocumento(), dto.getPersonal().getNumeroDocumento());
+            if (personal == null) personal = new PersonalDTO();
+            personal.setNombre(dto.getNombre());
+            personal.setApellido(dto.getApellido());
+            personal.setEsRentado(dto.getEsRentado());
+            personal.setNumeroDocumento(dto.getPersonal().getNumeroDocumento());
+            personal.setTipoDocumento(dto.getPersonal().getTipoDocumento());
+            personal.setRol(dto.getRol());
+            personal.setTitulo(dto.getTitulo());
+            personal.setEstadoActual(dto.getAltaBaja() == ALTA ? PersonalServiceImpl.ESTADO_ACTUAL_ACTIVO : PersonalServiceImpl.ESTADO_ACTUAL_INACTIVO);
+            Integer idPersonal = personalService.saveOrUpdate(personal);
+            personal = personalService.findById(idPersonal);
+            dto.setPersonal(personal);
+        }
         saveOrUpdate(dto);
         return new AppResponse();
     }
