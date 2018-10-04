@@ -4,8 +4,11 @@ import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.VencimientoDAO;
 import ar.gov.sedronar.aplicacion.dto.VencimientoDTO;
 import ar.gov.sedronar.aplicacion.filters.VencimientoTableFilter;
+import ar.gov.sedronar.aplicacion.model.Casa;
+import ar.gov.sedronar.aplicacion.model.Vencimiento;
 import ar.gov.sedronar.aplicacion.services.interfaces.VencimientoService;
 import ar.gov.sedronar.aplicacion.util.QueryUtil;
+import ar.gov.sedronar.util.app.AppResponse;
 import ar.gov.sedronar.util.dataTable.DataTableObjectResponse;
 import ar.gov.sedronar.util.dozer.DozerHelper;
 
@@ -35,6 +38,26 @@ public class VencimientoServiceImpl implements VencimientoService {
                 count,
                 count
         );
+    }
+
+    @Override
+    public AppResponse saveOrUpdate(VencimientoDTO vencimientoDTO) {
+        try {
+            if (vencimientoDTO == null) return new AppResponse(AppResponse.ERROR, "No se pudo guardar el vencimiento");
+
+            validarVencimiento(vencimientoDTO);
+
+            Vencimiento vencimiento = DozerHelper.map(vencimientoDTO, Vencimiento.class);
+            vencimientoDAO.merge(vencimiento);
+
+            return new AppResponse();
+        } catch (Exception e) {
+            return new AppResponse(AppResponse.ERROR, "No se pudo guardar el vencimiento");
+        }
+    }
+
+    private void validarVencimiento(VencimientoDTO vencimientoDTO) throws Exception {
+        //todo implementar
     }
 
 }

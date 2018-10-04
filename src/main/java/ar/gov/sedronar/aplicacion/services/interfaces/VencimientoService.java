@@ -1,6 +1,8 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 
+import ar.gov.sedronar.aplicacion.dto.VencimientoDTO;
 import ar.gov.sedronar.aplicacion.filters.VencimientoTableFilter;
+import ar.gov.sedronar.util.app.AppResponse;
 import ar.gov.sedronar.util.dataTable.DataTableObjectResponse;
 
 import javax.ws.rs.Consumes;
@@ -18,5 +20,9 @@ public interface VencimientoService {
     @POST
     @Path("/findAllForVencimientos")
     DataTableObjectResponse findAllForVencimientos(VencimientoTableFilter vencimientoTableFilter) throws Exception;
+
+    @POST
+    @Path("/saveOrUpdate")
+    AppResponse saveOrUpdate(VencimientoDTO vencimientoDTO);
 
 }

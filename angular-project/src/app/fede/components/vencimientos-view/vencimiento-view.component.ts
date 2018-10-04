@@ -4,6 +4,8 @@ import {COLUMN_NOMBRE_CAAC} from "../../constants/commons-constants";
 import {UrlConstantsCaac} from "../../constants/url-constants";
 import {DataTableService} from "../../../services/data-table.service";
 import {DateService} from "../../../services/date.service";
+import {VencimientoService} from "../../services/vencimiento.service";
+import {NotifUtil} from "../../../tomi/utils/notif-util";
 
 declare var $: any;
 
@@ -14,36 +16,62 @@ declare var $: any;
 })
 export class VencimientoViewComponent implements OnInit, AfterViewInit {
 
-  //TODO que las columnas queden mas lindas y que se marquen celdas en rojo cuando hay un vencimiento que supera la fecha actual, deshabilitar sorting de columnas de vencimientos
+  //TODO que las columnas queden mas lindas y que se marquen celdas en rojo cuando hay un vencimiento que supera la fecha actual
+  //todo deshabilitar sorting de columnas de vencimientos
+  //todo popup mas comprimido
+  //todo validaciones
 
   TITLE: string = 'Vencimientos';
   TABLE_ID: string = 'vencimientosTable';
   vencimientoParaPopup: Vencimiento;
-  vencimientosPropertys: any[] = [
+  vencimientoPopupLayout1RenderingColumna1 = [
     {recibido: 'asamrecib',     vencimiento: 'asambaja',      otro: '', descripcion: 'Acta asamblea', textField: false },
     {recibido: 'autorirecib',   vencimiento: 'autoribaja',    otro: '', descripcion: 'Acta Autoridades:', textField: false},
+  ];
+  vencimientoPopupLayout1RenderingColumna2 = [
     {recibido: 'afiprecib',     vencimiento: 'afipbaja',      otro: '', descripcion: 'AFIP:', textField: false},
-    {recibido: 'responrecib',   vencimiento: 'responbaja',    otro: '', descripcion: 'Seguro de Responsabilidad Civil:', textField: false},
+    {recibido: 'responrecib',   vencimiento: 'responbaja',    otro: '', descripcion: 'Seguro de Responsabilidad Civil:', textField: false}
+  ];
+
+  vencimientoPopupLayout2RenderingColumna1 = [
     {recibido: 'fechRecMala1',  vencimiento: 'fechVenMala1',  otro: 'malapra1', descripcion: 'Seguro de Mala praxis 1:', textField: true},
     {recibido: 'fechRecMala2',  vencimiento: 'fechVenMala2',  otro: 'malapra2', descripcion: 'Seguro de Mala praxis 2:', textField: true},
     {recibido: 'fechRecMala3',  vencimiento: 'fechVenMala3',  otro: 'malapra3', descripcion: 'Seguro de Mala praxis 3:', textField: true},
     {recibido: 'fechRecMala4',  vencimiento: 'fechVenMala4',  otro: 'malapra4', descripcion: 'Seguro de Mala praxis 4:', textField: true},
-    {recibido: 'fechRecMala5',  vencimiento: 'fechVenMala5',  otro: 'malapra5', descripcion: 'Seguro de Mala praxis 5:', textField: true},
+    {recibido: 'fechRecMala5',  vencimiento: 'fechVenMala5',  otro: 'malapra5', descripcion: 'Seguro de Mala praxis 5:', textField: true}
+  ];
+
+  vencimientoPopupLayout2RenderingColumna2 = [
     {recibido: 'fechRecMala6',  vencimiento: 'fechVenMala6',  otro: 'malapra6', descripcion: 'Seguro de Mala praxis 6:', textField: true},
     {recibido: 'fechRecMala7',  vencimiento: 'fechVenMala7',  otro: 'malapra7', descripcion: 'Seguro de Mala praxis 7:', textField: true},
     {recibido: 'fechRecMala8',  vencimiento: 'fechVenMala8',  otro: 'malapra8', descripcion: 'Seguro de Mala praxis 8:', textField: true},
     {recibido: 'fechRecMala9',  vencimiento: 'fechVenMala9',  otro: 'malapra9', descripcion: 'Seguro de Mala praxis 9:', textField: true},
-    {recibido: 'fechRecMala10', vencimiento: 'fechVenMala10', otro: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true},
+    {recibido: 'fechRecMala10', vencimiento: 'fechVenMala10', otro: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true}
   ];
 
-  constructor(private dataTableService: DataTableService, private dateService: DateService) { }
+  // vencimientosPropertys: any[] = [ //para renderizar de forma programable todx el popup
+  //   {recibido: 'asamrecib',     vencimiento: 'asambaja',      otro: '', descripcion: 'Acta asamblea', textField: false },
+  //   {recibido: 'autorirecib',   vencimiento: 'autoribaja',    otro: '', descripcion: 'Acta Autoridades:', textField: false},
+  //   {recibido: 'afiprecib',     vencimiento: 'afipbaja',      otro: '', descripcion: 'AFIP:', textField: false},
+  //   {recibido: 'responrecib',   vencimiento: 'responbaja',    otro: '', descripcion: 'Seguro de Responsabilidad Civil:', textField: false},
+  //   {recibido: 'fechRecMala1',  vencimiento: 'fechVenMala1',  otro: 'malapra1', descripcion: 'Seguro de Mala praxis 1:', textField: true},
+  //   {recibido: 'fechRecMala2',  vencimiento: 'fechVenMala2',  otro: 'malapra2', descripcion: 'Seguro de Mala praxis 2:', textField: true},
+  //   {recibido: 'fechRecMala3',  vencimiento: 'fechVenMala3',  otro: 'malapra3', descripcion: 'Seguro de Mala praxis 3:', textField: true},
+  //   {recibido: 'fechRecMala4',  vencimiento: 'fechVenMala4',  otro: 'malapra4', descripcion: 'Seguro de Mala praxis 4:', textField: true},
+  //   {recibido: 'fechRecMala5',  vencimiento: 'fechVenMala5',  otro: 'malapra5', descripcion: 'Seguro de Mala praxis 5:', textField: true},
+  //   {recibido: 'fechRecMala6',  vencimiento: 'fechVenMala6',  otro: 'malapra6', descripcion: 'Seguro de Mala praxis 6:', textField: true},
+  //   {recibido: 'fechRecMala7',  vencimiento: 'fechVenMala7',  otro: 'malapra7', descripcion: 'Seguro de Mala praxis 7:', textField: true},
+  //   {recibido: 'fechRecMala8',  vencimiento: 'fechVenMala8',  otro: 'malapra8', descripcion: 'Seguro de Mala praxis 8:', textField: true},
+  //   {recibido: 'fechRecMala9',  vencimiento: 'fechVenMala9',  otro: 'malapra9', descripcion: 'Seguro de Mala praxis 9:', textField: true},
+  //   {recibido: 'fechRecMala10', vencimiento: 'fechVenMala10', otro: 'malapra10', descripcion: 'Seguro de Mala praxis 10:', textField: true},
+  // ];
+
+  constructor(private dataTableService: DataTableService, private dateService: DateService, private vencimientoService: VencimientoService) { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    this.loadDataTable();
-  }
+  ngAfterViewInit() { this.loadDataTable(); }
 
   loadDataTable() {
     const self = this;
@@ -61,9 +89,9 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
     );
 
     $('#vencimientosTable tbody').on('click', 'tr', function () {
-      const vencimiento = table.row(this).data();
-
-      self.openModalForVencimientoEdit(vencimiento);
+      self.vencimientoParaPopup = table.row(this).data();
+      self.showDatesForPopup();
+      self.openModalForVencimientoEdit();
     });
   }
 
@@ -71,9 +99,8 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
     return 'Recibido: ' + this.dateService.dateFormat(new Date(item1)) + ' | Vencimiento: ' + this.dateService.dateFormat(new Date(item2));
   }
 
-  openModalForVencimientoEdit(vencimiento: Vencimiento) {
-    this.vencimientoParaPopup = vencimiento;
-    this.showDatesForPopup(this.vencimientoParaPopup);
+  openModalForVencimientoEdit() {
+    // this.showDatesForPopup();
 
     this.openModal()
   }
@@ -112,20 +139,36 @@ export class VencimientoViewComponent implements OnInit, AfterViewInit {
       keyboard: false,
       show: false
     });
+    this.vencimientoParaPopup = null;
   }
 
   onClickGuardar() {
-    console.log(JSON.stringify(this.vencimientoParaPopup));
+    const self = this;
+    this.vencimientoService.saveVencimiento(this.vencimientoParaPopup).subscribe(data => {
+      NotifUtil.notifSuccess('Guardado exitosamente');
+      self.reloadTable();
+      self.closeModal();
+    }, (error) => {
+      console.error(error);
+      NotifUtil.notifError('Error al guardar');
+    });
   }
 
-  private showDatesForPopup(vencimientoParaPopup: Vencimiento): void {
+  reloadTable() {
+    const table = $('#vencimientosTable').DataTable();
+
+    table.ajax.reload();
+  }
+
+  private showDatesForPopup(): void {
+
     for(let i = 1; i <= 10; i++) {
-      vencimientoParaPopup['fechRecMala' + i] = new Date(vencimientoParaPopup['fechRecMala' + i]);
-      vencimientoParaPopup['fechVenMala' + i] = new Date(vencimientoParaPopup['fechVenMala' + i]);
+      this.vencimientoParaPopup['fechRecMala' + i] = new Date(this.vencimientoParaPopup['fechRecMala' + i]);
+      this.vencimientoParaPopup['fechVenMala' + i] = new Date(this.vencimientoParaPopup['fechVenMala' + i]);
     }
     ['afip', 'asam', 'autori', 'respon'].forEach(elem => {
-      vencimientoParaPopup[elem + 'recib'] = new Date(vencimientoParaPopup[elem + 'recib']);
-      vencimientoParaPopup[elem + 'baja'] = new Date(vencimientoParaPopup[elem + 'baja']);
+      this.vencimientoParaPopup[elem + 'recib'] = new Date(this.vencimientoParaPopup[elem + 'recib']);
+      this.vencimientoParaPopup[elem + 'baja'] = new Date(this.vencimientoParaPopup[elem + 'baja']);
     })
   }
 }

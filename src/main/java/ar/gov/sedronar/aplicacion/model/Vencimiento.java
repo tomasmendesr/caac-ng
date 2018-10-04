@@ -127,7 +127,7 @@ public class Vencimiento {
     private Date responrecib;
 
     //uni-directional many-to-one association to Casa
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name="idcaac")
     private Casa casa;
 
