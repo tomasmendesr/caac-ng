@@ -86,4 +86,10 @@ public class HojaDatosInicialesServiceImpl implements HojaDatosInicialesService 
             messages.add("Debe seleccionar una provincia");
         return messages.isEmpty() ? new AppResponse() : new AppResponse(AppResponse.ERROR, messages);
     }
+
+    @Override
+    public HojaDatosInicialesDTO findByHojaId(Long idhoja) {
+        HojaDatosIniciales hoja = hojaDatosInicialesDAO.findById(HojaDatosIniciales.class, idhoja);
+        return hoja != null ? DozerHelper.map(hoja, HojaDatosInicialesDTO.class) : null;
+    }
 }

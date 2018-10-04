@@ -26,4 +26,6 @@ public interface HojaDatosInicialesService {
     @POST
     @Path("/validateInputsMensual")
     AppResponse validateInputsMensual(HojaDatosInicialesDTO hojaDatosInicialesDTO);
+
+    HojaDatosInicialesDTO findByHojaId(Long idhoja);
 }

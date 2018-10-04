@@ -2,7 +2,7 @@
 <div class="container-fluid h-100 margin-top">
   <app-header-caac-selection (headerChanged)="onChangeHeader($event)"></app-header-caac-selection>
 
-  <div (click)="hideFormAlert()" id="formAlert3" class="alert alert-danger formErrorMessages" role="alert">
+  <div (click)="hideFormAlert()" id="formAlert" class="alert alert-danger formErrorMessages" role="alert">
     <ul style="margin-bottom: 0">
       <li *ngFor="let message of formMessages">
         {{message}}
@@ -16,25 +16,25 @@
           <label for="example-text-input" class="col-4 control-label col-form-label">Mes de referencia del informe</label>
           <div class="col-2">
             <input class="form-control" *ngIf="hoja.mes" name="meshja" type="text" id="example-text-input"
-                   [ngModel]="hoja.mes.descripcion" [readonly]="readonlyControl">
+                   [ngModel]="hoja.mes.descripcion" [readonly]="true">
             <input class="form-control" *ngIf="hoja.mes == null" type="text" id="example-text-input" [readonly]="true">
           </div>
           <label for="example-search-input" class="col-4  control-label col-form-label">Año de referencia del informe</label>
           <div class="col-2">
             <input class="form-control" type="number" name="anioHoja" id="example-search-input" [ngModel]="hoja.anio"
-                   [readonly]="readonlyControl">
+                   [readonly]="true">
           </div>
         </div>
         <div class="form-group required row">
           <label for="codigoCaac" class="col-4 control-label col-form-label">Código de la CAAC</label>
           <div class="col-8">
-            <input class="form-control" type="number" name="codigoCaac" id="codigoCaac" [readonly]="readonlyControl">
+            <input class="form-control" type="number" name="codigoCaac" id="codigoCaac" [value]="hoja.casa ? hoja.casa.id : null" [readonly]="true">
           </div>
         </div>
         <div class="form-group required row">
           <label for="example-url-input" class="col-4 control-label col-form-label">Nombre de la CAAC</label>
           <div class="col-8">
-            <input class="form-control" type="text" id="example-url-input" name="example-url-input" [readonly]="readonlyControl">
+            <input class="form-control" type="text" id="example-url-input" [ngModel]="hojaDatosIniciales.nombreCaac" name="example-url-input" [readonly]="true">
           </div>
         </div>
         <div class="form-group required row">
@@ -76,24 +76,131 @@
         <div class="form-row">
           <div class="form-group col-12 text-center">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1">
+              <input class="form-check-input" [disabled]="readonlyControl" type="radio" [checked]="cbAnexosChecked" (change)="cbAnexosChecked = true" name="inlineRadioOptions" id="inlineRadio1">
               <label class="form-check-label" for="inlineRadio1">Si</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2">
+              <input class="form-check-input" [disabled]="readonlyControl" type="radio" [checked]="!cbAnexosChecked" (change)="cbAnexosChecked = false" name="inlineRadioOptions2" id="inlineRadio2">
               <label class="form-check-label" for="inlineRadio2">No</label>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Dirección y horarios de los anexos</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" name="exampleFormControlTextarea1" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" [readonly]="!cbAnexosChecked" name="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <br><br>
         <label for="exampleFormControlTextarea2">Caracterice brevemente la institución y sus objetivos generales (modalidad de funcionamiento, cultura institucional)</label>
         <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea2" name="exampleFormControlTextarea2" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea2" [readonly]="readonlyControl" name="exampleFormControlTextarea2" rows="3"></textarea>
         </div>
+      </div>
+    </div>
+
+    <div class="form-group col-12">
+      <div class="card card-body marginBottom">
+        <div class="form-group required row">
+          <label for="provincia" class="col-2 control-label col-form-label">Provincia</label>
+          <div class="col-4">
+            <mat-form-field>
+              <input id="provincia" type="text" matInput placeholder="Seleccione una provincia"
+                     [matAutocomplete]="autoProvincia" name="provinciaAutocomplete" [formControl]="provinciaCtrl">
+              <mat-autocomplete #autoProvincia="matAutocomplete">
+                <mat-option *ngFor="let provincia of filteredProvincias | async" [value]="provincia.nombre"
+                            (onSelectionChange)="selectedProvincia(event,provincia)">
+                  {{ provincia.nombre }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <label for="depto" class="col-2 control-label col-form-label">Departamento</label>
+          <div class="col-4">
+            <mat-form-field>
+              <input id="depto" type="text" matInput placeholder="Seleccione un departamento"
+                     [matAutocomplete]="auto" name="depto" [formControl]="departamentoCtrl">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let dpto of filteredDepartamentos | async" [value]="dpto.nombre"
+                            (onSelectionChange)="selectedDepartamento(event,dpto)">
+                  {{ dpto.nombre }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group required row">
+          <label for="municipio" class="col-2 control-label col-form-label">Municipio</label>
+          <div class="col-4">
+            <mat-form-field>
+              <input id="municipio" type="text" matInput placeholder="Seleccione un municipio"
+                     [matAutocomplete]="auto" name="municipioAuto" [formControl]="municipioCtrl">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let muni of filteredMunicipios | async" [value]="muni.nombre"
+                            (onSelectionChange)="selectedMunicipio(event,muni)">
+                  {{ muni.nombre }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <label for="localidad" class="col-2 control-label col-form-label">Localidad:</label>
+          <div class="col-4">
+            <mat-form-field>
+              <input id="localidad" type="text" matInput placeholder="Seleccione una localidad"
+                     [matAutocomplete]="auto" name="localidad" [formControl]="localidadCtrl">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let localidad of filteredLocalidades | async" [value]="localidad.nombre"
+                            (onSelectionChange)="selectedLocalidad(event,localidad)">
+                  {{ localidad.nombre }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="form-group required row">
+          <label for="barrio" class="col-2 control-label col-form-label text-right">Barrio</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="barrio" id="barrio" [readonly]="readonlyControl">
+          </div>
+          <label for="direcc" class="col-2 control-label col-form-label text-right">Dirección</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="direcc" id="direcc" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group required row">
+          <label for="entreCalles" class="col-2 control-label col-form-label text-right">Entre calles</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="entreCalles" id="entreCalles" [readonly]="readonlyControl">
+          </div>
+          <label> y </label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="entreCalles2" id="entreCalles2" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group required row">
+          <label for="telCaac" class="col-2 control-label col-form-label text-right">Teléfono de la CAAC</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="telCaac" id="telCaac" [readonly]="readonlyControl">
+          </div>
+          <label for="correoCAAC" class="col-2 control-label col-form-label text-right">Corre electrónico de la CAAC</label>
+          <div class="col-4">
+            <input class="form-control" type="text" name="correoCAAC" id="correoCAAC" [readonly]="readonlyControl">
+          </div>
+        </div>
+    </div>
+
+    <div class="form-group col-12">
+      <div class="card card-body marginBottom">
+        <label class="col-12"><b>Alternativas asistenciales</b></label>
+        <div class="form-group row" style="margin-bottom:0" *ngFor="let altAsist of alternativasAsistenciales">
+          <div class="ItemCol ColCheck -size-auto col-1">
+            <label class="InputCheckbox ItemCheck">
+              <input class="form-check-input" type="checkbox" id="{{altAsist.id}}" [disabled]="readonlyControl" name="{{altAsist.id}}"
+                     [checked]="altAsist.isChecked" (change)="onChangeCheckbox(altAsist, $event)">
+              <span></span>
+            </label>
+          </div>
+          <label for="{{altAsist.id}}" class="col-11 col-form-label text-left" style="padding-top:4px">{{altAsist.nombre}}: {{altAsist.descripcion}}</label>
+        </div>
+        <textarea class="form-control" placeholder="Especifique para la opción 'Otro'" id="exampleFormControlTextarea0" *ngIf="otroIsChecked" name="exampleFormControlTextarea0" rows="1" ></textarea>
       </div>
     </div>
   </div>

@@ -9,6 +9,7 @@ import ar.gov.sedronar.modulo.commonsModels.modelo.TipoDocumento;
 import ar.gov.sedronar.modulo.geo.dao.interfaces.ProvinciaLightDAO;
 import ar.gov.sedronar.modulo.geo.dto.DepartamentoLightDTO;
 import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
+import ar.gov.sedronar.modulo.geo.dto.MunicipioDTO;
 import ar.gov.sedronar.modulo.geo.dto.ProvinciaLightDTO;
 import ar.gov.sedronar.modulo.geo.modelo.ProvinciaLight;
 import ar.gov.sedronar.modulo.geo.servicios.DefaultService;
@@ -75,6 +76,11 @@ public class PicsServiceImpl implements PicsService {
     @Override
     public List<TipoDocumentoDTO> findAllTiposDocumento() {
         return DozerHelper.mapList(tipoDocumentoDAO.findAll(TipoDocumento.class), TipoDocumentoDTO.class);
+    }
+
+    @Override
+    public List<MunicipioDTO> findMunicipiosByDepartamentoId(Integer idDpto) {
+        return DozerHelper.mapList(geoServicio.findMunicipiosByDepartamento(idDpto), MunicipioDTO.class);
     }
 
 

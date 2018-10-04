@@ -6,6 +6,7 @@ import {TipoDocumento} from "../../model/tipo-documento";
 import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
 import {DepartamentoLight} from "commons-model/model/geo/DepartamentoLight";
 import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
+import {Municipio} from "commons-model/model/geo/Municipio";
 
 @Injectable()
 export class PicsService {
@@ -37,4 +38,7 @@ export class PicsService {
     return this.http.post<TipoDocumento[]>(UrlConstants.FIND_ALL_TIPOS_DOCUMENTO,{});
   }
 
+  findMunicipiosByDepartamentoId(idDepto: number):Observable<Municipio[]> {
+    return this.http.post<Municipio[]>(UrlConstants.FIND_MUNICIPIOS_BY_DPTO_ID,{});
+  }
 }

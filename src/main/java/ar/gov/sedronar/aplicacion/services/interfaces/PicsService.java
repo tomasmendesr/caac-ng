@@ -1,9 +1,6 @@
 package ar.gov.sedronar.aplicacion.services.interfaces;
 import ar.gov.sedronar.modulo.commonsModels.dto.TipoDocumentoDTO;
-import ar.gov.sedronar.modulo.geo.dto.DepartamentoDTO;
-import ar.gov.sedronar.modulo.geo.dto.DepartamentoLightDTO;
-import ar.gov.sedronar.modulo.geo.dto.LocalidadLightDTO;
-import ar.gov.sedronar.modulo.geo.dto.ProvinciaLightDTO;
+import ar.gov.sedronar.modulo.geo.dto.*;
 import ar.gov.sedronar.util.app.AppRequest;
 
 import javax.ws.rs.Consumes;
@@ -45,5 +42,7 @@ public interface PicsService {
     @Path("/findAllTiposDocumento")
     List<TipoDocumentoDTO> findAllTiposDocumento();
 
-
+    @POST
+    @Path("/findMunicipiosByDepartamentoId")
+    List<MunicipioDTO> findMunicipiosByDepartamentoId(Integer idDpto);
 }

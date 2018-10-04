@@ -67,6 +67,7 @@ export class UrlConstants {
   static readonly FIND_DEPARTAMENTOS_BY_PROVINCIA = '/services/pics/findAllDepartamentosByProvincia';
   static readonly FIND_LOCALIDADES_BY_DEPARTAMENTO = '/services/pics/findAllLocalidadesByDepartamento';
   static readonly FIND_ALL_TIPOS_DOCUMENTO = '/services/pics/findAllTiposDocumento';
+  static readonly FIND_MUNICIPIOS_BY_DPTO_ID = '/services/pics/findMunicipiosByDepartamentoId';
 
   // hoja mensual asistidos service
   static readonly SAVE_OR_UPDATE_HOJA_MENSUAL_ASISTIDOS = '/services/hojaMensualAsistidos/saveOrUpdate'
@@ -122,6 +123,15 @@ export class UrlConstants {
 
   //personal service
   static readonly FIND_PERSONAL_BY_DOCUMENTO = '/services/personal/findByDocumento';
+
+  // alternativa asistencial service
+  static readonly FIND_ALL_ALTERNATIVAS_ASSISTENCIALES = '/services/alternativaAsistencial/findAll';
+
+  // estructural service
+  static readonly SAVE_DATA_ESTRUCTURAL_SECCION_A = '/services/estructural/saveOrUpdateSeccionA';
+  static readonly GET_DATA_ESTRUCTURAL_SECCION_A_BY_HOJA_ID = '/services/estructural/findDataSeccionAByHojaId';
+
+
 
 
 }
