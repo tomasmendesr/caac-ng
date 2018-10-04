@@ -26,12 +26,12 @@
     <div class="form-row" *ngFor="let hojaMensualAcomp of hojaMensualAcompaniamientosEstablecimientoProfSaludList">
       <div class="container">
         <div class="row">
-          <div class="col">
-            <label for="{{hojaMensualAcomp.acompaniamiento.id}}gestiones">{{hojaMensualAcomp.acompaniamiento.detalle}}</label>
+          <div class="form-group required col">
+            <label for="{{hojaMensualAcomp.acompaniamiento.id}}gestiones" class="control-label">{{hojaMensualAcomp.acompaniamiento.detalle}}</label>
             <input class="form-control" name="{{hojaMensualAcomp.acompaniamiento.id}}gestiones" type="number" id="{{hojaMensualAcomp.acompaniamiento.id}}gestiones" [(ngModel)]="hojaMensualAcomp.cantidadGestiones" [readonly]="readonlyControl">
           </div>
-          <div class="col">
-            <label for="{{hojaMensualAcomp.acompaniamiento.id}}personas">{{hojaMensualAcomp.acompaniamiento.detalle}}</label>
+          <div class="form-group required col">
+            <label for="{{hojaMensualAcomp.acompaniamiento.id}}personas" class="control-label">{{hojaMensualAcomp.acompaniamiento.detalle}}</label>
             <input class="form-control" name="{{hojaMensualAcomp.acompaniamiento.id}}personas" type="number" id="{{hojaMensualAcomp.acompaniamiento.id}}personas" [(ngModel)]="hojaMensualAcomp.cantidadPersonas" [readonly]="readonlyControl">
           </div>
         </div>
@@ -77,8 +77,8 @@
         <div class="form-row" *ngFor="let hojaMensualRecurso of hojaMensualRecursosList">
           <div class="container">
             <div class="row">
-              <div class="col">
-                <label for="{{hojaMensualRecurso.recurso.id}}">{{hojaMensualRecurso.recurso.detalle}}</label>
+              <div class="form-group required col">
+                <label for="{{hojaMensualRecurso.recurso.id}}" class="control-label">{{hojaMensualRecurso.recurso.detalle}}</label>
                 <input class="form-control" name="{{hojaMensualRecurso.recurso.id}}" type="number" id="{{hojaMensualRecurso.recurso.id}}" [(ngModel)]="hojaMensualRecurso.cantidadPersonas" [readonly]="readonlyControl">
               </div>
             </div>
@@ -108,35 +108,11 @@
           <div class="form-row">
             <div class="container">
               <div class="row" *ngFor="let hojaMensual of hojaMensualAcompaniamientosEstablecimientoTrayEducativaList">
-                <div class="col">
-                    <label for="{{hojaMensual.acompaniamiento.id}}">{{hojaMensual.acompaniamiento.detalle}}</label>
+                <div class="form-group required col">
+                    <label for="{{hojaMensual.acompaniamiento.id}}" class="control-label">{{hojaMensual.acompaniamiento.detalle}}</label>
                     <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}" type="number" id="{{hojaMensual.acompaniamiento.id}}" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
                 </div>
               </div>
-              <!--<div class="row">-->
-                  <!--<div class="col">-->
-                    <!--<label for="actividadesPrev-input">Actividad de prevención (talleres/charlas/grupos)</label>-->
-                    <!--<input class="form-control" name="actividadesPrev-input" type="number" id="actividadesPrev-input" [(ngModel)]="hojaMensualAcompaniamientoActividadPrevencion.cantidadPersonas" [readonly]="readonlyControl">-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="row">-->
-                  <!--<div class="col">-->
-                    <!--<label for="apoyoEscolar-input">Apoyo escolar/alfabetización</label>-->
-                    <!--<input class="form-control" name="apoyoEscolar-input" type="number" id="apoyoEscolar-input" [(ngModel)]="hojaMensualAcompaniamientoApoyoEscolar.cantidadPersonas" [readonly]="readonlyControl">-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="row">-->
-                  <!--<div class="col">-->
-                    <!--<label for="programa-input">Programa para la inclusión educativa (fines, progresar, etc.)</label>-->
-                    <!--<input class="form-control" name="programa-input" type="number" id="programa-input" [(ngModel)]="hojaMensualAcompaniamientoInclusionEducativa.cantidadPersonas" [readonly]="readonlyControl">-->
-                <!--</div>-->
-              <!--</div>-->
-              <!--<div class="row">-->
-                  <!--<div class="col">-->
-                    <!--<label for="escuelaEnSede-input">Escuela en sede</label>-->
-                    <!--<input class="form-control" name="escuelaEnSede-input" type="number" id="escuelaEnSede-input" [(ngModel)]="hojaMensualAcompaniamientoEscuelaEnSede.cantidadPersonas" [readonly]="readonlyControl">-->
-                <!--</div>-->
-              <!--</div>-->
             </div>
           </div>
       </div>

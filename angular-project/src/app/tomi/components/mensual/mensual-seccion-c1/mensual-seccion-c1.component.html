@@ -12,42 +12,10 @@
         <h5>¿Cuántas personas fueron alcanzadas por las siguientes GESTIONES DE TRÁMITES realizadas en la CAAC en el mes?</h5><br>
       <form>
         <div class="form-row">
-          <div *ngFor="let hojaMensual of hojaMensualTramitesList" class="form-group col-md-4">
-            <label for="{{hojaMensual.tramite.id}}">{{hojaMensual.tramite.descripcion}}</label>
+          <div *ngFor="let hojaMensual of hojaMensualTramitesList" class="form-group required col-md-4">
+            <label for="{{hojaMensual.tramite.id}}" class="control-label">{{hojaMensual.tramite.descripcion}}</label>
             <input class="form-control" type="number" name="{{hojaMensual.tramite.id}}" [(ngModel)]="hojaMensual.cantidad" id="{{hojaMensual.tramite.id}}" [readonly]="readonlyControl">
           </div>
-          <!--<div class="form-group col-md-4">-->
-            <!--<label for="insercion-input" >Inserción laboral</label>-->
-            <!--<input class="form-control" name="insercion-input" type="number" id="insercion-input" [(ngModel)]="hojaMensualTramiteInsercionLaboral.cantidad" [readonly]="readonlyControl">-->
-          <!--</div>-->
-          <!--<div class="form-group col-md-3">-->
-            <!--<label for="subsidios-input" >Subsidios</label>-->
-            <!--<input class="form-control" type="number" name="subsidios-input" [(ngModel)]="hojaMensualTramiteSubsidios.cantidad" id="subsidios-input" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-row">-->
-          <!--<div class="form-group col-md-6">-->
-            <!--<label for="provisionales-input">Servicios previsionales (ANSES/CUIL)</label>-->
-            <!--<input class="form-control" type="number" name="provisionales-input" [(ngModel)]="hojaMensualTramiteServiciosPrevisionales.cantidad" id="provisionales-input" [readonly]="readonlyControl">-->
-          <!--</div>-->
-          <!--<div class="form-group col-md-4">-->
-            <!--<label for="becas-input">Becas</label>-->
-            <!--<input class="form-control" type="number" name="becas-input" id="becas-input" [(ngModel)]="hojaMensualTramiteBecas.cantidad" [readonly]="readonlyControl">-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<div class="form-row">-->
-          <!--<div class="form-group col-md-6">-->
-            <!--<label for="gestiones-input" >Gestiones para la inclusión educativa</label>-->
-            <!--<input class="form-control" name="gestiones-input" type="number" id="gestiones-input" [(ngModel)]="hojaMensualTramiteGestiones.cantidad" [readonly]="readonlyControl">-->
-          <!--</div>-->
-          <!--<div class="form-group col-md-4">-->
-            <!--<label for="certificado-input" >Certificado de discapacidad</label>-->
-            <!--<input class="form-control" type="number" name="certificado-input" id="certificado-input" [(ngModel)]="hojaMensualTramiteCertificadoDiscapacidad.cantidad" [readonly]="readonlyControl">-->
-          <!--</div>-->
-          <!--<div class="form-group col-md-4">-->
-            <!--<label for="otros-input">Otros trámites</label>-->
-            <!--<input class="form-control" type="number" name="otros-input" id="otros-input" [(ngModel)]="hojaMensualTramiteOtro.cantidad" [readonly]="readonlyControl">-->
-          <!--</div>-->
         </div>
       </form>
     </div>
@@ -85,37 +53,16 @@
             <label class="col-6 text-center"><b>Cantidad de personas que recibieron la prestación al mes</b></label>
           </div>
           <div class="form-row" *ngFor="let hojaMensual of hojaMensualAlimentacionEnSedeList">
-              <div class="form-group col-6">
-                  <label for="{{hojaMensual.tipoAlimentacion.id}}prest">{{hojaMensual.tipoAlimentacion.descripcion}}</label>
+              <div class="form-group required col-6">
+                  <label for="{{hojaMensual.tipoAlimentacion.id}}prest" class="control-label">{{hojaMensual.tipoAlimentacion.descripcion}}</label>
                   <input class="form-control" type="number" name="{{hojaMensual.tipoAlimentacion.id}}prest" id="{{hojaMensual.tipoAlimentacion.id}}prest" [(ngModel)]="hojaMensual.cantidadPrestaciones" [readonly]="readonlyControl">
-                  <!--<label for="almuerzo-input" >Almuerzo</label>-->
-                  <!--<input class="form-control" type="number" name="almuerzo-input" id="almuerzo-input" [(ngModel)]="hojaMensualAlimentacionAlmuerzo.cantidadPrestaciones" [readonly]="readonlyControl">-->
-                  <!--<label for="merienda-input">Merienda</label>-->
-                  <!--<input class="form-control" type="number" name="merienda-input" id="merienda-input" [(ngModel)]="hojaMensualAlimentacionMerienda.cantidadPrestaciones" [readonly]="readonlyControl">-->
-                  <!--<label for="cena-input">Cena</label>-->
-                  <!--<input class="form-control" type="number"  name="cena-input" id="cena-input" [(ngModel)]="hojaMensualAlimentacionCena.cantidadPrestaciones" [readonly]="readonlyControl">-->
               </div>
-              <div class="form-group col-6">
-                <label for="{{hojaMensual.tipoAlimentacion.id}}personas">{{hojaMensual.tipoAlimentacion.descripcion}}</label>
+              <div class="form-group required col-6">
+                <label for="{{hojaMensual.tipoAlimentacion.id}}personas" class="control-label">{{hojaMensual.tipoAlimentacion.descripcion}}</label>
                 <input class="form-control" type="number" name="{{hojaMensual.tipoAlimentacion.id}}personas" id="{{hojaMensual.tipoAlimentacion.id}}personas" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
               </div>
           </div>
         </form>
-
-            <!--<form>-->
-              <!--<div class="form-row">-->
-                  <!--<div class="form-group ">-->
-                    <!--<label for="desayuno2-input">Desayuno</label>-->
-                    <!--<input class="form-control" type="number" name="desayuno2-input" id="desayuno2-input" [(ngModel)]="hojaMensualAlimentacionDesayuno.cantidadPersonas" [readonly]="readonlyControl">-->
-                    <!--<label for="almuerzo2-input" >Almuerzo</label>-->
-                    <!--<input class="form-control" type="number" name="almuerzo2-input"  id="almuerzo2-input" [(ngModel)]="hojaMensualAlimentacionAlmuerzo.cantidadPersonas" [readonly]="readonlyControl">-->
-                    <!--<label for="merienda2-input">Merienda</label>-->
-                    <!--<input class="form-control" type="number" name="merienda2-input" id="merienda2-input" [(ngModel)]="hojaMensualAlimentacionMerienda.cantidadPersonas" [readonly]="readonlyControl">-->
-                    <!--<label for="cena2-input">Cena</label>-->
-                    <!--<input class="form-control" type="number" name="cena2-input" id="cena2-input" [(ngModel)]="hojaMensualAlimentacionCena.cantidadPersonas" [readonly]="readonlyControl">-->
-                  <!--</div>-->
-              <!--</div>-->
-              <!--</form>-->
     </div>
 
     <div class="card card-body marginBottom">
@@ -144,14 +91,10 @@
       <br>
       <form>
           <div class="form-row">
-            <div class="form-group col-md-4" *ngFor="let hojaMensual of hojaMensualAlimentacionFueraDeSedeList">
-              <label for="{{hojaMensual.tipoAlimentacion.id}}">{{hojaMensual.tipoAlimentacion.descripcion}}</label>
+            <div class="form-group required col-md-4" *ngFor="let hojaMensual of hojaMensualAlimentacionFueraDeSedeList">
+              <label for="{{hojaMensual.tipoAlimentacion.id}}" class="control-label">{{hojaMensual.tipoAlimentacion.descripcion}}</label>
               <input class="form-control" name="{{hojaMensual.tipoAlimentacion.id}}" type="number"[(ngModel)]="hojaMensual.cantidadPrestaciones"  id="{{hojaMensual.tipoAlimentacion.id}}" [readonly]="readonlyControl">
             </div>
-            <!--<div class="form-group col-md-4">-->
-                <!--<label for="bolsones-input">Bolsones</label>-->
-                <!--<input class="form-control" name="bolsones-input" type="number" id="bolsones-input" [(ngModel)]="hojaMensualAlimentacionBolsones.cantidadPrestaciones" [readonly]="readonlyControl">-->
-            <!--</div>-->
           </div>
       </form>
     </div>

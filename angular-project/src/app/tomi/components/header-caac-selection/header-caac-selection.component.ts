@@ -115,7 +115,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
           this.deshabilitarEdicionCarga(); // si econtró una hoja deshabilita la edicion
           localStorage.setItem(MainConstants.LOCAL_STORAGE_HEADER_SIGESE_FORMS, JSON.stringify(this.headerSigeseForms));
         }
-        else NotifUtil.notifError("No se encontró ninguna hoja para el período indicado");
+        else NotifUtil.notifError("No se encontró ninguna hoja abierta para el período indicado");
       });
     }else{
       this.headerSigeseForms.hojaId = null;

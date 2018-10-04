@@ -11,24 +11,24 @@
     </div>
     <h4>Asistidos. Cantidad total de personas en situación de consumo de sustancias psicoactivas que han sido
       acompañadas por parte de la CAAC durante el último mes</h4>
-    <div class="form-group row">
-      <label for="varones-input" class="col-3 col-form-label">Cantidad de varones</label>
+    <div class="form-group required row">
+      <label for="varones-input" class="col-3 control-label col-form-label">Cantidad de varones</label>
       <div class="col-4">
         <input class="form-control" type="number" [(ngModel)]="hojaMensualAsistidos.asistidosVarones" min="0"
                id="varones-input" [readonly]="readonlyControl">
       </div>
     </div>
 
-    <div class="form-group row">
-      <label for="mujeres-input" class="col-3 col-form-label">Cantidad de mujeres</label>
+    <div class="form-group required row">
+      <label for="mujeres-input" class="col-3 control-label col-form-label">Cantidad de mujeres</label>
       <div class="col-4">
         <input class="form-control" type="number" [(ngModel)]="hojaMensualAsistidos.asistidosMujeres" min="0"
                id="mujeres-input" [readonly]="readonlyControl">
       </div>
     </div>
 
-    <div class="form-group row">
-      <label for="otrs-input" class="col-3 col-form-label">Otras identidades de género</label>
+    <div class="form-group required row">
+      <label for="otrs-input" class="col-3 control-label col-form-label">Otras identidades de género</label>
       <div class="col-4">
         <input class="form-control" type="number" [(ngModel)]="hojaMensualAsistidos.asistidosOtroGenero" min="0"
                id="otrs-input" [readonly]="readonlyControl">
@@ -39,8 +39,8 @@
   <div class="card card-body marginBottom">
     <h4>Atendidos. Cantidad total de usuarios que han participado al menos una vez en las actividades/servicios de la
       CAAC durante el último mes, se encuentren o no en situación de consumo (incluye a los asistidos)</h4>
-    <div class="form-group row">
-      <label for="atendidos-input" class="col-3 col-form-label">Cantidad </label>
+    <div class="form-group required row">
+      <label for="atendidos-input" class="col-3 control-label col-form-label">Cantidad </label>
       <div class="col-4">
         <input class="form-control" type="number" [(ngModel)]="hojaMensualAsistidos.asistidosOtroGenero" min="0"
                id="atendidos-input" [readonly]="readonlyControl">

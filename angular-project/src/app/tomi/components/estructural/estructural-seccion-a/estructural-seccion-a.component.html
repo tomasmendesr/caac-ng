@@ -15,44 +15,62 @@
         <div class="form-group row">
           <label for="example-text-input" class="col-4 col-form-label">Mes de referencia del informe</label>
           <div class="col-2">
-            <input class="form-control" *ngIf="hoja.mes" type="text" id="example-text-input"
+            <input class="form-control" *ngIf="hoja.mes" name="meshja" type="text" id="example-text-input"
                    [ngModel]="hoja.mes.descripcion" [readonly]="readonlyControl">
             <input class="form-control" *ngIf="hoja.mes == null" type="text" id="example-text-input" [readonly]="true">
           </div>
           <label for="example-search-input" class="col-4 col-form-label">Año de referencia del informe</label>
           <div class="col-2">
-            <input class="form-control" type="number" id="example-search-input" [ngModel]="hoja.anio"
+            <input class="form-control" type="number" name="anioHoja" id="example-search-input" [ngModel]="hoja.anio"
                    [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group row">
-s
+          <label for="codigoCaac" class="col-3 col-form-label">Código de la CAAC</label>
           <div class="col-9">
-            <input class="form-control" type="number" id="example-email-input" [readonly]="readonlyControl">
+            <input class="form-control" type="number" name="codigoCaac" id="codigoCaac" [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group row">
           <label for="example-url-input" class="col-3 col-form-label">Nombre de la CAAC</label>
           <div class="col-9">
-            <input class="form-control" type="text" id="example-url-input" [readonly]="readonlyControl">
+            <input class="form-control" type="text" id="example-url-input" name="example-url-input" [readonly]="readonlyControl">
           </div>
         </div>
-
+        <div class="form-group row">
+          <label for="organizacionResponsable" class="col-3 col-form-label">Organización responsable</label>
+          <div class="col-9">
+            <input class="form-control" type="text" id="organizacionResponsable" name="organizacionResponsable" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="personaResponsable" class="col-3 col-form-label">Persona responsable de la CAAC</label>
+          <div class="col-9">
+            <input class="form-control" type="text" id="personaResponsable" name="personaResponsable" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="telefonoResponsable" class="col-3 col-form-label">Teléfono del responsable</label>
+          <div class="col-9">
+            <input class="form-control" type="text" name="telefonoResponsable" id="telefonoResponsable" [readonly]="readonlyControl">
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="form-group col-4">
       <div class="card card-body marginBottom">
         <h5>¿Cuenta con otros anexos?</h5>
-        <br>
         <div class="form-row">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1">
-            <label class="form-check-label" for="inlineRadio1">Si</label>
-          </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2">
-            <label class="form-check-label" for="inlineRadio2">No</label>
+          <div class="form-group col-12 text-center">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1">
+              <label class="form-check-label" for="inlineRadio1">Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2">
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
           </div>
         </div>
         <div class="form-group">
