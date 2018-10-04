@@ -22,6 +22,7 @@ import {Hoja} from "../../../../model/hoja";
 import {TipoHoja} from "../../../../fede/constants/tipo-hoja";
 import {Casa} from "../../../../model/casa";
 import {PicsService} from "../../../services/pics.service";
+import {map, startWith} from "rxjs/operators";
 declare var $:any;
 @Component({
   selector: 'app-estructural-seccion-a',
@@ -63,6 +64,16 @@ export class EstructuralSeccionAComponent implements OnInit {
 
   ngOnInit() {
     this.hoja.tipoHoja = TipoHoja.ESTRUCTURAL;
+    this.picsService.findAllProvinciasCombo().subscribe(data => {
+      this.provincias = data;
+      this.filteredProvincias = this.provinciaCtrl.valueChanges
+        .debounceTime(400)
+        .distinctUntilChanged()
+        .pipe(
+          startWith(''),
+          map(value => this.searchProvincia(value))
+        );
+    });
     this.alternativaAsistencialService.findAll().subscribe(data => {
       this.alternativasAsistenciales = data;
       this.initHojaAlternativasAsistencialesList();
@@ -190,18 +201,57 @@ export class EstructuralSeccionAComponent implements OnInit {
 
   private selectedProvincia(event: MatOptionSelectionChange , provincia: ProvinciaLight){
     if(event.source.selected) {
-      this.picsService.findAllDepartamentosByProvincia(provincia).subscribe(data => this.departamentos = data);
+      this.picsService.findAllDepartamentosByProvincia(provincia).subscribe(data =>{
+        this.departamentos = data;
+        this.filteredDepartamentos = this.departamentoCtrl.valueChanges
+          .debounceTime(400)
+          .distinctUntilChanged()
+          .pipe(
+            startWith(''),
+            map(value => this.searchDepartamento(value))
+          );
+      });
       this.departamentoCtrl.enable();
     }
+  }
+
+  private searchProvincia(value: string): ProvinciaLight[] {
+    if(value == null || !value) return this.provincias;
+    const filterValue = value.toLowerCase();
+    return this.provincias.filter(prov => prov.nombre.toLowerCase().includes(filterValue));
   }
 
   private selectedDepartamento(event: MatOptionSelectionChange , departamento: DepartamentoLight){
     if(event.source.selected) {
       this.localidadCtrl.enable();
       this.municipioCtrl.enable();
-      this.picsService.findMunicipiosByDepartamentoId(departamento.id).subscribe(data => this.municipios = data);
-      this.picsService.findAllLocalidadesByDepartamento(departamento).subscribe(data => this.localidades = data);
+      this.picsService.findMunicipiosByDepartamentoId(departamento.id).subscribe(data =>{
+        this.municipios = data;
+        this.filteredMunicipios = this.municipioCtrl.valueChanges
+          .debounceTime(400)
+          .distinctUntilChanged()
+          .pipe(
+            startWith(''),
+            map(value => this.searchMunicipio(value))
+          );
+      });
+      this.picsService.findAllLocalidadesByDepartamento(departamento).subscribe(data => {
+        this.localidades = data;
+        this.filteredLocalidades = this.localidadCtrl.valueChanges
+          .debounceTime(400)
+          .distinctUntilChanged()
+          .pipe(
+            startWith(''),
+            map(value => this.searchLocalidad(value))
+          );
+      });
     }
+  }
+
+  private searchDepartamento(value: string): DepartamentoLight[] {
+    if(value == null || !value) return this.departamentos;
+    const filterValue = value.toLowerCase();
+    return this.departamentos.filter(e => e.nombre.toLowerCase().includes(filterValue));
   }
 
   private selectedMunicipio(event: MatOptionSelectionChange , municipio: Municipio){
@@ -209,9 +259,21 @@ export class EstructuralSeccionAComponent implements OnInit {
     }
   }
 
+  private searchMunicipio(value: string): Municipio[] {
+    if(value == null || !value) return this.municipios;
+    const filterValue = value.toLowerCase();
+    return this.municipios.filter(e => e.nombre.toLowerCase().includes(filterValue));
+  }
+
   private selectedLocalidad(event: MatOptionSelectionChange , localidad: LocalidadLight){
     if(event.source.selected) {
     }
+  }
+
+  private searchLocalidad(value: string): LocalidadLight[] {
+    if(value == null || !value) return this.localidades;
+    const filterValue = value.toLowerCase();
+    return this.localidades.filter(e => e.nombre.toLowerCase().includes(filterValue));
   }
 
   private hideFormAlert() {

@@ -80,6 +80,7 @@ import {HojaMensualPersonalService} from "./tomi/services/hoja-mensual-personal.
 import {PersonalService} from "./tomi/services/personal.service";
 import {AlternativaAsistencialService} from "./tomi/services/alternativa-asistencial.service";
 import {EstructuralService} from "./tomi/services/estructural.service";
+import {MatStepperModule} from '@angular/material/stepper';
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -144,7 +145,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MatStepperModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
