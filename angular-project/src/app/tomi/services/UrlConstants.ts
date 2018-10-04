@@ -51,9 +51,11 @@ export class UrlConstants {
 
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';
+  static readonly GET_HOJAS_ABIERTAS_FOR_TABLE = '/services/hoja/getHojasAbiertasForTable';
   static readonly VALIDATE_INPUTS_HOJA_MENSUAL_SECCION_A_MENSUAL = '/services/hoja/validateInputsDatosIniciales'
   static readonly SAVE_OR_UPDATE_HOJA = '/services/hoja/saveOrUpdate'
-  static readonly FIND_HOJA_BY_CASA_AND_PERIODO = '/services/hoja/findByPeriodoAndCasa'
+  static readonly FIND_HOJA_ABIERTA_BY_CASA_AND_PERIODO = '/services/hoja/findHojaAbiertaByPeriodoAndCasa'
+  static readonly CERRAR_PERIODO_HOJA = '/services/hoja/cerrarPeriodo'
 
   //hoja datos iniciales service
   static readonly SAVE_OR_UPDATE_DATOS_INICIALES_MENSUAL = '/services/hojaDatosIniciales/saveOrUpdateMensual'

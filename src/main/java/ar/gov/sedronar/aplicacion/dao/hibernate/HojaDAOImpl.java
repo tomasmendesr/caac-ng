@@ -40,17 +40,21 @@ public class HojaDAOImpl extends AbstractDAOImpl<Hoja> implements HojaDAO {
     }
 
     @Override
-    public Hoja findByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms) {
+    public Hoja findHojaAbiertaByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms) {
         Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Hoja.class);
         criteria.add(Restrictions.eq("anio", headerSigeseForms.getAnioCarga()));
         criteria.add(Restrictions.eq("mes.id", headerSigeseForms.getMesCarga().getId()));
         criteria.add(Restrictions.eq("casa.id", headerSigeseForms.getCasa().getId()));
+        criteria.add(Restrictions.isNull("fechaCierre"));
         return (Hoja) criteria.uniqueResult();
     }
 
     public Criteria applyFilters(ConsultaFilter filter, Map<String,String> aliases){
         Criteria criteria = entityManager.unwrap(Session.class).createCriteria(Hoja.class);
 
+        if(filter.getHojaAbierta() != null && filter.getHojaAbierta()){
+            criteria.add(Restrictions.isNull("fechaCierre"));
+        }
         if(filter.getNombreCasa() != null && StringUtils.isNotBlank(filter.getNombreCasa())){
             criteria.createAlias("casa", "casaAlias");
             if(aliases != null) aliases.put("casa","casaAlias");

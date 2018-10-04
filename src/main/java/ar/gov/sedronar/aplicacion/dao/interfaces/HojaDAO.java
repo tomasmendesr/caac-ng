@@ -14,5 +14,5 @@ public interface HojaDAO extends AbstractDAO<Hoja> {
     Integer count(ConsultaFilter filter);
     List<Hoja> findAll(Integer start, Integer length, Map<String, Boolean> sortOrder, ConsultaFilter filter);
 
-    Hoja findByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms);
+    Hoja findHojaAbiertaByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms);
 }

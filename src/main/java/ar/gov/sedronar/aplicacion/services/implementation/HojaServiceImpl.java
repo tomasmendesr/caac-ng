@@ -7,7 +7,6 @@ import ar.gov.sedronar.aplicacion.dto.HojaDTO;
 import ar.gov.sedronar.aplicacion.filters.ConsultaTableFilter;
 import ar.gov.sedronar.aplicacion.model.Hoja;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaService;
-import ar.gov.sedronar.aplicacion.services.interfaces.UserServiceProviderImpl;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.util.app.AppResponse;
 import ar.gov.sedronar.util.dataTable.Column;
@@ -47,6 +46,12 @@ public class HojaServiceImpl implements HojaService {
     }
 
     @Override
+    public DataTableObjectResponse getHojasAbiertasForTable(ConsultaTableFilter filtro) {
+       filtro.getFilter().setHojaAbierta(true);
+       return getHojasForTable(filtro);
+    }
+
+    @Override
     public Long saveOrUpdate(HojaDTO hojaDTO) throws Exception {
         if (hojaDTO == null) throw new Exception("Error creando la consulta");
         hojaDTO.setFum(new Date());
@@ -78,8 +83,15 @@ public class HojaServiceImpl implements HojaService {
     }
 
     @Override
-    public Long findByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms) {
-        Hoja hoja = hojaDAO.findByPeriodoAndCasa(headerSigeseForms);
+    public Long findHojaAbiertaByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms) {
+        Hoja hoja = hojaDAO.findHojaAbiertaByPeriodoAndCasa(headerSigeseForms);
         return hoja != null ? hoja.getId() : null;
+    }
+
+    @Override
+    public void cerrarPeriodo(HojaDTO hojaDTO) throws Exception {
+        if(hojaDTO.getFechaCierre() != null) throw new Exception("La hoja seleccionada ya se encuentra cerrada");
+        hojaDTO.setFechaCierre(new Date());
+        this.saveOrUpdate(hojaDTO);
     }
 }

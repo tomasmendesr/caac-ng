@@ -102,3 +102,29 @@
 </div>
 <!--</section>-->
 
+
+<!-- CONFIRM DIALOG -->
+<div id ="confirmDialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel2">Confirmar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Seguro que desea cerrar el período? Una vez cerrado no se podrá modificar.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="Button -sm -default -outline -rounded" data-dismiss="modal">No</button>
+        <button class="Button -sm -primary -raised -rounded" id="submit2" (click)="onClickConfirmarCierre($event)">Si</button>
+      </div>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

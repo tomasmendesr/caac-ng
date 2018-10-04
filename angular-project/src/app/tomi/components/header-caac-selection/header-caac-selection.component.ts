@@ -108,7 +108,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
 
   private emitChanges(atributoQueFueModificado: string){
     if(this.allInputsCargaSeted()) {
-      this.hojaService.findByPeriodoAndCasa(this.headerSigeseForms).subscribe(data =>{
+      this.hojaService.findHojaAbiertaByPeriodoAndCasa(this.headerSigeseForms).subscribe(data =>{
         this.headerSigeseForms.hojaId = data;
         this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
         if(data){

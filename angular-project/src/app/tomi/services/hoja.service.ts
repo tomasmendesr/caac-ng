@@ -20,7 +20,11 @@ export class HojaService {
   }
 
 
-  findByPeriodoAndCasa(headerSigeseForms: HeaderSigeseForms): Observable<any> {
-    return this.http.post(UrlConstants.FIND_HOJA_BY_CASA_AND_PERIODO, headerSigeseForms);
+  findHojaAbiertaByPeriodoAndCasa(headerSigeseForms: HeaderSigeseForms): Observable<any> {
+    return this.http.post(UrlConstants.FIND_HOJA_ABIERTA_BY_CASA_AND_PERIODO, headerSigeseForms);
+  }
+
+  cerrarPeriodo(hojaACerrar: Hoja): Observable<any> {
+    return this.http.post(UrlConstants.CERRAR_PERIODO_HOJA, hojaACerrar);
   }
 }
