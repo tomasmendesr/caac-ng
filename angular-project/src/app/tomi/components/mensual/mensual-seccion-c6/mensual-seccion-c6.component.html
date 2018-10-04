@@ -19,18 +19,16 @@
             </li>
           </ul>
         </div>
-        
-          <h5 class="text-center">¿Qué otro tipo de actividades se realizan en la CAAC?</h5>
- 
+        <h5 class="text-center">¿Qué otro tipo de actividades se realizan en la CAAC?</h5>
         <div class="form-group row" style="margin-bottom:0" *ngFor="let hojaMensual of hojaMensualActividadesList">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
+          <div class="ItemCol ColCheck -size-auto col-4 text-right">
             <label class="InputCheckbox ItemCheck">
               <input class="form-check-input" type="checkbox" id="{{hojaMensual.actividadIntervencion.id}}" [disabled]="readonlyControl" name="{{hojaMensual.actividadIntervencion.id}}"
                 [checked]="hojaMensual.isChecked" (change)="onChangeCheckbox(hojaMensual, $event)">
               <span></span>
             </label>
           </div>
-          <label for="{{hojaMensual.actividadIntervencion.id}}" class="col-10 col-form-label text-left" style="padding-top:4px">{{hojaMensual.actividadIntervencion.descripcionActividad}}</label>
+          <label for="{{hojaMensual.actividadIntervencion.id}}" class="col-8 col-form-label text-left" style="padding-top:4px">{{hojaMensual.actividadIntervencion.descripcionActividad}}</label>
         </div>
         <textarea class="form-control" id="exampleFormControlTextarea0" [(ngModel)]="descripcionActividadOtroText" name="exampleFormControlTextarea0" rows="2"
                   [readonly]="!otroIsChecked"></textarea>
