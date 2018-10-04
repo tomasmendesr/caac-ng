@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "assets/ui/css/bsDatePicker.css",
         "assets/bundle/bundle.css",
         "styles.css",
         "assets/ui/css/vendor.css",
