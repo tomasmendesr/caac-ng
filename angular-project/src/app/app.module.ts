@@ -78,6 +78,7 @@ import {VencimientoService} from "./fede/services/vencimiento.service";
 import {HojaMensualObservacionesService} from "./tomi/services/hoja-mensual-observaciones.service";
 import {HojaMensualPersonalService} from "./tomi/services/hoja-mensual-personal.service";
 import {PersonalService} from "./tomi/services/personal.service";
+import {MatStepperModule} from '@angular/material/stepper';
 
 // npm install --save @angular/material @angular/cdk @angular/animations
 
@@ -142,7 +143,8 @@ export function get_parametros_iniciales(appLoader: AppLoadService) {
     MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MatStepperModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

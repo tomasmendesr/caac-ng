@@ -1,3 +1,18 @@
-<p>
-  pagos-view works!
-</p>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel>Selección de Casa</ng-template>
+    <div>
+      <table id={{TABLE_PAGOS_CASAS_ID}} class="table table-striped table-sm table-bordered table-hover" style="width:100%" width="100%"></table>
+    </div>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Editar o agregar pagos</ng-template>
+
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Guardar pago</ng-template>
+
+  </mat-step>
+</mat-horizontal-stepper>
