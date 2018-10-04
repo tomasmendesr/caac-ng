@@ -17,37 +17,17 @@
         <label class="col-6 text-center"><b>Personas asistidas</b></label>
       </div>
       <div class="form-row" *ngFor="let hojaMensual of hojaMensualAcompaniamientoTipoGestionList">
-        <div class="form-group col-6">
-            <label for="{{hojaMensual.acompaniamiento.id}}gest">{{hojaMensual.acompaniamiento.detalle}}</label>
+        <div class="form-group required col-6">
+            <label for="{{hojaMensual.acompaniamiento.id}}gest" class="control-label">{{hojaMensual.acompaniamiento.detalle}}</label>
             <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}gest" type="number" id="{{hojaMensual.acompaniamiento.id}}gest" [(ngModel)]="hojaMensual.cantidadGestiones" [readonly]="readonlyControl">
-            <!--<label for="orientacion-input">Gestión de trámites para medicación</label>-->
-            <!--<input class="form-control" type="number" id="orientacion-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTramitesMedicacion.cantidadGestiones" [readonly]="readonlyControl" name="orientacion-input">-->
-            <!--<label for="gruposFam-input">Gestión de servicios (ej. sillas de ruedas, protesis, anteojos, etc.)</label>-->
-            <!--<input class="form-control" type="number" id="gruposFam-input" [(ngModel)]="hojaMensualAcompaniamientoGestionServicios.cantidadGestiones" [readonly]="readonlyControl" name="gruposFam-input">-->
         </div>
-        <div class="form-group col-6">
-          <label for="{{hojaMensual.acompaniamiento.id}}per">{{hojaMensual.acompaniamiento.detalle}}</label>
+        <div class="form-group required col-6">
+          <label for="{{hojaMensual.acompaniamiento.id}}per" class="control-label">{{hojaMensual.acompaniamiento.detalle}}</label>
           <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}per" type="number" id="{{hojaMensual.acompaniamiento.id}}per" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
     </form>
   </div>
-
-        <!--<form>-->
-          <!--<div class="form-row">-->
-              <!--<label class="col-9 text-center"><b>Personas asistidas</b></label>-->
-              <!--<div class="form-group ">-->
-                <!--<label for="gestionTurnos2-input">Gestión de turnos</label>-->
-                <!--<input class="form-control" type="number" name="gestionTurnos2-input" id="gestionTurnos2-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTurnos.cantidadPersonas" [readonly]="readonlyControl">-->
-                <!--<label for="orientacion2-input">Gestión de trámites para medicación</label>-->
-                <!--<input class="form-control" type="number" id="orientacion2-input" [(ngModel)]="hojaMensualAcompaniamientoGestionTramitesMedicacion.cantidadPersonas" [readonly]="readonlyControl" name="orientacion-input">-->
-                <!--<label for="gruposFam2-input">Gestión de servicios (ej. sillas de ruedas, protesis, anteojos, etc.)</label>-->
-                <!--<input class="form-control" type="number" id="gruposFam2-input" name="gruposFam-input" [(ngModel)]="hojaMensualAcompaniamientoGestionServicios.cantidadPersonas" [readonly]="readonlyControl">-->
-              <!--</div>-->
-          <!--</div>-->
-        <!--</form>-->
-    <!--</div>-->
-  <!--</div>-->
 
   <div class="card card-body marginBottom">
     <div (click)="hideFormAlert()" id="formAlert2" class="alert alert-danger formErrorMessages" role="alert">
@@ -84,47 +64,17 @@
         <label class="col-6 text-center"><b>Personas (cantidad aproximada)</b></label>
       </div>
       <div class="form-row" *ngFor="let hojaMensual of hojaMensualAcompaniamientoEstabComuTerapeuticaList">
-        <div class="form-group col-6">
-          <label for="{{hojaMensual.acompaniamiento.id}}gest">{{hojaMensual.acompaniamiento.detalle}}</label>
+        <div class="form-group required col-6">
+          <label for="{{hojaMensual.acompaniamiento.id}}gest" class="control-label">{{hojaMensual.acompaniamiento.detalle}}</label>
           <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}gest" type="number" id="{{hojaMensual.acompaniamiento.id}}gest" [(ngModel)]="hojaMensual.cantidadGestiones" [readonly]="readonlyControl">
         </div>
-        <div class="form-group col-6">
-          <label for="{{hojaMensual.acompaniamiento.id}}per">{{hojaMensual.acompaniamiento.detalle}}</label>
+        <div class="form-group required col-6">
+          <label for="{{hojaMensual.acompaniamiento.id}}per" class="control-label">{{hojaMensual.acompaniamiento.detalle}}</label>
           <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}per" type="number" id="{{hojaMensual.acompaniamiento.id}}per" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
     </form>
   </div>
-      <!--<div class="form-row">-->
-          <!--<form >-->
-            <!--<div class="form-row">-->
-                <!--<label class="col-9 text-center"><b>Acompañamientos / gestiones en el mes</b></label>-->
-                <!--<div class="form-group ">-->
-                  <!--<label for="orie-input">Acompañamiento en centros de tratamiento <br> especializado</label>-->
-                  <!--<input class="form-control" type="number" id="orie-input" name="orie-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoEspecializado.cantidadGestiones" [readonly]="readonlyControl">-->
-                  <!--<label for="sinSubsidio-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>sin subsidio</b> de Sedronar</label>-->
-                  <!--<input class="form-control" type="number" id="sinSubsidio-input"  name="sinSubsidio-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.cantidadGestiones" [readonly]="readonlyControl">-->
-                  <!--<label for="subsidio-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>subsidiado</b> de Sedronar</label>-->
-                  <!--<input class="form-control" type="number" id="subsidio-input" name="subsidio-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.cantidadGestiones" [readonly]="readonlyControl">-->
-                <!--</div>-->
-            <!--</div>-->
-          <!--</form>-->
-
-          <!--<form>-->
-            <!--<div class="form-row">-->
-                <!--<label class="col-9 text-center"><b>Personas (cantidad aproximada)</b></label>-->
-                <!--<div class="form-group ">-->
-                  <!--<label for="acomp-input">Acompañamiento en centros de tratamiento <br> especializado</label>-->
-                  <!--<input class="form-control" type="number" id="acomp-input" name="acomp-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoEspecializado.cantidadPersonas" [readonly]="readonlyControl">-->
-                  <!--<label for="sinSubsidio2-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>sin subsidio</b> de Sedronar</label>-->
-                  <!--<input class="form-control" type="number" id="sinSubsidio2-input" name="sinSubsidio2-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoSinSubsidioSedronar.cantidadPersonas" [readonly]="readonlyControl">-->
-                  <!--<label for="subsidio2-input">Gestión de ingreso/asistencia en centros de tratamiento <br> especializado <b>subsidiado</b> de Sedronar</label>-->
-                  <!--<input class="form-control" type="number" id="subsidio2-input"  name="subsidio2-input" [(ngModel)]="hojaMensualAcompaniamientoCentroTratamientoConSubsidioSedronar.cantidadPersonas" [readonly]="readonlyControl">-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--</form>-->
-      <!--</div>-->
-  <!--</div>-->
 
   <div class="card card-body marginBottom">
     <div (click)="hideFormAlert()" id="formAlert4" class="alert alert-danger formErrorMessages" role="alert">
@@ -161,43 +111,17 @@
         <label class="col-6 text-center"><b>Personas aproximadas)</b></label>
       </div>
       <div class="form-row" *ngFor="let hojaMensual of hojaMensualAcompaniamientoEstabPatrocinioLegalList">
-        <div class="form-group col-6">
-          <label for="{{hojaMensual.acompaniamiento.id}}gest">{{hojaMensual.acompaniamiento.detalle}}</label>
+        <div class="form-group required col-6">
+          <label for="{{hojaMensual.acompaniamiento.id}}gest" class="control-label">{{hojaMensual.acompaniamiento.detalle}}</label>
           <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}gest" type="number" id="{{hojaMensual.acompaniamiento.id}}gest" [(ngModel)]="hojaMensual.cantidadGestiones" [readonly]="readonlyControl">
         </div>
-        <div class="form-group col-6">
-          <label for="{{hojaMensual.acompaniamiento.id}}per">{{hojaMensual.acompaniamiento.detalle}}</label>
+        <div class="form-group required col-6">
+          <label for="{{hojaMensual.acompaniamiento.id}}per" class="control-label">{{hojaMensual.acompaniamiento.detalle}}</label>
           <input class="form-control" name="{{hojaMensual.acompaniamiento.id}}per" type="number" id="{{hojaMensual.acompaniamiento.id}}per" [(ngModel)]="hojaMensual.cantidadPersonas" [readonly]="readonlyControl">
         </div>
       </div>
     </form>
   </div>
-      <!--<div class="form-row">-->
-          <!--<form >-->
-            <!--<div class="form-row">-->
-                <!--<label class="col-9 text-center"><b>Cantidad de gestiones en el mes</b></label>-->
-                <!--<div class="form-group ">-->
-                  <!--<label for="enInternacion-input">En sede</label>-->
-                  <!--<input class="form-control" type="number" id="enInternacion-input" name="enInternacion-input" [(ngModel)]="hojaMensualAcompaniamientoEnSede.cantidadGestiones" [readonly]="readonlyControl">-->
-                  <!--<label for="consultorios-input">Fuera de sede</label>-->
-                  <!--<input class="form-control" type="number" id="consultorios-input" name="consultorios-input" [(ngModel)]="hojaMensualAcompaniamientoFueraDeSede.cantidadGestiones" [readonly]="readonlyControl">-->
-                <!--</div>-->
-            <!--</div>-->
-          <!--</form>-->
-
-          <!--<form>-->
-            <!--<div class="form-row">-->
-                <!--<label class="col-9 text-center"><b>Personas aproximadas</b></label>-->
-                <!--<div class="form-group ">-->
-                  <!--<label for="enInternacion2-input">En sede</label>-->
-                  <!--<input class="form-control" type="number" id="enInternacion2-input" name="enInternacion2-input" [(ngModel)]="hojaMensualAcompaniamientoEnSede.cantidadPersonas" [readonly]="readonlyControl">-->
-                  <!--<label for="consultorios2-input">Fuera de sede</label>-->
-                  <!--<input class="form-control" type="number" id="consultorios2-input"  name="consultorios2-input" [(ngModel)]="hojaMensualAcompaniamientoFueraDeSede.cantidadPersonas" [readonly]="readonlyControl">-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--</form>-->
-      <!--</div>-->
-  <!--</div>-->
 
   <div class="card card-body marginBottom">
     <div (click)="hideFormAlert()" id="formAlert6" class="alert alert-danger formErrorMessages" role="alert">

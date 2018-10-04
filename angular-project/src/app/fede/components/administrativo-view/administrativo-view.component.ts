@@ -1,25 +1,18 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import { COLUMN_NOMBRE_CAAC,
-  COLUMN_PERSONERIA_JURIDICA, COLUMN_CUIT, COLUMN_OBSERVACIONES,
-  COLUMN_MODALIDAD_CONVENIO, COLUMN_CATEGORIA_INICIAL, COLUMN_NUEVA_CATEGORIA, COLUMN_FECHA_AUDITORIA_INICIAL,
-  COLUMN_FECHA_INICIO_CONVENIO
-} from "../../constants/commons-constants";
 import {DataTableService} from "../../../services/data-table.service";
 import {UrlConstantsCaac} from "../../constants/url-constants";
 import AdministrativoFilter from "../../model/filters/administrativo-filter";
-import CaacLight from "../../model/caac-light";
 import {PicsService} from "../../../tomi/services/pics.service";
-import {Departamento} from "../../../model/departamento";
-import {Provincia} from "../../../model/provincia";
-import {Localidad} from "../../../model/localidad";
 import {Categoria} from "../../../model/categoria";
 import {CategoriaService} from "../../../services/categoria.service";
 import Requisito from "../../../model/requisito";
 import {CasaService} from "../../../tomi/services/casa.service";
-import {Casa} from "../../../model/casa";
 import {NotifUtil} from "../../../tomi/utils/notif-util";
 import {RequisitoService} from "../../services/requisito.service";
 import {DateService} from "../../../services/date.service";
+import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
+import {DepartamentoLight} from "commons-model/model/geo/DepartamentoLight";
+import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
 
 declare var $: any;
 
@@ -36,9 +29,9 @@ export class AdministrativoViewComponent implements OnInit, AfterViewInit {
   TABLE_ID = 'tableAdministrativo';
 
   filter: AdministrativoFilter = new AdministrativoFilter();
-  provincias: Provincia[];
-  departamentos: Departamento[];
-  localidades: Localidad[];
+  provincias: ProvinciaLight[];
+  departamentos: DepartamentoLight[];
+  localidades: LocalidadLight[];
   categorias: Categoria[];
   requisitosColumna1: any[] = [
     {id: 'actaasa', descripcion: 'Acta última asamblea'}, {id: 'crondiayh', descripcion: 'Cronograma días y horarios personales'},

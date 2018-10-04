@@ -1,6 +1,5 @@
 import { Component,  OnInit, ViewChild} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {Provincia} from "../../../../model/provincia";
 import {FormControl} from "@angular/forms";
 import {PicsService} from "../../../services/pics.service";
 import {map, startWith} from "rxjs/operators";
@@ -15,9 +14,9 @@ import {AppResponse} from "../../../../model/app-response";
 import {NotifUtil} from "../../../utils/notif-util";
 import {TipoHoja} from "../../../../fede/constants/tipo-hoja";
 import {HeaderSigeseForms} from "../../../../model/header-sigese-forms";
-import MainConstants from "../../../../constants/main-constants";
 import {UrlConstants} from "../../../services/UrlConstants";
 import {Router} from "@angular/router";
+import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
 declare var $: any;
 @Component({
   selector: 'app-mensual-seccion-a',
@@ -29,8 +28,8 @@ export class MensualSeccionAComponent implements OnInit {
   private hojaDatosIniciales: HojaDatosIniciales = new HojaDatosIniciales;
   private casaRecibidaDelHeader: Casa;
   private provinciaCtrl: FormControl = new FormControl();
-  private provincias: Provincia[] = [];
-  private filteredProvincias: Observable<Provincia[]>;
+  private provincias: ProvinciaLight[] = [];
+  private filteredProvincias: Observable<ProvinciaLight[]>;
   private readonlyControl: boolean = true;
   private formMessages: string[] = [];
   @ViewChild(LoadingComponent) loadingComponent:LoadingComponent;
@@ -60,13 +59,13 @@ export class MensualSeccionAComponent implements OnInit {
     });
   }
 
-  private searchProvincia(value: string): Provincia[] {
+  private searchProvincia(value: string): ProvinciaLight[] {
     if(value == null || !value) return this.provincias;
     const filterValue = value.toLowerCase();
     return this.provincias.filter(prov => prov.nombre.toLowerCase().includes(filterValue));
   }
 
-  private selectedProvincia(event: MatOptionSelectionChange , provincia: Provincia){
+  private selectedProvincia(event: MatOptionSelectionChange , provincia: ProvinciaLight){
     if(event.source.selected) {
       this.seDetectaronCambios = true;
       this.hojaDatosIniciales.provinciaLight = provincia;

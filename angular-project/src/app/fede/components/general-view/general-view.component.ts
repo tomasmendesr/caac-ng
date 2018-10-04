@@ -11,13 +11,13 @@ import {DataTableService} from "../../../services/data-table.service";
 import {UrlConstantsCaac} from "../../constants/url-constants";
 import CaacLight from "../../model/caac-light";
 import {PicsService} from "../../../tomi/services/pics.service";
-import {Localidad} from "../../../model/localidad";
-import {Departamento} from "../../../model/departamento";
-import {Provincia} from "../../../model/provincia";
 import {GeneralViewService} from "../../services/general-view.service";
 import {CasaService} from "../../../tomi/services/casa.service";
 import {Casa} from "../../../model/casa";
 import {NotifUtil} from "../../../tomi/utils/notif-util";
+import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
+import {DepartamentoLight} from "commons-model/model/geo/DepartamentoLight";
+import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
 
 declare var $: any;
 
@@ -38,9 +38,9 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
 
   caacParaPopup: CaacLight;
 
-  provincias: Provincia[];
-  departamentos: Departamento[];
-  localidades: Localidad[];
+  provincias: ProvinciaLight[];
+  departamentos: DepartamentoLight[];
+  localidades: LocalidadLight[];
 
 
   constructor(private eventBusService: EventBusService, private dataTableService: DataTableService, private picsService: PicsService, private casaService: CasaService) { }
@@ -59,9 +59,9 @@ export class GeneralViewComponent implements OnInit, AfterViewInit {
       { data: COLUMN_NOMBRE_CAAC, title: 'Nombre CAAC' },
       { data: COLUMN_PERSONERIA_JURIDICA, title: 'Personería Juridica' },
       { data: COLUMN_CUIT, title: 'CUIT' },
-      { data: COLUMN_PROVINCIA, title: 'Provincia', render: (item) => item.nombre },
-      { data: COLUMN_DEPARTAMENTO, title: 'Departamento', render: (item) => item.nombre },
-      { data: COLUMN_LOCALIDAD, title: 'Localidad', render: (item) => item.nombre },
+      { data: COLUMN_PROVINCIA, title: 'ProvinciaLight', render: (item) => item.nombre },
+      { data: COLUMN_DEPARTAMENTO, title: 'DepartamentoLight', render: (item) => item.nombre },
+      { data: COLUMN_LOCALIDAD, title: 'LocalidadLight', render: (item) => item.nombre },
       { data: COLUMN_DIRECCION, title: 'Dirección' },
       { data: COLUMN_NOMBRE_REPRESENTANTE, title: 'Nombre Representante' },
       { data: COLUMN_TELEFONO, title: 'Teléfono' },

@@ -1,21 +1,20 @@
-import {Provincia} from "../../model/provincia";
-import {Departamento} from "../../model/departamento";
-import {Localidad} from "../../model/localidad";
-
+import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
+import {DepartamentoLight} from "commons-model/model/geo/DepartamentoLight";
+import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
 export default class CaacLight {
 
   id;
   nomcaac;
   perjuridica;
   cuit;
-  provincia: Provincia;
+  provincia: ProvinciaLight;
   dir;
   nomrepre;
   tel;
   mail;
   obser;
-  localidad: Localidad;
-  departamento: Departamento;
+  localidad: LocalidadLight;
+  departamento: DepartamentoLight;
   activa;
   expsed;
   req;
