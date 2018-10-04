@@ -12,47 +12,59 @@
   <div class="form-row">
     <div class="form-group col-8">
       <div class="card card-body marginBottom">
-        <div class="form-group row">
-          <label for="example-text-input" class="col-4 col-form-label">Mes de referencia del informe</label>
+        <div class="form-group required row">
+          <label for="example-text-input" class="col-4 control-label col-form-label">Mes de referencia del informe</label>
           <div class="col-2">
             <input class="form-control" *ngIf="hoja.mes" name="meshja" type="text" id="example-text-input"
                    [ngModel]="hoja.mes.descripcion" [readonly]="readonlyControl">
             <input class="form-control" *ngIf="hoja.mes == null" type="text" id="example-text-input" [readonly]="true">
           </div>
-          <label for="example-search-input" class="col-4 col-form-label">Año de referencia del informe</label>
+          <label for="example-search-input" class="col-4  control-label col-form-label">Año de referencia del informe</label>
           <div class="col-2">
             <input class="form-control" type="number" name="anioHoja" id="example-search-input" [ngModel]="hoja.anio"
                    [readonly]="readonlyControl">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="codigoCaac" class="col-3 col-form-label">Código de la CAAC</label>
-          <div class="col-9">
+        <div class="form-group required row">
+          <label for="codigoCaac" class="col-4 control-label col-form-label">Código de la CAAC</label>
+          <div class="col-8">
             <input class="form-control" type="number" name="codigoCaac" id="codigoCaac" [readonly]="readonlyControl">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="example-url-input" class="col-3 col-form-label">Nombre de la CAAC</label>
-          <div class="col-9">
+        <div class="form-group required row">
+          <label for="example-url-input" class="col-4 control-label col-form-label">Nombre de la CAAC</label>
+          <div class="col-8">
             <input class="form-control" type="text" id="example-url-input" name="example-url-input" [readonly]="readonlyControl">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="organizacionResponsable" class="col-3 col-form-label">Organización responsable</label>
-          <div class="col-9">
+        <div class="form-group required row">
+          <label for="organizacionResponsable" class="col-4 control-label col-form-label">Organización responsable</label>
+          <div class="col-8">
             <input class="form-control" type="text" id="organizacionResponsable" name="organizacionResponsable" [readonly]="readonlyControl">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="personaResponsable" class="col-3 col-form-label">Persona responsable de la CAAC</label>
-          <div class="col-9">
+        <div class="form-group required row">
+          <label for="personaResponsable" class="col-4 control-label col-form-label">Persona responsable de la CAAC</label>
+          <div class="col-8">
             <input class="form-control" type="text" id="personaResponsable" name="personaResponsable" [readonly]="readonlyControl">
           </div>
         </div>
-        <div class="form-group row">
-          <label for="telefonoResponsable" class="col-3 col-form-label">Teléfono del responsable</label>
-          <div class="col-9">
+        <div class="form-group required row">
+          <label for="telefonoResponsable" class="col-4 control-label col-form-label">Teléfono del responsable</label>
+          <div class="col-8">
             <input class="form-control" type="text" name="telefonoResponsable" id="telefonoResponsable" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group required row">
+          <label for="correoResponsable" class="col-4 control-label col-form-label">Correo electrónico del responsable</label>
+          <div class="col-8">
+            <input class="form-control" type="text" name="correoResponsable" id="correoResponsable" [readonly]="readonlyControl">
+          </div>
+        </div>
+        <div class="form-group required row">
+          <label for="referentes" class="col-4 control-label col-form-label">Otros referentes ante SEDRONAR</label>
+          <div class="col-8">
+            <input class="form-control" type="text" name="referentes" id="referentes" [readonly]="readonlyControl">
           </div>
         </div>
       </div>

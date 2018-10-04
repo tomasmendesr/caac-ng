@@ -1,7 +1,7 @@
 import {Hoja} from "./hoja";
-import {Localidad} from "./localidad";
-import {Municipio} from "./municipio";
-import {Provincia} from "./provincia";
+import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
+import {Municipio} from "commons-model/model/geo/Municipio";
+import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
 export class HojaDatosIniciales{
   id: number;
   hoja: Hoja;
@@ -15,9 +15,9 @@ export class HojaDatosIniciales{
   interseccion1: string;
   interseccion2: string;
   barrio: string;
-  localidadLight: Localidad;
+  localidadLight: LocalidadLight;
   municipio: Municipio;
-  provinciaLight: Provincia;
+  provinciaLight: ProvinciaLight;
   anexo: string;
   direccionHorarioAnexos: string;
   caracteristicasGenerales: string;

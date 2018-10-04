@@ -28,6 +28,7 @@
     "@angular/router": "^5.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.2",
     "bootstrap": "^4.0.0-beta.3",
+    "commons-model": "http://172.16.9.38:81/artifactory/angular/sedronar/commons-model/commons-model-0.0.1.tar",
     "core-js": "^2.4.1",
     "file-saver": "^1.3.8",
     "ngx-bootstrap": "^2.0.5",
@@ -52,7 +53,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.1.2",
+    "protractor": "^5.4.1",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"

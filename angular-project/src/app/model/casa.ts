@@ -1,7 +1,7 @@
 import {Categoria} from "./categoria";
-import {Departamento} from "./departamento";
-import {Localidad} from "./localidad";
-import {Provincia} from "./provincia";
+import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
+import {DepartamentoLight} from "commons-model/model/geo/DepartamentoLight";
+import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
 export class Casa {
   id: number;
   nomcaac: string;
@@ -19,8 +19,8 @@ export class Casa {
   fechacon: Date;
   expsed: string;
   req: string;
-  provincia: Provincia;
-  localidad: Localidad;
-  departamento: Departamento;
+  provincia: ProvinciaLight;
+  localidad: LocalidadLight;
+  departamento: DepartamentoLight;
   activa: boolean;
 }

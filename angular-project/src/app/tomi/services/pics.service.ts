@@ -2,35 +2,35 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UrlConstants} from "./UrlConstants";
 import {Observable} from "rxjs/Observable";
-import {Provincia} from "../../model/provincia";
-import {Localidad} from "../../model/localidad";
-import {Departamento} from "../../model/departamento";
 import {TipoDocumento} from "../../model/tipo-documento";
+import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
+import {DepartamentoLight} from "commons-model/model/geo/DepartamentoLight";
+import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
 
 @Injectable()
 export class PicsService {
 
   constructor(private http: HttpClient) { }
 
-  findAllProvinciasCombo(): Observable<Provincia[]>{
-    return this.http.post<Provincia[]>(UrlConstants.FIND_PROVINCIAS_COMBO,{});
+  findAllProvinciasCombo(): Observable<ProvinciaLight[]>{
+    return this.http.post<ProvinciaLight[]>(UrlConstants.FIND_PROVINCIAS_COMBO,{});
   }
 
 
-  findAllLocalidades(): Observable<Localidad[]> {
-    return this.http.post<Localidad[]>(UrlConstants.FIND_LOCALIDADES, {});
+  findAllLocalidades(): Observable<LocalidadLight[]> {
+    return this.http.post<LocalidadLight[]>(UrlConstants.FIND_LOCALIDADES, {});
   }
 
-  findAllDepartamentos(): Observable<Departamento[]> {
-    return this.http.post<Departamento[]>(UrlConstants.FIND_DEPARTAMENTOS, {});
+  findAllDepartamentos(): Observable<DepartamentoLight[]> {
+    return this.http.post<DepartamentoLight[]>(UrlConstants.FIND_DEPARTAMENTOS, {});
   }
 
-  findAllDepartamentosByProvincia(provincia): Observable<Departamento[]> {
-    return this.http.post<Departamento[]>(UrlConstants.FIND_DEPARTAMENTOS_BY_PROVINCIA, provincia);
+  findAllDepartamentosByProvincia(provincia): Observable<DepartamentoLight[]> {
+    return this.http.post<DepartamentoLight[]>(UrlConstants.FIND_DEPARTAMENTOS_BY_PROVINCIA, provincia);
   }
 
-  findAllLocalidadesByDepartamento(departamento): Observable<Localidad[]> {
-    return this.http.post<Localidad[]>(UrlConstants.FIND_LOCALIDADES_BY_DEPARTAMENTO, departamento);
+  findAllLocalidadesByDepartamento(departamento): Observable<LocalidadLight[]> {
+    return this.http.post<LocalidadLight[]>(UrlConstants.FIND_LOCALIDADES_BY_DEPARTAMENTO, departamento);
   }
 
   findAllTiposDocumento(): Observable<TipoDocumento[]>{
