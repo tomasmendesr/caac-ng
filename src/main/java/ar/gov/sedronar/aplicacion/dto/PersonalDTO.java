@@ -1,6 +1,7 @@
 package ar.gov.sedronar.aplicacion.dto;
 
 import ar.gov.sedronar.modulo.commonsModels.dto.ProfesionDTO;
+import ar.gov.sedronar.modulo.commonsModels.dto.TipoDocumentoDTO;
 
 import java.util.Date;
 
@@ -19,6 +20,8 @@ public class PersonalDTO {
     private String estadoActual;
     private String uum;
     private java.util.Date fum;
+    private TipoDocumentoDTO tipoDocumento;
+    private Integer numeroDocumento;
 
     public Integer getId() {
         return id;
@@ -106,5 +109,21 @@ public class PersonalDTO {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    public TipoDocumentoDTO getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumentoDTO tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public Integer getNumeroDocumento() {
+        return numeroDocumento;
+    }
+
+    public void setNumeroDocumento(Integer numeroDocumento) {
+        this.numeroDocumento = numeroDocumento;
     }
 }

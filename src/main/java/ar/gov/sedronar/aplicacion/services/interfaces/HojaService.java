@@ -25,6 +25,10 @@ public interface HojaService {
     DataTableObjectResponse getHojasForTable(ConsultaTableFilter filter);
 
     @POST
+    @Path("/getHojasAbiertasForTable")
+    DataTableObjectResponse getHojasAbiertasForTable(ConsultaTableFilter filter);
+
+    @POST
     @Path("/saveOrUpdate")
     Long saveOrUpdate(HojaDTO hojaDTO) throws Exception;
 
@@ -33,6 +37,10 @@ public interface HojaService {
     HojaDTO findById(Long idHoja);
 
     @POST
-    @Path("/findByPeriodoAndCasa")
-    Long findByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms);
+    @Path("/findHojaAbiertaByPeriodoAndCasa")
+    Long findHojaAbiertaByPeriodoAndCasa(HeaderSigeseForms headerSigeseForms);
+
+    @POST
+    @Path("/cerrarPeriodo")
+    void cerrarPeriodo(HojaDTO hojaDTO) throws Exception;
 }

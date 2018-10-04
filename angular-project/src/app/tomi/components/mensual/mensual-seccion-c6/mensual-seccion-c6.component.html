@@ -10,7 +10,7 @@
     </ul>
   </div>
   <div class="form-row">
-    <div class="form-group col-6">
+    <div class="form-group col-12">
       <div class="card card-body marginBottom">
         <div (click)="hideFormAlert()" id="formAlert1" class="alert alert-danger formErrorMessages" role="alert">
           <ul style="margin-bottom: 0">
@@ -19,22 +19,35 @@
             </li>
           </ul>
         </div>
-        <h5>¿Qué otro tipo de actividades se realizan en la CAAC?</h5>
+        <h5 class="text-center">¿Qué otro tipo de actividades se realizan en la CAAC?</h5>
         <div class="form-group row" style="margin-bottom:0" *ngFor="let hojaMensual of hojaMensualActividadesList">
-          <div class="ItemCol ColCheck -size-auto col-2 text-right">
+          <div class="ItemCol ColCheck -size-auto col-4 text-right">
             <label class="InputCheckbox ItemCheck">
               <input class="form-check-input" type="checkbox" id="{{hojaMensual.actividadIntervencion.id}}" [disabled]="readonlyControl" name="{{hojaMensual.actividadIntervencion.id}}"
                 [checked]="hojaMensual.isChecked" (change)="onChangeCheckbox(hojaMensual, $event)">
               <span></span>
             </label>
           </div>
-          <label for="{{hojaMensual.actividadIntervencion.id}}" class="col-10 col-form-label text-left" style="padding-top:4px">{{hojaMensual.actividadIntervencion.descripcionActividad}}</label>
+          <label for="{{hojaMensual.actividadIntervencion.id}}" class="col-8 col-form-label text-left" style="padding-top:4px">{{hojaMensual.actividadIntervencion.descripcionActividad}}</label>
         </div>
         <textarea class="form-control" id="exampleFormControlTextarea0" [(ngModel)]="descripcionActividadOtroText" name="exampleFormControlTextarea0" rows="2"
                   [readonly]="!otroIsChecked"></textarea>
       </div>
     </div>
-
+    <div class="row">
+      <div class="form-group col-6" *ngFor="let hojaMensual of hojaMensualActividadesListWithoutOtro()">
+        <div class="card card-body marginBottom">
+          <h5>Especifique {{hojaMensual.actividadIntervencion.descripcionActividad | uppercase}} realizadas por la CAAC, dónde se realizaron, cantidad de actividades
+            mensuales, personas alcanzadas y frecuencia</h5>
+          <div class="form-group">
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="exampleFormControlTextarea1" rows="3"
+                      [readonly]="!hojaMensual.isChecked" [(ngModel)]="hojaMensual.descripcionActividad"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+<!--
     <div class="form-group col-6" *ngFor="let hojaMensual of hojaMensualActividadesListWithoutOtro()">
       <div class="card card-body marginBottom">
         <h5>Especifique {{hojaMensual.actividadIntervencion.descripcionActividad | uppercase}} realizadas por la CAAC, dónde se realizaron, cantidad de actividades
@@ -45,12 +58,13 @@
         </div>
       </div>
     </div>
+  -->
   </div>
 
   <div class="text-right" style="width:100%">
-    <button class="btn btn-sm btn-primary" (click)="onClickGuardar()" [disabled]="readonlyControl"><i
+    <button class="Button -sm -raised -primary -rounded" (click)="onClickGuardar()" [disabled]="readonlyControl"><i
       class="far fa-save"></i><span> Guardar</span></button>
-    <button class="btn btn-sm btn-default" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
+    <button class="Button -sm -default -outline -rounded" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
   </div>
 </div>
 

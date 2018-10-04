@@ -86,13 +86,13 @@ export class HeaderCaacSelectionComponent implements OnInit {
   }
 
   private onChangeMesCarga(mes: any){
-    this.headerSigeseForms.mesCarga = mes == -1 ? null : mes;
+    this.headerSigeseForms.mesCarga = mes ? mes : null;
     this.emitChanges(HeaderEvent.MES_CARGA);
   }
 
   private onChangeAnioCarga($event: any){
     let anio = $event.target.value;
-    this.headerSigeseForms.anioCarga = anio == -1 ? null : anio;
+    this.headerSigeseForms.anioCarga = anio ? anio : null;
     this.emitChanges(HeaderEvent.ANIO_CARGA);
   }
 
@@ -108,7 +108,7 @@ export class HeaderCaacSelectionComponent implements OnInit {
 
   private emitChanges(atributoQueFueModificado: string){
     if(this.allInputsCargaSeted()) {
-      this.hojaService.findByPeriodoAndCasa(this.headerSigeseForms).subscribe(data =>{
+      this.hojaService.findHojaAbiertaByPeriodoAndCasa(this.headerSigeseForms).subscribe(data =>{
         this.headerSigeseForms.hojaId = data;
         this.onChangeHeader(new HeaderEvent(HeaderEvent.HOJA_ID, this.headerSigeseForms))
         if(data){

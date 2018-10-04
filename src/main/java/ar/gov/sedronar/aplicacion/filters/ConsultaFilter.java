@@ -11,6 +11,7 @@ public class ConsultaFilter  {
     private Integer mesFinId;
     private Boolean tipoInformacionEstructural;
     private Boolean tipoInformacionMensual;
+    private Boolean hojaAbierta;
 
     public Integer getAnioInicio() {
         return anioInicio;
@@ -66,5 +67,13 @@ public class ConsultaFilter  {
 
     public void setNombreCasa(String nombreCasa) {
         this.nombreCasa = nombreCasa;
+    }
+
+    public Boolean getHojaAbierta() {
+        return hojaAbierta;
+    }
+
+    public void setHojaAbierta(Boolean hojaAbierta) {
+        this.hojaAbierta = hojaAbierta;
     }
 }

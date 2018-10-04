@@ -12,6 +12,8 @@ import {CasaService} from "../../services/casa.service";
 import {Observable} from "rxjs/Observable";
 import {map, startWith} from 'rxjs/operators';
 import {ConsultaComponent} from "../consulta/consulta.component";
+import {Hoja} from "../../../model/hoja";
+import {HojaService} from "../../services/hoja.service";
 
 declare var $:any;
 
@@ -27,7 +29,8 @@ export class CierrePeriodoComponent implements OnInit {
   filteredCasas: Observable<Casa[]>;
   meses: Mes[] = [];
   anios: number[] = [];
-  constructor(private mesService: MesService, private casaService: CasaService, private eventBusService: EventBusService) { }
+  private hojaACerrar: Hoja;
+  constructor(private mesService: MesService, private casaService: CasaService, private eventBusService: EventBusService, private hojaService: HojaService) { }
 
   ngOnInit() {
     this.initLists();
@@ -80,7 +83,7 @@ export class CierrePeriodoComponent implements OnInit {
       searching: false,
       scrollX: true,
       ajax: {
-        url: environment.apiUrl + UrlConstants.GET_HOJAS_FOR_TABLE,
+        url: environment.apiUrl + UrlConstants.GET_HOJAS_ABIERTAS_FOR_TABLE,
         type: 'POST',
         contentType: 'application/json',
         data: function (d) {
@@ -108,10 +111,15 @@ export class CierrePeriodoComponent implements OnInit {
        'print'
        ]*/
     });
+
+    $('#table tbody').on('click', '#cerrarPeriodo', function () {
+      self.hojaACerrar = table.row($(this).parents('tr').first()).data();
+      self.showConfirmDialog();
+    });
   }
 
   private buildTableButtons(): string {
-    var html = "<button class='Button -sm -primary -raised -rounded'>Cierre período</button>";
+    var html = "<button id='cerrarPeriodo' class='Button -sm -primary -raised -rounded'>Cierre período</button>";
     return html;
   }
 
@@ -124,5 +132,22 @@ export class CierrePeriodoComponent implements OnInit {
     if(value == null || !value) return this.casas;
     const filterValue = value.toLowerCase();
     return this.casas.filter(casa => casa.nomcaac.toLowerCase().includes(filterValue));
+  }
+
+  onClickConfirmarCierre(event: any){
+    this.hojaService.cerrarPeriodo(this.hojaACerrar).subscribe(response => {
+        this.updateTable();
+        NotifUtil.notifSuccess("La hoja fue cerrada con éxito");
+        this.hojaACerrar = null;
+      }, (error) => NotifUtil.notifError("Ocurrió un error"));
+    $("#confirmDialog").modal('hide');
+  }
+
+  showConfirmDialog(){
+    $("#confirmDialog").modal({
+      backdrop: 'static',
+      keyboard: false,
+      show: true
+    });
   }
 }

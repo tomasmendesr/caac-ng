@@ -51,9 +51,11 @@ export class UrlConstants {
 
   //hoja service
   static readonly GET_HOJAS_FOR_TABLE = '/services/hoja/getHojasForTable';
+  static readonly GET_HOJAS_ABIERTAS_FOR_TABLE = '/services/hoja/getHojasAbiertasForTable';
   static readonly VALIDATE_INPUTS_HOJA_MENSUAL_SECCION_A_MENSUAL = '/services/hoja/validateInputsDatosIniciales'
   static readonly SAVE_OR_UPDATE_HOJA = '/services/hoja/saveOrUpdate'
-  static readonly FIND_HOJA_BY_CASA_AND_PERIODO = '/services/hoja/findByPeriodoAndCasa'
+  static readonly FIND_HOJA_ABIERTA_BY_CASA_AND_PERIODO = '/services/hoja/findHojaAbiertaByPeriodoAndCasa'
+  static readonly CERRAR_PERIODO_HOJA = '/services/hoja/cerrarPeriodo'
 
   //hoja datos iniciales service
   static readonly SAVE_OR_UPDATE_DATOS_INICIALES_MENSUAL = '/services/hojaDatosIniciales/saveOrUpdateMensual'
@@ -64,6 +66,7 @@ export class UrlConstants {
   static readonly FIND_DEPARTAMENTOS = '/services/pics/findAllDepartamentos';
   static readonly FIND_DEPARTAMENTOS_BY_PROVINCIA = '/services/pics/findAllDepartamentosByProvincia';
   static readonly FIND_LOCALIDADES_BY_DEPARTAMENTO = '/services/pics/findAllLocalidadesByDepartamento';
+  static readonly FIND_ALL_TIPOS_DOCUMENTO = '/services/pics/findAllTiposDocumento';
 
   // hoja mensual asistidos service
   static readonly SAVE_OR_UPDATE_HOJA_MENSUAL_ASISTIDOS = '/services/hojaMensualAsistidos/saveOrUpdate'
@@ -111,6 +114,14 @@ export class UrlConstants {
 
   // hoja mensual personal service
   static readonly GET_HOJA_MENSUAL_PERSONAL_FOR_TABLE = '/services/hojaMensualPersonal/getDataForTable';
+  static readonly SAVE_OR_UPDATE_SECCION_D_HOJA_MENSUAL_PERSONAL = '/services/hojaMensualPersonal/saveOrUpdateSeccionD';
+
+  //hoja mensual observaciones service
+  static readonly FIND_HOJA_MENSUAL_OBSERVACIONES_BY_HOJA_ID = '/services/hojaMensualObservaciones/findByHojaId';
+  static readonly SAVE_OR_UPDATE_MENSUAL_OBSERVACIONES_SECCION_D = '/services/hojaMensualObservaciones/saveOrUpdateSeccionD';
+
+  //personal service
+  static readonly FIND_PERSONAL_BY_DOCUMENTO = '/services/personal/findByDocumento';
 
 
 }

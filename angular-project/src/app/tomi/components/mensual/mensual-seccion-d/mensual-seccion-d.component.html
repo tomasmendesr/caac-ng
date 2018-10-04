@@ -42,7 +42,7 @@
     <form>
       <div class="form-row">
         <div class="form-group col-12 text-right">
-          <button type="button" class="Button -sm -primary -raised -rounded" (click)="openModal()"><span class='fas fa-plus'></span> Agregar registro</button>
+          <button type="button" [disabled]="readonlyControl" class="Button -sm -primary -raised -rounded" (click)="openModal()"><span class='fas fa-plus'></span> Agregar registro</button>
         </div>
       </div>
     </form>
@@ -51,8 +51,8 @@
   </div>
 
   <div class="text-right" style="width:100%">
-    <button class="btn btn-sm btn-primary" (click)="onClickGuardar()" [disabled]="readonlyControl"><i class="far fa-save"></i><span> Guardar</span></button>
-    <button class="btn btn-sm btn-default" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
+    <button class="Button -sm -raised -primary -rounded" (click)="onClickGuardar()" [disabled]="readonlyControl"><i class="far fa-save"></i><span> Guardar</span></button>
+    <button class="Button -sm -default -outline -rounded" (click)="onClickSiguiente()" [disabled]="readonlyControl">Siguiente</button>
   </div>
 </div>
 
@@ -95,10 +95,28 @@
       </div>
 
       <div class="modal-body">
+        <div class="card card-block bottomSpace">
+          <h5 style="padding: 5px">Búsqueda por filtros</h5>
+          <form class="form-inline container">
+            <select class="custom-select col-4" id="tipoDoc" name="tipoDoc" [(ngModel)]="documentFilter.tipoDocumento" >
+              <option [ngValue]="undefined" selected>Tipo documento</option>
+              <option *ngFor="let tipoDoc of tiposDocumento" [ngValue]="tipoDoc">{{tipoDoc.descripcion}}</option>
+            </select>
+            <div class="col-1"></div>
+            <input type="number" name="dni" class="form-control col-5" [(ngModel)]="documentFilter.numeroDocumento" id="dni" [disabled]="documentFilter.tipoDocumento == null" placeholder="Número de documento">
+            <div class="col-1">
+              <button type="button" class="btn btn-default" (click)="cleanFilter()" title="Limpiar filtros"><span class="fas fa-eraser"></span></button>
+            </div>
+            <div class="col-1" style="padding-left: 3px">
+              <button type="button" class="btn btn-primary -lg -raised" (click)="findPersonal()" title="Actualizar búsqueda"> <span class="fas fa-search"></span></button>
+            </div>
+          </form>
+        </div>
+
         <form class="form-horizontal">
 
-          <div id="formAlertPopup" (click)="hideFormAlert()"  style="display:none; cursor: pointer" class="alert alert-danger" role="alert">
-            <ul>
+          <div id="formAlertPopup" (click)="hideFormAlert()"  style="display:none; cursor: pointer" class="alert alert-danger formErrorMessages" role="alert">
+            <ul style="margin-bottom:0">
               <li *ngFor="let message of formMessages">
                 {{message}}
               </li>
@@ -109,42 +127,57 @@
             <div class="form-group required row">
               <label for="nombre" class="col-3 col-form-label control-label">Nombre</label>
               <div class="col-9">
-                <input type="text" name="nombre" class="form-control" id="nombre" [(ngModel)]="personalMensual.nombre">
+                <input type="text" name="nombre" class="form-control" id="nombre" [(ngModel)]="personalMensual.nombre" [readonly]="personalMensual.personal.id">
               </div>
             </div>
             <div class="form-group required row">
               <label for="apellido" class="col-3 col-form-label control-label">Apellido</label>
               <div class="col-9">
-                <input type="text" name="apellido" class="form-control" id="apellido" [(ngModel)]="personalMensual.apellido">
+                <input type="text" name="apellido" class="form-control" id="apellido" [(ngModel)]="personalMensual.apellido" [readonly]="personalMensual.personal.id">
+              </div>
+            </div>
+
+            <div class="form-group required row">
+              <label for="tipoDocPersonal" class="col-3 col-form-label control-label">Tipo Documento</label>
+              <div class="col-9">
+                <select class="custom-select col-4" [compareWith]="compareTipoDoc"  id="tipoDocPersonal" name="tipoDocPersonal"  [disabled]="personalMensual.personal.id" [(ngModel)]="personalMensual.personal.tipoDocumento">
+                  <option *ngFor="let tipoDoc of tiposDocumento" [ngValue]="tipoDoc">{{tipoDoc.descripcion}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group required row">
+              <label for="nroDocPersonal" class="col-3 col-form-label control-label">Número documento</label>
+              <div class="col-9">
+                <input type="number" name="nroDocPersonal" class="form-control" [readonly]="personalMensual.personal.id" id="nroDocPersonal" [(ngModel)]="personalMensual.personal.numeroDocumento" >
               </div>
             </div>
             <div class="form-group required row">
               <label for="altaBaja" class="col-3 col-form-label control-label">Alta/Baja</label>
               <div class="col-9">
-                <select class="custom-select"  id="altaBaja" name="altaBaja" [(ngModel)]="personalMensual.altaBaja">
-                  <option [ngValue]="alta" selected>Alta</option>
-                  <option [ngValue]="baja">Baja</option>
+                <select class="custom-select" [compareWith]="compare" id="altaBaja" name="altaBaja" [(ngModel)]="personalMensual.altaBaja">
+                  <option [ngValue]="'alta'">Alta</option>
+                  <option [ngValue]="'baja'">Baja</option>
                 </select>
               </div>
             </div>
             <div class="form-group required row">
               <label for="rol" class="col-3 col-form-label control-label">Rol</label>
               <div class="col-9">
-                <input type="text" name="rol" class="form-control" id="rol" [(ngModel)]="personalMensual.rol">
+                <input type="text" name="rol" class="form-control" id="rol" [readonly]="personalMensual.personal.id" [(ngModel)]="personalMensual.rol">
               </div>
             </div>
             <div class="form-group required row">
               <label for="titulo" class="col-3 col-form-label control-label">Título</label>
               <div class="col-9">
-                <input type="text" name="titulo" class="form-control" id="titulo" [(ngModel)]="personalMensual.titulo">
+                <input type="text" name="titulo" class="form-control" [readonly]="personalMensual.personal.id" id="titulo" [(ngModel)]="personalMensual.titulo">
               </div>
             </div>
             <div class="form-group required row">
               <label for="rentado" class="col-3 col-form-label control-label">Rentado/No Rentado</label>
               <div class="col-9">
-                <select class="custom-select"  id="rentado" name="rentado" [(ngModel)]="personalMensual.esRentado">
-                  <option [ngValue]="S">Sí</option>
-                  <option [ngValue]="N">No</option>
+                <select class="custom-select" [compareWith]="compare" id="rentado" name="rentado" [disabled]="personalMensual.personal.id" [(ngModel)]="personalMensual.esRentado">
+                  <option [ngValue]="'S'">Sí</option>
+                  <option [ngValue]="'N'">No</option>
                 </select>
               </div>
             </div>
@@ -154,7 +187,7 @@
 
       <div class="modal-footer">
         <button type="button" (click)="closeModal()" class="Button -sm -default -outline -rounded" data-dismiss="modal">Cancelar</button>
-        <button type="submit" (click)="onClickAceptar($event)" class="Button -sm -primary -raised -rounded">Aceptar</button>
+        <button type="submit" (click)="onClickAceptarPopup($event)" class="Button -sm -primary -raised -rounded">Aceptar</button>
       </div>
 
 
