@@ -14,4 +14,6 @@ public interface HojaMensualActividadesService {
     void saveOrUpdate(HojaMensualActividadesDTO hoja) throws Exception;
 
     List<HojaMensualActividadesDTO> findListByHojaAndActividadId(Long idHoja, List<Integer> idsActividades);
+
+    void deleteIfExists(HojaMensualActividadesDTO hoja);
 }

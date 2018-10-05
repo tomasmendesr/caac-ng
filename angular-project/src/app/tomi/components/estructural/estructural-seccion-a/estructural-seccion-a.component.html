@@ -40,31 +40,31 @@
         <div class="form-group required row">
           <label for="organizacionResponsable" class="col-4 control-label col-form-label">Organización responsable</label>
           <div class="col-8">
-            <input class="form-control" type="text" id="organizacionResponsable" name="organizacionResponsable" [readonly]="readonlyControl">
+            <input class="form-control" type="text" id="organizacionResponsable" [(ngModel)]="hojaDatosIniciales.organismoResponsable" name="organizacionResponsable" [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group required row">
           <label for="personaResponsable" class="col-4 control-label col-form-label">Persona responsable de la CAAC</label>
           <div class="col-8">
-            <input class="form-control" type="text" id="personaResponsable" name="personaResponsable" [readonly]="readonlyControl">
+            <input class="form-control" type="text" id="personaResponsable" [(ngModel)]="hojaDatosIniciales.personaResponsable"  name="personaResponsable" [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group required row">
           <label for="telefonoResponsable" class="col-4 control-label col-form-label">Teléfono del responsable</label>
           <div class="col-8">
-            <input class="form-control" type="text" name="telefonoResponsable" id="telefonoResponsable" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="telefonoResponsable" [(ngModel)]="hojaDatosIniciales.telefonoResponsable" id="telefonoResponsable" [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group required row">
           <label for="correoResponsable" class="col-4 control-label col-form-label">Correo electrónico del responsable</label>
           <div class="col-8">
-            <input class="form-control" type="text" name="correoResponsable" id="correoResponsable" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="correoResponsable" [(ngModel)]="hojaDatosIniciales.mailResponsable" id="correoResponsable" [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group required row">
           <label for="referentes" class="col-4 control-label col-form-label">Otros referentes ante SEDRONAR</label>
           <div class="col-8">
-            <input class="form-control" type="text" name="referentes" id="referentes" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="referentes" id="referentes"  [(ngModel)]="hojaDatosIniciales.otrosReferentes"  [readonly]="readonlyControl">
           </div>
         </div>
       </div>
@@ -76,23 +76,23 @@
         <div class="form-row">
           <div class="form-group col-12 text-center">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" [disabled]="readonlyControl" type="radio" [checked]="cbAnexosChecked" (change)="cbAnexosChecked = true" name="inlineRadioOptions" id="inlineRadio1">
+              <input class="form-check-input" [disabled]="readonlyControl" type="radio" [checked]="hojaDatosIniciales.anexos == 'S'" [ngModel]="hojaDatosIniciales" [value]="'S'" name="inlineRadioOptions" id="inlineRadio1">
               <label class="form-check-label" for="inlineRadio1">Si</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" [disabled]="readonlyControl" type="radio" [checked]="!cbAnexosChecked" (change)="cbAnexosChecked = false" name="inlineRadioOptions2" id="inlineRadio2">
+              <input class="form-check-input" [disabled]="readonlyControl" type="radio" [checked]="hojaDatosIniciales.anexos == 'N'" [value]="'N'" name="inlineRadioOptions2" id="inlineRadio2">
               <label class="form-check-label" for="inlineRadio2">No</label>
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Dirección y horarios de los anexos</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" [readonly]="!cbAnexosChecked" name="exampleFormControlTextarea1" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="hojaDatosIniciales.direccionHorarioAnexos" [readonly]="hojaDatosIniciales.anexos == 'N'" name="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
         <br><br>
         <label for="exampleFormControlTextarea2">Caracterice brevemente la institución y sus objetivos generales (modalidad de funcionamiento, cultura institucional)</label>
         <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea2" [readonly]="readonlyControl" name="exampleFormControlTextarea2" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea2" [(ngModel)]="hojaDatosIniciales.caracteristicasGenerales" [readonly]="readonlyControl" name="exampleFormControlTextarea2" rows="3"></textarea>
         </div>
       </div>
     </div>
@@ -158,31 +158,31 @@
         <div class="form-group required row">
           <label for="barrio" class="col-2 control-label col-form-label text-right">Barrio</label>
           <div class="col-4">
-            <input class="form-control" type="text" name="barrio" id="barrio" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="barrio" id="barrio" [(ngModel)]="hojaDatosIniciales.barrio" [readonly]="readonlyControl">
           </div>
           <label for="direcc" class="col-2 control-label col-form-label text-right">Dirección</label>
           <div class="col-4">
-            <input class="form-control" type="text" name="direcc" id="direcc" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="direcc" id="direcc" [(ngModel)]="hojaDatosIniciales.direccion" [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group required row">
           <label for="entreCalles" class="col-2 control-label col-form-label text-right">Entre calles</label>
           <div class="col-4">
-            <input class="form-control" type="text" name="entreCalles" id="entreCalles" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="entreCalles" id="entreCalles" [(ngModel)]="hojaDatosIniciales.interseccion1" [readonly]="readonlyControl">
           </div>
           <label> y </label>
           <div class="col-4">
-            <input class="form-control" type="text" name="entreCalles2" id="entreCalles2" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="entreCalles2" id="entreCalles2" [(ngModel)]="hojaDatosIniciales.interseccion2" [readonly]="readonlyControl">
           </div>
         </div>
         <div class="form-group required row">
           <label for="telCaac" class="col-2 control-label col-form-label text-right">Teléfono de la CAAC</label>
           <div class="col-4">
-            <input class="form-control" type="text" name="telCaac" id="telCaac" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="telCaac" id="telCaac" [(ngModel)]="hojaDatosIniciales.telefonoCaac" [readonly]="readonlyControl">
           </div>
           <label for="correoCAAC" class="col-2 control-label col-form-label text-right">Corre electrónico de la CAAC</label>
           <div class="col-4">
-            <input class="form-control" type="text" name="correoCAAC" id="correoCAAC" [readonly]="readonlyControl">
+            <input class="form-control" type="text" name="correoCAAC" [(ngModel)]="hojaDatosIniciales.mailCaac" id="correoCAAC" [readonly]="readonlyControl">
           </div>
         </div>
     </div>
@@ -190,17 +190,17 @@
     <div class="form-group col-12">
       <div class="card card-body marginBottom">
         <label class="col-12"><b>Alternativas asistenciales</b></label>
-        <div class="form-group row" style="margin-bottom:0" *ngFor="let altAsist of alternativasAsistenciales">
+        <div class="form-group row" style="margin-bottom:0" *ngFor="let hojaAltAsist of hojaAlternativasAsistencialesList">
           <div class="ItemCol ColCheck -size-auto col-1">
             <label class="InputCheckbox ItemCheck">
-              <input class="form-check-input" type="checkbox" id="{{altAsist.id}}" [disabled]="readonlyControl" name="{{altAsist.id}}"
-                     [checked]="altAsist.isChecked" (change)="onChangeCheckbox(altAsist, $event)">
+              <input class="form-check-input" type="checkbox" id="{{hojaAltAsist.alternativaAsistencial.id}}" [disabled]="readonlyControl" name="{{hojaAltAsist.alternativaAsistencial.id}}"
+                     [checked]="hojaAltAsist.isChecked" (change)="onChangeCheckbox(hojaAltAsist, $event)">
               <span></span>
             </label>
           </div>
-          <label for="{{altAsist.id}}" class="col-11 col-form-label text-left" style="padding-top:4px">{{altAsist.nombre}}: {{altAsist.descripcion}}</label>
+          <label for="{{hojaAltAsist.alternativaAsistencial.id}}" class="col-11 col-form-label text-left" style="padding-top:4px">{{hojaAltAsist.alternativaAsistencial.nombre}}: {{hojaAltAsist.alternativaAsistencial.descripcion}}</label>
         </div>
-        <textarea class="form-control" placeholder="Especifique para la opción 'Otro'" id="exampleFormControlTextarea0" *ngIf="otroIsChecked" name="exampleFormControlTextarea0" rows="1" ></textarea>
+        <textarea class="form-control" [(ngModel)]="alternativaAsistencialOtroDescripcion" placeholder="Especifique para la opción 'Otro'" id="exampleFormControlTextarea0" *ngIf="otroIsChecked" name="exampleFormControlTextarea0" rows="1" ></textarea>
       </div>
     </div>
   </div>

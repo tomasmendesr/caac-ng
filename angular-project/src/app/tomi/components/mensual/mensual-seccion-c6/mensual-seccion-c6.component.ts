@@ -65,7 +65,7 @@ export class MensualSeccionC6Component implements OnInit {
   private onClickGuardar() {
     this.bindDataToDTO();
     this.loadingComponent.showLoading();
-    this.mensualSeccionCService.saveDataSeccionC6(this.hojaMensualActividadesList.filter(h => h.isChecked)).subscribe(appResponse => {
+    this.mensualSeccionCService.saveDataSeccionC6(this.hojaMensualActividadesList).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         NotifUtil.notifSuccess("Guardado exitosamente");
         this.loadingComponent.hideLoading();
@@ -98,7 +98,7 @@ export class MensualSeccionC6Component implements OnInit {
   private onClickConfirmDialogSiguiente(){
     this.loadingComponent.showLoading();
     this.bindDataToDTO();
-    this.mensualSeccionCService.saveDataSeccionC6(this.hojaMensualActividadesList.filter(h => h.isChecked)).subscribe(appResponse => {
+    this.mensualSeccionCService.saveDataSeccionC6(this.hojaMensualActividadesList).subscribe(appResponse => {
       if(appResponse.code == AppResponse.SUCCESS){
         this.loadingComponent.hideLoading();
         this.siguiente();
@@ -113,9 +113,7 @@ export class MensualSeccionC6Component implements OnInit {
   }
 
   private bindDataToDTO() {
-    this.hojaMensualActividadesList.forEach(hojaMensual => {
-      if(this.actividadIntervencionService.actividadIntervencionOtro(hojaMensual.actividadIntervencion)) hojaMensual.descripcionActividad = this.descripcionActividadOtroText;
-    });
+    if(this.otroIsChecked) this.hojaMensualActividadesList.find(h => this.actividadIntervencionService.actividadIntervencionOtro(h.actividadIntervencion)).descripcionActividad = this.descripcionActividadOtroText;
     this.setHojaIdToItems();
   }
 
@@ -163,6 +161,7 @@ export class MensualSeccionC6Component implements OnInit {
     $event.preventDefault();
     let cbValue = $event.target.checked;
     hojaMensual.isChecked = cbValue;
+    if(!cbValue) hojaMensual.descripcionActividad = '';
     if(this.actividadIntervencionService.actividadIntervencionOtro(hojaMensual.actividadIntervencion)) {
       this.otroIsChecked = cbValue;
       if(!cbValue) this.descripcionActividadOtroText == '';

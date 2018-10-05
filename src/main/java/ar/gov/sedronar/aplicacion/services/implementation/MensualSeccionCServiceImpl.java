@@ -245,10 +245,16 @@ public class MensualSeccionCServiceImpl implements MensualSeccionCService {
 
     @Override
     public AppResponse saveOrUpdateSeccionC6(List<HojaMensualActividadesDTO> data) throws Exception {
-        AppResponse validateInputs = hojaMensualActividadesService.validateInputs(data);
+        AppResponse validateInputs = hojaMensualActividadesService.validateInputs(data.stream().filter(h -> h.getIsChecked()).collect(Collectors.toList()));
         if(validateInputs.getCode() == AppResponse.ERROR) return validateInputs;
 
-        for (HojaMensualActividadesDTO hoja : data) hojaMensualActividadesService.saveOrUpdate(hoja);
+        for (HojaMensualActividadesDTO hoja : data) {
+            if(!hoja.getIsChecked()){
+                hojaMensualActividadesService.deleteIfExists(hoja);
+            } else{
+                hojaMensualActividadesService.saveOrUpdate(hoja);
+            }
+        }
         return new AppResponse();
     }
 

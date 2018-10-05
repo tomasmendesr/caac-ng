@@ -9,6 +9,7 @@ public class HojaAlternativasAsistencialesDTO {
     private String descripcion;
     private String uum;
     private java.util.Date fum;
+    private Boolean isChecked;
 
     public HojaDTO getHoja() {
         return hoja;
@@ -48,5 +49,13 @@ public class HojaAlternativasAsistencialesDTO {
 
     public void setFum(Date fum) {
         this.fum = fum;
+    }
+
+    public Boolean getIsChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(Boolean checked) {
+        isChecked = checked;
     }
 }

@@ -58,6 +58,7 @@ export class EstructuralSeccionAComponent implements OnInit {
 
   private cbAnexosChecked: boolean = false;
   private otroIsChecked: boolean = false;
+  private alternativaAsistencialOtroDescripcion: string = '';
 
   constructor(private alternativaAsistencialService: AlternativaAsistencialService, private estructuralService: EstructuralService,
               private router: Router, private picsService: PicsService) { }
@@ -142,6 +143,10 @@ export class EstructuralSeccionAComponent implements OnInit {
   private bindDataToDTO() {
     this.estructuralSeccionAData.hojaDatosIniciales = this.hojaDatosIniciales;
     this.estructuralSeccionAData.hojaAlternativasAsistencialesList = this.hojaAlternativasAsistencialesList;
+    this.estructuralSeccionAData.hojaAlternativasAsistencialesList.forEach(h => {
+      h.descripcion = h.alternativaAsistencial.descripcion;
+      if(this.otroIsChecked && this.alternativaAsistencialService.isOptionOtro(h.alternativaAsistencial)) h.descripcion = this.alternativaAsistencialOtroDescripcion;
+    });
     this.estructuralSeccionAData.hoja = this.hoja;
   }
 
@@ -153,6 +158,13 @@ export class EstructuralSeccionAComponent implements OnInit {
 
   private buildHojaAlternativasAsistenciales(data: EstructuralSeccionAData) {
     this.hojaAlternativasAsistencialesList = data.hojaAlternativasAsistencialesList;
+    this.hojaAlternativasAsistencialesList.forEach(h => {
+      h.isChecked = true;
+      if(this.alternativaAsistencialService.isOptionOtro(h.alternativaAsistencial)){
+        this.otroIsChecked = true;
+        this.alternativaAsistencialOtroDescripcion = h.descripcion;
+      }
+    });
     if(this.hojaAlternativasAsistencialesList.length != this.alternativasAsistenciales.length){
       this.completeHojaAlternativasAsistencialesList();
     }
@@ -222,7 +234,9 @@ export class EstructuralSeccionAComponent implements OnInit {
   }
 
   private selectedDepartamento(event: MatOptionSelectionChange , departamento: DepartamentoLight){
+    this.hojaDatosIniciales.departamentoLight = null;
     if(event.source.selected) {
+      this.hojaDatosIniciales.departamentoLight = departamento;
       this.localidadCtrl.enable();
       this.municipioCtrl.enable();
       this.picsService.findMunicipiosByDepartamentoId(departamento.id).subscribe(data =>{
@@ -255,7 +269,9 @@ export class EstructuralSeccionAComponent implements OnInit {
   }
 
   private selectedMunicipio(event: MatOptionSelectionChange , municipio: Municipio){
+    this.hojaDatosIniciales.municipio = null;
     if(event.source.selected) {
+      this.hojaDatosIniciales.municipio = municipio;
     }
   }
 
@@ -266,7 +282,9 @@ export class EstructuralSeccionAComponent implements OnInit {
   }
 
   private selectedLocalidad(event: MatOptionSelectionChange , localidad: LocalidadLight){
+    this.hojaDatosIniciales.localidadLight = null;
     if(event.source.selected) {
+      this.hojaDatosIniciales.localidadLight = localidad;
     }
   }
 
@@ -299,6 +317,15 @@ export class EstructuralSeccionAComponent implements OnInit {
     $(formAlertId).show();
   }
 
+  private onChangeCheckbox(hojaAltAsist: HojaAlternativasAsistenciales, $event: any) {
+    $event.preventDefault();
+    let cbValue = $event.target.checked;
+    hojaAltAsist.isChecked = cbValue;
+    if(this.alternativaAsistencialService.isOptionOtro(hojaAltAsist.alternativaAsistencial)) {
+      this.otroIsChecked = cbValue;
+      if(!cbValue) this.alternativaAsistencialOtroDescripcion == '';
+    }
+  }
 
 
 }

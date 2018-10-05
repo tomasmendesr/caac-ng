@@ -3,10 +3,7 @@ package ar.gov.sedronar.aplicacion.services.implementation;
 import ar.gov.sedronar.aplicacion.dao.hibernate.HibernateDAO;
 import ar.gov.sedronar.aplicacion.dao.interfaces.HojaMensualActividadesDAO;
 import ar.gov.sedronar.aplicacion.dto.HojaMensualActividadesDTO;
-import ar.gov.sedronar.aplicacion.model.HojaMensualActividades;
-import ar.gov.sedronar.aplicacion.model.HojaMensualActividadesId;
-import ar.gov.sedronar.aplicacion.model.HojaMensualRecursos;
-import ar.gov.sedronar.aplicacion.model.HojaMensualRecursosId;
+import ar.gov.sedronar.aplicacion.model.*;
 import ar.gov.sedronar.aplicacion.services.interfaces.HojaMensualActividadesService;
 import ar.gov.sedronar.aplicacion.services.interfaces.UsuarioService;
 import ar.gov.sedronar.util.app.AppResponse;
@@ -67,6 +64,12 @@ public class HojaMensualActividadesServiceImpl implements HojaMensualActividades
         List<HojaMensualActividadesDTO> list = new ArrayList<>();
         idsActividades.forEach(idActividad -> findAndAddIfExists(idHoja, idActividad, list));
         return list;
+    }
+
+    @Override
+    public void deleteIfExists(HojaMensualActividadesDTO dto) {
+        HojaMensualActividades hoja = hojaMensualActividadesDAO.findById(dto.getHoja().getId(), dto.getActividadIntervencion().getId());
+        if(hoja != null) hojaMensualActividadesDAO.delete(hoja);
     }
 
 

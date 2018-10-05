@@ -66,7 +66,8 @@ public class HojaDatosInicialesServiceImpl implements HojaDatosInicialesService 
         return new AppResponse(hojaDatosInicialesDTO); // retorno el objeto para guardar referencia en el front
     }
 
-    private Long saveOrUpdate(HojaDatosInicialesDTO hojaDatosInicialesDTO) throws Exception {
+    @Override
+    public Long saveOrUpdate(HojaDatosInicialesDTO hojaDatosInicialesDTO) throws Exception {
         if (hojaDatosInicialesDTO == null) throw new Exception("Error creando la consulta");
         HojaDatosIniciales hoja;
         if(hojaDatosInicialesDTO.getId() != null) hoja = hojaDatosInicialesDAO.findById(HojaDatosIniciales.class, hojaDatosInicialesDTO.getId());

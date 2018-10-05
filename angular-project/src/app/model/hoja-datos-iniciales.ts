@@ -2,6 +2,7 @@ import {Hoja} from "./hoja";
 import {LocalidadLight} from "commons-model/model/geo/LocalidadLight";
 import {Municipio} from "commons-model/model/geo/Municipio";
 import {ProvinciaLight} from "commons-model/model/geo/ProvinciaLight";
+import {DepartamentoLight} from "commons-model/model/geo/DepartamentoLight";
 export class HojaDatosIniciales{
   id: number;
   hoja: Hoja;
@@ -18,11 +19,10 @@ export class HojaDatosIniciales{
   localidadLight: LocalidadLight;
   municipio: Municipio;
   provinciaLight: ProvinciaLight;
+  departamentoLight: DepartamentoLight;
   anexo: string;
   direccionHorarioAnexos: string;
   caracteristicasGenerales: string;
   telefonoCaac: string;
   mailCaac: string;
-  uum: string;
-  fum: Date;
 }

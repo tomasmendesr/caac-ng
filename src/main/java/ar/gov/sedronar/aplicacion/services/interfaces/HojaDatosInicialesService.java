@@ -28,4 +28,6 @@ public interface HojaDatosInicialesService {
     AppResponse validateInputsMensual(HojaDatosInicialesDTO hojaDatosInicialesDTO);
 
     HojaDatosInicialesDTO findByHojaId(Long idhoja);
+
+    Long saveOrUpdate(HojaDatosInicialesDTO hojaDatosInicialesDTO) throws Exception;
 }
